@@ -2,7 +2,7 @@ package testcase;
 
 import annotations.MUTABLE;
 
-public class M2 {
+public class MT_002 {
 
 	@MUTABLE
 	public Object f = new Object();
@@ -10,15 +10,15 @@ public class M2 {
 	@Override
 	public String toString() {
 		// using hashcode to avoid a recursive stackoverflow
-		return "M2 [f=" + f.hashCode() + "]"; 
+		return "MT_002 [f=" + f.hashCode() + "]"; 
 	}
 	
-	public M2 getThis(){
+	public MT_002 getThis(){
 		return this;
 	}
 	
 	public static void main(String[] args) {
-		M2 test = new M2();
+		MT_002 test = new MT_002();
 		System.out.println(test);
 		test.f = test.getThis();
 		System.out.println(test);
