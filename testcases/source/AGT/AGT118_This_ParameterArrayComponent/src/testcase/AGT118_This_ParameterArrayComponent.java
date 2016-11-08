@@ -1,7 +1,5 @@
 package testcase;
 
-import java.util.Arrays;
-
 import annotations.MUTABLE;
 
 public class AGT118_This_ParameterArrayComponent {
@@ -11,7 +9,15 @@ public class AGT118_This_ParameterArrayComponent {
 
 	@Override
 	public String toString() {
-		return "AGT118_This_ParameterArrayComponent [f=" + Arrays.toString(f) + "]";
+		// modified toString to avoid recursive stackoverflow
+		String result = "AGT118_This_ParameterArrayComponent [f=";
+		String prefix = "";
+		for(Object o : f){
+			result += prefix + o.hashCode();
+			prefix = ", ";
+		}
+		result +=  "]";
+		return result;
 	}
 	
 	public static void main(String[] args) {

@@ -9,7 +9,7 @@ public class AGT119_This_ParameterInstanceVariable {
 
 	@Override
 	public String toString() {
-		return "AGT119_This_ParameterInstanceVariable [f=" + f + "]";
+		return "AGT119_This_ParameterInstanceVariable [f=" + f.hashCode() + "]";
 	}
 	
 	public static void main(String[] args) {

@@ -1,7 +1,5 @@
 package testcase;
 
-import java.util.Arrays;
-
 import annotations.MUTABLE;
 
 public class AGT120_This_ParameterInstanceVariableArrayComponent {
@@ -11,7 +9,15 @@ public class AGT120_This_ParameterInstanceVariableArrayComponent {
 
 	@Override
 	public String toString() {
-		return "AGT120_This_ParameterInstanceVariableArrayComponent [f=" + Arrays.toString(f) + "]";
+		// modified toString to avoid recursive stackoverflow
+		String result = "AGT120_This_ParameterInstanceVariableArrayComponent [f=";
+		String prefix = "";
+		for(Object o : f){
+			result += prefix + o.hashCode();
+			prefix = ", ";
+		}
+		result +=  "]";
+		return result;
 	}
 	
 	public static void main(String[] args) {
