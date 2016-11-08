@@ -1,7 +1,5 @@
 package testcase;
 
-import java.util.Arrays;
-
 import annotations.MUTABLE;
 
 public class AGT114_This_ThisInstanceVariableArrayComponent {
@@ -11,7 +9,14 @@ public class AGT114_This_ThisInstanceVariableArrayComponent {
 	
 	@Override
 	public String toString() {
-		return "AGT114_This_ThisInstanceVariableArrayComponent [f=" + Arrays.toString(f) + "]";
+		String arrayToString = "[";
+		String prefix = "";
+		for(Object o : f){
+			arrayToString += (prefix + o.hashCode());
+			prefix = ", ";
+		}
+		arrayToString += "]";
+		return "AGT114_This_ThisInstanceVariableArrayComponent [f=" + arrayToString + "]";
 	}
 
 	public void foo(){
