@@ -12,8 +12,7 @@ public class ReImInferGrader {
 	@SuppressWarnings("resource")
 	public static void main(String[] args) throws IOException {
 		
-//		File inputDirectory = new File(args[0]);
-		File inputDirectory = new File("C:\\Users\\Ben\\Desktop\\test");
+		File inputDirectory = new File(args[0]);
 		File executionProof = new File(inputDirectory.getAbsolutePath() + File.separator + "execution-proof.txt");
 		File analysisResult = new File(inputDirectory.getAbsolutePath() + File.separator + "reim-result.jaif");
 		
