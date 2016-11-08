@@ -47,11 +47,11 @@ Vagrant.configure("2") do |config|
 			mkdir -p $RESULTS
 			
 			# get the execution proof
-			java -jar "$TESTCASES/binary/$CATEGORY/$TESTCASE.jar" > $RESULTS/execution-proof.txt
+			java -jar "$TESTCASES/binary/$CATEGORY/$TESTCASE.jar" &> $RESULTS/execution-proof.txt
 			
 			# run the analysis on the test case
 			cd /home/vagrant/type-inference-0.1.2
-			sudo ./binary/javai-reim $TESTCATEGORY/$TESTCASE/src/testcase/$TESTCASE.java $ANNOTATIONS
+			sudo ./binary/javai-reim $TESTCATEGORY/$TESTCASE/src/testcase/$TESTCASE.java $ANNOTATIONS &> $RESULTS/reim.log
 			mv /home/vagrant/type-inference-0.1.2/new-result.jaif $RESULTS/reim-result.jaif
 			
 			cd $TESTCATEGORY
