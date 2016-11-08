@@ -29,6 +29,9 @@ Vagrant.configure("2") do |config|
 	cd /home/vagrant/immutability-benchmark/testcases
 	./build-testcases.sh
 	
+	echo "Building grader..."
+	sudo javac /home/vagrant/immutability-benchmark/harnesses/ReImInfer-OOPSLA2012/ReImInferGrader/src/ReImInferGrader.java -d /home/vagrant/immutability-benchmark/harnesses/ReImInfer-OOPSLA2012/
+	
 	TESTCASES=/home/vagrant/immutability-benchmark/testcases
 	ANNOTATIONS="$TESTCASES/TestcaseBase/src/annotations/MUTABLE.java $TESTCASES/TestcaseBase/src/annotations/READONLY.java"
 
@@ -53,6 +56,9 @@ Vagrant.configure("2") do |config|
 			cd /home/vagrant/type-inference-0.1.2
 			sudo ./binary/javai-reim $TESTCATEGORY/$TESTCASE/src/testcase/$TESTCASE.java $ANNOTATIONS &> $RESULTS/reim.log
 			mv /home/vagrant/type-inference-0.1.2/new-result.jaif $RESULTS/reim-result.jaif
+			
+			cd /home/vagrant/immutability-benchmark/harnesses/ReImInfer-OOPSLA2012
+			java ReImInferGrader $RESULTS &> $RESULTS/result.txt
 			
 			cd $TESTCATEGORY
 		done
