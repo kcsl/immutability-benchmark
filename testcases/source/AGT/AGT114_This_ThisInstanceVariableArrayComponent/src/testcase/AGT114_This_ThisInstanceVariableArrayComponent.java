@@ -9,14 +9,15 @@ public class AGT114_This_ThisInstanceVariableArrayComponent {
 	
 	@Override
 	public String toString() {
-		String arrayToString = "[";
+		// modified toString to avoid recursive stackoverflow
+		String result = "AGT114_This_ThisInstanceVariableArrayComponent [f=";
 		String prefix = "";
 		for(Object o : f){
-			arrayToString += (prefix + o.hashCode());
+			result += prefix + o.hashCode();
 			prefix = ", ";
 		}
-		arrayToString += "]";
-		return "AGT114_This_ThisInstanceVariableArrayComponent [f=" + arrayToString + "]";
+		result +=  "]";
+		return result;
 	}
 
 	public void foo(){
