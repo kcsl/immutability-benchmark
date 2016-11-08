@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# clear out the old testcases
+rm -rf binary
+
 WD=$(pwd)
 TESTCASEBASE="$WD/TestcaseBase/src/annotations/"
 
