@@ -9,7 +9,7 @@ public class AGT113_This_ThisInstanceVariable {
 	
 	@Override
 	public String toString() {
-		return "AGT113_This_ThisInstanceVariable [f=" + f + "]";
+		return "AGT113_This_ThisInstanceVariable [f=" + f.hashCode() + "]";
 	}
 
 	public void foo(){
