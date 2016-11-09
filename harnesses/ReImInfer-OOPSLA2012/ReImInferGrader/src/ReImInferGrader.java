@@ -12,6 +12,8 @@ public class ReImInferGrader {
 	@SuppressWarnings("resource")
 	public static void main(String[] args) throws IOException {
 		
+		args = new String[]{"C:\\Users\\Ben\\Desktop\\test","C:\\Users\\Ben\\Desktop\\test3\\summary.txt"};
+		
 		File inputDirectory = new File(args[0]);
 		File summaryFile = new File(args[1]);
 		File executionProof = new File(inputDirectory.getAbsolutePath() + File.separator + "execution-proof.txt");
@@ -30,12 +32,20 @@ public class ReImInferGrader {
 			Scanner tokens = new Scanner(line).useDelimiter(",|=");
 			while(tokens.hasNext()){
 				String field = tokens.next();
+				String value;
 				// consider nested objects 
 				if(line.contains("=[")){
 					line = line.substring(line.indexOf("[") + 1);
 					tokens = new Scanner(line).useDelimiter("]");
+					value = tokens.next();
+					line = line.substring(value.length()+1);
+					if(line.startsWith(",")){
+						line = line.substring(1);
+					}
+					tokens = new Scanner(line).useDelimiter(",|=");
+				} else {
+					value = tokens.next();
 				}
-				String value = tokens.next();
 				if(!comparisons.containsKey(field)){
 					comparisons.put(field, new HashSet<String>());
 				}
