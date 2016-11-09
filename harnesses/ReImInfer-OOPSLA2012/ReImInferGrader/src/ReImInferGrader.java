@@ -20,10 +20,18 @@ public class ReImInferGrader {
 		HashMap<String,Set<String>> comparisons = new HashMap<String,Set<String>>();
 		while(scanner.hasNextLine()){
 			String line = scanner.nextLine();
+			// strip testcase name
+			line = line.replace(line.split(" ")[0], "").replace(" ",""); 
+			// parse object fields
 			line = line.substring(line.indexOf("[") + 1, line.lastIndexOf("]"));
-			Scanner tokens = new Scanner(line).useDelimiter(", |=");
+			Scanner tokens = new Scanner(line).useDelimiter(",|=");
 			while(tokens.hasNext()){
 				String field = tokens.next();
+				// consider nested objects 
+				if(line.contains("=[")){
+					line = line.substring(line.indexOf("[") + 1);
+					tokens = new Scanner(line).useDelimiter("]");
+				}
 				String value = tokens.next();
 				if(!comparisons.containsKey(field)){
 					comparisons.put(field, new HashSet<String>());
