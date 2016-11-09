@@ -12,8 +12,6 @@ public class ReImInferGrader {
 	@SuppressWarnings("resource")
 	public static void main(String[] args) throws IOException {
 		
-		args = new String[]{"C:\\Users\\Ben\\Desktop\\test","C:\\Users\\Ben\\Desktop\\test3\\summary.txt"};
-		
 		File inputDirectory = new File(args[0]);
 		File summaryFile = new File(args[1]);
 		File executionProof = new File(inputDirectory.getAbsolutePath() + File.separator + "execution-proof.txt");
