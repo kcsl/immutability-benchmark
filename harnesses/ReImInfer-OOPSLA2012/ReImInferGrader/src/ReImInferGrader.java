@@ -13,8 +13,11 @@ public class ReImInferGrader {
 	public static void main(String[] args) throws IOException {
 		
 		File inputDirectory = new File(args[0]);
+		File summaryFile = new File(args[1]);
 		File executionProof = new File(inputDirectory.getAbsolutePath() + File.separator + "execution-proof.txt");
 		File analysisResult = new File(inputDirectory.getAbsolutePath() + File.separator + "reim-result.jaif");
+		
+		FileWriter summary = new FileWriter(summaryFile, true);
 		
 		Scanner scanner = new Scanner(executionProof);
 		HashMap<String,Set<String>> comparisons = new HashMap<String,Set<String>>();
@@ -77,10 +80,14 @@ public class ReImInferGrader {
 			if(result.getValue().equals("READONLY") && mutations.containsKey(key) && mutations.get(key) == true){
 				// analysis reported readonly but there was a mutation
 				System.out.println("FAIL");
+				summary.write(inputDirectory.getName() + ",FAIL\n");
+				summary.close();
 				return;
 			} else if(result.getValue().equals("MUTABLE") && mutations.containsKey(key) && mutations.get(key) == false){
 				// analysis reported mutable, but there was no mutation
 				System.out.println("FAIL");
+				summary.write(inputDirectory.getName() + ",FAIL\n");
+				summary.close();
 				return;
 			} 
 //			else if(result.getValue().equals("POLYREAD") && mutations.containsKey(key) && mutations.get(key) == false){
@@ -90,6 +97,8 @@ public class ReImInferGrader {
 //			}
 		}
 		System.out.println("PASS");
+		summary.write(inputDirectory.getName() + ",PASS\n");
+		summary.close();
 		
 	}
 
