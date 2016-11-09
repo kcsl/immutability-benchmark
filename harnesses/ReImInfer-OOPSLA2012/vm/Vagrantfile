@@ -58,7 +58,7 @@ Vagrant.configure("2") do |config|
 			mv /home/vagrant/type-inference-0.1.2/new-result.jaif $RESULTS/reim-result.jaif
 			
 			cd /home/vagrant/immutability-benchmark/harnesses/ReImInfer-OOPSLA2012
-			java ReImInferGrader $RESULTS &> $RESULTS/result.txt
+			java ReImInferGrader $RESULTS /home/vagrant/RESULTS/grader-summary.txt &> $RESULTS/grader-result.txt
 			
 			cd $TESTCATEGORY
 		done
