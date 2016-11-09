@@ -12,6 +12,9 @@ public class ReImInferGrader {
 	@SuppressWarnings("resource")
 	public static void main(String[] args) throws IOException {
 		
+		// debug
+//		args = new String[]{"C:\\Users\\Ben\\Desktop\\test4","C:\\Users\\Ben\\Desktop\\test3\\summary.txt"};
+		
 		File inputDirectory = new File(args[0]);
 		File summaryFile = new File(args[1]);
 		File executionProof = new File(inputDirectory.getAbsolutePath() + File.separator + "execution-proof.txt");
@@ -39,6 +42,10 @@ public class ReImInferGrader {
 					line = line.substring(value.length()+1);
 					if(line.startsWith(",")){
 						line = line.substring(1);
+					}
+					// check if there are any fields left
+					if(!line.contains(",") && !line.contains("=")){
+						line = "";
 					}
 					tokens = new Scanner(line).useDelimiter(",|=");
 				} else {
