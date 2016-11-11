@@ -72,11 +72,14 @@ public class ReImInferGrader {
 					if(line.contains("\t" + field + "\t")){
 						if(line.contains("@Readonly")){
 							analysis.put(field, "READONLY");
-						} else if(line.contains("@Mutable")){
+						} 
+						if(line.contains("@Mutable")){
 							analysis.put(field, "MUTABLE");
-						} else if(line.contains("@Polyread")){
+						}
+						if(line.contains("@Polyread")){
 							analysis.put(field, "POLYREAD");
-						} else {
+						}
+						if(analysis.isEmpty()) {
 							throw new RuntimeException("Unexpected input: " + line);
 						}
 						break;

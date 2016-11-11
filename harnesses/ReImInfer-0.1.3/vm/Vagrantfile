@@ -55,7 +55,7 @@ Vagrant.configure("2") do |config|
             # run the analysis on the test case
             cd /home/vagrant/type-inference-0.1.3
             sudo ./binary/javai-reim $TESTCATEGORY/$TESTCASE/src/testcase/$TESTCASE.java $ANNOTATIONS &> $RESULTS/reim.log
-            mv /home/vagrant/type-inference-0.1.3/result.csv $RESULTS/reim-result.csv
+            mv /home/vagrant/type-inference-0.1.3/infer-output/result.csv $RESULTS/reim-result.csv
             
             cd /home/vagrant/immutability-benchmark/harnesses/ReImInfer-0.1.3
             java ReImInferGrader $RESULTS /home/vagrant/RESULTS/grader-summary.txt &> $RESULTS/grader-result.txt
