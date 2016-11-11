@@ -58,7 +58,7 @@ Vagrant.configure("2") do |config|
             mv /home/vagrant/type-inference-0.1.3/infer-output/result.csv $RESULTS/reim-result.csv
             
             cd /home/vagrant/immutability-benchmark/harnesses/ReImInfer-0.1.3
-            java ReImInferGrader $RESULTS /home/vagrant/RESULTS/grader-summary.txt &> $RESULTS/grader-result.txt
+            java ReImInferGrader $RESULTS /home/vagrant/RESULTS/grader-summary.csv &> $RESULTS/grader-result.txt
             
             cd $TESTCATEGORY
         done
@@ -67,7 +67,7 @@ Vagrant.configure("2") do |config|
     echo "Extracting results..."
     cd /home/vagrant
     zip -rq RESULTS.zip RESULTS/
-    mv RESULTS.zip /vagrant/RESULTS.zip
+    mv RESULTS.zip /vagrant/RESULTS-0.1.3.zip
     
     echo "Finished."
 eos
