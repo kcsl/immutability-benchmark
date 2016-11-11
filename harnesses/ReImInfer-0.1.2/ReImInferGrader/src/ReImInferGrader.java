@@ -64,21 +64,33 @@ public class ReImInferGrader {
 				mutations.put(entry.getKey(), entry.getValue().size() != 1);
 			}
 			
-			HashMap<String,String> analysis = new HashMap<String,String>();
+			HashMap<String,Set<String>> analysis = new HashMap<String,Set<String>>();
 			scanner = new Scanner(analysisResult);
 			while(scanner.hasNextLine()){
 				String line = scanner.nextLine();
 				for(String field : mutations.keySet()){
 					if(line.contains("field " + field + ":")){
-						line = scanner.nextLine();
-						if(line.contains("@checkers.javari.quals.ReadOnly")){
-							analysis.put(field, "READONLY");
-						} else if(line.contains("@checkers.javari.quals.Mutable")){
-							analysis.put(field, "MUTABLE");
-						} else if(line.contains("@checkers.javari.quals.Polyread")){
-							analysis.put(field, "POLYREAD");
-						} else {
-							throw new RuntimeException("Unexpected input: " + line);
+						if(!analysis.containsKey(field)){
+							analysis.put(field, new HashSet<String>());
+						}
+						while(scanner.hasNextLine()){
+							line = scanner.nextLine();
+							if(line.trim().equals("")){
+								break;
+							} else {
+								if(line.contains("@checkers.javari.quals.ReadOnly")){
+									analysis.get(field).add("READONLY");
+								} 
+								if(line.contains("@checkers.javari.quals.Mutable")){
+									analysis.get(field).add("MUTABLE");
+								}
+								if(line.contains("@checkers.javari.quals.Polyread")){
+									analysis.get(field).add("POLYREAD");
+								}
+								if(analysis.get(field).isEmpty()) {
+									throw new RuntimeException("Unexpected input: " + line);
+								}
+							}
 						}
 						break;
 					}
@@ -91,15 +103,15 @@ public class ReImInferGrader {
 			writer.write("Analysis: " + analysis.toString() + "\n");
 			writer.close();
 			
-			for(Entry<String,String> result : analysis.entrySet()){
+			for(Entry<String,Set<String>> result : analysis.entrySet()){
 				String key = result.getKey();
-				if(result.getValue().equals("READONLY") && mutations.containsKey(key) && mutations.get(key) == true){
+				if(result.getValue().contains("READONLY") && result.getValue().size()==1 && mutations.containsKey(key) && mutations.get(key) == true){
 					// analysis reported readonly but there was a mutation
 					System.out.println("FAIL");
 					summary.write(inputDirectory.getName() + ",FAIL\n");
 					summary.close();
 					return;
-				} else if(result.getValue().equals("MUTABLE") && mutations.containsKey(key) && mutations.get(key) == false){
+				} else if(result.getValue().contains("MUTABLE") && result.getValue().size()==1 && mutations.containsKey(key) && mutations.get(key) == false){
 					// analysis reported mutable, but there was no mutation
 					System.out.println("FAIL");
 					summary.write(inputDirectory.getName() + ",FAIL\n");
