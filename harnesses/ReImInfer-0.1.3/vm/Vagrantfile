@@ -1,0 +1,83 @@
+# Vagrant configuration itself
+Vagrant.configure("2") do |config|
+  # This VM is based on Ubuntu 12.04 64-bit
+  config.vm.box = "precise64"
+  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+
+  # Give the VM 8GB of memory
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ["modifyvm", :id, "--memory", "8192"]
+  end
+
+  # Install the Java JRE 6 and download reiminfer
+  config.vm.provision :shell, inline: <<eos
+    set -e
+    echo "Installing some required packages in the VM"
+    apt-get update -qq
+    apt-get install -qq -y openjdk-6-jdk vim-tiny make wget zip unzip git
+
+    cd /home/vagrant
+
+    echo "Downloading ReImInfer..."
+    wget -q https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/type-inference/type-inference-0.1.3.zip
+    unzip type-inference-0.1.3.zip
+
+    echo "Downloading Benchmark..."
+    git clone https://github.com/kcsl/immutability-benchmark.git
+    
+    echo "Building testcases..."
+    cd /home/vagrant/immutability-benchmark/testcases
+    ./build-testcases.sh
+    
+    echo "Building grader..."
+    sudo javac /home/vagrant/immutability-benchmark/harnesses/ReImInfer-0.1.3/ReImInferGrader/src/ReImInferGrader.java -d /home/vagrant/immutability-benchmark/harnesses/ReImInfer-0.1.3/
+    
+    TESTCASES=/home/vagrant/immutability-benchmark/testcases
+    ANNOTATIONS="$TESTCASES/TestcaseBase/src/annotations/MUTABLE.java $TESTCASES/TestcaseBase/src/annotations/READONLY.java"
+
+    for TESTCATEGORY in $TESTCASES/source/*; 
+    do
+        # change to the test case category directory and strip the full path from the string
+        cd $TESTCATEGORY
+        CATEGORY=$(basename $TESTCATEGORY)
+        
+        for TESTCASE in *; 
+        do
+            echo "Scoring: $CATEGORY/$TESTCASE"
+            
+            # create a directory to store results
+            RESULTS=/home/vagrant/RESULTS/$CATEGORY/$TESTCASE
+            mkdir -p $RESULTS
+            
+            # get the execution proof
+            java -jar "$TESTCASES/binary/$CATEGORY/$TESTCASE.jar" &> $RESULTS/execution-proof.txt
+            
+            # run the analysis on the test case
+            cd /home/vagrant/type-inference-0.1.3
+            sudo ./binary/javai-reim $TESTCATEGORY/$TESTCASE/src/testcase/$TESTCASE.java $ANNOTATIONS &> $RESULTS/reim.log
+            mv /home/vagrant/type-inference-0.1.3/result.csv $RESULTS/reim-result.csv
+            
+            cd /home/vagrant/immutability-benchmark/harnesses/ReImInfer-0.1.3
+            java ReImInferGrader $RESULTS /home/vagrant/RESULTS/grader-summary.txt &> $RESULTS/grader-result.txt
+            
+            cd $TESTCATEGORY
+        done
+    done
+    
+    echo "Extracting results..."
+    cd /home/vagrant
+    zip -rq RESULTS.zip RESULTS/
+    mv RESULTS.zip /vagrant/RESULTS.zip
+    
+    echo "Finished."
+eos
+
+  # Map port 8080 in the VM to the host's port 8080
+  config.vm.network "forwarded_port", guest: 8080, host: 8080, auto_correct: true
+  # And 8086 to 8086
+  config.vm.network "forwarded_port", guest: 8086, host: 8086, auto_correct: true
+
+  # Alternatively you can use a static private IP, for this comment out the line above
+  # and uncomment the following line
+  #config.vm.network "private_network", ip: "192.168.13.22"
+end
