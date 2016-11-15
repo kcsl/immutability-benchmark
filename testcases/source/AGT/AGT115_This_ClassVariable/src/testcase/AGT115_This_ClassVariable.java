@@ -1,16 +1,16 @@
 package testcase;
 
-import annotations.MUTABLE;
+import annotations.READONLY;
 
 public class AGT115_This_ClassVariable {
 
-	@MUTABLE
+	@READONLY
 	public static Object f = new Object();
 	
 	@Override
 	public String toString() {
-		// using hashcode to avoid a recursive stack overflow
-		return "AGT115_This_ClassVariable [f=" + f.hashCode() + "]";
+		assert(f instanceof Object); // Object types are immutable
+		return "AGT115_This_ClassVariable [f=IMMUTABLE]";
 	}
 	
 	public static void main(String[] args) {

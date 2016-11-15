@@ -2,12 +2,11 @@ package testcase;
 
 import java.util.Arrays;
 
-import annotations.MUTABLE;
 import annotations.READONLY;
 
 public class AGT145_ObjectInstanceVariableArrayComponent_ClassVariable {
 	
-	@MUTABLE
+	@READONLY
 	public static Object f1 = new Object();
 
 	@READONLY
@@ -15,7 +14,8 @@ public class AGT145_ObjectInstanceVariableArrayComponent_ClassVariable {
 	
 	@Override
 	public String toString() {
-		return "AGT145_ObjectInstanceVariableArrayComponent_ClassVariable [f1=" + f1 + ", f2=" + Arrays.toString(f2) + "]";
+		assert(f1 instanceof Object); // Object types are immutable
+		return "AGT145_ObjectInstanceVariableArrayComponent_ClassVariable [f1=IMMUTABLE" + ", f2=" + Arrays.toString(f2) + "]";
 	}
 	
 	public static void main(String[] args) {

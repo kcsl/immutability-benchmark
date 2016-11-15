@@ -1,18 +1,18 @@
 package testcase;
 
-import annotations.MUTABLE;
+import annotations.READONLY;
 
 public enum AGT125_Enum_ClassVariable {
 
 	A,B;
 	
-	@MUTABLE
+	@READONLY
 	public static Object f = new Object();
 	
 	@Override
 	public String toString() {
-		// using hashcode to avoid recursive stackoverflow
-		return "AGT125_Enum_ClassVariable [f=" + f.hashCode() + "]";
+		assert(f instanceof Object); // Object types are immutable
+		return "AGT125_Enum_ClassVariable [f=IMMUTABLE]";
 	}
 	
 	public static void main(String[] args) {

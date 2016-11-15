@@ -1,11 +1,10 @@
 package testcase;
 
-import annotations.MUTABLE;
 import annotations.READONLY;
 
 public class AGT135_ObjectInstanceVariable_ClassVariable {
 	
-	@MUTABLE
+	@READONLY
 	public static Object f1 = new Object();
 
 	@READONLY
@@ -13,7 +12,8 @@ public class AGT135_ObjectInstanceVariable_ClassVariable {
 	
 	@Override
 	public String toString() {
-		return "AGT135_ObjectInstanceVariable_ClassVariable [f1=" + f1 + ", f2=" + f2 + "]";
+		assert(f1 instanceof Object); // Object types are immutable
+		return "AGT135_ObjectInstanceVariable_ClassVariable [f1=IMMUTABLE" + ", f2=" + f2 + "]";
 	}
 	
 	public static void main(String[] args) {

@@ -1,15 +1,16 @@
 package testcase;
 
-import annotations.MUTABLE;
+import annotations.READONLY;
 
 public class AGT085_BooleanLiteral_ClassVariable {
 
-	@MUTABLE
+	@READONLY
 	public static Object f = new Object();
 	
 	@Override
 	public String toString() {
-		return "AGT085_BooleanLiteral_ClassVariable [f=" + f + "]";
+		assert(f instanceof Object); // Object types are immutable
+		return "AGT085_BooleanLiteral_ClassVariable [f=IMMUTABLE]";
 	}
 	
 	public static void main(String[] args) {

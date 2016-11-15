@@ -1,15 +1,16 @@
 package testcase;
 
-import annotations.MUTABLE;
+import annotations.READONLY;
 
 public class AGT205_DynamicDispatchReturn_ClassVariable {
 
-	@MUTABLE
+	@READONLY
 	public static Object f = new Object();
 	
 	@Override
 	public String toString() {
-		return "AGT205_DynamicDispatchReturn_ClassVariable [f=" + f + "]";
+		assert(f instanceof Object); // Object types are immutable
+		return "AGT205_DynamicDispatchReturn_ClassVariable [f=IMMUTABLE]";
 	}
 	
 	public static void main(String[] args) {

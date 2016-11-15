@@ -18,13 +18,8 @@ public class AGT171_ClassVariable_ObjectInstanceVariable {
 	public static void main(String[] args) {
 		AGT171_ClassVariable_ObjectInstanceVariable a = new AGT171_ClassVariable_ObjectInstanceVariable();
 		System.out.println(a);
-		a.foo();
+		a.f1 = AGT171_ClassVariable_ObjectInstanceVariable.f2;
 		System.out.println(a);
-	}
-	
-	public void foo(){
-		AGT171_ClassVariable_ObjectInstanceVariable b = new AGT171_ClassVariable_ObjectInstanceVariable();
-		b.f1 = AGT171_ClassVariable_ObjectInstanceVariable.f2;
 	}
 
 }

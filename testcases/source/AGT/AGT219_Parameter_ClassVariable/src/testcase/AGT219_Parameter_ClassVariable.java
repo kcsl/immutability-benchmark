@@ -1,11 +1,10 @@
 package testcase;
 
-import annotations.MUTABLE;
 import annotations.READONLY;
 
 public class AGT219_Parameter_ClassVariable {
 
-	@MUTABLE
+	@READONLY
 	public static Object f1 = new Object();
 	
 	@READONLY
@@ -13,7 +12,7 @@ public class AGT219_Parameter_ClassVariable {
 
 	@Override
 	public String toString() {
-		return "AGT219_Parameter_ClassVariable [f1=" + f1 + ", f2=" + f2 + "]";
+		return "AGT219_Parameter_ClassVariable [f1=IMMUTABLE" + ", f2=" + f2 + "]";
 	}
 	
 	public void foo(Object p){
