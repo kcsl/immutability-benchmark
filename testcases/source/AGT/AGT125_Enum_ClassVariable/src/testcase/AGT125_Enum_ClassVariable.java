@@ -2,24 +2,34 @@ package testcase;
 
 import annotations.READONLY;
 
-public enum AGT125_Enum_ClassVariable {
-
-	A,B;
+public class AGT125_Enum_ClassVariable {
 	
 	@READONLY
-	public static Object f = new Object();
-	
-	@Override
-	public String toString() {
-		assert(f instanceof Object); // Object types are immutable
-		return "AGT125_Enum_ClassVariable [f=IMMUTABLE]";
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT125_Enum_ClassVariable test = AGT125_Enum_ClassVariable.A;
-		System.out.println(test.toString());
-		AGT125_Enum_ClassVariable.f = AGT125_Enum_ClassVariable.B;
-		System.out.println(test.toString());
+		new AGT125_Enum_ClassVariable().foo();
+	}
+	
+	public void foo(){
+		System.out.println(test);
+		Test.f = Enum.E;
+		System.out.println(test);
 	}
 
+}
+
+enum Enum {
+	E;
+}
+
+class Test {
+	public static Object f = new Object();
+
+	@Override
+	public String toString() {
+		// updates to static fields to do not mutate a particular instance
+		// instead it is considered a mutation to global program state
+		return "Test []";
+	}
 }

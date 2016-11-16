@@ -1,28 +1,33 @@
 package testcase;
 
-import java.util.Arrays;
-
 import annotations.READONLY;
 
 public class AGT185_ClassVariableArrayComponent_ClassVariable {
 
 	@READONLY
-	public static Object f1 = new Object();
+	public Test test = new Test();
 	
-	@READONLY
-	public static Object[] f2 = new Object[]{ new Object() };
+	public static Object[] f = new Object[]{ new Object() };
+	
+	public static void main(String[] args) {
+		new AGT185_ClassVariableArrayComponent_ClassVariable().foo();
+	}
+	
+	public void foo(){
+		System.out.println(test);
+		Test.f = AGT185_ClassVariableArrayComponent_ClassVariable.f[0];
+		System.out.println(test);
+	}
+
+}
+
+class Test {
+	public static Object f = new Object();
 
 	@Override
 	public String toString() {
-		assert(f1 instanceof Object); // Object types are immutable
-		return "AGT185_ClassVariableArrayComponent_ClassVariable [f1=IMMUTABLE" + ", f2=" + Arrays.toString(f2) + "]";
+		// updates to static fields to do not mutate a particular instance
+		// instead it is considered a mutation to global program state
+		return "Test []";
 	}
-	
-	public static void main(String[] args) {
-		AGT185_ClassVariableArrayComponent_ClassVariable test = new AGT185_ClassVariableArrayComponent_ClassVariable();
-		System.out.println(test);
-		AGT185_ClassVariableArrayComponent_ClassVariable.f1 = AGT185_ClassVariableArrayComponent_ClassVariable.f2[0];
-		System.out.println(test);
-	}
-
 }

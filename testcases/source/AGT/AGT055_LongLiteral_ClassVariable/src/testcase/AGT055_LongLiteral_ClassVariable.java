@@ -5,19 +5,27 @@ import annotations.READONLY;
 public class AGT055_LongLiteral_ClassVariable {
 
 	@READONLY
-	public static Object f = new Object();
-	
-	@Override
-	public String toString() {
-		assert(f instanceof Object); // Object types are immutable
-		return "AGT055_LongLiteral_ClassVariable [f=IMMUTABLE]";
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT055_LongLiteral_ClassVariable test = new AGT055_LongLiteral_ClassVariable();
-		System.out.println(test.toString());
-		AGT055_LongLiteral_ClassVariable.f = 1L;
-		System.out.println(test.toString());
+		new AGT055_LongLiteral_ClassVariable().foo();
+	}
+	
+	public void foo(){
+		System.out.println(test);
+		Test.f = 1L;
+		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public static Object f = new Object();
+
+	@Override
+	public String toString() {
+		// updates to static fields to do not mutate a particular instance
+		// instead it is considered a mutation to global program state
+		return "Test []";
+	}
 }

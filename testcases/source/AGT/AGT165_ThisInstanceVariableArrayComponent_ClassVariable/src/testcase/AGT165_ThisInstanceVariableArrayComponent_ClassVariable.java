@@ -1,32 +1,33 @@
 package testcase;
 
-import java.util.Arrays;
-
 import annotations.READONLY;
 
 public class AGT165_ThisInstanceVariableArrayComponent_ClassVariable {
 
 	@READONLY
-	public static Object f1 = new Object();
+	public Test test = new Test();
 	
-	@READONLY
-	public Object[] f2 = new Object[]{ new Object() };
-
-	@Override
-	public String toString() {
-		assert(f1 instanceof Object); // Object types are immutable
-		return "AGT165_ThisInstanceVariableArrayComponent_ClassVariable [f1=IMMUTABLE" + ", f2=" + Arrays.toString(f2) + "]";
-	}
+	public Object[] f = new Object[]{ new Object() };
 	
 	public static void main(String[] args) {
-		AGT165_ThisInstanceVariableArrayComponent_ClassVariable a = new AGT165_ThisInstanceVariableArrayComponent_ClassVariable ();
-		System.out.println(a);
-		a.foo();
-		System.out.println(a);
+		new AGT165_ThisInstanceVariableArrayComponent_ClassVariable().foo();
 	}
 	
 	public void foo(){
-		AGT165_ThisInstanceVariableArrayComponent_ClassVariable.f1 = this.f2[0];
+		System.out.println(test);
+		Test.f = this.f[0];
+		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public static Object f = new Object();
+
+	@Override
+	public String toString() {
+		// updates to static fields to do not mutate a particular instance
+		// instead it is considered a mutation to global program state
+		return "Test []";
+	}
 }

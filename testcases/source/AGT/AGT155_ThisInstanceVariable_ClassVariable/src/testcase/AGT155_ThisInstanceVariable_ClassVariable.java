@@ -5,26 +5,29 @@ import annotations.READONLY;
 public class AGT155_ThisInstanceVariable_ClassVariable {
 
 	@READONLY
-	public static Object f1 = new Object();
+	public Test test = new Test();
 	
-	@READONLY
-	public Object f2 = new Object();
-
-	@Override
-	public String toString() {
-		assert(f1 instanceof Object); // Object types are immutable
-		return "AGT155_ThisInstanceVariable_ClassVariable [f1=IMMUTABLE" + ", f2=" + f2 + "]";
-	}
+	public Object f = new Object();
 	
 	public static void main(String[] args) {
-		AGT155_ThisInstanceVariable_ClassVariable a = new AGT155_ThisInstanceVariable_ClassVariable ();
-		System.out.println(a);
-		a.foo();
-		System.out.println(a);
+		new AGT155_ThisInstanceVariable_ClassVariable().foo();
 	}
 	
 	public void foo(){
-		AGT155_ThisInstanceVariable_ClassVariable.f1 = this.f2;
+		System.out.println(test);
+		Test.f = this.f;
+		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public static Object f = new Object();
+
+	@Override
+	public String toString() {
+		// updates to static fields to do not mutate a particular instance
+		// instead it is considered a mutation to global program state
+		return "Test []";
+	}
 }
