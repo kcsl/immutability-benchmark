@@ -1,32 +1,28 @@
 package testcase;
 
-import java.util.Arrays;
-
 import annotations.MUTABLE;
-import annotations.READONLY;
 
 public class AGT183_ClassVariableArrayComponent_ThisInstanceVariable {
 
 	@MUTABLE
-	public Object f1 = new Object();
+	public static AGT183_ClassVariableArrayComponent_ThisInstanceVariable test = new AGT183_ClassVariableArrayComponent_ThisInstanceVariable();
 	
-	@READONLY
+	public Object f1 = new Object();
 	public static Object[] f2 = new Object[]{ new Object() };
 
 	@Override
 	public String toString() {
-		return "AGT183_ClassVariableArrayComponent_ThisInstanceVariable [f1=" + f1 + ", f2=" + Arrays.toString(f2) + "]";
+		return "AGT183_ClassVariableArrayComponent_ThisInstanceVariable [f1=" + f1 + "]";
+	}
+
+	public void foo(){
+		System.out.println(this.toString());
+		this.f1 = AGT183_ClassVariableArrayComponent_ThisInstanceVariable.f2[0];
+		System.out.println(this.toString());
 	}
 	
 	public static void main(String[] args) {
-		AGT183_ClassVariableArrayComponent_ThisInstanceVariable a = new AGT183_ClassVariableArrayComponent_ThisInstanceVariable();
-		System.out.println(a);
-		a.foo();
-		System.out.println(a);
-	}
-	
-	public void foo(){
-		this.f1 = AGT183_ClassVariableArrayComponent_ThisInstanceVariable.f2[0];
+		test.foo();
 	}
 
 }

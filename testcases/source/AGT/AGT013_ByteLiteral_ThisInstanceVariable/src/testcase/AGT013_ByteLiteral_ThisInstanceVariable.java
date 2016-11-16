@@ -5,8 +5,10 @@ import annotations.MUTABLE;
 public class AGT013_ByteLiteral_ThisInstanceVariable {
 
 	@MUTABLE
-	public Object f = new Object();
+	public static AGT013_ByteLiteral_ThisInstanceVariable test = new AGT013_ByteLiteral_ThisInstanceVariable();
 	
+	public Object f = new Object();
+
 	@Override
 	public String toString() {
 		return "AGT013_ByteLiteral_ThisInstanceVariable [f=" + f + "]";
@@ -19,7 +21,6 @@ public class AGT013_ByteLiteral_ThisInstanceVariable {
 	}
 	
 	public static void main(String[] args) {
-		AGT013_ByteLiteral_ThisInstanceVariable test = new AGT013_ByteLiteral_ThisInstanceVariable();
 		test.foo();
 	}
 

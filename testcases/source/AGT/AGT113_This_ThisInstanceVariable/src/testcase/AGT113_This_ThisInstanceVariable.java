@@ -5,8 +5,10 @@ import annotations.MUTABLE;
 public class AGT113_This_ThisInstanceVariable {
 
 	@MUTABLE
-	public Object f = new Object();
+	public static AGT113_This_ThisInstanceVariable test = new AGT113_This_ThisInstanceVariable();
 	
+	public Object f = new Object();
+
 	@Override
 	public String toString() {
 		return "AGT113_This_ThisInstanceVariable [f=" + f.hashCode() + "]";
@@ -19,7 +21,6 @@ public class AGT113_This_ThisInstanceVariable {
 	}
 	
 	public static void main(String[] args) {
-		AGT113_This_ThisInstanceVariable test = new AGT113_This_ThisInstanceVariable();
 		test.foo();
 	}
 
