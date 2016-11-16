@@ -7,11 +7,11 @@ public class AGT203_DynamicDispatchReturn_ThisInstanceVariable {
 	@MUTABLE
 	public static AGT203_DynamicDispatchReturn_ThisInstanceVariable test = new AGT203_DynamicDispatchReturn_ThisInstanceVariable();
 	
-	public Object f1 = new Object();
+	public Object f = new Object();
 
 	@Override
 	public String toString() {
-		return "AGT203_DynamicDispatchReturn_ThisInstanceVariable [f1=" + f1 + "]";
+		return "AGT203_DynamicDispatchReturn_ThisInstanceVariable [f=" + f + "]";
 	}
 
 	public Object bar(){
@@ -20,7 +20,7 @@ public class AGT203_DynamicDispatchReturn_ThisInstanceVariable {
 	
 	public void foo(){
 		System.out.println(this.toString());
-		this.f1 = this.bar();
+		this.f = this.bar();
 		System.out.println(this.toString());
 	}
 	

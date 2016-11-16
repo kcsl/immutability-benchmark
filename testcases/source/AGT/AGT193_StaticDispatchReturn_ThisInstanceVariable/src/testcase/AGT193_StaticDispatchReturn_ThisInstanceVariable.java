@@ -7,11 +7,11 @@ public class AGT193_StaticDispatchReturn_ThisInstanceVariable {
 	@MUTABLE
 	public static AGT193_StaticDispatchReturn_ThisInstanceVariable test = new AGT193_StaticDispatchReturn_ThisInstanceVariable();
 	
-	public Object f1 = new Object();
+	public Object f = new Object();
 
 	@Override
 	public String toString() {
-		return "AGT193_StaticDispatchReturn_ThisInstanceVariable [f1=" + f1 + "]";
+		return "AGT193_StaticDispatchReturn_ThisInstanceVariable [f=" + f + "]";
 	}
 
 	public static Object bar(){
@@ -20,7 +20,7 @@ public class AGT193_StaticDispatchReturn_ThisInstanceVariable {
 	
 	public void foo(){
 		System.out.println(this.toString());
-		this.f1 = AGT193_StaticDispatchReturn_ThisInstanceVariable.bar();
+		this.f = AGT193_StaticDispatchReturn_ThisInstanceVariable.bar();
 		System.out.println(this.toString());
 	}
 	

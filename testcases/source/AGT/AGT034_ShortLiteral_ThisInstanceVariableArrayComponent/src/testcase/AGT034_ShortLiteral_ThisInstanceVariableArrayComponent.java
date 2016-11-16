@@ -7,8 +7,10 @@ import annotations.MUTABLE;
 public class AGT034_ShortLiteral_ThisInstanceVariableArrayComponent {
 
 	@MUTABLE
-	public Object[] f = new Object[]{ new Object() };
+	public static AGT034_ShortLiteral_ThisInstanceVariableArrayComponent test = new AGT034_ShortLiteral_ThisInstanceVariableArrayComponent();
 	
+	public Object[] f = new Object[]{ new Object() };
+
 	@Override
 	public String toString() {
 		return "AGT034_ShortLiteral_ThisInstanceVariableArrayComponent [f=" + Arrays.toString(f) + "]";
@@ -21,7 +23,6 @@ public class AGT034_ShortLiteral_ThisInstanceVariableArrayComponent {
 	}
 	
 	public static void main(String[] args) {
-		AGT034_ShortLiteral_ThisInstanceVariableArrayComponent test = new AGT034_ShortLiteral_ThisInstanceVariableArrayComponent();
 		test.foo();
 	}
 
