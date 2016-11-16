@@ -3,27 +3,30 @@ package testcase;
 import java.util.Arrays;
 
 import annotations.MUTABLE;
-import annotations.READONLY;
 
 public class AGT142_ObjectInstanceVariableArrayComponent_ObjectInstanceVariableArrayComponent {
 
 	@MUTABLE
-	public Object[] f1 = new Object[]{ new Object() };
+	public Test test = new Test();
+	
+	public static void main(String[] args) {
+		new AGT142_ObjectInstanceVariableArrayComponent_ObjectInstanceVariableArrayComponent().foo();
+	}
+	
+	public void foo(){
+		Test test2 = new Test();
+		System.out.println(test);
+		test.f[0] = test2.f[0];
+		System.out.println(test);
+	}
 
-	@READONLY
-	public Object[] f2 = new Object[]{ new Object() };
+}
+
+class Test {
+	public Object[] f = new Object[]{ new Object() };
 
 	@Override
 	public String toString() {
-		return "AGT142_ObjectInstanceVariableArrayComponent_ObjectInstanceVariableArrayComponent [f1=" + Arrays.toString(f1) + ", f2=" + Arrays.toString(f2) + "]";
+		return "Test [f=" + Arrays.toString(f) + "]";
 	}
-	
-	public static void main(String[] args) {
-		AGT142_ObjectInstanceVariableArrayComponent_ObjectInstanceVariableArrayComponent a = new AGT142_ObjectInstanceVariableArrayComponent_ObjectInstanceVariableArrayComponent();
-		AGT142_ObjectInstanceVariableArrayComponent_ObjectInstanceVariableArrayComponent b = new AGT142_ObjectInstanceVariableArrayComponent_ObjectInstanceVariableArrayComponent();
-		System.out.println(a);
-		a.f1[0] = b.f2[0];
-		System.out.println(a);
-	}
-
 }

@@ -7,22 +7,29 @@ import annotations.MUTABLE;
 public class AGT192_StaticDispatchReturn_ObjectInstanceVariableArrayComponent {
 
 	@MUTABLE
-	public Object[] f = new Object[]{ new Object() };
-
-	@Override
-	public String toString() {
-		return "AGT192_StaticDispatchReturn_ObjectInstanceVariableArrayComponent [f=" + Arrays.toString(f) + "]";
-	}
-	
-	public static void main(String[] args){
-		AGT192_StaticDispatchReturn_ObjectInstanceVariableArrayComponent test = new AGT192_StaticDispatchReturn_ObjectInstanceVariableArrayComponent();
-		System.out.println(test);
-		test.f[0] = bar();
-		System.out.println(test);
-	}
+	public Test test = new Test();
 	
 	public static Object bar(){
 		return new Object();
 	}
 	
+	public static void main(String[] args) {
+		new AGT192_StaticDispatchReturn_ObjectInstanceVariableArrayComponent().foo();
+	}
+	
+	public void foo(){
+		System.out.println(test);
+		test.f[0] = AGT192_StaticDispatchReturn_ObjectInstanceVariableArrayComponent.bar();
+		System.out.println(test);
+	}
+
+}
+
+class Test {
+	public Object[] f = new Object[]{ new Object() };
+
+	@Override
+	public String toString() {
+		return "Test [f=" + Arrays.toString(f) + "]";
+	}
 }

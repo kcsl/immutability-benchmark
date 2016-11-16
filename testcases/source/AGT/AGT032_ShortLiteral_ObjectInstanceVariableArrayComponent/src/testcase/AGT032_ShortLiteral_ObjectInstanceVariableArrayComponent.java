@@ -7,18 +7,25 @@ import annotations.MUTABLE;
 public class AGT032_ShortLiteral_ObjectInstanceVariableArrayComponent {
 
 	@MUTABLE
-	public Object[] f = new Object[]{ new Object() };
-
-	@Override
-	public String toString() {
-		return "AGT032_ShortLiteral_ObjectInstanceVariableArrayComponent [f=" + Arrays.toString(f) + "]";
+	public Test test = new Test();
+	
+	public static void main(String[] args) {
+		new AGT032_ShortLiteral_ObjectInstanceVariableArrayComponent().foo();
 	}
 	
-	public static void main(String[] args){
-		AGT032_ShortLiteral_ObjectInstanceVariableArrayComponent test = new AGT032_ShortLiteral_ObjectInstanceVariableArrayComponent();
+	public void foo(){
 		System.out.println(test);
 		test.f[0] = (short) 1;
 		System.out.println(test);
 	}
-	
+
+}
+
+class Test {
+	public Object[] f = new Object[]{ new Object() };
+
+	@Override
+	public String toString() {
+		return "Test [f=" + Arrays.toString(f) + "]";
+	}
 }

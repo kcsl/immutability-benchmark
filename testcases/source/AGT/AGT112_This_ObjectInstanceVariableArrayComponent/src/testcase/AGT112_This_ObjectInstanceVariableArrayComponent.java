@@ -2,28 +2,30 @@ package testcase;
 
 import java.util.Arrays;
 
-import annotations.READONLY;
+import annotations.MUTABLE;
 
 public class AGT112_This_ObjectInstanceVariableArrayComponent {
 
-	@READONLY
-	public Object[] f = new Object[]{ new Object() };
+	@MUTABLE
+	public Test test = new Test();
 	
-	@Override
-	public String toString() {
-		return "AGT112_This_ObjectInstanceVariableArrayComponent [f=" + Arrays.toString(f) + "]";
-	}
-
-	public static void main(String[] args){
-		AGT112_This_ObjectInstanceVariableArrayComponent a = new AGT112_This_ObjectInstanceVariableArrayComponent();
-		System.out.println(a);
-		a.foo();
-		System.out.println(a);
+	public static void main(String[] args) {
+		new AGT112_This_ObjectInstanceVariableArrayComponent().foo();
 	}
 	
 	public void foo(){
-		AGT112_This_ObjectInstanceVariableArrayComponent b = new AGT112_This_ObjectInstanceVariableArrayComponent();
-		b.f[0] = this;
+		System.out.println(test);
+		test.f[0] = this;
+		System.out.println(test);
 	}
-	
+
+}
+
+class Test {
+	public Object[] f = new Object[]{ new Object() };
+
+	@Override
+	public String toString() {
+		return "Test [f=" + Arrays.toString(f) + "]";
+	}
 }

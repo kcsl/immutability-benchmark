@@ -7,18 +7,25 @@ import annotations.MUTABLE;
 public class AGT022_CharLiteral_ObjectInstanceVariableArrayComponent {
 
 	@MUTABLE
-	public Object[] f = new Object[]{ new Object() };
-
-	@Override
-	public String toString() {
-		return "AGT022_CharLiteral_ObjectInstanceVariableArrayComponent [f=" + Arrays.toString(f) + "]";
+	public Test test = new Test();
+	
+	public static void main(String[] args) {
+		new AGT022_CharLiteral_ObjectInstanceVariableArrayComponent().foo();
 	}
 	
-	public static void main(String[] args){
-		AGT022_CharLiteral_ObjectInstanceVariableArrayComponent test = new AGT022_CharLiteral_ObjectInstanceVariableArrayComponent();
+	public void foo(){
 		System.out.println(test);
 		test.f[0] = '1';
 		System.out.println(test);
 	}
-	
+
+}
+
+class Test {
+	public Object[] f = new Object[]{ new Object() };
+
+	@Override
+	public String toString() {
+		return "Test [f=" + Arrays.toString(f) + "]";
+	}
 }
