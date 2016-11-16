@@ -5,22 +5,29 @@ import annotations.MUTABLE;
 public class AGT191_StaticDispatchReturn_ObjectInstanceVariable {
 
 	@MUTABLE
-	public Object f = new Object();
-
-	@Override
-	public String toString() {
-		return "AGT191_StaticDispatchReturn_ObjectInstanceVariable [f=" + f + "]";
-	}
-	
-	public static void main(String[] args) {
-		AGT191_StaticDispatchReturn_ObjectInstanceVariable test = new AGT191_StaticDispatchReturn_ObjectInstanceVariable();
-		System.out.println(test);
-		test.f = bar();
-		System.out.println(test);
-	}
+	public Test test = new Test();
 	
 	public static Object bar(){
 		return new Object();
 	}
+	
+	public static void main(String[] args) {
+		new AGT191_StaticDispatchReturn_ObjectInstanceVariable().foo();
+	}
+	
+	public void foo(){
+		System.out.println(test);
+		test.f = AGT191_StaticDispatchReturn_ObjectInstanceVariable.bar();
+		System.out.println(test);
+	}
 
+}
+
+class Test {
+	public Object f = new Object();
+
+	@Override
+	public String toString() {
+		return "Test [f=" + f + "]";
+	}
 }

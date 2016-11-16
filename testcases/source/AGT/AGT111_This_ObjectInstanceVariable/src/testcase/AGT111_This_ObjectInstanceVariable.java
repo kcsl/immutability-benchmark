@@ -1,27 +1,29 @@
 package testcase;
 
-import annotations.READONLY;
+import annotations.MUTABLE;
 
 public class AGT111_This_ObjectInstanceVariable {
 
-	@READONLY
-	public Object f = new Object();
-
-	@Override
-	public String toString() {
-		return "AGT111_This_ObjectInstanceVariable [f=" + f + "]"; 
-	}
+	@MUTABLE
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT111_This_ObjectInstanceVariable a = new AGT111_This_ObjectInstanceVariable();
-		System.out.println(a);
-		a.foo();
-		System.out.println(a);
+		new AGT111_This_ObjectInstanceVariable().foo();
 	}
 	
 	public void foo(){
-		AGT111_This_ObjectInstanceVariable b = new AGT111_This_ObjectInstanceVariable();
-		b.f = this;
+		System.out.println(test);
+		test.f = this;
+		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public Object f = new Object();
+	
+	@Override
+	public String toString() {
+		return "Test [f=" + f + "]";
+	}
 }

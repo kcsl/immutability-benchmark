@@ -1,32 +1,31 @@
 package testcase;
 
-import java.util.Arrays;
-
-import annotations.READONLY;
+import annotations.MUTABLE;
 
 public class AGT161_ThisInstanceVariableArrayComponent_ObjectInstanceVariable {
 
-	@READONLY
-	public Object f1 = new Object();
+	@MUTABLE
+	public Test test = new Test();
 	
-	@READONLY
-	public Object[] f2 = new Object[]{ new Object() };
-
-	@Override
-	public String toString() {
-		return "AGT161_ThisInstanceVariableArrayComponent_ObjectInstanceVariable [f1=" + f1 + ", f2=" + Arrays.toString(f2) + "]";
-	}
+	public Object[] f = new Object[]{ new Object() };
 	
 	public static void main(String[] args) {
-		AGT161_ThisInstanceVariableArrayComponent_ObjectInstanceVariable a = new AGT161_ThisInstanceVariableArrayComponent_ObjectInstanceVariable();
-		System.out.println(a);
-		a.foo();
-		System.out.println(a);
+		new AGT161_ThisInstanceVariableArrayComponent_ObjectInstanceVariable().foo();
 	}
 	
 	public void foo(){
-		AGT161_ThisInstanceVariableArrayComponent_ObjectInstanceVariable b = new AGT161_ThisInstanceVariableArrayComponent_ObjectInstanceVariable();
-		b.f1 = this.f2[0];
+		System.out.println(test);
+		test.f = this.f[0];
+		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public Object f = new Object();
+
+	@Override
+	public String toString() {
+		return "Test [f=" + f + "]";
+	}
 }

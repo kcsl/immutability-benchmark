@@ -1,25 +1,31 @@
 package testcase;
 
-import annotations.READONLY;
+import annotations.MUTABLE;
 
 public class AGT171_ClassVariable_ObjectInstanceVariable {
 
-	@READONLY
-	public Object f1 = new Object();
+	@MUTABLE
+	public Test test = new Test();
 	
-	@READONLY
-	public static Object f2 = new Object();
+	public static Object f = new Object();
+	
+	public static void main(String[] args) {
+		new AGT171_ClassVariable_ObjectInstanceVariable().foo();
+	}
+	
+	public void foo(){
+		System.out.println(test);
+		test.f = AGT171_ClassVariable_ObjectInstanceVariable.f;
+		System.out.println(test);
+	}
+
+}
+
+class Test {
+	public Object f = new Object();
 
 	@Override
 	public String toString() {
-		return "AGT171_ClassVariable_ObjectInstanceVariable [f1=" + f1 + ", f2=" + f2 + "]";
+		return "Test [f=" + f + "]";
 	}
-	
-	public static void main(String[] args) {
-		AGT171_ClassVariable_ObjectInstanceVariable a = new AGT171_ClassVariable_ObjectInstanceVariable();
-		System.out.println(a);
-		a.f1 = AGT171_ClassVariable_ObjectInstanceVariable.f2;
-		System.out.println(a);
-	}
-
 }

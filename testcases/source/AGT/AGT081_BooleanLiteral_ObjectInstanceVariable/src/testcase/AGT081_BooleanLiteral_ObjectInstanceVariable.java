@@ -5,18 +5,25 @@ import annotations.MUTABLE;
 public class AGT081_BooleanLiteral_ObjectInstanceVariable {
 
 	@MUTABLE
-	public Object f = new Object();
-
-	@Override
-	public String toString() {
-		return "AGT081_BooleanLiteral_ObjectInstanceVariable [f=" + f + "]";
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT081_BooleanLiteral_ObjectInstanceVariable test = new AGT081_BooleanLiteral_ObjectInstanceVariable();
+		new AGT081_BooleanLiteral_ObjectInstanceVariable().foo();
+	}
+	
+	public void foo(){
 		System.out.println(test);
 		test.f = true;
 		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public Object f = new Object();
+	
+	@Override
+	public String toString() {
+		return "Test [f=" + f + "]";
+	}
 }

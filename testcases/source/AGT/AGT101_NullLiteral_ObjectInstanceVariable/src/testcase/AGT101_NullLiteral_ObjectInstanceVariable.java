@@ -24,6 +24,6 @@ class Test {
 	
 	@Override
 	public String toString() {
-		return "AGT101_NullLiteral_ObjectInstanceVariable [f=" + f + "]";
+		return "Test [f=" + f + "]";
 	}
 }

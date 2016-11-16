@@ -2,23 +2,32 @@ package testcase;
 
 import annotations.MUTABLE;
 
-public enum AGT121_Enum_ObjectInstanceVariable {
-
-	A,B;
+public class AGT121_Enum_ObjectInstanceVariable {
 	
 	@MUTABLE
-	public Object f = new Object();
-
-	@Override
-	public String toString() {
-		return "AGT121_Enum_ObjectInstanceVariable [f=" + f + "]";
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT121_Enum_ObjectInstanceVariable test = AGT121_Enum_ObjectInstanceVariable.A;
+		new AGT121_Enum_ObjectInstanceVariable().foo();
+	}
+	
+	public void foo(){
 		System.out.println(test);
-		test.f = AGT121_Enum_ObjectInstanceVariable.B;
+		test.f = Enum.E;
 		System.out.println(test);
 	}
 
+}
+
+enum Enum {
+	E;
+}
+
+class Test {
+	public Object f = new Object();
+	
+	@Override
+	public String toString() {
+		return "Test [f=" + f + "]";
+	}
 }

@@ -5,18 +5,25 @@ import annotations.MUTABLE;
 public class AGT011_ByteLiteral_ObjectInstanceVariable {
 
 	@MUTABLE
-	public Object f = new Object();
-
-	@Override
-	public String toString() {
-		return "AGT011_ByteLiteral_ObjectInstanceVariable [f=" + f + "]";
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT011_ByteLiteral_ObjectInstanceVariable test = new AGT011_ByteLiteral_ObjectInstanceVariable();
+		new AGT011_ByteLiteral_ObjectInstanceVariable().foo();
+	}
+	
+	public void foo(){
 		System.out.println(test);
 		test.f = (byte) 0x01;
 		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public Object f = new Object();
+	
+	@Override
+	public String toString() {
+		return "Test [f=" + f + "]";
+	}
 }
