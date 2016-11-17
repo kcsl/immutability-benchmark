@@ -22,9 +22,23 @@ public class CheckAGTExpectations {
 	public static void checkExpectation(String testBinary){
 		File testBinaryFile = new File(testBinary);
 		String testName = testBinaryFile.getName().replace(".jar", "");
-		String result = getResult(testBinaryFile);
 		String expectedResult = getExpectedResult(testName);
-		System.out.println(testName + "," + expectedResult + "," + result);
+		try {
+			String result = getResult(testBinaryFile);
+			boolean satisfied = false;
+			if(expectedResult.equals("DEPENDS")){
+				satisfied = true;
+			}
+			if(expectedResult.equals("READONLY") && result.equals("READONLY")){
+				satisfied = true;
+			}
+			if(expectedResult.equals("MUTABLE") && result.equals("MUTABLE")){
+				satisfied = true;
+			}
+			System.out.println(testName + "," + expectedResult + "," + result + "," + (satisfied ? "SATISFIED" : "UNSATISFIED"));
+		} catch (Throwable t){
+			System.out.println(testName + "," + expectedResult + ",ERROR: " + t.getMessage() + ",UNSATISFIED");
+		}
 	}
 	
 	public static String getResult(File testBinary){
