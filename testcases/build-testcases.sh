@@ -6,6 +6,13 @@ rm -rf binary
 WD=$(pwd)
 TESTCASEBASE="$WD/TestcaseBase/src/annotations/"
 
+#ASSERTIONS_SOURCE="$WD/TestcaseAssertions/src/CheckAGTExpectations.java"
+#ASSERTIONS="$WD/CheckAGTExpectations.class"
+
+ASSERTIONS="$WD/CheckAGTExpectations.jar"
+ASSERTIONS_SUMMARY="$WD/assertions-summary.csv"
+#javac $ASSERTIONS_SOURCE -d "$WD/"
+
 for TESTCATEGORY in $WD/source/*; 
 do
     cd $TESTCATEGORY
@@ -42,6 +49,10 @@ do
         # remove build directory
         rm -rf $BUILD
         
+        if [ "$CATEGORY" == "AGT" ]; then
+            java $ASSERTIONS "$WD/binary/$CATEGORY/$TESTCASE.jar" >> $ASSERTIONS_SUMMARY
+        fi
+
         # reset paths
         cd $TESTCATEGORY
     done
