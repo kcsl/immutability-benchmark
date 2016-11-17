@@ -1,24 +1,31 @@
 package testcase;
 
-import java.util.Arrays;
-
-import annotations.MUTABLE;
+import annotations.READONLY;
 
 public class AGT036_ShortLiteral_ClassVariableArrayComponent {
 
-	@MUTABLE
-	public static Object[] f = new Object[]{ new Object() };
-	
-	@Override
-	public String toString() {
-		return "AGT036_ShortLiteral_ClassVariableArrayComponent [f=" + Arrays.toString(f) + "]";
-	}
+	@READONLY
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT036_ShortLiteral_ClassVariableArrayComponent test = new AGT036_ShortLiteral_ClassVariableArrayComponent();
-		System.out.println(test.toString());
-		AGT036_ShortLiteral_ClassVariableArrayComponent.f[0] = (short) 1;
-		System.out.println(test.toString());
+		new AGT036_ShortLiteral_ClassVariableArrayComponent().foo();
+	}
+	
+	public void foo(){
+		System.out.println(test);
+		Test.f[0] = (short) 1;
+		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public static Object[] f = new Object[]{ new Object() };
+
+	@Override
+	public String toString() {
+		// updates to static fields to do not mutate a particular instance
+		// instead it is considered a mutation to global program state
+		return "Test []";
+	}
 }

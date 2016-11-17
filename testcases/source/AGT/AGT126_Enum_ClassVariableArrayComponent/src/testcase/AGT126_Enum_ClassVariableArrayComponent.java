@@ -1,32 +1,35 @@
 package testcase;
 
-import annotations.MUTABLE;
+import annotations.READONLY;
 
-public enum AGT126_Enum_ClassVariableArrayComponent {
+public class AGT126_Enum_ClassVariableArrayComponent {
 
-	A,B;
-	
-	@MUTABLE
-	public static Object[] f = new Object[]{ new Object() };
-	
-	@Override
-	public String toString() {
-		// modified toString to avoid recursive stackoverflow
-		String result = "AGT126_Enum_ClassVariableArrayComponent [f=";
-		String prefix = "";
-		for(Object o : f){
-			result += prefix + o.hashCode();
-			prefix = ", ";
-		}
-		result +=  "]";
-		return result;
-	}
+	@READONLY
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT126_Enum_ClassVariableArrayComponent test = AGT126_Enum_ClassVariableArrayComponent.A;
-		System.out.println(test.toString());
-		AGT126_Enum_ClassVariableArrayComponent.f[0] = AGT126_Enum_ClassVariableArrayComponent.B;
-		System.out.println(test.toString());
+		new AGT126_Enum_ClassVariableArrayComponent().foo();
+	}
+	
+	public void foo(){
+		System.out.println(test);
+		Test.f[0] = Enum.E;
+		System.out.println(test);
 	}
 
+}
+
+enum Enum {
+	E;
+}
+
+class Test {
+	public static Object[] f = new Object[]{ new Object() };
+
+	@Override
+	public String toString() {
+		// updates to static fields to do not mutate a particular instance
+		// instead it is considered a mutation to global program state
+		return "Test []";
+	}
 }

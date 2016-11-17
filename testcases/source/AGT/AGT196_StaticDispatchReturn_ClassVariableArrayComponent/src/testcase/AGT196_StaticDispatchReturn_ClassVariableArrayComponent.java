@@ -1,28 +1,35 @@
 package testcase;
 
-import java.util.Arrays;
-
-import annotations.MUTABLE;
+import annotations.READONLY;
 
 public class AGT196_StaticDispatchReturn_ClassVariableArrayComponent {
 
-	@MUTABLE
-	public static Object[] f = new Object[]{ new Object() };
+	@READONLY
+	public Test test = new Test();
 	
-	@Override
-	public String toString() {
-		return "AGT196_StaticDispatchReturn_ClassVariableArrayComponent [f=" + Arrays.toString(f) + "]";
-	}
-	
-	public static void main(String[] args) {
-		AGT196_StaticDispatchReturn_ClassVariableArrayComponent test = new AGT196_StaticDispatchReturn_ClassVariableArrayComponent();
-		System.out.println(test.toString());
-		AGT196_StaticDispatchReturn_ClassVariableArrayComponent.f[0] = bar();
-		System.out.println(test.toString());
-	}
-
 	public static Object bar(){
 		return new Object();
 	}
 	
+	public static void main(String[] args) {
+		new AGT196_StaticDispatchReturn_ClassVariableArrayComponent().foo();
+	}
+	
+	public void foo(){
+		System.out.println(test);
+		Test.f[0] = AGT196_StaticDispatchReturn_ClassVariableArrayComponent.bar();
+		System.out.println(test);
+	}
+
+}
+
+class Test {
+	public static Object[] f = new Object[]{ new Object() };
+
+	@Override
+	public String toString() {
+		// updates to static fields to do not mutate a particular instance
+		// instead it is considered a mutation to global program state
+		return "Test []";
+	}
 }

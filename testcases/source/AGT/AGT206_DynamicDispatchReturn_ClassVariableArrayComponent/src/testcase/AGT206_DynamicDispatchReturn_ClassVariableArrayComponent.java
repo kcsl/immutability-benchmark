@@ -1,28 +1,35 @@
 package testcase;
 
-import java.util.Arrays;
-
-import annotations.MUTABLE;
+import annotations.READONLY;
 
 public class AGT206_DynamicDispatchReturn_ClassVariableArrayComponent {
 
-	@MUTABLE
-	public static Object[] f = new Object[]{ new Object() };
+	@READONLY
+	public Test test = new Test();
 	
-	@Override
-	public String toString() {
-		return "AGT206_DynamicDispatchReturn_ClassVariableArrayComponent [f=" + Arrays.toString(f) + "]";
-	}
-	
-	public static void main(String[] args) {
-		AGT206_DynamicDispatchReturn_ClassVariableArrayComponent test = new AGT206_DynamicDispatchReturn_ClassVariableArrayComponent();
-		System.out.println(test.toString());
-		AGT206_DynamicDispatchReturn_ClassVariableArrayComponent.f[0] = test.bar();
-		System.out.println(test.toString());
-	}
-
 	public Object bar(){
 		return new Object();
 	}
 	
+	public static void main(String[] args) {
+		new AGT206_DynamicDispatchReturn_ClassVariableArrayComponent().foo();
+	}
+	
+	public void foo(){
+		System.out.println(test);
+		Test.f[0] = this.bar();
+		System.out.println(test);
+	}
+
+}
+
+class Test {
+	public static Object[] f = new Object[]{ new Object() };
+
+	@Override
+	public String toString() {
+		// updates to static fields to do not mutate a particular instance
+		// instead it is considered a mutation to global program state
+		return "Test []";
+	}
 }

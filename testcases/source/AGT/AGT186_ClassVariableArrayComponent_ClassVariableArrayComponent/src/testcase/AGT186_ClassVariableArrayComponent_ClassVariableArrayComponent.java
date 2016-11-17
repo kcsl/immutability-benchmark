@@ -1,28 +1,33 @@
 package testcase;
 
-import java.util.Arrays;
-
-import annotations.MUTABLE;
 import annotations.READONLY;
 
 public class AGT186_ClassVariableArrayComponent_ClassVariableArrayComponent {
 
-	@MUTABLE
-	public static Object[] f1 = new Object[]{ new Object() };
-	
 	@READONLY
-	public static Object[] f2 = new Object[]{ new Object() };
+	public Test test = new Test();
+	
+	public static Object[] f = new Object[]{ new Object() };
+	
+	public static void main(String[] args) {
+		new AGT186_ClassVariableArrayComponent_ClassVariableArrayComponent().foo();
+	}
+	
+	public void foo(){
+		System.out.println(test);
+		Test.f[0] = AGT186_ClassVariableArrayComponent_ClassVariableArrayComponent.f[0];
+		System.out.println(test);
+	}
+
+}
+
+class Test {
+	public static Object[] f = new Object[]{ new Object() };
 
 	@Override
 	public String toString() {
-		return "AGT186_ClassVariableArrayComponent_ClassVariableArrayComponent [f1=" + Arrays.toString(f1) + ", f2=" + Arrays.toString(f2) + "]";
+		// updates to static fields to do not mutate a particular instance
+		// instead it is considered a mutation to global program state
+		return "Test []";
 	}
-	
-	public static void main(String[] args) {
-		AGT186_ClassVariableArrayComponent_ClassVariableArrayComponent test = new AGT186_ClassVariableArrayComponent_ClassVariableArrayComponent();
-		System.out.println(test);
-		AGT186_ClassVariableArrayComponent_ClassVariableArrayComponent.f1[0] = AGT186_ClassVariableArrayComponent_ClassVariableArrayComponent.f2[0];
-		System.out.println(test);
-	}
-
 }

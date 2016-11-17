@@ -1,24 +1,31 @@
 package testcase;
 
-import java.util.Arrays;
-
-import annotations.MUTABLE;
+import annotations.READONLY;
 
 public class AGT056_LongLiteral_ClassVariableArrayComponent {
 
-	@MUTABLE
-	public static Object[] f = new Object[]{ new Object() };
-	
-	@Override
-	public String toString() {
-		return "AGT056_LongLiteral_ClassVariableArrayComponent [f=" + Arrays.toString(f) + "]";
-	}
+	@READONLY
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT056_LongLiteral_ClassVariableArrayComponent test = new AGT056_LongLiteral_ClassVariableArrayComponent();
-		System.out.println(test.toString());
-		AGT056_LongLiteral_ClassVariableArrayComponent.f[0] = 1L;
-		System.out.println(test.toString());
+		new AGT056_LongLiteral_ClassVariableArrayComponent().foo();
+	}
+	
+	public void foo(){
+		System.out.println(test);
+		Test.f[0] = 1L;
+		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public static Object[] f = new Object[]{ new Object() };
+
+	@Override
+	public String toString() {
+		// updates to static fields to do not mutate a particular instance
+		// instead it is considered a mutation to global program state
+		return "Test []";
+	}
 }
