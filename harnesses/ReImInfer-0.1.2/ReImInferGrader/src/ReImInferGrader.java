@@ -17,122 +17,56 @@ public class ReImInferGrader {
 		
 		File inputDirectory = new File(args[0]);
 		File summaryFile = new File(args[1]);
-		File executionProof = new File(inputDirectory.getAbsolutePath() + File.separator + "execution-proof.txt");
-		File analysisResult = new File(inputDirectory.getAbsolutePath() + File.separator + "reim-result.jaif");
+		File executionProofFile = new File(inputDirectory.getAbsolutePath() + File.separator + "execution-proof.txt");
+		File analysisResultFile = new File(inputDirectory.getAbsolutePath() + File.separator + "reim-result.jaif");
 		
 		FileWriter summary = new FileWriter(summaryFile, true);
 		
+		String executionResult;
 		try {
-			Scanner scanner = new Scanner(executionProof);
-			HashMap<String,Set<String>> comparisons = new HashMap<String,Set<String>>();
+			Scanner scanner = new Scanner(executionProofFile);
+			String line1 = scanner.nextLine();
+			String line2 = scanner.nextLine();
+			if(line1.equals(line2)){
+				executionResult = "READONLY";
+			} else {
+				executionResult = "MUTABLE";
+			}
+			scanner.close();
+		} catch (Exception e){
+			executionResult = "Grader Error: " + e.getMessage();
+		}
+		
+		String analysisResult = "UNTYPED";
+		try {
+			Scanner scanner = new Scanner(analysisResultFile);
 			while(scanner.hasNextLine()){
 				String line = scanner.nextLine();
-				// strip testcase name
-				line = line.replace(line.split(" ")[0], "").replace(" ",""); 
-				// parse object fields
-				line = line.substring(line.indexOf("[") + 1, line.lastIndexOf("]"));
-				Scanner tokens = new Scanner(line).useDelimiter(",|=");
-				while(tokens.hasNext()){
-					String field = tokens.next();
-					String value;
-					// consider nested objects 
-					if(line.contains("=[")){
-						line = line.substring(line.indexOf("[") + 1);
-						tokens = new Scanner(line).useDelimiter("]");
-						value = tokens.next();
-						line = line.substring(value.length()+1);
-						if(line.startsWith(",")){
-							line = line.substring(1);
-						}
-						// check if there are any fields left
-						if(!line.contains(",") && !line.contains("=")){
-							line = "";
-						}
-						tokens = new Scanner(line).useDelimiter(",|=");
-					} else {
-						value = tokens.next();
+				if(line.trim().contains("field test:")){
+					line = scanner.nextLine().trim();
+					if(line.contains("@checkers.javari.quals.ReadOnly")){
+						analysisResult = "READONLY";
+					} else if(line.contains("@checkers.javari.quals.Mutable")){
+						analysisResult = "MUTABLE";
+					} else if(line.contains("@checkers.javari.quals.Polyread")){
+						analysisResult = "POLYREAD";
 					}
-					if(!comparisons.containsKey(field)){
-						comparisons.put(field, new HashSet<String>());
-					}
-					comparisons.get(field).add(value);
+					throw new RuntimeException("Unexpected type " + line);
 				}
 			}
-			
-			HashMap<String,Boolean> mutations = new HashMap<String,Boolean>();
-			for(Entry<String,Set<String>> entry : comparisons.entrySet()){
-				mutations.put(entry.getKey(), entry.getValue().size() != 1);
-			}
-			
-			HashMap<String,Set<String>> analysis = new HashMap<String,Set<String>>();
-			scanner = new Scanner(analysisResult);
-			while(scanner.hasNextLine()){
-				String line = scanner.nextLine();
-				for(String field : mutations.keySet()){
-					if(line.contains("field " + field + ":")){
-						if(!analysis.containsKey(field)){
-							analysis.put(field, new HashSet<String>());
-						}
-						while(scanner.hasNextLine()){
-							line = scanner.nextLine();
-							if(line.trim().equals("")){
-								break;
-							} else {
-								if(line.contains("@checkers.javari.quals.ReadOnly")){
-									analysis.get(field).add("READONLY");
-								} 
-								if(line.contains("@checkers.javari.quals.Mutable")){
-									analysis.get(field).add("MUTABLE");
-								}
-								if(line.contains("@checkers.javari.quals.Polyread")){
-									analysis.get(field).add("POLYREAD");
-								}
-								if(analysis.get(field).isEmpty()) {
-									throw new RuntimeException("Unexpected input: " + line);
-								}
-							}
-						}
-						break;
-					}
-				}
-			}
-			
-			FileWriter writer = new FileWriter(new File(inputDirectory.getAbsolutePath() + File.separator + "grader-logic.txt"));
-			writer.write("Comparisons: " + comparisons.toString() + "\n");
-			writer.write("Mutations: " + mutations.toString() + "\n");
-			writer.write("Analysis: " + analysis.toString() + "\n");
-			writer.close();
-			
-			for(Entry<String,Set<String>> result : analysis.entrySet()){
-				String key = result.getKey();
-				if(result.getValue().contains("READONLY") && result.getValue().size()==1 && mutations.containsKey(key) && mutations.get(key) == true){
-					// analysis reported readonly but there was a mutation
-					System.out.println("FAIL");
-					summary.write(inputDirectory.getName() + ",FAIL\n");
-					summary.close();
-					return;
-				} else if(result.getValue().contains("MUTABLE") && result.getValue().size()==1 && mutations.containsKey(key) && mutations.get(key) == false){
-					// analysis reported mutable, but there was no mutation
-					System.out.println("FAIL");
-					summary.write(inputDirectory.getName() + ",FAIL\n");
-					summary.close();
-					return;
-				} 
-//				else if(result.getValue().equals("POLYREAD") && mutations.containsKey(key) && mutations.get(key) == false){
-//					// analysis reported polyread but there was no mutation
-//					System.out.println("FAIL");
-//					return;
-//				}
-			}
+			scanner.close();
+		} catch (Exception e){
+			analysisResult = "Grader Error: " + e.getMessage();
+		}
+		
+		if(analysisResult.equals(executionResult)){
 			System.out.println("PASS");
 			summary.write(inputDirectory.getName() + ",PASS\n");
-			summary.close();
-		} catch (Exception e){
-			e.printStackTrace();
-			System.out.println("GRADER ERROR");
-			summary.write(inputDirectory.getName() + ",GRADER ERROR\n");
-			summary.close();
+		} else {
+			System.out.println("FAIL");
+			summary.write(inputDirectory.getName() + ",FAIL\n");
 		}
+		summary.close();
 		
 	}
 
