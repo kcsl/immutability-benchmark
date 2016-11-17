@@ -7,22 +7,29 @@ import annotations.MUTABLE;
 public class AGT020_ByteLiteral_ParameterInstanceVariableArrayComponent {
 
 	@MUTABLE
-	public Object[] f = new Object[]{ new Object() };
-
-	@Override
-	public String toString() {
-		return "AGT020_ByteLiteral_ParameterInstanceVariableArrayComponent [f=" + Arrays.toString(f) + "]";
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT020_ByteLiteral_ParameterInstanceVariableArrayComponent test = new AGT020_ByteLiteral_ParameterInstanceVariableArrayComponent();
-		System.out.println(test);
-		test.foo(test);
-		System.out.println(test);
+		new AGT020_ByteLiteral_ParameterInstanceVariableArrayComponent().foo();
 	}
 	
-	public void foo(AGT020_ByteLiteral_ParameterInstanceVariableArrayComponent p){
-		p.f[0] = (byte) 0x01;
+	public void foo(){
+		System.out.println(test);
+		test.bar(test);
+		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public Object[] f = new Object[]{ new Object() };
+	
+	public void bar(Test p){
+		p.f[0] = (byte) 0x01;
+	}
+	
+	@Override
+	public String toString() {
+		return "Test [f=" + Arrays.toString(f) + "]";
+	}
 }

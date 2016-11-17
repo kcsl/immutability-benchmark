@@ -1,34 +1,35 @@
 package testcase;
 
+import java.util.Arrays;
+
 import annotations.MUTABLE;
 
 public class AGT120_This_ParameterInstanceVariableArrayComponent {
 
 	@MUTABLE
-	public Object[] f = new Object[]{ new Object() };
-
-	@Override
-	public String toString() {
-		// modified toString to avoid recursive stackoverflow
-		String result = "AGT120_This_ParameterInstanceVariableArrayComponent [f=";
-		String prefix = "";
-		for(Object o : f){
-			result += prefix + o.hashCode();
-			prefix = ", ";
-		}
-		result +=  "]";
-		return result;
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT120_This_ParameterInstanceVariableArrayComponent test = new AGT120_This_ParameterInstanceVariableArrayComponent();
-		System.out.println(test);
-		test.foo(test);
-		System.out.println(test);
+		new AGT120_This_ParameterInstanceVariableArrayComponent().foo();
 	}
 	
-	public void foo(AGT120_This_ParameterInstanceVariableArrayComponent p){
-		p.f[0] = this;
+	public void foo(){
+		System.out.println(test);
+		test.bar(test);
+		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public Object[] f = new Object[]{ new Object() };
+	
+	public void bar(Test p){
+		p.f[0] = this;
+	}
+	
+	@Override
+	public String toString() {
+		return "Test [f=" + Arrays.toString(f) + "]";
+	}
 }

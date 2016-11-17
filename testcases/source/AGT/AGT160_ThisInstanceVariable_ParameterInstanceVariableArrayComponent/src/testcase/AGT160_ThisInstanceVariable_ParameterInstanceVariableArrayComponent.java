@@ -3,30 +3,34 @@ package testcase;
 import java.util.Arrays;
 
 import annotations.MUTABLE;
-import annotations.READONLY;
 
 public class AGT160_ThisInstanceVariable_ParameterInstanceVariableArrayComponent {
 
 	@MUTABLE
-	public Object[] f1 = new Object[]{ new Object() };
+	public Test test = new Test();
 	
-	@READONLY
+	public static void main(String[] args) {
+		new AGT160_ThisInstanceVariable_ParameterInstanceVariableArrayComponent().foo();
+	}
+	
+	public void foo(){
+		System.out.println(test);
+		test.bar(test);
+		System.out.println(test);
+	}
+
+}
+
+class Test {
+	public Object[] f1 = new Object[]{ new Object() };
 	public Object f2 = new Object();
+	
+	public void bar(Test p){
+		p.f1[0] = this.f2;
+	}
 	
 	@Override
 	public String toString() {
-		return "AGT159_ThisInstanceVariable_ParameterInstanceVariable [f1=" + Arrays.toString(f1) + ", f2=" + f2 + "]";
+		return "Test [f1=" + Arrays.toString(f1) + ", f2=" + f2 + "]";
 	}
-	
-	public static void main(String[] args) {
-		AGT160_ThisInstanceVariable_ParameterInstanceVariableArrayComponent a = new AGT160_ThisInstanceVariable_ParameterInstanceVariableArrayComponent();
-		System.out.println(a);
-		a.foo(a);
-		System.out.println(a);
-	}
-	
-	public void foo(AGT160_ThisInstanceVariable_ParameterInstanceVariableArrayComponent p){
-		p.f1[0] = this.f2;
-	}
-
 }

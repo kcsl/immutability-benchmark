@@ -7,22 +7,29 @@ import annotations.MUTABLE;
 public class AGT070_FloatLiteral_ParameterInstanceVariableArrayComponent {
 
 	@MUTABLE
-	public Object[] f = new Object[]{ new Object() };
-
-	@Override
-	public String toString() {
-		return "AGT070_FloatLiteral_ParameterInstanceVariableArrayComponent [f=" + Arrays.toString(f) + "]";
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT070_FloatLiteral_ParameterInstanceVariableArrayComponent test = new AGT070_FloatLiteral_ParameterInstanceVariableArrayComponent();
-		System.out.println(test);
-		test.foo(test);
-		System.out.println(test);
+		new AGT070_FloatLiteral_ParameterInstanceVariableArrayComponent().foo();
 	}
 	
-	public void foo(AGT070_FloatLiteral_ParameterInstanceVariableArrayComponent p){
-		p.f[0] = 1.0F;
+	public void foo(){
+		System.out.println(test);
+		test.bar(test);
+		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public Object[] f = new Object[]{ new Object() };
+	
+	public void bar(Test p){
+		p.f[0] = 1.0F;
+	}
+	
+	@Override
+	public String toString() {
+		return "Test [f=" + Arrays.toString(f) + "]";
+	}
 }

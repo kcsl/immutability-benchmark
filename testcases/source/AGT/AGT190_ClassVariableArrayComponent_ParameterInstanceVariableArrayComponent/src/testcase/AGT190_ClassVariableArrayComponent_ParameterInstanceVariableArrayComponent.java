@@ -3,30 +3,34 @@ package testcase;
 import java.util.Arrays;
 
 import annotations.MUTABLE;
-import annotations.READONLY;
 
 public class AGT190_ClassVariableArrayComponent_ParameterInstanceVariableArrayComponent {
 
 	@MUTABLE
-	public Object[] f1 = new Object[]{ new Object() };
+	public Test test = new Test();
 	
-	@READONLY
+	public static void main(String[] args) {
+		new AGT190_ClassVariableArrayComponent_ParameterInstanceVariableArrayComponent().foo();
+	}
+	
+	public void foo(){
+		System.out.println(test);
+		test.bar(test);
+		System.out.println(test);
+	}
+
+}
+
+class Test {
+	public Object[] f1 = new Object[]{ new Object() };
 	public static Object[] f2 = new Object[]{ new Object() };
+	
+	public void bar(Test p){
+		p.f1[0] = Test.f2[0];
+	}
 	
 	@Override
 	public String toString() {
-		return "AGT190_ClassVariableArrayComponent_ParameterInstanceVariableArrayComponent [f1=" + Arrays.toString(f1) + ", f2=" + Arrays.toString(f2) + "]";
+		return "Test [f1=" + Arrays.toString(f1) + "]";
 	}
-	
-	public static void main(String[] args) {
-		AGT190_ClassVariableArrayComponent_ParameterInstanceVariableArrayComponent a = new AGT190_ClassVariableArrayComponent_ParameterInstanceVariableArrayComponent();
-		System.out.println(a);
-		a.foo(a);
-		System.out.println(a);
-	}
-	
-	public void foo(AGT190_ClassVariableArrayComponent_ParameterInstanceVariableArrayComponent p){
-		p.f1[0] = AGT190_ClassVariableArrayComponent_ParameterInstanceVariableArrayComponent.f2[0];
-	}
-
 }

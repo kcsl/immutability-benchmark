@@ -4,27 +4,36 @@ import java.util.Arrays;
 
 import annotations.MUTABLE;
 
-public enum AGT130_Enum_ParameterInstanceVariableArrayComponent {
+public class AGT130_Enum_ParameterInstanceVariableArrayComponent {
 
-	A,B;
-	
 	@MUTABLE
-	public Object[] f = new Object[]{ new Object() };
-
-	@Override
-	public String toString() {
-		return "AGT130_Enum_ParameterInstanceVariableArrayComponent [f=" + Arrays.toString(f) + "]";
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT130_Enum_ParameterInstanceVariableArrayComponent test = AGT130_Enum_ParameterInstanceVariableArrayComponent.A;
-		System.out.println(test);
-		test.foo(test);
-		System.out.println(test);
+		new AGT130_Enum_ParameterInstanceVariableArrayComponent().foo();
 	}
 	
-	public void foo(AGT130_Enum_ParameterInstanceVariableArrayComponent p){
-		p.f[0] = AGT130_Enum_ParameterInstanceVariableArrayComponent.B;
+	public void foo(){
+		System.out.println(test);
+		test.bar(test);
+		System.out.println(test);
 	}
 
+}
+
+enum Enum {
+	E;
+}
+
+class Test {
+	public Object[] f = new Object[]{ new Object() };
+	
+	public void bar(Test p){
+		p.f[0] = Enum.E;
+	}
+	
+	@Override
+	public String toString() {
+		return "Test [f=" + Arrays.toString(f) + "]";
+	}
 }

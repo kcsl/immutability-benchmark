@@ -7,23 +7,30 @@ import annotations.MUTABLE;
 public class AGT010_FinalObject_ParameterInstanceVariableArrayComponent {
 
 	@MUTABLE
-	public Object[] f = new Object[]{ new Object() };
-
-	@Override
-	public String toString() {
-		return "AGT010_FinalObject_ParameterInstanceVariableArrayComponent [f=" + Arrays.toString(f) + "]";
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT010_FinalObject_ParameterInstanceVariableArrayComponent test = new AGT010_FinalObject_ParameterInstanceVariableArrayComponent();
-		System.out.println(test);
-		test.foo(test);
-		System.out.println(test);
+		new AGT010_FinalObject_ParameterInstanceVariableArrayComponent().foo();
 	}
 	
-	public void foo(AGT010_FinalObject_ParameterInstanceVariableArrayComponent p){
+	public void foo(){
+		System.out.println(test);
+		test.bar(test);
+		System.out.println(test);
+	}
+
+}
+
+class Test {
+	public Object[] f = new Object[]{ new Object() };
+	
+	public void bar(Test p){
 		final Object o = new Object();
 		p.f[0] = o;
 	}
-
+	
+	@Override
+	public String toString() {
+		return "Test [f=" + Arrays.toString(f) + "]";
+	}
 }
