@@ -1,27 +1,36 @@
 package testcase;
 
+import java.util.Arrays;
+
 import annotations.READONLY;
 
 public class AGT147_ObjectInstanceVariableArrayComponent_Parameter {
 
 	@READONLY
-	public Object[] f = new Object[]{ new Object() };
-
-	@Override
-	public String toString() {
-		return "AGT147_ObjectInstanceVariableArrayComponent_Parameter [f=" + f + "]";
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT147_ObjectInstanceVariableArrayComponent_Parameter a = new AGT147_ObjectInstanceVariableArrayComponent_Parameter();
-		System.out.println(a);
-		a.foo(a.f);
-		System.out.println(a);
+		new AGT147_ObjectInstanceVariableArrayComponent_Parameter().foo();
 	}
 	
-	public void foo(Object p){
-		AGT147_ObjectInstanceVariableArrayComponent_Parameter b = new AGT147_ObjectInstanceVariableArrayComponent_Parameter();
-		p = b.f[0];
+	public void foo(){
+		System.out.println(test);
+		test.bar(test);
+		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public Object[] f = new Object[]{ new Object() };
+	
+	public void bar(Object p){
+		Test test2 = new Test();
+		p = test2.f[0];
+	}
+	
+	@Override
+	public String toString() {
+		return "Test [f=" + Arrays.toString(f) + "]";
+	}
 }

@@ -7,22 +7,29 @@ import annotations.READONLY;
 public class AGT167_ThisInstanceVariableArrayComponent_Parameter {
 
 	@READONLY
-	public Object[] f1 = new Object[]{ new Object() };
-
-	@Override
-	public String toString() {
-		return "AGT157_ThisInstanceVariable_Parameter [f1=" + Arrays.toString(f1) + "]";
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT167_ThisInstanceVariableArrayComponent_Parameter a = new AGT167_ThisInstanceVariableArrayComponent_Parameter ();
-		System.out.println(a);
-		a.foo(a);
-		System.out.println(a);
+		new AGT167_ThisInstanceVariableArrayComponent_Parameter().foo();
 	}
 	
-	public void foo(Object p){
-		p = this.f1[0];
+	public void foo(){
+		System.out.println(test);
+		test.bar(test);
+		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public Object[] f = new Object[]{ new Object() };
+	
+	public void bar(Object p){
+		p = this.f[0];
+	}
+	
+	@Override
+	public String toString() {
+		return "Test [f=" + Arrays.toString(f) + "]";
+	}
 }

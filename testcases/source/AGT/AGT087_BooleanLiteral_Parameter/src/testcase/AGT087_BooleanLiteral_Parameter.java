@@ -5,22 +5,29 @@ import annotations.READONLY;
 public class AGT087_BooleanLiteral_Parameter {
 
 	@READONLY
-	public Object f = new Object();
-
-	@Override
-	public String toString() {
-		return "AGT087_BooleanLiteral_Parameter [f=" + f + "]";
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT087_BooleanLiteral_Parameter test = new AGT087_BooleanLiteral_Parameter();
-		System.out.println(test);
-		test.foo(test.f);
-		System.out.println(test);
+		new AGT087_BooleanLiteral_Parameter().foo();
 	}
 	
-	public void foo(Object p){
-		p = true;
+	public void foo(){
+		System.out.println(test);
+		test.bar(test);
+		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public Object f = new Object();
+	
+	public void bar(Object p){
+		p = true;
+	}
+	
+	@Override
+	public String toString() {
+		return "Test [f=" + f + "]";
+	}
 }

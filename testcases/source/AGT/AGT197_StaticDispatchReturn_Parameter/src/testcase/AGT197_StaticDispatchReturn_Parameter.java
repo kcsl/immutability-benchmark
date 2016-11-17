@@ -5,26 +5,33 @@ import annotations.READONLY;
 public class AGT197_StaticDispatchReturn_Parameter {
 
 	@READONLY
-	public Object f = new Object();
-
-	@Override
-	public String toString() {
-		return "AGT197_StaticDispatchReturn_Parameter [f=" + f + "]";
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT197_StaticDispatchReturn_Parameter test = new AGT197_StaticDispatchReturn_Parameter();
-		System.out.println(test);
-		test.foo(test.f);
-		System.out.println(test);
+		new AGT197_StaticDispatchReturn_Parameter().foo();
 	}
 	
-	public void foo(Object p){
-		p = bar();
+	public void foo(){
+		System.out.println(test);
+		test.bar(test);
+		System.out.println(test);
 	}
 
-	public static Object bar(){
+}
+
+class Test {
+	public Object f = new Object();
+
+	public void bar(Object p){
+		p = Test.baz();
+	}
+	
+	public static Object baz(){
 		return new Object();
 	}
 	
+	@Override
+	public String toString() {
+		return "Test [f=" + f + "]";
+	}
 }

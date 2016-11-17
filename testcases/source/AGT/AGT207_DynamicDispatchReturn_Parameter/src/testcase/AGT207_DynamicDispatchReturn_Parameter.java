@@ -5,26 +5,33 @@ import annotations.READONLY;
 public class AGT207_DynamicDispatchReturn_Parameter {
 
 	@READONLY
-	public Object f = new Object();
-
-	@Override
-	public String toString() {
-		return "AGT207_DynamicDispatchReturn_Parameter [f=" + f + "]";
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT207_DynamicDispatchReturn_Parameter test = new AGT207_DynamicDispatchReturn_Parameter();
-		System.out.println(test);
-		test.foo(test.f);
-		System.out.println(test);
+		new AGT207_DynamicDispatchReturn_Parameter().foo();
 	}
 	
-	public void foo(Object p){
-		p = this.bar();
+	public void foo(){
+		System.out.println(test);
+		test.bar(test);
+		System.out.println(test);
 	}
 
-	public Object bar(){
+}
+
+class Test {
+	public Object f = new Object();
+
+	public void bar(Object p){
+		p = this.baz();
+	}
+	
+	public Object baz(){
 		return new Object();
 	}
 	
+	@Override
+	public String toString() {
+		return "Test [f=" + f + "]";
+	}
 }
