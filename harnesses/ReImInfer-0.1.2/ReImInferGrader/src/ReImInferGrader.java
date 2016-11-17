@@ -13,7 +13,7 @@ public class ReImInferGrader {
 	public static void main(String[] args) throws IOException {
 		
 		// debug
-//		args = new String[]{"C:\\Users\\Ben\\Desktop\\test4","C:\\Users\\Ben\\Desktop\\test3\\summary.txt"};
+		args = new String[]{"/Users/benjholla/Desktop/test","/Users/benjholla/Desktop/test/summary.txt"};
 		
 		File inputDirectory = new File(args[0]);
 		File summaryFile = new File(args[1]);
@@ -36,13 +36,14 @@ public class ReImInferGrader {
 		} catch (Exception e){
 			executionResult = "Grader Error: " + e.getMessage();
 		}
+		System.out.println("Execution Result: " + executionResult);
 		
 		String analysisResult = "UNTYPED";
 		try {
 			Scanner scanner = new Scanner(analysisResultFile);
 			while(scanner.hasNextLine()){
-				String line = scanner.nextLine();
-				if(line.trim().contains("field test:")){
+				String line = scanner.nextLine().trim();
+				if(line.contains("field test:")){
 					line = scanner.nextLine().trim();
 					if(line.contains("@checkers.javari.quals.ReadOnly")){
 						analysisResult = "READONLY";
@@ -50,14 +51,16 @@ public class ReImInferGrader {
 						analysisResult = "MUTABLE";
 					} else if(line.contains("@checkers.javari.quals.Polyread")){
 						analysisResult = "POLYREAD";
+					} else {
+						throw new RuntimeException("Unexpected type " + line);
 					}
-					throw new RuntimeException("Unexpected type " + line);
 				}
 			}
 			scanner.close();
 		} catch (Exception e){
 			analysisResult = "Grader Error: " + e.getMessage();
 		}
+		System.out.println("Analysis Result: " + analysisResult);
 		
 		String status;
 		String rationale;
@@ -81,7 +84,7 @@ public class ReImInferGrader {
 				rationale = "UNKNOWN";
 			}
 		}
-		System.out.println(status);
+		System.out.println("Score: " + status + "," + rationale);
 		summary.write(inputDirectory.getName() + "," + status + "," + rationale + "\n");
 		summary.close();
 		
