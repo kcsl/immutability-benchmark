@@ -1,32 +1,33 @@
 package testcase;
 
-import java.util.Arrays;
-
 import annotations.MUTABLE;
-import annotations.READONLY;
 
 public class AGT227_ParameterArrayComponent_ThisInstanceVariable {
 
 	@MUTABLE
-	public Object f1 = new Object();
-	
-	@READONLY
-	public Object[] f2 = new Object[]{ new Object() };
-
-	@Override
-	public String toString() {
-		return "AGT227_ParameterArrayComponent_ThisInstanceVariable [f1=" + f1 + ", f2=" + Arrays.toString(f2) + "]";
-	}
-	
-	public void foo(Object[] p){
-		this.f1 = p[0];
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT227_ParameterArrayComponent_ThisInstanceVariable test = new AGT227_ParameterArrayComponent_ThisInstanceVariable();
+		new AGT227_ParameterArrayComponent_ThisInstanceVariable().foo();
+	}
+	
+	public void foo(){
 		System.out.println(test);
-		test.foo(test.f2);
+		test.bar(new Object[]{ new Object() });
 		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public Object f = new Object();
+	
+	public void bar(Object[] p){
+		this.f = p[0];
+	}
+	
+	@Override
+	public String toString() {
+		return "Test [f=" + f + "]";
+	}
 }

@@ -1,32 +1,33 @@
 package testcase;
 
-import java.util.Arrays;
-
 import annotations.READONLY;
 
 public class AGT229_ParameterArrayComponent_ClassVariable {
 
 	@READONLY
-	public static Object f1 = new Object();
-	
-	@READONLY
-	public Object[] f2 = new Object[]{ new Object() };
-
-	@Override
-	public String toString() {
-		assert(f1 instanceof Object); // Object types are immutable
-		return "AGT229_ParameterArrayComponent_ClassVariable [f1=IMMUTABLE" + ", f2=" + Arrays.toString(f2) + "]";
-	}
-	
-	public void foo(Object[] p){
-		AGT229_ParameterArrayComponent_ClassVariable.f1 = p[0];
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT229_ParameterArrayComponent_ClassVariable test = new AGT229_ParameterArrayComponent_ClassVariable();
+		new AGT229_ParameterArrayComponent_ClassVariable().foo();
+	}
+	
+	public void foo(){
 		System.out.println(test);
-		test.foo(test.f2);
+		test.bar(new Object[]{ new Object() });
 		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public static Object f = new Object();
+
+	public void bar(Object[] p){
+		Test.f = p[0];
+	}
+	
+	@Override
+	public String toString() {
+		return "Test []";
+	}
 }

@@ -13,7 +13,7 @@ public class AGT215_Parameter_ObjectInstanceVariable {
 	
 	public void foo(){
 		System.out.println(test);
-		test.bar(test.f);
+		test.bar(new Object());
 		System.out.println(test);
 	}
 
