@@ -7,23 +7,31 @@ import annotations.MUTABLE;
 public class AGT138_ObjectInstanceVariable_ParameterArrayComponent {
 
 	@MUTABLE
-	public Object[] f = new Object[]{ new Object() };
-
-	@Override
-	public String toString() {
-		return "AGT138_ObjectInstanceVariable_ParameterArrayComponent [f=" + Arrays.toString(f) + "]";
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT138_ObjectInstanceVariable_ParameterArrayComponent a = new AGT138_ObjectInstanceVariable_ParameterArrayComponent();
-		System.out.println(a);
-		a.foo(a.f);
-		System.out.println(a);
+		new AGT138_ObjectInstanceVariable_ParameterArrayComponent().foo();
 	}
 	
-	public void foo(Object[] p){
-		AGT138_ObjectInstanceVariable_ParameterArrayComponent b = new AGT138_ObjectInstanceVariable_ParameterArrayComponent();
-		p[0] = b.f;
+	public void foo(){
+		System.out.println(test);
+		test.bar(test.f1);
+		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public Object[] f1 = new Object[]{ new Object() };
+	public Object f2 = new Object();
+	
+	public void bar(Object[] p){
+		Test test2 = new Test();
+		p[0] = test2.f2;
+	}
+	
+	@Override
+	public String toString() {
+		return "Test [f1=" + Arrays.toString(f1) + ", f2=" + f2 + "]";
+	}
 }

@@ -4,27 +4,36 @@ import java.util.Arrays;
 
 import annotations.MUTABLE;
 
-public enum AGT128_Enum_ParameterArrayComponent {
+public class AGT128_Enum_ParameterArrayComponent {
 
-	A,B;
-	
 	@MUTABLE
-	public Object[] f = new Object[]{ new Object() };
-
-	@Override
-	public String toString() {
-		return "AGT128_Enum_ParameterArrayComponent [f=" + Arrays.toString(f) + "]";
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT128_Enum_ParameterArrayComponent test = AGT128_Enum_ParameterArrayComponent.A;
-		System.out.println(test);
-		test.foo(test.f);
-		System.out.println(test);
+		new AGT128_Enum_ParameterArrayComponent().foo();
 	}
 	
-	public void foo(Object[] p){
-		p[0] = AGT128_Enum_ParameterArrayComponent.B;
+	public void foo(){
+		System.out.println(test);
+		test.bar(test.f);
+		System.out.println(test);
 	}
 
+}
+
+enum Enum {
+	E;
+}
+
+class Test {
+	public Object[] f = new Object[]{ new Object() };
+	
+	public void bar(Object[] p){
+		p[0] = Enum.E;
+	}
+	
+	@Override
+	public String toString() {
+		return "Test [f=" + Arrays.toString(f) + "]";
+	}
 }

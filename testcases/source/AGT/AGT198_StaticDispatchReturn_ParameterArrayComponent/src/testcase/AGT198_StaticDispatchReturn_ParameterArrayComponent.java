@@ -7,26 +7,33 @@ import annotations.MUTABLE;
 public class AGT198_StaticDispatchReturn_ParameterArrayComponent {
 
 	@MUTABLE
-	public Object[] f = new Object[]{ new Object() };
-
-	@Override
-	public String toString() {
-		return "AGT198_StaticDispatchReturn_ParameterArrayComponent [f=" + Arrays.toString(f) + "]";
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT198_StaticDispatchReturn_ParameterArrayComponent test = new AGT198_StaticDispatchReturn_ParameterArrayComponent();
-		System.out.println(test);
-		test.foo(test.f);
-		System.out.println(test);
+		new AGT198_StaticDispatchReturn_ParameterArrayComponent().foo();
 	}
 	
-	public void foo(Object[] p){
-		p[0] = bar();
-	}
-	
-	public static Object bar(){
-		return new Object();
+	public void foo(){
+		System.out.println(test);
+		test.bar(test.f);
+		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public Object[] f = new Object[]{ new Object() };
+
+	public void bar(Object[] p){
+		p[0] = Test.baz();
+	}
+	
+	public static Object baz(){
+		return new Object();
+	}
+	
+	@Override
+	public String toString() {
+		return "Test [f=" + Arrays.toString(f) + "]";
+	}
 }
