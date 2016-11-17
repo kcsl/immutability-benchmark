@@ -1,7 +1,5 @@
 package testcase;
 
-import java.util.Arrays;
-
 import annotations.MUTABLE;
 
 public class AGT120_This_ParameterInstanceVariableArrayComponent {
@@ -30,6 +28,14 @@ class Test {
 	
 	@Override
 	public String toString() {
-		return "Test [f=" + Arrays.toString(f) + "]";
+		// modified toString to avoid recursive stackoverflow
+		String result = "Test [f=";
+		String prefix = "[";
+		for(Object o : f){
+			result += prefix + o.hashCode();
+			prefix = ", ";
+		}
+		result +=  "]]";
+		return result;
 	}
 }

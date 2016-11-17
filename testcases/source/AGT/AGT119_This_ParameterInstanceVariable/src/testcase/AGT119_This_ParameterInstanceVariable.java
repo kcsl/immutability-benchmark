@@ -28,6 +28,6 @@ class Test {
 	
 	@Override
 	public String toString() {
-		return "Test [f=" + f + "]";
+		return "Test [f=" + f.hashCode() + "]";
 	}
 }
