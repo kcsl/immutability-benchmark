@@ -12,9 +12,9 @@ public class AGT131_ObjectInstanceVariable_ObjectInstanceVariable {
 	}
 	
 	public void foo(){
-		Test test2 = new Test();
+		Test o = new Test();
 		System.out.println(test);
-		test.f = test2.f;
+		test.f = o.f;
 		System.out.println(test);
 	}
 

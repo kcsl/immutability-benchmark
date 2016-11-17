@@ -23,8 +23,8 @@ class Test {
 	public Object f = new Object();
 	
 	public void bar(Object p){
-		Test test2 = new Test();
-		p = test2.f;
+		Test o = new Test();
+		p = o.f;
 	}
 	
 	@Override

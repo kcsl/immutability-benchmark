@@ -15,9 +15,9 @@ public class AGT133_ObjectInstanceVariable_ThisInstanceVariable {
 	}
 
 	public void foo(){
-		AGT133_ObjectInstanceVariable_ThisInstanceVariable test2 = new AGT133_ObjectInstanceVariable_ThisInstanceVariable();
+		AGT133_ObjectInstanceVariable_ThisInstanceVariable o = new AGT133_ObjectInstanceVariable_ThisInstanceVariable();
 		System.out.println(this.toString());
-		this.f = test2.f;
+		this.f = o.f;
 		System.out.println(this.toString());
 	}
 	

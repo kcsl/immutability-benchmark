@@ -26,8 +26,8 @@ class Test {
 	public Object f2 = new Object();
 	
 	public void bar(Object[] p){
-		Test test2 = new Test();
-		p[0] = test2.f2;
+		Test o = new Test();
+		p[0] = o.f2;
 	}
 	
 	@Override

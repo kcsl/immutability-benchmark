@@ -18,9 +18,9 @@ public class AGT143_ObjectInstanceVariableArrayComponent_ThisInstanceVariable {
 	}
 
 	public void foo(){
-		AGT143_ObjectInstanceVariableArrayComponent_ThisInstanceVariable test2 = new AGT143_ObjectInstanceVariableArrayComponent_ThisInstanceVariable();
+		AGT143_ObjectInstanceVariableArrayComponent_ThisInstanceVariable o = new AGT143_ObjectInstanceVariableArrayComponent_ThisInstanceVariable();
 		System.out.println(this.toString());
-		this.f1 = test2.f2[0];
+		this.f1 = o.f2[0];
 		System.out.println(this.toString());
 	}
 	

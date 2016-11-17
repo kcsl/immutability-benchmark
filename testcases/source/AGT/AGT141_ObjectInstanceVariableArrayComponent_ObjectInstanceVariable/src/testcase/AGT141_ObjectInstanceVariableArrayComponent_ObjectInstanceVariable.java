@@ -14,9 +14,9 @@ public class AGT141_ObjectInstanceVariableArrayComponent_ObjectInstanceVariable 
 	}
 	
 	public void foo(){
-		Test test2 = new Test();
+		Test o = new Test();
 		System.out.println(test);
-		test.f1 = test2.f2[0];
+		test.f1 = o.f2[0];
 		System.out.println(test);
 	}
 
