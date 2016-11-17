@@ -5,22 +5,29 @@ import annotations.MUTABLE;
 public class AGT119_This_ParameterInstanceVariable {
 
 	@MUTABLE
-	public Object f = new Object();
-
-	@Override
-	public String toString() {
-		return "AGT119_This_ParameterInstanceVariable [f=" + f.hashCode() + "]";
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT119_This_ParameterInstanceVariable test = new AGT119_This_ParameterInstanceVariable();
-		System.out.println(test);
-		test.foo(test);
-		System.out.println(test);
+		new AGT119_This_ParameterInstanceVariable().foo();
 	}
 	
-	public void foo(AGT119_This_ParameterInstanceVariable p){
-		p.f = this;
+	public void foo(){
+		System.out.println(test);
+		test.bar(test);
+		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public Object f = new Object();
+	
+	public void bar(Test p){
+		p.f = this;
+	}
+	
+	@Override
+	public String toString() {
+		return "Test [f=" + f + "]";
+	}
 }

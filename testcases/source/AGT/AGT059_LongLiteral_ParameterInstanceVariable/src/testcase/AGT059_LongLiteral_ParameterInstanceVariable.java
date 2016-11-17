@@ -5,22 +5,29 @@ import annotations.MUTABLE;
 public class AGT059_LongLiteral_ParameterInstanceVariable {
 
 	@MUTABLE
-	public Object f = new Object();
-
-	@Override
-	public String toString() {
-		return "AGT059_LongLiteral_ParameterInstanceVariable [f=" + f + "]";
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT059_LongLiteral_ParameterInstanceVariable test = new AGT059_LongLiteral_ParameterInstanceVariable();
-		System.out.println(test);
-		test.foo(test);
-		System.out.println(test);
+		new AGT059_LongLiteral_ParameterInstanceVariable().foo();
 	}
 	
-	public void foo(AGT059_LongLiteral_ParameterInstanceVariable p){
-		p.f = 1L;
+	public void foo(){
+		System.out.println(test);
+		test.bar(test);
+		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public Object f = new Object();
+	
+	public void bar(Test p){
+		p.f = 1L;
+	}
+	
+	@Override
+	public String toString() {
+		return "Test [f=" + f + "]";
+	}
 }

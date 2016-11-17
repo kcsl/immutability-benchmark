@@ -5,26 +5,33 @@ import annotations.MUTABLE;
 public class AGT199_StaticDispatchReturn_ParameterInstanceVariable {
 
 	@MUTABLE
-	public Object f = new Object();
-
-	@Override
-	public String toString() {
-		return "AGT199_StaticDispatchReturn_ParameterInstanceVariable [f=" + f + "]";
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT199_StaticDispatchReturn_ParameterInstanceVariable test = new AGT199_StaticDispatchReturn_ParameterInstanceVariable();
-		System.out.println(test);
-		test.foo(test);
-		System.out.println(test);
+		new AGT199_StaticDispatchReturn_ParameterInstanceVariable().foo();
 	}
 	
-	public void foo(AGT199_StaticDispatchReturn_ParameterInstanceVariable p){
-		p.f = bar();
+	public void foo(){
+		System.out.println(test);
+		test.bar(test);
+		System.out.println(test);
 	}
 
-	public static Object bar(){
+}
+
+class Test {
+	public Object f = new Object();
+
+	public void bar(Test p){
+		p.f = Test.baz();
+	}
+	
+	public static Object baz(){
 		return new Object();
 	}
 	
+	@Override
+	public String toString() {
+		return "Test [f=" + f + "]";
+	}
 }

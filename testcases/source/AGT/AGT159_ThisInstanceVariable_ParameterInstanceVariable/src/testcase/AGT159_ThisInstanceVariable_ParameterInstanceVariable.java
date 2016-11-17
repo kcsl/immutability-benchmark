@@ -1,30 +1,32 @@
 package testcase;
 
 import annotations.MUTABLE;
-import annotations.READONLY;
 
 public class AGT159_ThisInstanceVariable_ParameterInstanceVariable {
 
 	@MUTABLE
-	public Object f1 = new Object();
+	public Test test = new Test();
 	
-	@READONLY
-	public Object f2 = new Object();
+	public static void main(String[] args) {
+		new AGT159_ThisInstanceVariable_ParameterInstanceVariable().foo();
+	}
+	
+	public void foo(){
+		System.out.println(test);
+		test.bar(test);
+		System.out.println(test);
+	}
+}
+
+class Test {
+	public Object f = new Object();
+
+	public void bar(Test p){
+		p.f = this.f;
+	}
 	
 	@Override
 	public String toString() {
-		return "AGT159_ThisInstanceVariable_ParameterInstanceVariable [f1=" + f1 + ", f2=" + f2 + "]";
+		return "Test [f=" + f + "]";
 	}
-	
-	public static void main(String[] args) {
-		AGT159_ThisInstanceVariable_ParameterInstanceVariable a = new AGT159_ThisInstanceVariable_ParameterInstanceVariable();
-		System.out.println(a);
-		a.foo(a);
-		System.out.println(a);
-	}
-	
-	public void foo(AGT159_ThisInstanceVariable_ParameterInstanceVariable p){
-		p.f1 = this.f2;
-	}
-
 }

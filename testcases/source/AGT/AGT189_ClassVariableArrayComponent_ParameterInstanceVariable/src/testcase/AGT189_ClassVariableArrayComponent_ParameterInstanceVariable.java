@@ -1,32 +1,34 @@
 package testcase;
 
-import java.util.Arrays;
-
 import annotations.MUTABLE;
-import annotations.READONLY;
 
 public class AGT189_ClassVariableArrayComponent_ParameterInstanceVariable {
 
 	@MUTABLE
-	public Object f1 = new Object();
+	public Test test = new Test();
 	
-	@READONLY
+	public static void main(String[] args) {
+		new AGT189_ClassVariableArrayComponent_ParameterInstanceVariable().foo();
+	}
+	
+	public void foo(){
+		System.out.println(test);
+		test.bar(test);
+		System.out.println(test);
+	}
+
+}
+
+class Test {
+	public Object f1 = new Object();
 	public static Object[] f2 = new Object[]{ new Object() };
+	
+	public void bar(Test p){
+		p.f1 = Test.f2[0];
+	}
 	
 	@Override
 	public String toString() {
-		return "AGT189_ClassVariableArrayComponent_ParameterInstanceVariable [f1=" + f1 + ", f2=" + Arrays.toString(f2) + "]";
+		return "Test [f1=" + f1 + "]";
 	}
-	
-	public static void main(String[] args) {
-		AGT189_ClassVariableArrayComponent_ParameterInstanceVariable a = new AGT189_ClassVariableArrayComponent_ParameterInstanceVariable();
-		System.out.println(a);
-		a.foo(a);
-		System.out.println(a);
-	}
-	
-	public void foo(AGT189_ClassVariableArrayComponent_ParameterInstanceVariable p){
-		p.f1 = AGT189_ClassVariableArrayComponent_ParameterInstanceVariable.f2[0];
-	}
-
 }

@@ -5,22 +5,29 @@ import annotations.MUTABLE;
 public class AGT039_ShortLiteral_ParameterInstanceVariable {
 
 	@MUTABLE
-	public Object f = new Object();
-
-	@Override
-	public String toString() {
-		return "AGT039_ShortLiteral_ParameterInstanceVariable [f=" + f + "]";
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT039_ShortLiteral_ParameterInstanceVariable test = new AGT039_ShortLiteral_ParameterInstanceVariable();
-		System.out.println(test);
-		test.foo(test);
-		System.out.println(test);
+		new AGT039_ShortLiteral_ParameterInstanceVariable().foo();
 	}
 	
-	public void foo(AGT039_ShortLiteral_ParameterInstanceVariable p){
-		p.f = (short) 1;
+	public void foo(){
+		System.out.println(test);
+		test.bar(test);
+		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public Object f = new Object();
+	
+	public void bar(Test p){
+		p.f = (short) 1;
+	}
+	
+	@Override
+	public String toString() {
+		return "Test [f=" + f + "]";
+	}
 }

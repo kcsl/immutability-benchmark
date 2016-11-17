@@ -2,27 +2,36 @@ package testcase;
 
 import annotations.MUTABLE;
 
-public enum AGT129_Enum_ParameterInstanceVariable {
+public class AGT129_Enum_ParameterInstanceVariable {
 
-	A,B;
-	
 	@MUTABLE
-	public Object f = new Object();
-
-	@Override
-	public String toString() {
-		return "AGT129_Enum_ParameterInstanceVariable [f=" + f + "]";
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT129_Enum_ParameterInstanceVariable test = AGT129_Enum_ParameterInstanceVariable.A;
-		System.out.println(test);
-		test.foo(test);
-		System.out.println(test);
+		new AGT129_Enum_ParameterInstanceVariable().foo();
 	}
 	
-	public void foo(AGT129_Enum_ParameterInstanceVariable p){
-		p.f = AGT129_Enum_ParameterInstanceVariable.B;
+	public void foo(){
+		System.out.println(test);
+		test.bar(test);
+		System.out.println(test);
 	}
 
+}
+
+enum Enum {
+	E;
+}
+
+class Test {
+	public Object f = new Object();
+	
+	public void bar(Test p){
+		p.f = Enum.E;
+	}
+	
+	@Override
+	public String toString() {
+		return "Test [f=" + f + "]";
+	}
 }
