@@ -16,10 +16,46 @@ public class CheckAGTExpectations {
 			testBinary = args[0];
 		}
 
-		checkExpectation(testBinary);
+		checkExpectations(testBinary);
 	}
 	
-	public static void checkExpectation(String testBinary){
+	public static String checkAnnotation(File sourceFile, String annotation){
+		try {
+			int numAnnotations = 0;
+			boolean fieldAnnotatedCorrected = annotation.equals("DEPENDS");
+			
+			Scanner scanner = new Scanner(sourceFile);
+			while(scanner.hasNextLine()){
+				String line = scanner.nextLine();
+				if(line.contains("import annotations.")){
+					numAnnotations++;
+				}
+				if(line.contains("import annotations.") && line.contains(".*;")){
+					numAnnotations = Integer.MAX_VALUE;
+					break;
+				}
+				
+				if(line.contains("@" + annotation)){
+					fieldAnnotatedCorrected = true;
+				}
+			}
+			scanner.close();
+			
+			if(numAnnotations != 1){
+				return "INCORRECT: Multiple Annotations";
+			}
+			
+			if(!fieldAnnotatedCorrected){
+				return "INCORRECT: Wrong Annotation";
+			}
+			
+			return "CORRECT";
+		} catch (Exception e){
+			return "ERROR: " + e.getMessage();
+		}
+	}
+	
+	public static void checkExpectations(String testBinary){
 		File testBinaryFile = new File(testBinary);
 		String testName = testBinaryFile.getName().replace(".jar", "");
 		String expectedResult = getExpectedResult(testName);
@@ -35,9 +71,10 @@ public class CheckAGTExpectations {
 			if(expectedResult.equals("MUTABLE") && result.equals("MUTABLE")){
 				satisfied = true;
 			}
-			System.out.println(testName + "," + expectedResult + "," + result + "," + (satisfied ? "SATISFIED" : "UNSATISFIED"));
+			String annotationCorrectness = checkAnnotation(new File("../../testcases/source/AGT/" + testName + "/src/testcase/" + testName + ".java"), expectedResult);
+			System.out.println(testName + "," + expectedResult + "," + result + "," + (satisfied ? "SATISFIED" : "UNSATISFIED") + "," + annotationCorrectness);
 		} catch (Throwable t){
-			System.out.println(testName + "," + expectedResult + ",ERROR: " + t.getMessage() + ",UNSATISFIED");
+			System.out.println(testName + "," + expectedResult + ",ERROR: " + t.getMessage() + ",UNSATISFIED,INCORRECT");
 		}
 	}
 	

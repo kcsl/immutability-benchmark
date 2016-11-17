@@ -19,14 +19,15 @@ public class AGT159_ThisInstanceVariable_ParameterInstanceVariable {
 }
 
 class Test {
-	public Object f = new Object();
+	public Object f1 = new Object();
+	public Object f2 = new Object();
 
 	public void bar(Test p){
-		p.f = this.f;
+		p.f1 = this.f2;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Test [f=" + f + "]";
+		return "Test [f1=" + f1 + ", f2=" + f2 + "]";
 	}
 }
