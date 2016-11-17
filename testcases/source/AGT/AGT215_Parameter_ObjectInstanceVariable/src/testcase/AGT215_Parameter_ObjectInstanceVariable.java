@@ -5,23 +5,30 @@ import annotations.READONLY;
 public class AGT215_Parameter_ObjectInstanceVariable {
 
 	@READONLY
-	public Object f = new Object();
-
-	@Override
-	public String toString() {
-		return "AGT215_Parameter_ObjectInstanceVariable [f=" + f + "]";
-	}
-	
-	public void foo(Object p){
-		AGT215_Parameter_ObjectInstanceVariable b = new AGT215_Parameter_ObjectInstanceVariable();
-		b.f = p;
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT215_Parameter_ObjectInstanceVariable a = new AGT215_Parameter_ObjectInstanceVariable();
-		System.out.println(a);
-		a.foo(a.f);
-		System.out.println(a);
+		new AGT215_Parameter_ObjectInstanceVariable().foo();
+	}
+	
+	public void foo(){
+		System.out.println(test);
+		test.bar(test.f);
+		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public Object f = new Object();
+	
+	public void bar(Object p){
+		Test test2 = new Test();
+		test2.f = p;
+	}
+	
+	@Override
+	public String toString() {
+		return "Test [f=" + f + "]";
+	}
 }

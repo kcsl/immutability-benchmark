@@ -5,25 +5,29 @@ import annotations.READONLY;
 public class AGT219_Parameter_ClassVariable {
 
 	@READONLY
-	public static Object f1 = new Object();
-	
-	@READONLY
-	public Object f2 = new Object();
-
-	@Override
-	public String toString() {
-		return "AGT219_Parameter_ClassVariable [f1=IMMUTABLE" + ", f2=" + f2 + "]";
-	}
-	
-	public void foo(Object p){
-		AGT219_Parameter_ClassVariable.f1 = p;
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT219_Parameter_ClassVariable test = new AGT219_Parameter_ClassVariable();
+		new AGT219_Parameter_ClassVariable().foo();
+	}
+	
+	public void foo(){
 		System.out.println(test);
-		test.foo(test.f2);
+		test.bar(new Object());
 		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public static Object f = new Object();
+
+	public void bar(Object p){
+		Test.f = p;
+	}
+	
+	@Override
+	public String toString() {
+		return "Test []";
+	}
 }
