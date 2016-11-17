@@ -59,13 +59,30 @@ public class ReImInferGrader {
 			analysisResult = "Grader Error: " + e.getMessage();
 		}
 		
-		if(analysisResult.equals(executionResult)){
-			System.out.println("PASS");
-			summary.write(inputDirectory.getName() + ",PASS\n");
-		} else {
+		String status;
+		String rationale;
+		if(analysisResult.equals("READONLY") && executionResult.equals("MUTABLE")){
+			status = "FAIL";
+			rationale = "test was mutated but reported as readonly";
 			System.out.println("FAIL");
 			summary.write(inputDirectory.getName() + ",FAIL\n");
+		} else if(analysisResult.equals("MUTABLE") && executionResult.equals("READONLY")){
+			status = "FAIL";
+			rationale = "test was readonly but reported as mutable";
+		} else {
+			if(analysisResult.equals("POLYREAD") && executionResult.equals("MUTABLE")){
+				status = "PASS";
+				rationale = "polyread indicates a mutation could occur in a given context";
+			} else if(analysisResult.equals(executionResult)){
+				status = "PASS";
+				rationale = "correct analysis";
+			} else {
+				status = "FAIL";
+				rationale = "UNKNOWN";
+			}
 		}
+		System.out.println(status);
+		summary.write(inputDirectory.getName() + "," + status + "," + rationale + "\n");
 		summary.close();
 		
 	}
