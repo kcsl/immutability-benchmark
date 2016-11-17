@@ -7,26 +7,30 @@ import annotations.READONLY;
 public class AGT249_ParameterInstanceVariableArrayComponent_ClassVariable {
 
 	@READONLY
-	public static Object f1 = new Object();
+	public Test test = new Test();
 	
-	@READONLY
+	public static void main(String[] args) {
+		new AGT249_ParameterInstanceVariableArrayComponent_ClassVariable().foo();
+	}
+	
+	public void foo(){
+		System.out.println(test);
+		test.bar(new Test());
+		System.out.println(test);
+	}
+
+}
+
+class Test {
+	public static Object f1 = new Object();
 	public Object[] f2 = new Object[]{ new Object() };
+
+	public void bar(Test p){
+		Test.f1 = p.f2[0];
+	}
 
 	@Override
 	public String toString() {
-		assert(f1 instanceof Object); // Object types are immutable
-		return "AGT239_ParameterInstanceVariable_ClassVariable [f1=IMMUTABLE" + ", f2=" + Arrays.toString(f2) + "]";
+		return "Test [f2=" + Arrays.toString(f2) + "]";
 	}
-	
-	public void foo(AGT249_ParameterInstanceVariableArrayComponent_ClassVariable p){
-		AGT249_ParameterInstanceVariableArrayComponent_ClassVariable.f1 = p.f2[0];
-	}
-	
-	public static void main(String[] args) {
-		AGT249_ParameterInstanceVariableArrayComponent_ClassVariable test = new AGT249_ParameterInstanceVariableArrayComponent_ClassVariable();
-		System.out.println(test);
-		test.foo(test);
-		System.out.println(test);
-	}
-
 }

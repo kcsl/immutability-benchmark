@@ -30,6 +30,6 @@ class Test {
 	
 	@Override
 	public String toString() {
-		return "Test [f1=" + Arrays.toString(f) + "]";
+		return "Test [f=" + Arrays.toString(f) + "]";
 	}
 }

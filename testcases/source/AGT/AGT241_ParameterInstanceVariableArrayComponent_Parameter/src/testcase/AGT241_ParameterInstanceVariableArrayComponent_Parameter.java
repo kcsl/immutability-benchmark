@@ -7,25 +7,29 @@ import annotations.READONLY;
 public class AGT241_ParameterInstanceVariableArrayComponent_Parameter {
 
 	@READONLY
-	public Object f1 = new Object();
-	
-	@READONLY
-	public Object[] f2 = new Object[]{ new Object() };
-
-	@Override
-	public String toString() {
-		return "AGT241_ParameterInstanceVariableArrayComponent_Parameter [f1=" + f1 + ", f2=" + Arrays.toString(f2) + "]";
-	}
-	
-	public void foo(Object p1, AGT241_ParameterInstanceVariableArrayComponent_Parameter p2){
-		p1 = p2.f2[0];
-	}
+	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		AGT241_ParameterInstanceVariableArrayComponent_Parameter test = new AGT241_ParameterInstanceVariableArrayComponent_Parameter();
+		new AGT241_ParameterInstanceVariableArrayComponent_Parameter().foo();
+	}
+	
+	public void foo(){
 		System.out.println(test);
-		test.foo(test.f1, test);
+		test.bar(test.f, new Test());
 		System.out.println(test);
 	}
 
+}
+
+class Test {
+	public Object[] f = new Object[]{ new Object() };
+	
+	public void bar(Object p1, Test p2){
+		p1 = p2.f[0];
+	}
+	
+	@Override
+	public String toString() {
+		return "Test [f=" + Arrays.toString(f) + "]";
+	}
 }

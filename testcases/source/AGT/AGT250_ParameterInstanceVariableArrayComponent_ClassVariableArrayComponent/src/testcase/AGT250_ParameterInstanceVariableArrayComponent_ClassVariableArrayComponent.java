@@ -2,31 +2,35 @@ package testcase;
 
 import java.util.Arrays;
 
-import annotations.MUTABLE;
 import annotations.READONLY;
 
 public class AGT250_ParameterInstanceVariableArrayComponent_ClassVariableArrayComponent {
 
-	@MUTABLE
-	public static Object[] f1 = new Object[]{ new Object() };
-	
 	@READONLY
+	public Test test = new Test();
+	
+	public static void main(String[] args) {
+		new AGT250_ParameterInstanceVariableArrayComponent_ClassVariableArrayComponent().foo();
+	}
+	
+	public void foo(){
+		System.out.println(test);
+		test.bar(new Test());
+		System.out.println(test);
+	}
+
+}
+
+class Test {
+	public static Object[] f1 = new Object[]{ new Object() };
 	public Object[] f2 = new Object[]{ new Object() };
+	
+	public void bar(Test p){
+		Test.f1[0] = p.f2[0];
+	}
 
 	@Override
 	public String toString() {
-		return "AGT250_ParameterInstanceVariableArrayComponent_ClassVariableArrayComponent [f1=" + Arrays.toString(f1) + ", f2=" + Arrays.toString(f2) + "]";
+		return "Test [f2=" + Arrays.toString(f2) + "]";
 	}
-	
-	public void foo(AGT250_ParameterInstanceVariableArrayComponent_ClassVariableArrayComponent p){
-		AGT250_ParameterInstanceVariableArrayComponent_ClassVariableArrayComponent.f1[0] = p.f2[0];
-	}
-	
-	public static void main(String[] args) {
-		AGT250_ParameterInstanceVariableArrayComponent_ClassVariableArrayComponent test = new AGT250_ParameterInstanceVariableArrayComponent_ClassVariableArrayComponent();
-		System.out.println(test);
-		test.foo(test);
-		System.out.println(test);
-	}
-
 }
