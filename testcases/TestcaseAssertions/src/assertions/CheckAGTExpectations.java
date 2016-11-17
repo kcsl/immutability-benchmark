@@ -8,7 +8,18 @@ import java.util.Scanner;
 public class CheckAGTExpectations {
 
 	public static void main(String[] args){
-		String testBinary = args[0];
+		String testBinary = "";
+		if(args.length == 0){
+			// debug
+			testBinary = "/Users/benjholla/Desktop/STAC/git/immutability-benchmark/testcases/binary/AGT/AGT001_FinalObject_ObjectInstanceVariable.jar";
+		} else {
+			testBinary = args[0];
+		}
+
+		checkExpectation(testBinary);
+	}
+	
+	public static void checkExpectation(String testBinary){
 		File testBinaryFile = new File(testBinary);
 		String testName = testBinaryFile.getName().replace(".jar", "");
 		String result = getResult(testBinaryFile);

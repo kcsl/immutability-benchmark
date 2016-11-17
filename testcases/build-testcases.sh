@@ -8,10 +8,10 @@ TESTCASEBASE="$WD/TestcaseBase/src/annotations/"
 
 #ASSERTIONS_SOURCE="$WD/TestcaseAssertions/src/CheckAGTExpectations.java"
 #ASSERTIONS="$WD/CheckAGTExpectations.class"
-
-ASSERTIONS="$WD/CheckAGTExpectations.jar"
-ASSERTIONS_SUMMARY="$WD/assertions-summary.csv"
 #javac $ASSERTIONS_SOURCE -d "$WD/"
+
+#ASSERTIONS="$WD/CheckAGTExpectations.jar"
+#ASSERTIONS_SUMMARY="$WD/assertions-summary.csv"
 
 for TESTCATEGORY in $WD/source/*; 
 do
@@ -49,9 +49,9 @@ do
         # remove build directory
         rm -rf $BUILD
         
-        if [ "$CATEGORY" == "AGT" ]; then
-            java $ASSERTIONS "$WD/binary/$CATEGORY/$TESTCASE.jar" >> $ASSERTIONS_SUMMARY
-        fi
+        #if [ "$CATEGORY" == "AGT" ]; then
+        #    java -jar $ASSERTIONS "$WD/binary/$CATEGORY/$TESTCASE.jar" >> $ASSERTIONS_SUMMARY
+        #fi
 
         # reset paths
         cd $TESTCATEGORY
