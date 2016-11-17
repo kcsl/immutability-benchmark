@@ -23,26 +23,32 @@ public class CheckAGTExpectations {
 		try {
 			int numAnnotations = 0;
 			boolean fieldAnnotatedCorrected = annotation.equals("DEPENDS");
+			boolean annotationIsOnTestObject = false;
 			
 			Scanner scanner = new Scanner(sourceFile);
 			while(scanner.hasNextLine()){
 				String line = scanner.nextLine();
-				if(line.contains("import annotations.")){
+				if(line.contains("@MUTABLE") || line.contains("@READONLY")){
 					numAnnotations++;
-				}
-				if(line.contains("import annotations.") && line.contains(".*;")){
-					numAnnotations = Integer.MAX_VALUE;
-					break;
-				}
-				
-				if(line.contains("@" + annotation)){
-					fieldAnnotatedCorrected = true;
+					
+					if(line.contains("@" + annotation)){
+						fieldAnnotatedCorrected = true;
+					}
+					
+					line = scanner.nextLine();
+					if(line.contains(" test ")){
+						annotationIsOnTestObject = true;
+					}
 				}
 			}
 			scanner.close();
 			
 			if(numAnnotations != 1){
 				return "INCORRECT: Multiple Annotations";
+			}
+			
+			if(!annotationIsOnTestObject){
+				return "INCORRECT: Test Instance Missing Annotation";
 			}
 			
 			if(!fieldAnnotatedCorrected){
