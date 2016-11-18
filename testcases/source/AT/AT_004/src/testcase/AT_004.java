@@ -4,8 +4,6 @@ import annotations.MUTABLE;
 
 public class AT_004 {
 
-	public Test o = new Test();
-	
 	@MUTABLE
 	public Test test;
 	
@@ -14,8 +12,8 @@ public class AT_004 {
 	}
 	
 	public void foo(){
-		// b -> test -> a -> o
-		Test a = o;
+		// b -> test -> a
+		Test a = new Test();
 		test = a;
 		Test b = test;
 		
