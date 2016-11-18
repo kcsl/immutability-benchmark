@@ -16,7 +16,7 @@ public class ST_005 {
 	public void foo(){
 		// b -> test -> a -> o
 		Test a = o;
-		Test test = a;
+		test = a;
 		Test b = test;
 		
 		System.out.println(test);
