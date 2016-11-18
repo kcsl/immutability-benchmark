@@ -20,7 +20,7 @@ public class ST_005 {
 		Test b = test;
 		
 		System.out.println(test);
-		b.f = new Object();
+		b.f = new Object(); // a mutation to b is a mutation to test
 		System.out.println(test);
 	}
 
