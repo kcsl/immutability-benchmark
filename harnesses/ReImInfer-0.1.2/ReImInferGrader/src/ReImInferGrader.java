@@ -13,7 +13,7 @@ public class ReImInferGrader {
 	public static void main(String[] args) throws IOException {
 		
 		// debug
-		args = new String[]{"/Users/benjholla/Desktop/test","/Users/benjholla/Desktop/test/summary.txt"};
+//		args = new String[]{"/Users/benjholla/Desktop/test","/Users/benjholla/Desktop/test/summary.txt"};
 		
 		File inputDirectory = new File(args[0]);
 		File summaryFile = new File(args[1]);
