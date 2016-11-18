@@ -11,4 +11,4 @@ This test harness runs the OOPSLA 2012 release of ReImInfer. Since the official 
 
 3. On the command line, navigate to the [vm](./vm) directory of the harness and run `vagrant up`.
 
-4. When the virtual machine setup has complete the results will be saved as [RESULTS.zip](./vm/RESULTS.zip).
+4. When the virtual machine setup has complete the results will be saved as [RESULTS-0.1.3.zip](./vm/RESULTS-0.1.3.zip).
