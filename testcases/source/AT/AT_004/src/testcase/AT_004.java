@@ -2,7 +2,7 @@ package testcase;
 
 import annotations.MUTABLE;
 
-public class ST_004 {
+public class AT_004 {
 
 	public Test o = new Test();
 	
@@ -10,7 +10,7 @@ public class ST_004 {
 	public Test test;
 	
 	public static void main(String[] args) {
-		new ST_004().foo();
+		new AT_004().foo();
 	}
 	
 	public void foo(){
@@ -20,7 +20,7 @@ public class ST_004 {
 		Test b = test;
 		
 		System.out.println(test);
-		a.f = new Object(); // a mutation to a is a mutation to test
+		b.f = new Object(); // a mutation to b is a mutation to test
 		System.out.println(test);
 	}
 

@@ -2,25 +2,20 @@ package testcase;
 
 import annotations.MUTABLE;
 
-public class ST_005 {
+public class AT_002 {
 
 	public Test o = new Test();
 	
 	@MUTABLE
-	public Test test;
+	public Test test = o;
 	
 	public static void main(String[] args) {
-		new ST_005().foo();
+		new AT_002().foo();
 	}
 	
 	public void foo(){
-		// b -> test -> a -> o
-		Test a = o;
-		test = a;
-		Test b = test;
-		
 		System.out.println(test);
-		b.f = new Object(); // a mutation to b is a mutation to test
+		o.f = new Object();
 		System.out.println(test);
 	}
 
