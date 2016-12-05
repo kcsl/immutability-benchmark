@@ -1,0 +1,48 @@
+public class ORG.as220.tinySQL.parser.Token extends java.lang.Object
+{
+    public int kind;
+    public int beginLine;
+    public int beginColumn;
+    public int endLine;
+    public int endColumn;
+    public java.lang.String image;
+    public ORG.as220.tinySQL.parser.Token next;
+    public ORG.as220.tinySQL.parser.Token specialToken;
+
+    public void <init>()
+    {
+        ORG.as220.tinySQL.parser.Token r0;
+
+        r0 := @this: ORG.as220.tinySQL.parser.Token;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public final java.lang.String toString()
+    {
+        ORG.as220.tinySQL.parser.Token r0;
+        java.lang.String $r1;
+
+        r0 := @this: ORG.as220.tinySQL.parser.Token;
+
+        $r1 = r0.<ORG.as220.tinySQL.parser.Token: java.lang.String image>;
+
+        return $r1;
+    }
+
+    public static final ORG.as220.tinySQL.parser.Token newToken(int)
+    {
+        int i0;
+        ORG.as220.tinySQL.parser.Token $r0;
+
+        i0 := @parameter0: int;
+
+        $r0 = new ORG.as220.tinySQL.parser.Token;
+
+        specialinvoke $r0.<ORG.as220.tinySQL.parser.Token: void <init>()>();
+
+        return $r0;
+    }
+}

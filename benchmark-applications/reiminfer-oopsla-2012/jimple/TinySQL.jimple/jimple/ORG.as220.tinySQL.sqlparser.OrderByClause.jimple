@@ -1,0 +1,91 @@
+public class ORG.as220.tinySQL.sqlparser.OrderByClause extends java.lang.Object
+{
+    private ORG.as220.tinySQL.sqlparser.SelectStatement parent;
+    private java.util.ArrayList orderValues;
+    private java.util.ArrayList orderColumns;
+
+    public void <init>(ORG.as220.tinySQL.sqlparser.SelectStatement)
+    {
+        ORG.as220.tinySQL.sqlparser.OrderByClause r0;
+        ORG.as220.tinySQL.sqlparser.SelectStatement r1;
+        java.util.ArrayList $r2, $r3;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.OrderByClause;
+
+        r1 := @parameter0: ORG.as220.tinySQL.sqlparser.SelectStatement;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r2 = new java.util.ArrayList;
+
+        specialinvoke $r2.<java.util.ArrayList: void <init>()>();
+
+        r0.<ORG.as220.tinySQL.sqlparser.OrderByClause: java.util.ArrayList orderValues> = $r2;
+
+        $r3 = new java.util.ArrayList;
+
+        specialinvoke $r3.<java.util.ArrayList: void <init>()>();
+
+        r0.<ORG.as220.tinySQL.sqlparser.OrderByClause: java.util.ArrayList orderColumns> = $r3;
+
+        r0.<ORG.as220.tinySQL.sqlparser.OrderByClause: ORG.as220.tinySQL.sqlparser.SelectStatement parent> = r1;
+
+        return;
+    }
+
+    public void addLValue(ORG.as220.tinySQL.sqlparser.LValue) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.sqlparser.OrderByClause r0;
+        ORG.as220.tinySQL.sqlparser.LValue r1;
+        java.util.Vector r2, $r5;
+        ORG.as220.tinySQL.sqlparser.SelectStatement $r3;
+        java.util.Enumeration $r4;
+        java.util.ArrayList $r6, $r7;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.OrderByClause;
+
+        r1 := @parameter0: ORG.as220.tinySQL.sqlparser.LValue;
+
+        $r3 = r0.<ORG.as220.tinySQL.sqlparser.OrderByClause: ORG.as220.tinySQL.sqlparser.SelectStatement parent>;
+
+        $r4 = virtualinvoke $r3.<ORG.as220.tinySQL.sqlparser.SelectStatement: java.util.Enumeration getTables()>();
+
+        $r5 = staticinvoke <ORG.as220.tinySQL.sqlparser.ParserUtils: java.util.Vector buildVector(java.util.Enumeration)>($r4);
+
+        r2 = staticinvoke <ORG.as220.tinySQL.sqlparser.ParserUtils: java.util.Vector resolveTableColumns(ORG.as220.tinySQL.sqlparser.LValue,java.util.Vector)>(r1, $r5);
+
+        $r6 = r0.<ORG.as220.tinySQL.sqlparser.OrderByClause: java.util.ArrayList orderColumns>;
+
+        virtualinvoke $r6.<java.util.ArrayList: boolean addAll(java.util.Collection)>(r2);
+
+        $r7 = r0.<ORG.as220.tinySQL.sqlparser.OrderByClause: java.util.ArrayList orderValues>;
+
+        virtualinvoke $r7.<java.util.ArrayList: boolean add(java.lang.Object)>(r1);
+
+        return;
+    }
+
+    public java.util.ArrayList getColumns()
+    {
+        ORG.as220.tinySQL.sqlparser.OrderByClause r0;
+        java.util.ArrayList $r1;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.OrderByClause;
+
+        $r1 = r0.<ORG.as220.tinySQL.sqlparser.OrderByClause: java.util.ArrayList orderColumns>;
+
+        return $r1;
+    }
+
+    public java.util.ArrayList getValues()
+    {
+        ORG.as220.tinySQL.sqlparser.OrderByClause r0;
+        java.util.ArrayList $r1;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.OrderByClause;
+
+        $r1 = r0.<ORG.as220.tinySQL.sqlparser.OrderByClause: java.util.ArrayList orderValues>;
+
+        return $r1;
+    }
+}

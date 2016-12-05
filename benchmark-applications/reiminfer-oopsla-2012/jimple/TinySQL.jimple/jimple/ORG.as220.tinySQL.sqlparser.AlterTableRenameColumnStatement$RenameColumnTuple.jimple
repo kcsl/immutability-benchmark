@@ -1,0 +1,22 @@
+public class ORG.as220.tinySQL.sqlparser.AlterTableRenameColumnStatement$RenameColumnTuple extends java.lang.Object
+{
+    public ORG.as220.tinySQL.tsColumn oldcol;
+    public java.lang.String newname;
+    final ORG.as220.tinySQL.sqlparser.AlterTableRenameColumnStatement this$0;
+
+    public void <init>(ORG.as220.tinySQL.sqlparser.AlterTableRenameColumnStatement)
+    {
+        ORG.as220.tinySQL.sqlparser.AlterTableRenameColumnStatement$RenameColumnTuple r0;
+        ORG.as220.tinySQL.sqlparser.AlterTableRenameColumnStatement r1;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.AlterTableRenameColumnStatement$RenameColumnTuple;
+
+        r1 := @parameter0: ORG.as220.tinySQL.sqlparser.AlterTableRenameColumnStatement;
+
+        r0.<ORG.as220.tinySQL.sqlparser.AlterTableRenameColumnStatement$RenameColumnTuple: ORG.as220.tinySQL.sqlparser.AlterTableRenameColumnStatement this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+}

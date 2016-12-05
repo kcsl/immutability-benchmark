@@ -1,0 +1,333 @@
+public class ORG.as220.tinySQL.textFileCSVQuoting extends ORG.as220.tinySQL.textFileQuoting
+{
+    private java.lang.String separator;
+
+    public void <init>()
+    {
+        ORG.as220.tinySQL.textFileCSVQuoting r0;
+
+        r0 := @this: ORG.as220.tinySQL.textFileCSVQuoting;
+
+        specialinvoke r0.<ORG.as220.tinySQL.textFileQuoting: void <init>()>();
+
+        return;
+    }
+
+    public void init()
+    {
+        ORG.as220.tinySQL.textFileCSVQuoting r0;
+        ORG.as220.tinySQL.textFile $r1;
+        java.util.Properties $r2;
+        java.lang.String $r3;
+
+        r0 := @this: ORG.as220.tinySQL.textFileCSVQuoting;
+
+        $r1 = virtualinvoke r0.<ORG.as220.tinySQL.textFileCSVQuoting: ORG.as220.tinySQL.textFile getDatabase()>();
+
+        $r2 = virtualinvoke $r1.<ORG.as220.tinySQL.textFile: java.util.Properties getProperties()>();
+
+        $r3 = virtualinvoke $r2.<java.util.Properties: java.lang.String getProperty(java.lang.String,java.lang.String)>("quoting.csv.separator", ",");
+
+        r0.<ORG.as220.tinySQL.textFileCSVQuoting: java.lang.String separator> = $r3;
+
+        return;
+    }
+
+    public java.lang.String doQuoting(java.lang.String, int) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.textFileCSVQuoting r0;
+        java.lang.String r1, $r6;
+        int i0, $i1, $i2;
+        boolean z0;
+        java.lang.StringBuffer $r3;
+        ORG.as220.tinySQL.tinySQLException $r7, $r8;
+
+        r0 := @this: ORG.as220.tinySQL.textFileCSVQuoting;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        $i1 = virtualinvoke r1.<java.lang.String: int length()>();
+
+        if $i1 <= i0 goto label1;
+
+        $r8 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r8.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("Quoting limit exceeded for native string");
+
+        throw $r8;
+
+     label1:
+        z0 = specialinvoke r0.<ORG.as220.tinySQL.textFileCSVQuoting: boolean isQuotingNeeded(java.lang.String)>(r1);
+
+        if z0 == 0 goto label3;
+
+        $r3 = new java.lang.StringBuffer;
+
+        specialinvoke $r3.<java.lang.StringBuffer: void <init>()>();
+
+        virtualinvoke $r3.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\"");
+
+        specialinvoke r0.<ORG.as220.tinySQL.textFileCSVQuoting: void applyQuote(java.lang.StringBuffer,java.lang.String)>($r3, r1);
+
+        virtualinvoke $r3.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\"");
+
+        $i2 = virtualinvoke $r3.<java.lang.StringBuffer: int length()>();
+
+        if $i2 <= i0 goto label2;
+
+        $r7 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r7.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("Quoting limit exceeded for quoted string");
+
+        throw $r7;
+
+     label2:
+        $r6 = virtualinvoke $r3.<java.lang.StringBuffer: java.lang.String toString()>();
+
+        return $r6;
+
+     label3:
+        return r1;
+    }
+
+    public java.lang.String undoQuoting(java.lang.String) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.textFileCSVQuoting r0;
+        java.lang.String r1, $r4, $r7, $r9;
+        boolean z0;
+        int i0, $i2, $i3, $i4, $i5, i6, i7;
+        char c1;
+        java.lang.StringBuffer $r3;
+
+        r0 := @this: ORG.as220.tinySQL.textFileCSVQuoting;
+
+        r1 := @parameter0: java.lang.String;
+
+        z0 = specialinvoke r0.<ORG.as220.tinySQL.textFileCSVQuoting: boolean isQuotingNeeded(java.lang.String)>(r1);
+
+        if z0 == 0 goto label5;
+
+        $r3 = new java.lang.StringBuffer;
+
+        $i2 = virtualinvoke r1.<java.lang.String: int length()>();
+
+        specialinvoke $r3.<java.lang.StringBuffer: void <init>(int)>($i2);
+
+        $i3 = virtualinvoke r1.<java.lang.String: int length()>();
+
+        i0 = $i3 - 1;
+
+        i6 = 1;
+
+        i7 = 1;
+
+        goto label4;
+
+     label1:
+        i7 = virtualinvoke r1.<java.lang.String: int indexOf(int,int)>(92, i6);
+
+        if i7 != -1 goto label2;
+
+        $r7 = virtualinvoke r1.<java.lang.String: java.lang.String substring(int,int)>(i6, i0);
+
+        virtualinvoke $r3.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r7);
+
+        goto label4;
+
+     label2:
+        $r4 = virtualinvoke r1.<java.lang.String: java.lang.String substring(int,int)>(i6, i7);
+
+        virtualinvoke $r3.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r4);
+
+        $i4 = i7 + 1;
+
+        if $i4 != i0 goto label3;
+
+        i7 = -1;
+
+        goto label4;
+
+     label3:
+        $i5 = i7 + 1;
+
+        c1 = virtualinvoke r1.<java.lang.String: char charAt(int)>($i5);
+
+        virtualinvoke $r3.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(c1);
+
+        i6 = i7 + 2;
+
+     label4:
+        if i7 != -1 goto label1;
+
+        $r9 = virtualinvoke $r3.<java.lang.StringBuffer: java.lang.String toString()>();
+
+        return $r9;
+
+     label5:
+        return r1;
+    }
+
+    private boolean isQuotingNeeded(java.lang.String)
+    {
+        ORG.as220.tinySQL.textFileCSVQuoting r0;
+        java.lang.String r1, $r2;
+        int $i0, $i1, $i2;
+
+        r0 := @this: ORG.as220.tinySQL.textFileCSVQuoting;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r2 = r0.<ORG.as220.tinySQL.textFileCSVQuoting: java.lang.String separator>;
+
+        $i0 = virtualinvoke r1.<java.lang.String: int indexOf(java.lang.String)>($r2);
+
+        if $i0 == -1 goto label1;
+
+        return 1;
+
+     label1:
+        $i1 = virtualinvoke r1.<java.lang.String: int indexOf(int)>(10);
+
+        if $i1 == -1 goto label2;
+
+        return 1;
+
+     label2:
+        $i2 = virtualinvoke r1.<java.lang.String: int indexOf(int,int)>(34, 1);
+
+        if $i2 == -1 goto label3;
+
+        return 1;
+
+     label3:
+        return 0;
+    }
+
+    private void applyQuote(java.lang.StringBuffer, java.lang.String)
+    {
+        ORG.as220.tinySQL.textFileCSVQuoting r0;
+        java.lang.StringBuffer r1;
+        java.lang.String r2;
+        int i0, i2;
+        char c1;
+
+        r0 := @this: ORG.as220.tinySQL.textFileCSVQuoting;
+
+        r1 := @parameter0: java.lang.StringBuffer;
+
+        r2 := @parameter1: java.lang.String;
+
+        i0 = virtualinvoke r2.<java.lang.String: int length()>();
+
+        i2 = 0;
+
+        goto label5;
+
+     label1:
+        c1 = virtualinvoke r2.<java.lang.String: char charAt(int)>(i2);
+
+        if c1 != 34 goto label2;
+
+        virtualinvoke r1.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\\\"");
+
+        goto label4;
+
+     label2:
+        if c1 != 92 goto label3;
+
+        virtualinvoke r1.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\\\\");
+
+        goto label4;
+
+     label3:
+        virtualinvoke r1.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(c1);
+
+     label4:
+        i2 = i2 + 1;
+
+     label5:
+        if i2 < i0 goto label1;
+
+        return;
+    }
+
+    public static void main(java.lang.String[]) throws java.lang.Exception
+    {
+        java.lang.String[] r0;
+        ORG.as220.tinySQL.textFileCSVQuoting $r2;
+
+        r0 := @parameter0: java.lang.String[];
+
+        $r2 = new ORG.as220.tinySQL.textFileCSVQuoting;
+
+        specialinvoke $r2.<ORG.as220.tinySQL.textFileCSVQuoting: void <init>()>();
+
+        $r2.<ORG.as220.tinySQL.textFileCSVQuoting: java.lang.String separator> = ",";
+
+        specialinvoke $r2.<ORG.as220.tinySQL.textFileCSVQuoting: void doTest(java.lang.String)>("\"Scary, isn\'t it?\", she said.");
+
+        specialinvoke $r2.<ORG.as220.tinySQL.textFileCSVQuoting: void doTest(java.lang.String)>("Not really!");
+
+        specialinvoke $r2.<ORG.as220.tinySQL.textFileCSVQuoting: void doTest(java.lang.String)>("It won\'t work, but who cares?");
+
+        specialinvoke $r2.<ORG.as220.tinySQL.textFileCSVQuoting: void doTest(java.lang.String)>("Not really! \" yo\" ");
+
+        return;
+    }
+
+    private void doTest(java.lang.String) throws java.lang.Exception
+    {
+        ORG.as220.tinySQL.textFileCSVQuoting r0;
+        java.lang.String r1, r2, r3, $r7, $r11, $r15;
+        java.lang.StringBuilder $r4, $r6, $r8, $r10, $r12, $r14;
+        java.io.PrintStream $r5, $r9, $r13;
+
+        r0 := @this: ORG.as220.tinySQL.textFileCSVQuoting;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 = virtualinvoke r0.<ORG.as220.tinySQL.textFileCSVQuoting: java.lang.String doQuoting(java.lang.String,int)>(r1, 100);
+
+        r3 = virtualinvoke r0.<ORG.as220.tinySQL.textFileCSVQuoting: java.lang.String undoQuoting(java.lang.String)>(r2);
+
+        $r5 = <java.lang.System: java.io.PrintStream out>;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>("Test : ");
+
+        $r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r5.<java.io.PrintStream: void println(java.lang.String)>($r7);
+
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+
+        $r8 = new java.lang.StringBuilder;
+
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>(java.lang.String)>("Quot : ");
+
+        $r10 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r11);
+
+        $r13 = <java.lang.System: java.io.PrintStream out>;
+
+        $r12 = new java.lang.StringBuilder;
+
+        specialinvoke $r12.<java.lang.StringBuilder: void <init>(java.lang.String)>("UnQu : ");
+
+        $r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r3);
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>($r15);
+
+        return;
+    }
+}

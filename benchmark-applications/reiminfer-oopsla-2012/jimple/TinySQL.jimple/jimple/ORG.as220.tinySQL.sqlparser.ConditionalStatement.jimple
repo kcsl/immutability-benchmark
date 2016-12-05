@@ -1,0 +1,7 @@
+public interface  ORG.as220.tinySQL.sqlparser.ConditionalStatement extends java.lang.Object implements ORG.as220.tinySQL.sqlparser.SQLStatement
+{
+
+    public abstract ORG.as220.tinySQL.sqlparser.WhereClause getWhereClause();
+
+    public abstract java.util.Enumeration getTables();
+}

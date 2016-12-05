@@ -1,0 +1,89 @@
+class ORG.as220.tinySQL.sqlparser.Operator$BetweenOperator extends ORG.as220.tinySQL.sqlparser.Operator
+{
+
+    private void <init>()
+    {
+        ORG.as220.tinySQL.sqlparser.Operator$BetweenOperator r0;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.Operator$BetweenOperator;
+
+        specialinvoke r0.<ORG.as220.tinySQL.sqlparser.Operator: void <init>(ORG.as220.tinySQL.sqlparser.Operator)>(null);
+
+        return;
+    }
+
+    public java.lang.Object evaluate(java.lang.Object, java.lang.Object)
+    {
+        ORG.as220.tinySQL.sqlparser.Operator$BetweenOperator r0;
+        java.lang.Object r1, r2, r4, r5;
+        java.lang.Object[] r3;
+        int i0, i1;
+        java.lang.Boolean $r6;
+        boolean $z0;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.Operator$BetweenOperator;
+
+        r1 := @parameter0: java.lang.Object;
+
+        r2 := @parameter1: java.lang.Object;
+
+        r3 = (java.lang.Object[]) r2;
+
+        r4 = r3[0];
+
+        r5 = r3[1];
+
+        i0 = virtualinvoke r0.<ORG.as220.tinySQL.sqlparser.Operator$BetweenOperator: int compareTo(java.lang.Object,java.lang.Object)>(r1, r4);
+
+        i1 = virtualinvoke r0.<ORG.as220.tinySQL.sqlparser.Operator$BetweenOperator: int compareTo(java.lang.Object,java.lang.Object)>(r1, r5);
+
+        $r6 = new java.lang.Boolean;
+
+        if i0 <= 0 goto label1;
+
+        if i1 >= 0 goto label1;
+
+        $z0 = 1;
+
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        specialinvoke $r6.<java.lang.Boolean: void <init>(boolean)>($z0);
+
+        return $r6;
+    }
+
+    public java.lang.String toString()
+    {
+        ORG.as220.tinySQL.sqlparser.Operator$BetweenOperator r0;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.Operator$BetweenOperator;
+
+        return " BETWEEN ";
+    }
+
+    public int getLevel()
+    {
+        ORG.as220.tinySQL.sqlparser.Operator$BetweenOperator r0;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.Operator$BetweenOperator;
+
+        return 1;
+    }
+
+    void <init>(ORG.as220.tinySQL.sqlparser.Operator$BetweenOperator)
+    {
+        ORG.as220.tinySQL.sqlparser.Operator$BetweenOperator r0, r1;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.Operator$BetweenOperator;
+
+        r1 := @parameter0: ORG.as220.tinySQL.sqlparser.Operator$BetweenOperator;
+
+        specialinvoke r0.<ORG.as220.tinySQL.sqlparser.Operator$BetweenOperator: void <init>()>();
+
+        return;
+    }
+}

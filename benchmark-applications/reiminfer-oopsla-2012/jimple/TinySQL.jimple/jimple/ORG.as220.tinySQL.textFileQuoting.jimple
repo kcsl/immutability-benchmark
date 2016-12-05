@@ -1,0 +1,89 @@
+public class ORG.as220.tinySQL.textFileQuoting extends java.lang.Object
+{
+    private ORG.as220.tinySQL.textFile db;
+
+    public void <init>()
+    {
+        ORG.as220.tinySQL.textFileQuoting r0;
+
+        r0 := @this: ORG.as220.tinySQL.textFileQuoting;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public void setDatabase(ORG.as220.tinySQL.textFile)
+    {
+        ORG.as220.tinySQL.textFileQuoting r0;
+        ORG.as220.tinySQL.textFile r1;
+
+        r0 := @this: ORG.as220.tinySQL.textFileQuoting;
+
+        r1 := @parameter0: ORG.as220.tinySQL.textFile;
+
+        r0.<ORG.as220.tinySQL.textFileQuoting: ORG.as220.tinySQL.textFile db> = r1;
+
+        return;
+    }
+
+    public ORG.as220.tinySQL.textFile getDatabase()
+    {
+        ORG.as220.tinySQL.textFileQuoting r0;
+        ORG.as220.tinySQL.textFile $r1;
+
+        r0 := @this: ORG.as220.tinySQL.textFileQuoting;
+
+        $r1 = r0.<ORG.as220.tinySQL.textFileQuoting: ORG.as220.tinySQL.textFile db>;
+
+        return $r1;
+    }
+
+    public void init()
+    {
+        ORG.as220.tinySQL.textFileQuoting r0;
+
+        r0 := @this: ORG.as220.tinySQL.textFileQuoting;
+
+        return;
+    }
+
+    public java.lang.String doQuoting(java.lang.String, int) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.textFileQuoting r0;
+        java.lang.String r1;
+        int i0, $i1;
+        ORG.as220.tinySQL.tinySQLException $r2;
+
+        r0 := @this: ORG.as220.tinySQL.textFileQuoting;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        $i1 = virtualinvoke r1.<java.lang.String: int length()>();
+
+        if $i1 <= i0 goto label1;
+
+        $r2 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r2.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("Quoting limit exceeded");
+
+        throw $r2;
+
+     label1:
+        return r1;
+    }
+
+    public java.lang.String undoQuoting(java.lang.String) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.textFileQuoting r0;
+        java.lang.String r1;
+
+        r0 := @this: ORG.as220.tinySQL.textFileQuoting;
+
+        r1 := @parameter0: java.lang.String;
+
+        return r1;
+    }
+}

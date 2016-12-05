@@ -1,0 +1,85 @@
+class ORG.as220.tinySQL.sqlparser.Operator$AndOperator extends ORG.as220.tinySQL.sqlparser.Operator
+{
+
+    private void <init>()
+    {
+        ORG.as220.tinySQL.sqlparser.Operator$AndOperator r0;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.Operator$AndOperator;
+
+        specialinvoke r0.<ORG.as220.tinySQL.sqlparser.Operator: void <init>(ORG.as220.tinySQL.sqlparser.Operator)>(null);
+
+        return;
+    }
+
+    public java.lang.Object evaluate(java.lang.Object, java.lang.Object)
+    {
+        ORG.as220.tinySQL.sqlparser.Operator$AndOperator r0;
+        java.lang.Object r1, r2;
+        java.lang.Boolean r3, r4, $r5;
+        boolean $z0, $z1, $z2;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.Operator$AndOperator;
+
+        r1 := @parameter0: java.lang.Object;
+
+        r2 := @parameter1: java.lang.Object;
+
+        r3 = staticinvoke <ORG.as220.tinySQL.sqlparser.ParserUtils: java.lang.Boolean convertToBoolean(java.lang.Object)>(r1);
+
+        r4 = staticinvoke <ORG.as220.tinySQL.sqlparser.ParserUtils: java.lang.Boolean convertToBoolean(java.lang.Object)>(r2);
+
+        $r5 = new java.lang.Boolean;
+
+        $z0 = virtualinvoke r3.<java.lang.Boolean: boolean booleanValue()>();
+
+        if $z0 == 0 goto label1;
+
+        $z1 = virtualinvoke r4.<java.lang.Boolean: boolean booleanValue()>();
+
+        if $z1 == 0 goto label1;
+
+        $z2 = 1;
+
+        goto label2;
+
+     label1:
+        $z2 = 0;
+
+     label2:
+        specialinvoke $r5.<java.lang.Boolean: void <init>(boolean)>($z2);
+
+        return $r5;
+    }
+
+    public java.lang.String toString()
+    {
+        ORG.as220.tinySQL.sqlparser.Operator$AndOperator r0;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.Operator$AndOperator;
+
+        return " AND ";
+    }
+
+    public int getLevel()
+    {
+        ORG.as220.tinySQL.sqlparser.Operator$AndOperator r0;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.Operator$AndOperator;
+
+        return 0;
+    }
+
+    void <init>(ORG.as220.tinySQL.sqlparser.Operator$AndOperator)
+    {
+        ORG.as220.tinySQL.sqlparser.Operator$AndOperator r0, r1;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.Operator$AndOperator;
+
+        r1 := @parameter0: ORG.as220.tinySQL.sqlparser.Operator$AndOperator;
+
+        specialinvoke r0.<ORG.as220.tinySQL.sqlparser.Operator$AndOperator: void <init>()>();
+
+        return;
+    }
+}

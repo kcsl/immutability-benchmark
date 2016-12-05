@@ -1,0 +1,240 @@
+public class ORG.as220.tinySQL.util.StreamFilter extends java.lang.Object
+{
+    private java.io.InputStream isValue;
+    public static final short BLOCK_SIZE;
+
+    public void <init>()
+    {
+        ORG.as220.tinySQL.util.StreamFilter r0;
+
+        r0 := @this: ORG.as220.tinySQL.util.StreamFilter;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<ORG.as220.tinySQL.util.StreamFilter: java.io.InputStream isValue> = null;
+
+        return;
+    }
+
+    public void <init>(java.io.InputStream)
+    {
+        ORG.as220.tinySQL.util.StreamFilter r0;
+        java.io.InputStream r1;
+
+        r0 := @this: ORG.as220.tinySQL.util.StreamFilter;
+
+        r1 := @parameter0: java.io.InputStream;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        virtualinvoke r0.<ORG.as220.tinySQL.util.StreamFilter: void setValue(java.io.InputStream)>(r1);
+
+        return;
+    }
+
+    public void setValue(java.io.InputStream)
+    {
+        ORG.as220.tinySQL.util.StreamFilter r0;
+        java.io.InputStream r1;
+
+        r0 := @this: ORG.as220.tinySQL.util.StreamFilter;
+
+        r1 := @parameter0: java.io.InputStream;
+
+        if r1 == null goto label1;
+
+        r0.<ORG.as220.tinySQL.util.StreamFilter: java.io.InputStream isValue> = r1;
+
+     label1:
+        return;
+    }
+
+    public java.io.InputStream getValue()
+    {
+        ORG.as220.tinySQL.util.StreamFilter r0;
+        java.io.InputStream $r1;
+
+        r0 := @this: ORG.as220.tinySQL.util.StreamFilter;
+
+        $r1 = r0.<ORG.as220.tinySQL.util.StreamFilter: java.io.InputStream isValue>;
+
+        return $r1;
+    }
+
+    public synchronized byte[] StreamToBytes()
+    {
+        ORG.as220.tinySQL.util.StreamFilter r0;
+        byte[] r2, $r4;
+        java.io.ByteArrayOutputStream $r3;
+        byte $b0, $b1, b4;
+        java.io.IOException $r5;
+        int i2, i3;
+
+        r0 := @this: ORG.as220.tinySQL.util.StreamFilter;
+
+        $r3 = new java.io.ByteArrayOutputStream;
+
+        specialinvoke $r3.<java.io.ByteArrayOutputStream: void <init>()>();
+
+        r2 = newarray (byte)[4096];
+
+     label1:
+        i2 = specialinvoke r0.<ORG.as220.tinySQL.util.StreamFilter: int readBlock(byte[])>(r2);
+
+        virtualinvoke $r3.<java.io.ByteArrayOutputStream: void write(int)>(39);
+
+        i3 = 0;
+
+        goto label4;
+
+     label2:
+        $b0 = r2[i3];
+
+        b4 = specialinvoke r0.<ORG.as220.tinySQL.util.StreamFilter: byte checkByteOK(byte)>($b0);
+
+        if b4 == 0 goto label3;
+
+        virtualinvoke $r3.<java.io.ByteArrayOutputStream: void write(int)>(b4);
+
+     label3:
+        $b1 = r2[i3];
+
+        virtualinvoke $r3.<java.io.ByteArrayOutputStream: void write(int)>($b1);
+
+        i3 = i3 + 1;
+
+     label4:
+        if i3 < i2 goto label2;
+
+        virtualinvoke $r3.<java.io.ByteArrayOutputStream: void write(int)>(39);
+
+     label5:
+        goto label7;
+
+     label6:
+        $r5 := @caughtexception;
+
+        virtualinvoke $r5.<java.io.IOException: void printStackTrace()>();
+
+     label7:
+        $r4 = virtualinvoke $r3.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+
+        return $r4;
+
+        catch java.io.IOException from label1 to label5 with label6;
+    }
+
+    public synchronized java.lang.String bytesToString()
+    {
+        ORG.as220.tinySQL.util.StreamFilter r0;
+        java.lang.String $r1;
+        byte[] $r2;
+
+        r0 := @this: ORG.as220.tinySQL.util.StreamFilter;
+
+        $r1 = new java.lang.String;
+
+        $r2 = virtualinvoke r0.<ORG.as220.tinySQL.util.StreamFilter: byte[] StreamToBytes()>();
+
+        specialinvoke $r1.<java.lang.String: void <init>(byte[])>($r2);
+
+        return $r1;
+    }
+
+    public static java.io.ByteArrayInputStream objectToBytes(java.lang.Object) throws java.io.IOException
+    {
+        java.lang.Object r0;
+        byte[] r3;
+        java.io.ByteArrayOutputStream $r4;
+        java.io.ObjectOutputStream $r5;
+        java.io.ByteArrayInputStream $r6;
+
+        r0 := @parameter0: java.lang.Object;
+
+        $r4 = new java.io.ByteArrayOutputStream;
+
+        specialinvoke $r4.<java.io.ByteArrayOutputStream: void <init>()>();
+
+        $r5 = new java.io.ObjectOutputStream;
+
+        specialinvoke $r5.<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>($r4);
+
+        virtualinvoke $r5.<java.io.ObjectOutputStream: void writeObject(java.lang.Object)>(r0);
+
+        virtualinvoke $r5.<java.io.ObjectOutputStream: void flush()>();
+
+        virtualinvoke $r5.<java.io.ObjectOutputStream: void close()>();
+
+        virtualinvoke $r4.<java.io.ByteArrayOutputStream: void flush()>();
+
+        virtualinvoke $r4.<java.io.ByteArrayOutputStream: void close()>();
+
+        r3 = virtualinvoke $r4.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+
+        $r6 = new java.io.ByteArrayInputStream;
+
+        specialinvoke $r6.<java.io.ByteArrayInputStream: void <init>(byte[])>(r3);
+
+        return $r6;
+    }
+
+    public static java.io.ByteArrayInputStream readerToBytes(java.io.Reader)
+    {
+        java.io.Reader r0;
+
+        r0 := @parameter0: java.io.Reader;
+
+        return null;
+    }
+
+    private synchronized byte checkByteOK(byte)
+    {
+        ORG.as220.tinySQL.util.StreamFilter r0;
+        byte b0, b1;
+
+        r0 := @this: ORG.as220.tinySQL.util.StreamFilter;
+
+        b0 := @parameter0: byte;
+
+        b1 = 0;
+
+        if b0 == 0 goto label1;
+
+        if b0 == 39 goto label1;
+
+        if b0 == 34 goto label1;
+
+        if b0 != 92 goto label2;
+
+     label1:
+        b1 = 92;
+
+     label2:
+        return b1;
+    }
+
+    private synchronized int readBlock(byte[]) throws java.io.IOException
+    {
+        ORG.as220.tinySQL.util.StreamFilter r0;
+        byte[] r1;
+        java.io.InputStream $r2;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.util.StreamFilter;
+
+        r1 := @parameter0: byte[];
+
+        $r2 = virtualinvoke r0.<ORG.as220.tinySQL.util.StreamFilter: java.io.InputStream getValue()>();
+
+        $i0 = virtualinvoke $r2.<java.io.InputStream: int read(byte[])>(r1);
+
+        return $i0;
+    }
+
+    public static void <clinit>()
+    {
+        <ORG.as220.tinySQL.util.StreamFilter: short BLOCK_SIZE> = 4096;
+
+        return;
+    }
+}

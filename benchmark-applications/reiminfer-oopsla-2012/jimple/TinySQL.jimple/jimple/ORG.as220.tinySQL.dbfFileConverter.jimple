@@ -1,0 +1,1338 @@
+public class ORG.as220.tinySQL.dbfFileConverter extends ORG.as220.tinySQL.tinySQLConverter
+{
+    private java.lang.String encoding;
+    private java.text.DecimalFormat numberFormat;
+    private java.util.TimeZone _defaultZone;
+    private static final int DBASE_BASE_DATE;
+    private static final long DAY_DIV;
+
+    public void <init>(java.lang.String) throws java.io.UnsupportedEncodingException
+    {
+        ORG.as220.tinySQL.dbfFileConverter r0;
+        java.lang.String r1, $r3;
+        java.text.DecimalFormatSymbols $r5;
+        java.text.DecimalFormat $r6, $r7, $r8;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConverter;
+
+        r1 := @parameter0: java.lang.String;
+
+        specialinvoke r0.<ORG.as220.tinySQL.tinySQLConverter: void <init>()>();
+
+        $r3 = new java.lang.String;
+
+        specialinvoke $r3.<java.lang.String: void <init>(java.lang.String)>("");
+
+        virtualinvoke $r3.<java.lang.String: byte[] getBytes(java.lang.String)>(r1);
+
+        r0.<ORG.as220.tinySQL.dbfFileConverter: java.lang.String encoding> = r1;
+
+        $r5 = new java.text.DecimalFormatSymbols;
+
+        specialinvoke $r5.<java.text.DecimalFormatSymbols: void <init>()>();
+
+        virtualinvoke $r5.<java.text.DecimalFormatSymbols: void setDecimalSeparator(char)>(46);
+
+        $r6 = new java.text.DecimalFormat;
+
+        specialinvoke $r6.<java.text.DecimalFormat: void <init>()>();
+
+        r0.<ORG.as220.tinySQL.dbfFileConverter: java.text.DecimalFormat numberFormat> = $r6;
+
+        $r7 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.text.DecimalFormat numberFormat>;
+
+        virtualinvoke $r7.<java.text.DecimalFormat: void setGroupingSize(int)>(0);
+
+        $r8 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.text.DecimalFormat numberFormat>;
+
+        virtualinvoke $r8.<java.text.DecimalFormat: void setDecimalFormatSymbols(java.text.DecimalFormatSymbols)>($r5);
+
+        return;
+    }
+
+    public java.lang.Object convertBooleanToNative(ORG.as220.tinySQL.tsColumn, java.lang.Boolean) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileConverter r0;
+        ORG.as220.tinySQL.tsColumn r1;
+        java.lang.Boolean r2;
+        boolean $z0;
+        java.lang.String $r4, $r6;
+        byte[] $r5, $r7;
+        java.io.UnsupportedEncodingException $r8;
+        ORG.as220.tinySQL.tinySQLException $r9;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConverter;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsColumn;
+
+        r2 := @parameter1: java.lang.Boolean;
+
+     label1:
+        $z0 = virtualinvoke r2.<java.lang.Boolean: boolean booleanValue()>();
+
+        if $z0 == 0 goto label3;
+
+        $r6 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.lang.String encoding>;
+
+        $r7 = staticinvoke <ORG.as220.tinySQL.Utils: byte[] forceToSize(java.lang.String,int,byte,java.lang.String)>("T", 1, 0, $r6);
+
+     label2:
+        return $r7;
+
+     label3:
+        $r4 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.lang.String encoding>;
+
+        $r5 = staticinvoke <ORG.as220.tinySQL.Utils: byte[] forceToSize(java.lang.String,int,byte,java.lang.String)>("F", 1, 0, $r4);
+
+     label4:
+        return $r5;
+
+     label5:
+        $r8 := @caughtexception;
+
+        $r9 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r9.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("Encoding not supported");
+
+        throw $r9;
+
+        catch java.io.UnsupportedEncodingException from label1 to label2 with label5;
+        catch java.io.UnsupportedEncodingException from label3 to label4 with label5;
+    }
+
+    public java.lang.Object convertDateToNative(ORG.as220.tinySQL.tsColumn, java.sql.Date) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileConverter r0;
+        ORG.as220.tinySQL.tsColumn r1;
+        java.sql.Date r2;
+        int i0, i1, i2;
+        java.util.GregorianCalendar $r4;
+        java.lang.StringBuffer $r5;
+        java.lang.String $r6, $r7, $r9, $r10, $r12, $r13, $r15, $r16;
+        byte[] $r17;
+        java.io.UnsupportedEncodingException $r18;
+        ORG.as220.tinySQL.tinySQLException $r19;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConverter;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsColumn;
+
+        r2 := @parameter1: java.sql.Date;
+
+     label1:
+        $r4 = new java.util.GregorianCalendar;
+
+        specialinvoke $r4.<java.util.GregorianCalendar: void <init>()>();
+
+        virtualinvoke $r4.<java.util.GregorianCalendar: void clear()>();
+
+        virtualinvoke $r4.<java.util.GregorianCalendar: void setTime(java.util.Date)>(r2);
+
+        i0 = virtualinvoke $r4.<java.util.GregorianCalendar: int get(int)>(1);
+
+        i1 = virtualinvoke $r4.<java.util.GregorianCalendar: int get(int)>(2);
+
+        i2 = virtualinvoke $r4.<java.util.GregorianCalendar: int get(int)>(5);
+
+        $r5 = new java.lang.StringBuffer;
+
+        specialinvoke $r5.<java.lang.StringBuffer: void <init>(int)>(8);
+
+        $r6 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(i0);
+
+        $r7 = staticinvoke <ORG.as220.tinySQL.Utils: java.lang.String forceToSizeLeft(java.lang.String,int,char)>($r6, 4, 48);
+
+        virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r7);
+
+        $r9 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(i1);
+
+        $r10 = staticinvoke <ORG.as220.tinySQL.Utils: java.lang.String forceToSizeLeft(java.lang.String,int,char)>($r9, 2, 48);
+
+        virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r10);
+
+        $r12 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(i2);
+
+        $r13 = staticinvoke <ORG.as220.tinySQL.Utils: java.lang.String forceToSizeLeft(java.lang.String,int,char)>($r12, 2, 48);
+
+        virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r13);
+
+        $r15 = virtualinvoke $r5.<java.lang.StringBuffer: java.lang.String toString()>();
+
+        $r16 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.lang.String encoding>;
+
+        $r17 = virtualinvoke $r15.<java.lang.String: byte[] getBytes(java.lang.String)>($r16);
+
+     label2:
+        return $r17;
+
+     label3:
+        $r18 := @caughtexception;
+
+        $r19 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r19.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("Encoding not supported");
+
+        throw $r19;
+
+        catch java.io.UnsupportedEncodingException from label1 to label2 with label3;
+    }
+
+    public java.lang.Object convertTimeToNative(ORG.as220.tinySQL.tsColumn, java.sql.Time) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileConverter r0;
+        ORG.as220.tinySQL.tsColumn r1;
+        java.sql.Time r2;
+        ORG.as220.tinySQL.tinySQLException $r3;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConverter;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsColumn;
+
+        r2 := @parameter1: java.sql.Time;
+
+        $r3 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r3.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("Conversion not supported");
+
+        throw $r3;
+    }
+
+    public java.lang.Object convertNullToNative(ORG.as220.tinySQL.tsColumn) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileConverter r0;
+        ORG.as220.tinySQL.tsColumn r1;
+        boolean $z0;
+        int $i0, $i1;
+        java.lang.String $r3, $r5;
+        byte[] $r4, $r6;
+        java.io.UnsupportedEncodingException $r7;
+        ORG.as220.tinySQL.tinySQLException $r8;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConverter;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsColumn;
+
+     label1:
+        $z0 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: boolean isNullable()>();
+
+        if $z0 == 0 goto label3;
+
+        $i1 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getSize()>();
+
+        $r5 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.lang.String encoding>;
+
+        $r6 = staticinvoke <ORG.as220.tinySQL.Utils: byte[] forceToSize(java.lang.String,int,byte,java.lang.String)>("", $i1, 0, $r5);
+
+     label2:
+        return $r6;
+
+     label3:
+        $i0 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getSize()>();
+
+        $r3 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.lang.String encoding>;
+
+        $r4 = staticinvoke <ORG.as220.tinySQL.Utils: byte[] forceToSize(java.lang.String,int,byte,java.lang.String)>("", $i0, 32, $r3);
+
+     label4:
+        return $r4;
+
+     label5:
+        $r7 := @caughtexception;
+
+        $r8 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r8.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("Encoding not supported");
+
+        throw $r8;
+
+        catch java.io.UnsupportedEncodingException from label1 to label2 with label5;
+        catch java.io.UnsupportedEncodingException from label3 to label4 with label5;
+    }
+
+    public java.lang.Object convertNumberToNative(ORG.as220.tinySQL.tsColumn, java.lang.Number) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileConverter r0;
+        ORG.as220.tinySQL.tsColumn r1;
+        java.lang.Number r2;
+        int i0, i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11;
+        java.text.DecimalFormat $r4, $r5, $r6, $r7, $r8, $r9, $r15, $r16, $r17, $r18, $r19, $r20, $r21, $r22, $r23, $r24;
+        java.io.UnsupportedEncodingException $r10;
+        ORG.as220.tinySQL.tinySQLException $r11;
+        java.lang.Throwable $r12;
+        java.lang.String r13, r26, $r27;
+        java.lang.Object r25;
+        byte[] $r28;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConverter;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsColumn;
+
+        r2 := @parameter1: java.lang.Number;
+
+        i0 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getSize()>();
+
+        i1 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getDecimalPlaces()>();
+
+        r13 = null;
+
+        $r4 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.text.DecimalFormat numberFormat>;
+
+        entermonitor $r4;
+
+     label01:
+        $i2 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getType()>();
+
+        if $i2 == 2 goto label02;
+
+        $i4 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getType()>();
+
+        if $i4 != 3 goto label03;
+
+     label02:
+        $r5 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.text.DecimalFormat numberFormat>;
+
+        $i3 = i0 - i1;
+
+        virtualinvoke $r5.<java.text.DecimalFormat: void setMaximumIntegerDigits(int)>($i3);
+
+        $r6 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.text.DecimalFormat numberFormat>;
+
+        virtualinvoke $r6.<java.text.DecimalFormat: void setMinimumIntegerDigits(int)>(i1);
+
+        $r7 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.text.DecimalFormat numberFormat>;
+
+        virtualinvoke $r7.<java.text.DecimalFormat: void setMaximumFractionDigits(int)>(i1);
+
+        $r8 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.text.DecimalFormat numberFormat>;
+
+        virtualinvoke $r8.<java.text.DecimalFormat: void setMinimumFractionDigits(int)>(i1);
+
+        $r9 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.text.DecimalFormat numberFormat>;
+
+        r13 = virtualinvoke $r9.<java.text.DecimalFormat: java.lang.String format(java.lang.Object)>(r2);
+
+        goto label07;
+
+     label03:
+        $i5 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getType()>();
+
+        if $i5 == -5 goto label04;
+
+        $i6 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getType()>();
+
+        if $i6 == 4 goto label04;
+
+        $i7 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getType()>();
+
+        if $i7 == 5 goto label04;
+
+        $i8 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getType()>();
+
+        if $i8 != -6 goto label05;
+
+     label04:
+        $r15 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.text.DecimalFormat numberFormat>;
+
+        virtualinvoke $r15.<java.text.DecimalFormat: void setMaximumIntegerDigits(int)>(i0);
+
+        $r16 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.text.DecimalFormat numberFormat>;
+
+        virtualinvoke $r16.<java.text.DecimalFormat: void setMinimumIntegerDigits(int)>(0);
+
+        $r17 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.text.DecimalFormat numberFormat>;
+
+        virtualinvoke $r17.<java.text.DecimalFormat: void setMaximumFractionDigits(int)>(0);
+
+        $r18 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.text.DecimalFormat numberFormat>;
+
+        virtualinvoke $r18.<java.text.DecimalFormat: void setMinimumFractionDigits(int)>(0);
+
+        $r19 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.text.DecimalFormat numberFormat>;
+
+        r13 = virtualinvoke $r19.<java.text.DecimalFormat: java.lang.String format(java.lang.Object)>(r2);
+
+        goto label07;
+
+     label05:
+        $i9 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getType()>();
+
+        if $i9 == 7 goto label06;
+
+        $i10 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getType()>();
+
+        if $i10 == 6 goto label06;
+
+        $i11 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getType()>();
+
+        if $i11 != 8 goto label07;
+
+     label06:
+        $r20 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.text.DecimalFormat numberFormat>;
+
+        virtualinvoke $r20.<java.text.DecimalFormat: void setMaximumIntegerDigits(int)>(i0);
+
+        $r21 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.text.DecimalFormat numberFormat>;
+
+        virtualinvoke $r21.<java.text.DecimalFormat: void setMinimumIntegerDigits(int)>(0);
+
+        $r22 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.text.DecimalFormat numberFormat>;
+
+        virtualinvoke $r22.<java.text.DecimalFormat: void setMaximumFractionDigits(int)>(i0);
+
+        $r23 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.text.DecimalFormat numberFormat>;
+
+        virtualinvoke $r23.<java.text.DecimalFormat: void setMinimumFractionDigits(int)>(0);
+
+        $r24 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.text.DecimalFormat numberFormat>;
+
+        r13 = virtualinvoke $r24.<java.text.DecimalFormat: java.lang.String format(java.lang.Object)>(r2);
+
+     label07:
+        exitmonitor $r4;
+
+     label08:
+        goto label11;
+
+     label09:
+        $r12 := @caughtexception;
+
+        exitmonitor $r4;
+
+     label10:
+        throw $r12;
+
+     label11:
+        if r13 != null goto label13;
+
+        r25 = specialinvoke r0.<ORG.as220.tinySQL.tinySQLConverter: java.lang.Object convertNumberToNative(ORG.as220.tinySQL.tsColumn,java.lang.Number)>(r1, r2);
+
+        if r25 != null goto label12;
+
+        r13 = "";
+
+        goto label13;
+
+     label12:
+        r13 = virtualinvoke r25.<java.lang.Object: java.lang.String toString()>();
+
+     label13:
+        r26 = specialinvoke r0.<ORG.as220.tinySQL.dbfFileConverter: java.lang.String leftPadString(java.lang.String,int)>(r13, i0);
+
+     label14:
+        $r27 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.lang.String encoding>;
+
+        $r28 = staticinvoke <ORG.as220.tinySQL.Utils: byte[] forceToSize(java.lang.String,int,byte,java.lang.String)>(r26, i0, 32, $r27);
+
+     label15:
+        return $r28;
+
+     label16:
+        $r10 := @caughtexception;
+
+        $r11 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r11.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("Encoding not supported");
+
+        throw $r11;
+
+        catch java.lang.Throwable from label01 to label08 with label09;
+        catch java.lang.Throwable from label09 to label10 with label09;
+        catch java.io.UnsupportedEncodingException from label14 to label15 with label16;
+    }
+
+    private java.lang.String leftPadString(java.lang.String, int) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileConverter r0;
+        int i0, i1, $i2, i3;
+        java.lang.StringBuffer $r2;
+        java.lang.String r5;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConverter;
+
+        r5 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        $i2 = virtualinvoke r5.<java.lang.String: int length()>();
+
+        i1 = i0 - $i2;
+
+        if i1 <= 0 goto label3;
+
+        $r2 = new java.lang.StringBuffer;
+
+        specialinvoke $r2.<java.lang.StringBuffer: void <init>()>();
+
+        i3 = 0;
+
+        goto label2;
+
+     label1:
+        virtualinvoke $r2.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(" ");
+
+        i3 = i3 + 1;
+
+     label2:
+        if i3 < i1 goto label1;
+
+        virtualinvoke $r2.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r5);
+
+        r5 = virtualinvoke $r2.<java.lang.StringBuffer: java.lang.String toString()>();
+
+     label3:
+        return r5;
+    }
+
+    public java.lang.Object convertStringToNative(ORG.as220.tinySQL.tsColumn, java.lang.String) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileConverter r0;
+        ORG.as220.tinySQL.tsColumn r1;
+        java.lang.String r2, $r3;
+        byte[] $r4;
+        java.io.UnsupportedEncodingException $r5;
+        ORG.as220.tinySQL.tinySQLException $r6;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConverter;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsColumn;
+
+        r2 := @parameter1: java.lang.String;
+
+     label1:
+        i0 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getSize()>();
+
+        $r3 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.lang.String encoding>;
+
+        $r4 = staticinvoke <ORG.as220.tinySQL.Utils: byte[] forceToSize(java.lang.String,int,byte,java.lang.String)>(r2, i0, 32, $r3);
+
+     label2:
+        return $r4;
+
+     label3:
+        $r5 := @caughtexception;
+
+        $r6 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r6.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("Encoding not supported");
+
+        throw $r6;
+
+        catch java.io.UnsupportedEncodingException from label1 to label2 with label3;
+    }
+
+    public java.lang.Object convertNativeToNull(ORG.as220.tinySQL.tsColumn) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileConverter r0;
+        ORG.as220.tinySQL.tsColumn r1;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConverter;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsColumn;
+
+        return null;
+    }
+
+    public java.lang.Boolean convertNativeToBoolean(ORG.as220.tinySQL.tsColumn, java.lang.Object) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileConverter r0;
+        ORG.as220.tinySQL.tsColumn r1;
+        java.lang.Object r2;
+        byte[] r3;
+        boolean $z0;
+        java.lang.Boolean $r4, $r5, $r6;
+        int $i0;
+        byte $b1, $b2, $b3, $b4;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConverter;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsColumn;
+
+        r2 := @parameter1: java.lang.Object;
+
+        $z0 = r2 instanceof byte[];
+
+        if $z0 == 0 goto label3;
+
+        r3 = (byte[]) r2;
+
+        $i0 = lengthof r3;
+
+        if $i0 != 1 goto label2;
+
+        $b1 = r3[0];
+
+        if $b1 == 84 goto label1;
+
+        $b2 = r3[0];
+
+        if $b2 == 116 goto label1;
+
+        $b3 = r3[0];
+
+        if $b3 == 89 goto label1;
+
+        $b4 = r3[0];
+
+        if $b4 != 121 goto label2;
+
+     label1:
+        $r6 = <java.lang.Boolean: java.lang.Boolean TRUE>;
+
+        return $r6;
+
+     label2:
+        $r5 = <java.lang.Boolean: java.lang.Boolean FALSE>;
+
+        return $r5;
+
+     label3:
+        $r4 = specialinvoke r0.<ORG.as220.tinySQL.tinySQLConverter: java.lang.Boolean convertNativeToBoolean(ORG.as220.tinySQL.tsColumn,java.lang.Object)>(r1, r2);
+
+        return $r4;
+    }
+
+    public java.sql.Date convertNativeToDate(ORG.as220.tinySQL.tsColumn, java.lang.Object) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileConverter r0;
+        ORG.as220.tinySQL.tsColumn r1;
+        java.lang.Object r2;
+        int i0, i1, i2, $i3, $i4, $i5, $i7, $i9, $i10, $i11, $i13, $i14, $i15, $i17, $i18, $i20, $i22, $i23, $i25, $i27, $i28, $i29, i32;
+        boolean $z0;
+        ORG.as220.tinySQL.tinySQLException $r4;
+        java.util.GregorianCalendar $r5;
+        byte $b6, $b8, $b12, $b16, $b19, $b21, $b24, $b26, $b31;
+        java.sql.Date $r6, r9;
+        java.util.Date $r7;
+        long $l30;
+        byte[] r8;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConverter;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsColumn;
+
+        r2 := @parameter1: java.lang.Object;
+
+        $z0 = r2 instanceof byte[];
+
+        if $z0 == 0 goto label5;
+
+        r8 = (byte[]) r2;
+
+        $i3 = lengthof r8;
+
+        if $i3 != 8 goto label5;
+
+        i32 = 0;
+
+        goto label2;
+
+     label1:
+        i32 = i32 + 1;
+
+     label2:
+        $i4 = lengthof r8;
+
+        if i32 >= $i4 goto label3;
+
+        $b31 = r8[i32];
+
+        if $b31 == 0 goto label1;
+
+     label3:
+        $i5 = lengthof r8;
+
+        if i32 < $i5 goto label4;
+
+        return null;
+
+     label4:
+        $r5 = new java.util.GregorianCalendar;
+
+        specialinvoke $r5.<java.util.GregorianCalendar: void <init>()>();
+
+        virtualinvoke $r5.<java.util.GregorianCalendar: void clear()>();
+
+        $b6 = r8[0];
+
+        $i7 = specialinvoke r0.<ORG.as220.tinySQL.dbfFileConverter: int toNumber(byte)>($b6);
+
+        $i9 = $i7 * 1000;
+
+        $b8 = r8[1];
+
+        $i10 = specialinvoke r0.<ORG.as220.tinySQL.dbfFileConverter: int toNumber(byte)>($b8);
+
+        $i11 = $i10 * 100;
+
+        $i13 = $i9 + $i11;
+
+        $b12 = r8[2];
+
+        $i14 = specialinvoke r0.<ORG.as220.tinySQL.dbfFileConverter: int toNumber(byte)>($b12);
+
+        $i15 = $i14 * 10;
+
+        $i17 = $i13 + $i15;
+
+        $b16 = r8[3];
+
+        $i18 = specialinvoke r0.<ORG.as220.tinySQL.dbfFileConverter: int toNumber(byte)>($b16);
+
+        i0 = $i17 + $i18;
+
+        $b19 = r8[4];
+
+        $i20 = specialinvoke r0.<ORG.as220.tinySQL.dbfFileConverter: int toNumber(byte)>($b19);
+
+        $i22 = $i20 * 10;
+
+        $b21 = r8[5];
+
+        $i23 = specialinvoke r0.<ORG.as220.tinySQL.dbfFileConverter: int toNumber(byte)>($b21);
+
+        i1 = $i22 + $i23;
+
+        $b24 = r8[6];
+
+        $i25 = specialinvoke r0.<ORG.as220.tinySQL.dbfFileConverter: int toNumber(byte)>($b24);
+
+        $i27 = $i25 * 10;
+
+        $b26 = r8[7];
+
+        $i28 = specialinvoke r0.<ORG.as220.tinySQL.dbfFileConverter: int toNumber(byte)>($b26);
+
+        i2 = $i27 + $i28;
+
+        $i29 = i1 - 1;
+
+        virtualinvoke $r5.<java.util.GregorianCalendar: void set(int,int,int)>(i0, $i29, i2);
+
+        $r6 = new java.sql.Date;
+
+        $r7 = virtualinvoke $r5.<java.util.GregorianCalendar: java.util.Date getTime()>();
+
+        $l30 = virtualinvoke $r7.<java.util.Date: long getTime()>();
+
+        specialinvoke $r6.<java.sql.Date: void <init>(long)>($l30);
+
+        return $r6;
+
+     label5:
+        r9 = specialinvoke r0.<ORG.as220.tinySQL.tinySQLConverter: java.sql.Date convertNativeToDate(ORG.as220.tinySQL.tsColumn,java.lang.Object)>(r1, r2);
+
+        if r9 != null goto label6;
+
+        $r4 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r4.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("Converter returned null");
+
+        throw $r4;
+
+     label6:
+        return r9;
+    }
+
+    private int toNumber(byte)
+    {
+        ORG.as220.tinySQL.dbfFileConverter r0;
+        byte b0;
+        int $i1;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConverter;
+
+        b0 := @parameter0: byte;
+
+        $i1 = b0 - 48;
+
+        return $i1;
+    }
+
+    public java.sql.Time convertNativeToTime(ORG.as220.tinySQL.tsColumn, java.lang.Object) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileConverter r0;
+        ORG.as220.tinySQL.tsColumn r1;
+        java.lang.Object r2;
+        ORG.as220.tinySQL.tinySQLException $r3;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConverter;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsColumn;
+
+        r2 := @parameter1: java.lang.Object;
+
+        $r3 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r3.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("Conversion not supported");
+
+        throw $r3;
+    }
+
+    public java.lang.Object convertJDBCToNative(ORG.as220.tinySQL.tsColumn, java.lang.Object) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileConverter r0;
+        ORG.as220.tinySQL.tsColumn r1;
+        java.lang.Object r2, $r4;
+        byte[] r3;
+        boolean $z0;
+        int $i0, $i1;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConverter;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsColumn;
+
+        r2 := @parameter1: java.lang.Object;
+
+        $z0 = r2 instanceof byte[];
+
+        if $z0 == 0 goto label1;
+
+        r3 = (byte[]) r2;
+
+        $i0 = lengthof r3;
+
+        $i1 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getSize()>();
+
+        if $i0 != $i1 goto label1;
+
+        return r3;
+
+     label1:
+        $r4 = specialinvoke r0.<ORG.as220.tinySQL.tinySQLConverter: java.lang.Object convertJDBCToNative(ORG.as220.tinySQL.tsColumn,java.lang.Object)>(r1, r2);
+
+        return $r4;
+    }
+
+    public java.lang.String convertNativeToString(ORG.as220.tinySQL.tsColumn, java.lang.Object) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileConverter r0;
+        ORG.as220.tinySQL.tsColumn r1;
+        java.lang.Object r2;
+        byte[] r3;
+        boolean $z0;
+        java.lang.String $r4, $r5, $r6, $r7;
+        int $i0;
+        java.io.UnsupportedEncodingException $r8;
+        ORG.as220.tinySQL.tinySQLException $r9;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConverter;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsColumn;
+
+        r2 := @parameter1: java.lang.Object;
+
+        $z0 = r2 instanceof byte[];
+
+        if $z0 == 0 goto label4;
+
+        r3 = (byte[]) r2;
+
+     label1:
+        $r5 = new java.lang.String;
+
+        $i0 = specialinvoke r0.<ORG.as220.tinySQL.dbfFileConverter: int seekEnd(byte[])>(r3);
+
+        $r6 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.lang.String encoding>;
+
+        specialinvoke $r5.<java.lang.String: void <init>(byte[],int,int,java.lang.String)>(r3, 0, $i0, $r6);
+
+        $r7 = specialinvoke r0.<ORG.as220.tinySQL.dbfFileConverter: java.lang.String rightTrim(java.lang.String)>($r5);
+
+     label2:
+        return $r7;
+
+     label3:
+        $r8 := @caughtexception;
+
+        $r9 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r9.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("Encoding not supported");
+
+        throw $r9;
+
+     label4:
+        $r4 = specialinvoke r0.<ORG.as220.tinySQL.tinySQLConverter: java.lang.String convertNativeToString(ORG.as220.tinySQL.tsColumn,java.lang.Object)>(r1, r2);
+
+        return $r4;
+
+        catch java.io.UnsupportedEncodingException from label1 to label2 with label3;
+    }
+
+    private int seekEnd(byte[])
+    {
+        ORG.as220.tinySQL.dbfFileConverter r0;
+        byte[] r1;
+        int $i0, $i1, $i3, $i4, i5;
+        byte $b2;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConverter;
+
+        r1 := @parameter0: byte[];
+
+        $i0 = lengthof r1;
+
+        if $i0 != 0 goto label1;
+
+        return 0;
+
+     label1:
+        $i1 = lengthof r1;
+
+        i5 = $i1 - 1;
+
+        goto label3;
+
+     label2:
+        i5 = i5 + -1;
+
+     label3:
+        $b2 = r1[i5];
+
+        if $b2 != 32 goto label4;
+
+        if i5 > 0 goto label2;
+
+     label4:
+        if i5 != 0 goto label5;
+
+        $i4 = lengthof r1;
+
+        return $i4;
+
+     label5:
+        $i3 = i5 + 1;
+
+        return $i3;
+    }
+
+    public java.math.BigDecimal convertNativeToNumber(ORG.as220.tinySQL.tsColumn, java.lang.Object) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileConverter r0;
+        ORG.as220.tinySQL.tsColumn r1;
+        java.lang.Object r2;
+        byte[] r3;
+        boolean $z0;
+        java.math.BigDecimal $r4, $r7, $r8, $r11;
+        int $i0, $i1, $i2, $i3, $i4, $i5;
+        java.lang.String $r5, $r6, r17;
+        ORG.as220.tinySQL.tinySQLException $r9, $r10, $r12, $r14, $r16;
+        double $d0;
+        java.lang.Exception $r13;
+        java.io.UnsupportedEncodingException $r15;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConverter;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsColumn;
+
+        r2 := @parameter1: java.lang.Object;
+
+        $z0 = r2 instanceof byte[];
+
+        if $z0 == 0 goto label10;
+
+        r3 = (byte[]) r2;
+
+        $i0 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getType()>();
+
+        if $i0 != 4 goto label02;
+
+        $i5 = lengthof r3;
+
+        if $i5 == 4 goto label01;
+
+        $r12 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r12.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("An integer is defined as a 4 bytes value");
+
+        throw $r12;
+
+     label01:
+        $r11 = new java.math.BigDecimal;
+
+        $d0 = staticinvoke <ORG.as220.tinySQL.Utils: double vax_to_long(byte[])>(r3);
+
+        specialinvoke $r11.<java.math.BigDecimal: void <init>(double)>($d0);
+
+        return $r11;
+
+     label02:
+        $i1 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getType()>();
+
+        if $i1 != 8 goto label04;
+
+        $i4 = lengthof r3;
+
+        if $i4 == 8 goto label03;
+
+        $r10 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r10.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("An double is defined as a 8 bytes value");
+
+        throw $r10;
+
+     label03:
+        $r9 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r9.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("Doubles are not yet supported.");
+
+        throw $r9;
+
+     label04:
+        $r5 = new java.lang.String;
+
+        $i2 = lengthof r3;
+
+        $r6 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.lang.String encoding>;
+
+        specialinvoke $r5.<java.lang.String: void <init>(byte[],int,int,java.lang.String)>(r3, 0, $i2, $r6);
+
+        r17 = virtualinvoke $r5.<java.lang.String: java.lang.String trim()>();
+
+        $i3 = virtualinvoke r17.<java.lang.String: int length()>();
+
+        if $i3 != 0 goto label06;
+
+        $r8 = new java.math.BigDecimal;
+
+        specialinvoke $r8.<java.math.BigDecimal: void <init>(int)>(0);
+
+     label05:
+        return $r8;
+
+     label06:
+        $r7 = new java.math.BigDecimal;
+
+        specialinvoke $r7.<java.math.BigDecimal: void <init>(java.lang.String)>(r17);
+
+     label07:
+        return $r7;
+
+     label08:
+        $r15 := @caughtexception;
+
+        $r16 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r16.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("Encoding not supported");
+
+        throw $r16;
+
+     label09:
+        $r13 := @caughtexception;
+
+        $r14 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r14.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("Parsing failed");
+
+        throw $r14;
+
+     label10:
+        $r4 = specialinvoke r0.<ORG.as220.tinySQL.tinySQLConverter: java.math.BigDecimal convertNativeToNumber(ORG.as220.tinySQL.tsColumn,java.lang.Object)>(r1, r2);
+
+        return $r4;
+
+        catch java.io.UnsupportedEncodingException from label04 to label05 with label08;
+        catch java.io.UnsupportedEncodingException from label06 to label07 with label08;
+        catch java.lang.Exception from label04 to label05 with label09;
+        catch java.lang.Exception from label06 to label07 with label09;
+    }
+
+    private java.lang.String rightTrim(java.lang.String)
+    {
+        ORG.as220.tinySQL.dbfFileConverter r0;
+        int $i0, $i1, i3;
+        char $c2;
+        java.lang.String r1;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConverter;
+
+        r1 := @parameter0: java.lang.String;
+
+        if r1 == null goto label4;
+
+        i3 = virtualinvoke r1.<java.lang.String: int length()>();
+
+        goto label2;
+
+     label1:
+        i3 = i3 + -1;
+
+     label2:
+        if i3 <= 0 goto label3;
+
+        $i1 = i3 - 1;
+
+        $c2 = virtualinvoke r1.<java.lang.String: char charAt(int)>($i1);
+
+        if $c2 <= 32 goto label1;
+
+     label3:
+        $i0 = virtualinvoke r1.<java.lang.String: int length()>();
+
+        if i3 >= $i0 goto label4;
+
+        r1 = virtualinvoke r1.<java.lang.String: java.lang.String substring(int,int)>(0, i3);
+
+     label4:
+        return r1;
+    }
+
+    public java.lang.Integer convertNativeToInteger(ORG.as220.tinySQL.tsColumn, java.lang.Object) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileConverter r0;
+        ORG.as220.tinySQL.tsColumn r1;
+        java.lang.Object r2;
+        byte[] r3;
+        boolean $z0;
+        java.lang.Integer $r4, $r5;
+        int $i0, $i1;
+        double $d0;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConverter;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsColumn;
+
+        r2 := @parameter1: java.lang.Object;
+
+        $z0 = r2 instanceof byte[];
+
+        if $z0 == 0 goto label1;
+
+        r3 = (byte[]) r2;
+
+        $i0 = lengthof r3;
+
+        if $i0 != 4 goto label1;
+
+        $r5 = new java.lang.Integer;
+
+        $d0 = staticinvoke <ORG.as220.tinySQL.Utils: double vax_to_long(byte[])>(r3);
+
+        $i1 = (int) $d0;
+
+        specialinvoke $r5.<java.lang.Integer: void <init>(int)>($i1);
+
+        return $r5;
+
+     label1:
+        $r4 = specialinvoke r0.<ORG.as220.tinySQL.tinySQLConverter: java.lang.Integer convertNativeToInteger(ORG.as220.tinySQL.tsColumn,java.lang.Object)>(r1, r2);
+
+        return $r4;
+    }
+
+    public java.lang.Object convertIntegerToNative(ORG.as220.tinySQL.tsColumn, java.lang.Integer) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileConverter r0;
+        ORG.as220.tinySQL.tsColumn r1;
+        java.lang.Integer r2;
+        int $i0;
+        byte[] $r3;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConverter;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsColumn;
+
+        r2 := @parameter1: java.lang.Integer;
+
+        $i0 = virtualinvoke r2.<java.lang.Integer: int intValue()>();
+
+        $r3 = staticinvoke <ORG.as220.tinySQL.Utils: byte[] intToLittleEndian(int)>($i0);
+
+        return $r3;
+    }
+
+    public java.sql.Timestamp convertNativeToTimestamp(ORG.as220.tinySQL.tsColumn, java.lang.Object) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileConverter r0;
+        ORG.as220.tinySQL.tsColumn r1;
+        java.lang.Object r2;
+        byte[] r3, r4, r5;
+        long l0, $l4, $l6, $l7, l8;
+        boolean $z0;
+        java.sql.Timestamp $r7, $r9;
+        int $i1, $i2, $i5;
+        ORG.as220.tinySQL.tinySQLException $r8;
+        double $d0, $d1;
+        byte $b3;
+        java.util.TimeZone $r10;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConverter;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsColumn;
+
+        r2 := @parameter1: java.lang.Object;
+
+        $z0 = r2 instanceof byte[];
+
+        if $z0 == 0 goto label3;
+
+        r3 = (byte[]) r2;
+
+        $i1 = lengthof r3;
+
+        if $i1 != 8 goto label2;
+
+        r4 = newarray (byte)[4];
+
+        r5 = newarray (byte)[4];
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r3, 0, r4, 0, 4);
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r3, 4, r5, 0, 4);
+
+        $d0 = staticinvoke <ORG.as220.tinySQL.Utils: double vax_to_long(byte[])>(r4);
+
+        $i2 = (int) $d0;
+
+        l0 = staticinvoke <ORG.as220.tinySQL.dbfFileConverter: long calcToTime(int)>($i2);
+
+        $d1 = staticinvoke <ORG.as220.tinySQL.Utils: double vax_to_long(byte[])>(r5);
+
+        l8 = (long) $d1;
+
+        $b3 = l8 cmp 0L;
+
+        if $b3 == 0 goto label1;
+
+        l8 = l8 + 1L;
+
+     label1:
+        $r9 = new java.sql.Timestamp;
+
+        $l4 = l0 + l8;
+
+        $r10 = specialinvoke r0.<ORG.as220.tinySQL.dbfFileConverter: java.util.TimeZone getTimeZone()>();
+
+        $i5 = virtualinvoke $r10.<java.util.TimeZone: int getRawOffset()>();
+
+        $l6 = (long) $i5;
+
+        $l7 = $l4 - $l6;
+
+        specialinvoke $r9.<java.sql.Timestamp: void <init>(long)>($l7);
+
+        return $r9;
+
+     label2:
+        $r8 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r8.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("This native data does not represent a timestamp");
+
+        throw $r8;
+
+     label3:
+        $r7 = specialinvoke r0.<ORG.as220.tinySQL.tinySQLConverter: java.sql.Timestamp convertNativeToTimestamp(ORG.as220.tinySQL.tsColumn,java.lang.Object)>(r1, r2);
+
+        return $r7;
+    }
+
+    public java.lang.Object convertTimestampToNative(ORG.as220.tinySQL.tsColumn, java.sql.Timestamp) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileConverter r0;
+        ORG.as220.tinySQL.tsColumn r1;
+        java.sql.Timestamp r2;
+        long l0, $l3, $l5, $l6;
+        int i1, i2, $i4;
+        byte[] r3, r4, r5;
+        java.util.TimeZone $r6;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConverter;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsColumn;
+
+        r2 := @parameter1: java.sql.Timestamp;
+
+        $l3 = virtualinvoke r2.<java.sql.Timestamp: long getTime()>();
+
+        $r6 = specialinvoke r0.<ORG.as220.tinySQL.dbfFileConverter: java.util.TimeZone getTimeZone()>();
+
+        $i4 = virtualinvoke $r6.<java.util.TimeZone: int getRawOffset()>();
+
+        $l5 = (long) $i4;
+
+        l0 = $l3 + $l5;
+
+        i1 = staticinvoke <ORG.as220.tinySQL.dbfFileConverter: int calcFromTime(long)>(l0);
+
+        $l6 = l0 % 86400000L;
+
+        i2 = (int) $l6;
+
+        r3 = newarray (byte)[8];
+
+        r4 = staticinvoke <ORG.as220.tinySQL.Utils: byte[] intToLittleEndian(int)>(i1);
+
+        r5 = staticinvoke <ORG.as220.tinySQL.Utils: byte[] intToLittleEndian(int)>(i2);
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r4, 0, r3, 0, 4);
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r5, 0, r3, 4, 4);
+
+        return r3;
+    }
+
+    private java.util.TimeZone getTimeZone()
+    {
+        ORG.as220.tinySQL.dbfFileConverter r0;
+        java.util.TimeZone $r1, $r2, $r4;
+        java.util.Calendar $r3;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConverter;
+
+        $r1 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.util.TimeZone _defaultZone>;
+
+        if $r1 != null goto label1;
+
+        $r3 = staticinvoke <java.util.GregorianCalendar: java.util.Calendar getInstance()>();
+
+        $r4 = virtualinvoke $r3.<java.util.Calendar: java.util.TimeZone getTimeZone()>();
+
+        r0.<ORG.as220.tinySQL.dbfFileConverter: java.util.TimeZone _defaultZone> = $r4;
+
+     label1:
+        $r2 = r0.<ORG.as220.tinySQL.dbfFileConverter: java.util.TimeZone _defaultZone>;
+
+        return $r2;
+    }
+
+    private static long calcToTime(int)
+    {
+        int i0, $i2;
+        long l1, $l3;
+
+        i0 := @parameter0: int;
+
+        $i2 = i0 - 2440588;
+
+        $l3 = (long) $i2;
+
+        l1 = $l3 * 86400000L;
+
+        return l1;
+    }
+
+    private static int calcFromTime(long)
+    {
+        long l0, $l3;
+        int i2, $i4;
+
+        l0 := @parameter0: long;
+
+        $l3 = l0 / 86400000L;
+
+        i2 = (int) $l3;
+
+        $i4 = i2 + 2440588;
+
+        return $i4;
+    }
+
+    public static void <clinit>()
+    {
+        <ORG.as220.tinySQL.dbfFileConverter: long DAY_DIV> = 86400000L;
+
+        <ORG.as220.tinySQL.dbfFileConverter: int DBASE_BASE_DATE> = 2440588;
+
+        return;
+    }
+}

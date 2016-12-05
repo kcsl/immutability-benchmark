@@ -1,0 +1,535 @@
+public interface  ORG.as220.tinySQL.parser.TinySQLParserConstants extends java.lang.Object
+{
+    public static final int EOF;
+    public static final int WHITESPACE;
+    public static final int LETTER;
+    public static final int NON_ZERO_DIGIT;
+    public static final int DIGIT;
+    public static final int HEX_DIGIT;
+    public static final int BINARY_DIGIT;
+    public static final int UNSIGNED_INTEGER;
+    public static final int EXPONENT_PART;
+    public static final int NEWLINE;
+    public static final int NONQUOTE_CHARACTER;
+    public static final int COMMA;
+    public static final int PERIOD;
+    public static final int COLON;
+    public static final int QUOTE;
+    public static final int DQUOTE;
+    public static final int SEMICOLON;
+    public static final int L_PAREN;
+    public static final int R_PAREN;
+    public static final int QUEST;
+    public static final int ADD;
+    public static final int AND;
+    public static final int ALL;
+    public static final int ALTER;
+    public static final int AS;
+    public static final int ASC;
+    public static final int BY;
+    public static final int COLUMN;
+    public static final int COMPACT;
+    public static final int CREATE;
+    public static final int DELETE;
+    public static final int DESC;
+    public static final int DISTINCT;
+    public static final int DROP;
+    public static final int EXIST;
+    public static final int EXISTS;
+    public static final int FROM;
+    public static final int GROUP;
+    public static final int IF;
+    public static final int INSERT;
+    public static final int INTO;
+    public static final int LIMIT;
+    public static final int NOT;
+    public static final int NULL;
+    public static final int OR;
+    public static final int ORDER;
+    public static final int RENAME;
+    public static final int SELECT;
+    public static final int SET;
+    public static final int TABLE;
+    public static final int TO;
+    public static final int UPDATE;
+    public static final int VALUES;
+    public static final int WHERE;
+    public static final int CHAR;
+    public static final int INT;
+    public static final int NUMERIC;
+    public static final int DATE;
+    public static final int BOOLEAN;
+    public static final int FLOAT;
+    public static final int BIT;
+    public static final int DECIMAL;
+    public static final int DOUBLE;
+    public static final int REAL;
+    public static final int BIGINT;
+    public static final int SMALLINT;
+    public static final int TINYINT;
+    public static final int VARCHAR;
+    public static final int LONGVARCHAR;
+    public static final int BINARY;
+    public static final int VARBINARY;
+    public static final int LONGVARBINARY;
+    public static final int TIME;
+    public static final int TIMESTAMP;
+    public static final int BLOB;
+    public static final int CLOB;
+    public static final int PLUS;
+    public static final int MINUS;
+    public static final int MULT;
+    public static final int DIV;
+    public static final int ASSIGN;
+    public static final int EQUALS;
+    public static final int NOT_EQUALS;
+    public static final int LT_EQUALS;
+    public static final int GT_EQUALS;
+    public static final int LT;
+    public static final int GT;
+    public static final int BETWEEN;
+    public static final int NBETWEEN;
+    public static final int LIKE;
+    public static final int IDENTIFIER;
+    public static final int QUOTED_IDENTIFIER;
+    public static final int STRING_LITERAL;
+    public static final int JOKER_IDENTIFIER;
+    public static final int QUOTED_JOKER_IDENTIFIER;
+    public static final int UNSIGNED_NUMERIC_LITERAL;
+    public static final int EXACT_NUMERIC_LITERAL;
+    public static final int APPROXIMATE_NUMERIC_LITERAL;
+    public static final int EXPONENT;
+    public static final int MANTISSA;
+    public static final int SIGNED_INTEGER;
+    public static final int SIGN;
+    public static final int SIGNED_NUMERIC_LITERAL;
+    public static final int DEFAULT;
+    public static final java.lang.String[] tokenImage;
+
+    static void <clinit>()
+    {
+        java.lang.String[] $r0;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int DEFAULT> = 0;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int SIGNED_NUMERIC_LITERAL> = 103;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int SIGN> = 102;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int SIGNED_INTEGER> = 101;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int MANTISSA> = 100;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int EXPONENT> = 99;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int APPROXIMATE_NUMERIC_LITERAL> = 98;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int EXACT_NUMERIC_LITERAL> = 97;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int UNSIGNED_NUMERIC_LITERAL> = 96;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int QUOTED_JOKER_IDENTIFIER> = 95;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int JOKER_IDENTIFIER> = 94;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int STRING_LITERAL> = 93;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int QUOTED_IDENTIFIER> = 92;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int IDENTIFIER> = 91;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int LIKE> = 90;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int NBETWEEN> = 89;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int BETWEEN> = 88;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int GT> = 87;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int LT> = 86;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int GT_EQUALS> = 85;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int LT_EQUALS> = 84;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int NOT_EQUALS> = 83;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int EQUALS> = 82;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int ASSIGN> = 81;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int DIV> = 80;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int MULT> = 79;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int MINUS> = 78;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int PLUS> = 77;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int CLOB> = 76;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int BLOB> = 75;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int TIMESTAMP> = 74;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int TIME> = 73;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int LONGVARBINARY> = 72;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int VARBINARY> = 71;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int BINARY> = 70;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int LONGVARCHAR> = 69;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int VARCHAR> = 68;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int TINYINT> = 67;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int SMALLINT> = 66;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int BIGINT> = 65;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int REAL> = 64;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int DOUBLE> = 63;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int DECIMAL> = 62;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int BIT> = 61;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int FLOAT> = 60;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int BOOLEAN> = 59;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int DATE> = 58;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int NUMERIC> = 57;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int INT> = 56;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int CHAR> = 55;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int WHERE> = 54;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int VALUES> = 53;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int UPDATE> = 52;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int TO> = 51;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int TABLE> = 50;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int SET> = 49;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int SELECT> = 48;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int RENAME> = 47;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int ORDER> = 46;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int OR> = 45;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int NULL> = 44;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int NOT> = 43;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int LIMIT> = 42;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int INTO> = 41;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int INSERT> = 40;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int IF> = 39;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int GROUP> = 38;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int FROM> = 37;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int EXISTS> = 36;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int EXIST> = 35;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int DROP> = 34;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int DISTINCT> = 33;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int DESC> = 32;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int DELETE> = 31;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int CREATE> = 30;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int COMPACT> = 29;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int COLUMN> = 28;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int BY> = 27;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int ASC> = 26;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int AS> = 25;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int ALTER> = 24;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int ALL> = 23;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int AND> = 22;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int ADD> = 21;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int QUEST> = 20;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int R_PAREN> = 19;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int L_PAREN> = 18;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int SEMICOLON> = 17;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int DQUOTE> = 16;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int QUOTE> = 15;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int COLON> = 14;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int PERIOD> = 13;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int COMMA> = 12;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int NONQUOTE_CHARACTER> = 11;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int NEWLINE> = 10;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int EXPONENT_PART> = 9;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int UNSIGNED_INTEGER> = 8;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int BINARY_DIGIT> = 7;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int HEX_DIGIT> = 6;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int DIGIT> = 5;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int NON_ZERO_DIGIT> = 4;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int LETTER> = 3;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int WHITESPACE> = 1;
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: int EOF> = 0;
+
+        $r0 = newarray (java.lang.String)[104];
+
+        $r0[0] = "<EOF>";
+
+        $r0[1] = "<WHITESPACE>";
+
+        $r0[2] = "<token of kind 2>";
+
+        $r0[3] = "<LETTER>";
+
+        $r0[4] = "<NON_ZERO_DIGIT>";
+
+        $r0[5] = "<DIGIT>";
+
+        $r0[6] = "<HEX_DIGIT>";
+
+        $r0[7] = "<BINARY_DIGIT>";
+
+        $r0[8] = "<UNSIGNED_INTEGER>";
+
+        $r0[9] = "<EXPONENT_PART>";
+
+        $r0[10] = "<NEWLINE>";
+
+        $r0[11] = "<NONQUOTE_CHARACTER>";
+
+        $r0[12] = "\",\"";
+
+        $r0[13] = "\".\"";
+
+        $r0[14] = "\":\"";
+
+        $r0[15] = "\"\\\'\"";
+
+        $r0[16] = "\"\\\"\"";
+
+        $r0[17] = "\";\"";
+
+        $r0[18] = "\"(\"";
+
+        $r0[19] = "\")\"";
+
+        $r0[20] = "\"?\"";
+
+        $r0[21] = "\"add\"";
+
+        $r0[22] = "\"and\"";
+
+        $r0[23] = "\"all\"";
+
+        $r0[24] = "\"alter\"";
+
+        $r0[25] = "\"as\"";
+
+        $r0[26] = "\"asc\"";
+
+        $r0[27] = "\"by\"";
+
+        $r0[28] = "\"column\"";
+
+        $r0[29] = "\"compact\"";
+
+        $r0[30] = "\"create\"";
+
+        $r0[31] = "\"delete\"";
+
+        $r0[32] = "\"desc\"";
+
+        $r0[33] = "\"distinct\"";
+
+        $r0[34] = "\"drop\"";
+
+        $r0[35] = "\"exist\"";
+
+        $r0[36] = "\"exists\"";
+
+        $r0[37] = "\"from\"";
+
+        $r0[38] = "\"group\"";
+
+        $r0[39] = "\"if\"";
+
+        $r0[40] = "\"insert\"";
+
+        $r0[41] = "\"into\"";
+
+        $r0[42] = "\"limit\"";
+
+        $r0[43] = "\"not\"";
+
+        $r0[44] = "\"null\"";
+
+        $r0[45] = "\"or\"";
+
+        $r0[46] = "\"order\"";
+
+        $r0[47] = "\"rename\"";
+
+        $r0[48] = "\"select\"";
+
+        $r0[49] = "\"set\"";
+
+        $r0[50] = "\"table\"";
+
+        $r0[51] = "\"to\"";
+
+        $r0[52] = "\"update\"";
+
+        $r0[53] = "\"values\"";
+
+        $r0[54] = "\"where\"";
+
+        $r0[55] = "<CHAR>";
+
+        $r0[56] = "<INT>";
+
+        $r0[57] = "<NUMERIC>";
+
+        $r0[58] = "\"date\"";
+
+        $r0[59] = "\"boolean\"";
+
+        $r0[60] = "\"float\"";
+
+        $r0[61] = "\"bit\"";
+
+        $r0[62] = "\"decimal\"";
+
+        $r0[63] = "\"double\"";
+
+        $r0[64] = "\"real\"";
+
+        $r0[65] = "<BIGINT>";
+
+        $r0[66] = "<SMALLINT>";
+
+        $r0[67] = "<TINYINT>";
+
+        $r0[68] = "\"varchar\"";
+
+        $r0[69] = "\"longvarchar\"";
+
+        $r0[70] = "\"binary\"";
+
+        $r0[71] = "\"varbinary\"";
+
+        $r0[72] = "\"longvarbinary\"";
+
+        $r0[73] = "\"time\"";
+
+        $r0[74] = "\"timestamp\"";
+
+        $r0[75] = "\"blob\"";
+
+        $r0[76] = "\"clob\"";
+
+        $r0[77] = "\"+\"";
+
+        $r0[78] = "\"-\"";
+
+        $r0[79] = "\"*\"";
+
+        $r0[80] = "\"/\"";
+
+        $r0[81] = "\"=\"";
+
+        $r0[82] = "\"==\"";
+
+        $r0[83] = "\"<>\"";
+
+        $r0[84] = "\"<=\"";
+
+        $r0[85] = "\">=\"";
+
+        $r0[86] = "\"<\"";
+
+        $r0[87] = "\">\"";
+
+        $r0[88] = "\"between\"";
+
+        $r0[89] = "<NBETWEEN>";
+
+        $r0[90] = "\"like\"";
+
+        $r0[91] = "<IDENTIFIER>";
+
+        $r0[92] = "<QUOTED_IDENTIFIER>";
+
+        $r0[93] = "<STRING_LITERAL>";
+
+        $r0[94] = "<JOKER_IDENTIFIER>";
+
+        $r0[95] = "<QUOTED_JOKER_IDENTIFIER>";
+
+        $r0[96] = "<UNSIGNED_NUMERIC_LITERAL>";
+
+        $r0[97] = "<EXACT_NUMERIC_LITERAL>";
+
+        $r0[98] = "<APPROXIMATE_NUMERIC_LITERAL>";
+
+        $r0[99] = "<EXPONENT>";
+
+        $r0[100] = "<MANTISSA>";
+
+        $r0[101] = "<SIGNED_INTEGER>";
+
+        $r0[102] = "<SIGN>";
+
+        $r0[103] = "<SIGNED_NUMERIC_LITERAL>";
+
+        <ORG.as220.tinySQL.parser.TinySQLParserConstants: java.lang.String[] tokenImage> = $r0;
+
+        return;
+    }
+}

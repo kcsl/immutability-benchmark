@@ -1,0 +1,2303 @@
+public abstract class ORG.as220.tinySQL.tinySqlDatabaseMetaData extends java.lang.Object implements java.sql.DatabaseMetaData
+{
+    private ORG.as220.tinySQL.tinySQLConnection connection;
+
+    public void <init>(ORG.as220.tinySQL.tinySQLConnection)
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        ORG.as220.tinySQL.tinySQLConnection r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tinySQLConnection;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<ORG.as220.tinySQL.tinySqlDatabaseMetaData: ORG.as220.tinySQL.tinySQLConnection connection> = null;
+
+        r0.<ORG.as220.tinySQL.tinySqlDatabaseMetaData: ORG.as220.tinySQL.tinySQLConnection connection> = r1;
+
+        return;
+    }
+
+    public boolean allProceduresAreCallable()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean allTablesAreSelectable()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 1;
+    }
+
+    public java.lang.String getURL()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        ORG.as220.tinySQL.tinySQLConnection $r1;
+        java.lang.String $r2;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        $r1 = r0.<ORG.as220.tinySQL.tinySqlDatabaseMetaData: ORG.as220.tinySQL.tinySQLConnection connection>;
+
+        $r2 = virtualinvoke $r1.<ORG.as220.tinySQL.tinySQLConnection: java.lang.String getUrl()>();
+
+        return $r2;
+    }
+
+    public java.lang.String getUserName()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        ORG.as220.tinySQL.tinySQLConnection $r1;
+        java.lang.String $r2;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        $r1 = r0.<ORG.as220.tinySQL.tinySqlDatabaseMetaData: ORG.as220.tinySQL.tinySQLConnection connection>;
+
+        $r2 = virtualinvoke $r1.<ORG.as220.tinySQL.tinySQLConnection: java.lang.String getUser()>();
+
+        return $r2;
+    }
+
+    public boolean isReadOnly()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean nullsAreSortedHigh()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean nullsAreSortedLow()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        boolean $z0, $z1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        $z0 = virtualinvoke r0.<ORG.as220.tinySQL.tinySqlDatabaseMetaData: boolean nullsAreSortedHigh()>();
+
+        if $z0 == 0 goto label1;
+
+        $z1 = 0;
+
+        goto label2;
+
+     label1:
+        $z1 = 1;
+
+     label2:
+        return $z1;
+    }
+
+    public boolean nullsAreSortedAtStart()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean nullsAreSortedAtEnd()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public java.lang.String getDatabaseProductName()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return "tinySQL";
+    }
+
+    public java.lang.String getDatabaseProductVersion()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return "(generic base implementation)";
+    }
+
+    public java.lang.String getDriverName()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return "ORG.as220.tinySQL.dbfFileDriver";
+    }
+
+    public java.lang.String getDriverVersion()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return "0.71 Alpha";
+    }
+
+    public int getDriverMajorVersion()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public int getDriverMinorVersion()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 7;
+    }
+
+    public boolean usesLocalFiles()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 1;
+    }
+
+    public boolean usesLocalFilePerTable()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 1;
+    }
+
+    public boolean supportsMixedCaseIdentifiers()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 1;
+    }
+
+    public boolean storesUpperCaseIdentifiers()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean storesLowerCaseIdentifiers()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean storesMixedCaseIdentifiers()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 1;
+    }
+
+    public boolean supportsMixedCaseQuotedIdentifiers()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 1;
+    }
+
+    public boolean storesUpperCaseQuotedIdentifiers()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean storesLowerCaseQuotedIdentifiers()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean storesMixedCaseQuotedIdentifiers()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public java.lang.String getIdentifierQuoteString()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return "\"";
+    }
+
+    public java.lang.String getSQLKeywords()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return "";
+    }
+
+    public java.lang.String getNumericFunctions()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return "";
+    }
+
+    public java.lang.String getStringFunctions()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return "";
+    }
+
+    public java.lang.String getSystemFunctions()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return "";
+    }
+
+    public java.lang.String getTimeDateFunctions()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return "";
+    }
+
+    public java.lang.String getSearchStringEscape()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return "\\";
+    }
+
+    public java.lang.String getExtraNameCharacters()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return "$";
+    }
+
+    public boolean supportsAlterTableWithAddColumn()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 1;
+    }
+
+    public boolean supportsAlterTableWithDropColumn()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 1;
+    }
+
+    public boolean supportsColumnAliasing()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 1;
+    }
+
+    public boolean nullPlusNonNullIsNull()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 1;
+    }
+
+    public boolean supportsConvert()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsConvert(int, int)
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        int i0, i1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        return 0;
+    }
+
+    public boolean supportsTableCorrelationNames()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 1;
+    }
+
+    public boolean supportsDifferentTableCorrelationNames()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsExpressionsInOrderBy()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsOrderByUnrelated()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsGroupBy()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsGroupByUnrelated()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsGroupByBeyondSelect()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsLikeEscapeClause()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsMultipleResultSets()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsMultipleTransactions()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsNonNullableColumns()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsMinimumSQLGrammar()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 1;
+    }
+
+    public boolean supportsCoreSQLGrammar()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsExtendedSQLGrammar()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsANSI92EntryLevelSQL()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 1;
+    }
+
+    public boolean supportsANSI92IntermediateSQL()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsANSI92FullSQL()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsIntegrityEnhancementFacility()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsOuterJoins()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsFullOuterJoins()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsLimitedOuterJoins()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public java.lang.String getSchemaTerm() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        java.sql.SQLException $r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        $r1 = new java.sql.SQLException;
+
+        specialinvoke $r1.<java.sql.SQLException: void <init>(java.lang.String)>("tinySQL does not support schema term.");
+
+        throw $r1;
+    }
+
+    public java.lang.String getProcedureTerm() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        java.sql.SQLException $r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        $r1 = new java.sql.SQLException;
+
+        specialinvoke $r1.<java.sql.SQLException: void <init>(java.lang.String)>("tinySQL does not support procedure.");
+
+        throw $r1;
+    }
+
+    public java.lang.String getCatalogTerm() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        java.sql.SQLException $r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        $r1 = new java.sql.SQLException;
+
+        specialinvoke $r1.<java.sql.SQLException: void <init>(java.lang.String)>("tinySQL does not support catalog.");
+
+        throw $r1;
+    }
+
+    public boolean isCatalogAtStart()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public java.lang.String getCatalogSeparator() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        java.sql.SQLException $r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        $r1 = new java.sql.SQLException;
+
+        specialinvoke $r1.<java.sql.SQLException: void <init>(java.lang.String)>("tinySQL does not catalog.");
+
+        throw $r1;
+    }
+
+    public boolean supportsSchemasInDataManipulation()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsSchemasInProcedureCalls()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsSchemasInTableDefinitions()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsSchemasInIndexDefinitions()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsSchemasInPrivilegeDefinitions()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsCatalogsInDataManipulation()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsCatalogsInProcedureCalls()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsCatalogsInTableDefinitions()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsCatalogsInIndexDefinitions()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsCatalogsInPrivilegeDefinitions()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsPositionedDelete()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsPositionedUpdate()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsSelectForUpdate()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsStoredProcedures()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsSubqueriesInComparisons()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsSubqueriesInExists()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsSubqueriesInIns()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsSubqueriesInQuantifieds()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsCorrelatedSubqueries()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsUnion()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsUnionAll()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsOpenCursorsAcrossCommit()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsOpenCursorsAcrossRollback()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsOpenStatementsAcrossCommit()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsOpenStatementsAcrossRollback()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public int getMaxBinaryLiteralLength()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public int getMaxCharLiteralLength()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public int getMaxColumnNameLength()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public int getMaxColumnsInGroupBy()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public int getMaxColumnsInIndex()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public int getMaxColumnsInOrderBy()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public int getMaxColumnsInSelect()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public int getMaxColumnsInTable()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public int getMaxConnections()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public int getMaxCursorNameLength()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public int getMaxIndexLength()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public int getMaxSchemaNameLength()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public int getMaxProcedureNameLength()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public int getMaxCatalogNameLength()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public int getMaxRowSize()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean doesMaxRowSizeIncludeBlobs()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public int getMaxStatementLength()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public int getMaxStatements()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public int getMaxTableNameLength()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public int getMaxTablesInSelect()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public int getMaxUserNameLength()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public int getDefaultTransactionIsolation() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsTransactions()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsTransactionIsolationLevel(int)
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        i0 := @parameter0: int;
+
+        return 0;
+    }
+
+    public boolean supportsDataDefinitionAndDataManipulationTransactions()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean supportsDataManipulationTransactionsOnly()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean dataDefinitionCausesTransactionCommit()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public boolean dataDefinitionIgnoredInTransactions() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public java.sql.ResultSet getProcedures(java.lang.String, java.lang.String, java.lang.String)
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        java.lang.String r1, r2, r3;
+        java.util.Vector $r7;
+        ORG.as220.tinySQL.tsColumn $r8, $r9, $r10, $r11, $r12, $r13, $r14, $r15;
+        ORG.as220.tinySQL.tsPhysicalRow $r16;
+        ORG.as220.tinySQL.tsResultSet $r17;
+        ORG.as220.tinySQL.tinySQLResultSet $r18;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        $r7 = new java.util.Vector;
+
+        specialinvoke $r7.<java.util.Vector: void <init>()>();
+
+        $r8 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r8.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("PROCEDURE_CAT");
+
+        virtualinvoke $r8.<ORG.as220.tinySQL.tsColumn: void setType(int)>(1);
+
+        virtualinvoke $r8.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r8.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(10);
+
+        virtualinvoke $r7.<java.util.Vector: void addElement(java.lang.Object)>($r8);
+
+        $r9 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r9.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("PROCEDURE_SCHEM");
+
+        virtualinvoke $r9.<ORG.as220.tinySQL.tsColumn: void setType(int)>(1);
+
+        virtualinvoke $r9.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r9.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(10);
+
+        virtualinvoke $r7.<java.util.Vector: void addElement(java.lang.Object)>($r9);
+
+        $r10 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r10.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("PROCEDURE_NAME");
+
+        virtualinvoke $r10.<ORG.as220.tinySQL.tsColumn: void setType(int)>(1);
+
+        virtualinvoke $r10.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r10.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(10);
+
+        virtualinvoke $r7.<java.util.Vector: void addElement(java.lang.Object)>($r10);
+
+        $r11 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r11.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("RESERVED1");
+
+        virtualinvoke $r11.<ORG.as220.tinySQL.tsColumn: void setType(int)>(1);
+
+        virtualinvoke $r11.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r11.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(10);
+
+        virtualinvoke $r7.<java.util.Vector: void addElement(java.lang.Object)>($r11);
+
+        $r12 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r12.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("RESERVED2");
+
+        virtualinvoke $r12.<ORG.as220.tinySQL.tsColumn: void setType(int)>(1);
+
+        virtualinvoke $r12.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r12.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(10);
+
+        virtualinvoke $r7.<java.util.Vector: void addElement(java.lang.Object)>($r12);
+
+        $r13 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r13.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("RESERVED3");
+
+        virtualinvoke $r13.<ORG.as220.tinySQL.tsColumn: void setType(int)>(1);
+
+        virtualinvoke $r13.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r13.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(10);
+
+        virtualinvoke $r7.<java.util.Vector: void addElement(java.lang.Object)>($r13);
+
+        $r14 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r14.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("REMARKS");
+
+        virtualinvoke $r14.<ORG.as220.tinySQL.tsColumn: void setType(int)>(1);
+
+        virtualinvoke $r14.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r14.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(10);
+
+        virtualinvoke $r7.<java.util.Vector: void addElement(java.lang.Object)>($r14);
+
+        $r15 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r15.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("PROCEDURE_TYPE");
+
+        virtualinvoke $r15.<ORG.as220.tinySQL.tsColumn: void setType(int)>(1);
+
+        virtualinvoke $r15.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r15.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(10);
+
+        virtualinvoke $r7.<java.util.Vector: void addElement(java.lang.Object)>($r15);
+
+        $r16 = new ORG.as220.tinySQL.tsPhysicalRow;
+
+        specialinvoke $r16.<ORG.as220.tinySQL.tsPhysicalRow: void <init>(java.util.Vector)>($r7);
+
+        $r17 = new ORG.as220.tinySQL.tsResultSet;
+
+        specialinvoke $r17.<ORG.as220.tinySQL.tsResultSet: void <init>(ORG.as220.tinySQL.tsPhysicalRow)>($r16);
+
+        $r18 = new ORG.as220.tinySQL.tinySQLResultSet;
+
+        specialinvoke $r18.<ORG.as220.tinySQL.tinySQLResultSet: void <init>(ORG.as220.tinySQL.tsResultSet,ORG.as220.tinySQL.tinySQLStatement)>($r17, null);
+
+        return $r18;
+    }
+
+    public java.sql.ResultSet getProcedureColumns(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        java.lang.String r1, r2, r3, r4;
+        java.util.Vector $r8;
+        ORG.as220.tinySQL.tsColumn $r9, $r10, $r11, $r12, $r13, $r14, $r15, $r16, $r17, $r18, $r19, $r20, $r21;
+        ORG.as220.tinySQL.tsPhysicalRow $r22;
+        ORG.as220.tinySQL.tsResultSet $r23;
+        ORG.as220.tinySQL.tinySQLResultSet $r24;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        r4 := @parameter3: java.lang.String;
+
+        $r8 = new java.util.Vector;
+
+        specialinvoke $r8.<java.util.Vector: void <init>()>();
+
+        $r9 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r9.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("PROCEDURE_CAT");
+
+        virtualinvoke $r9.<ORG.as220.tinySQL.tsColumn: void setType(int)>(1);
+
+        virtualinvoke $r9.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r9.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(10);
+
+        virtualinvoke $r8.<java.util.Vector: void addElement(java.lang.Object)>($r9);
+
+        $r10 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r10.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("PROCEDURE_SCHEM");
+
+        virtualinvoke $r10.<ORG.as220.tinySQL.tsColumn: void setType(int)>(1);
+
+        virtualinvoke $r10.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r10.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(10);
+
+        virtualinvoke $r8.<java.util.Vector: void addElement(java.lang.Object)>($r10);
+
+        $r11 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r11.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("PROCEDURE_NAME");
+
+        virtualinvoke $r11.<ORG.as220.tinySQL.tsColumn: void setType(int)>(1);
+
+        virtualinvoke $r11.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r11.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(10);
+
+        virtualinvoke $r8.<java.util.Vector: void addElement(java.lang.Object)>($r11);
+
+        $r12 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r12.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("COLUMN_NAME");
+
+        virtualinvoke $r12.<ORG.as220.tinySQL.tsColumn: void setType(int)>(1);
+
+        virtualinvoke $r12.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r12.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(10);
+
+        virtualinvoke $r8.<java.util.Vector: void addElement(java.lang.Object)>($r12);
+
+        $r13 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r13.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("COLUMN_TYPE");
+
+        virtualinvoke $r13.<ORG.as220.tinySQL.tsColumn: void setType(int)>(5);
+
+        virtualinvoke $r13.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r13.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(10);
+
+        virtualinvoke $r8.<java.util.Vector: void addElement(java.lang.Object)>($r13);
+
+        $r14 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r14.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("DATA_TYPE");
+
+        virtualinvoke $r14.<ORG.as220.tinySQL.tsColumn: void setType(int)>(5);
+
+        virtualinvoke $r14.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r14.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(10);
+
+        virtualinvoke $r8.<java.util.Vector: void addElement(java.lang.Object)>($r14);
+
+        $r15 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r15.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("TYPE_NAME");
+
+        virtualinvoke $r15.<ORG.as220.tinySQL.tsColumn: void setType(int)>(1);
+
+        virtualinvoke $r15.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r15.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(10);
+
+        virtualinvoke $r8.<java.util.Vector: void addElement(java.lang.Object)>($r15);
+
+        $r16 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r16.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("PRECISION");
+
+        virtualinvoke $r16.<ORG.as220.tinySQL.tsColumn: void setType(int)>(4);
+
+        virtualinvoke $r16.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r16.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(10);
+
+        virtualinvoke $r8.<java.util.Vector: void addElement(java.lang.Object)>($r16);
+
+        $r17 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r17.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("LENGTH");
+
+        virtualinvoke $r17.<ORG.as220.tinySQL.tsColumn: void setType(int)>(4);
+
+        virtualinvoke $r17.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r17.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(10);
+
+        virtualinvoke $r8.<java.util.Vector: void addElement(java.lang.Object)>($r17);
+
+        $r18 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r18.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("SCALE");
+
+        virtualinvoke $r18.<ORG.as220.tinySQL.tsColumn: void setType(int)>(5);
+
+        virtualinvoke $r18.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r18.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(10);
+
+        virtualinvoke $r8.<java.util.Vector: void addElement(java.lang.Object)>($r18);
+
+        $r19 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r19.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("RADIX");
+
+        virtualinvoke $r19.<ORG.as220.tinySQL.tsColumn: void setType(int)>(5);
+
+        virtualinvoke $r19.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r19.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(10);
+
+        virtualinvoke $r8.<java.util.Vector: void addElement(java.lang.Object)>($r19);
+
+        $r20 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r20.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("NULLABLE");
+
+        virtualinvoke $r20.<ORG.as220.tinySQL.tsColumn: void setType(int)>(5);
+
+        virtualinvoke $r20.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r20.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(10);
+
+        virtualinvoke $r8.<java.util.Vector: void addElement(java.lang.Object)>($r20);
+
+        $r21 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r21.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("REMARKS");
+
+        virtualinvoke $r21.<ORG.as220.tinySQL.tsColumn: void setType(int)>(1);
+
+        virtualinvoke $r21.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r21.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(10);
+
+        virtualinvoke $r8.<java.util.Vector: void addElement(java.lang.Object)>($r21);
+
+        $r22 = new ORG.as220.tinySQL.tsPhysicalRow;
+
+        specialinvoke $r22.<ORG.as220.tinySQL.tsPhysicalRow: void <init>(java.util.Vector)>($r8);
+
+        $r23 = new ORG.as220.tinySQL.tsResultSet;
+
+        specialinvoke $r23.<ORG.as220.tinySQL.tsResultSet: void <init>(ORG.as220.tinySQL.tsPhysicalRow)>($r22);
+
+        $r24 = new ORG.as220.tinySQL.tinySQLResultSet;
+
+        specialinvoke $r24.<ORG.as220.tinySQL.tinySQLResultSet: void <init>(ORG.as220.tinySQL.tsResultSet,ORG.as220.tinySQL.tinySQLStatement)>($r23, null);
+
+        return $r24;
+    }
+
+    public abstract java.sql.ResultSet getTables(java.lang.String, java.lang.String, java.lang.String, java.lang.String[]) throws ORG.as220.tinySQL.tinySQLException;
+
+    public java.sql.ResultSet getSchemas() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        java.sql.SQLException $r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        $r1 = new java.sql.SQLException;
+
+        specialinvoke $r1.<java.sql.SQLException: void <init>(java.lang.String)>("tinySQL does not support schemas.");
+
+        throw $r1;
+    }
+
+    public java.sql.ResultSet getCatalogs() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        java.sql.SQLException $r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        $r1 = new java.sql.SQLException;
+
+        specialinvoke $r1.<java.sql.SQLException: void <init>(java.lang.String)>("tinySQL does not support catalogues.");
+
+        throw $r1;
+    }
+
+    public java.sql.ResultSet getTableTypes() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        java.util.Vector $r4;
+        ORG.as220.tinySQL.tsColumn $r5;
+        ORG.as220.tinySQL.tsPhysicalRow $r6, r10;
+        ORG.as220.tinySQL.tsResultSet $r7;
+        ORG.as220.tinySQL.tinySQLResultSet $r8;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        $r4 = new java.util.Vector;
+
+        specialinvoke $r4.<java.util.Vector: void <init>()>();
+
+        $r5 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r5.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("TABLE_TYPE");
+
+        virtualinvoke $r5.<ORG.as220.tinySQL.tsColumn: void setType(int)>(1);
+
+        virtualinvoke $r5.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r5.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(10);
+
+        virtualinvoke $r4.<java.util.Vector: void addElement(java.lang.Object)>($r5);
+
+        $r6 = new ORG.as220.tinySQL.tsPhysicalRow;
+
+        specialinvoke $r6.<ORG.as220.tinySQL.tsPhysicalRow: void <init>(java.util.Vector)>($r4);
+
+        $r7 = new ORG.as220.tinySQL.tsResultSet;
+
+        specialinvoke $r7.<ORG.as220.tinySQL.tsResultSet: void <init>(ORG.as220.tinySQL.tsPhysicalRow)>($r6);
+
+        r10 = virtualinvoke $r7.<ORG.as220.tinySQL.tsResultSet: ORG.as220.tinySQL.tsPhysicalRow createPhysicalRow()>();
+
+        virtualinvoke r10.<ORG.as220.tinySQL.tsPhysicalRow: void put(int,java.lang.Object)>(0, "TABLE");
+
+        virtualinvoke $r7.<ORG.as220.tinySQL.tsResultSet: boolean addPhysicalRow(ORG.as220.tinySQL.tsPhysicalRow)>(r10);
+
+        $r8 = new ORG.as220.tinySQL.tinySQLResultSet;
+
+        specialinvoke $r8.<ORG.as220.tinySQL.tinySQLResultSet: void <init>(ORG.as220.tinySQL.tsResultSet,ORG.as220.tinySQL.tinySQLStatement)>($r7, null);
+
+        return $r8;
+    }
+
+    public java.sql.ResultSet getColumns(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        java.lang.String r1, r2, r3, r4, r8, $r29, $r31, $r32, $r33, $r35, $r37, $r39, r58;
+        ORG.as220.tinySQL.tinySQL r7;
+        ORG.as220.tinySQL.tinySQLTableView r9;
+        ORG.as220.tinySQL.tsColumn r10, $r13, $r14, $r15, $r16, $r17, $r18, $r19, $r20, $r21, $r22, $r23, $r24;
+        ORG.as220.tinySQL.tsPhysicalRow r11, $r26;
+        java.util.Vector $r12;
+        ORG.as220.tinySQL.tsResultSet $r25;
+        java.sql.Connection $r27;
+        ORG.as220.tinySQL.tinySQLConnection $r28;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11, $i12, $i13, $i14, i15, $i17;
+        java.lang.Integer $r30, $r34, $r36, $r38;
+        boolean $z0, $z1, $z3;
+        ORG.as220.tinySQL.tinySQLResultSet $r40;
+        java.lang.Exception $r41, $r42;
+        java.sql.ResultSet r43;
+        byte b16;
+        java.lang.Object r57;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        r4 := @parameter3: java.lang.String;
+
+     label01:
+        r43 = virtualinvoke r0.<ORG.as220.tinySQL.tinySqlDatabaseMetaData: java.sql.ResultSet getTables(java.lang.String,java.lang.String,java.lang.String,java.lang.String[])>(r1, r2, r3, null);
+
+        $r12 = new java.util.Vector;
+
+        specialinvoke $r12.<java.util.Vector: void <init>()>();
+
+        $r13 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r13.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("TABLE_CAT");
+
+        virtualinvoke $r13.<ORG.as220.tinySQL.tsColumn: void setType(int)>(1);
+
+        virtualinvoke $r13.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(9);
+
+        virtualinvoke $r13.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r12.<java.util.Vector: void addElement(java.lang.Object)>($r13);
+
+        $r14 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r14.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("TABLE_SCHEM");
+
+        virtualinvoke $r14.<ORG.as220.tinySQL.tsColumn: void setType(int)>(1);
+
+        virtualinvoke $r14.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(11);
+
+        virtualinvoke $r14.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r12.<java.util.Vector: void addElement(java.lang.Object)>($r14);
+
+        $r15 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r15.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("TABLE_NAME");
+
+        virtualinvoke $r15.<ORG.as220.tinySQL.tsColumn: void setType(int)>(1);
+
+        virtualinvoke $r15.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(250);
+
+        virtualinvoke $r12.<java.util.Vector: void addElement(java.lang.Object)>($r15);
+
+        $r16 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r16.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("COLUMN_NAME");
+
+        virtualinvoke $r16.<ORG.as220.tinySQL.tsColumn: void setType(int)>(1);
+
+        virtualinvoke $r16.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(11);
+
+        virtualinvoke $r12.<java.util.Vector: void addElement(java.lang.Object)>($r16);
+
+        $r17 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r17.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("DATA_TYPE");
+
+        virtualinvoke $r17.<ORG.as220.tinySQL.tsColumn: void setType(int)>(2);
+
+        virtualinvoke $r17.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(6);
+
+        virtualinvoke $r12.<java.util.Vector: void addElement(java.lang.Object)>($r17);
+
+        $r18 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r18.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("TYPE_NAME");
+
+        virtualinvoke $r18.<ORG.as220.tinySQL.tsColumn: void setType(int)>(1);
+
+        virtualinvoke $r18.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(9);
+
+        virtualinvoke $r12.<java.util.Vector: void addElement(java.lang.Object)>($r18);
+
+        $r19 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r19.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("COLUMN_SIZE");
+
+        virtualinvoke $r19.<ORG.as220.tinySQL.tsColumn: void setType(int)>(2);
+
+        virtualinvoke $r19.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(8);
+
+        virtualinvoke $r12.<java.util.Vector: void addElement(java.lang.Object)>($r19);
+
+        $r20 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r20.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("DECIMAL_DIGITS");
+
+        virtualinvoke $r20.<ORG.as220.tinySQL.tsColumn: void setType(int)>(2);
+
+        virtualinvoke $r20.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(8);
+
+        virtualinvoke $r12.<java.util.Vector: void addElement(java.lang.Object)>($r20);
+
+        $r21 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r21.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("NULLABLE");
+
+        virtualinvoke $r21.<ORG.as220.tinySQL.tsColumn: void setType(int)>(2);
+
+        virtualinvoke $r21.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(8);
+
+        virtualinvoke $r12.<java.util.Vector: void addElement(java.lang.Object)>($r21);
+
+        $r22 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r22.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("REMARKS");
+
+        virtualinvoke $r22.<ORG.as220.tinySQL.tsColumn: void setType(int)>(1);
+
+        virtualinvoke $r22.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(128);
+
+        virtualinvoke $r22.<ORG.as220.tinySQL.tsColumn: void setDefaultValue(java.lang.Object)>("");
+
+        virtualinvoke $r12.<java.util.Vector: void addElement(java.lang.Object)>($r22);
+
+        $r23 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r23.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("COLUMN_DEF");
+
+        virtualinvoke $r23.<ORG.as220.tinySQL.tsColumn: void setType(int)>(2);
+
+        virtualinvoke $r23.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(128);
+
+        virtualinvoke $r12.<java.util.Vector: void addElement(java.lang.Object)>($r23);
+
+        $r24 = new ORG.as220.tinySQL.tsColumn;
+
+        specialinvoke $r24.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String)>("IS_NULLABLE");
+
+        virtualinvoke $r24.<ORG.as220.tinySQL.tsColumn: void setType(int)>(1);
+
+        virtualinvoke $r24.<ORG.as220.tinySQL.tsColumn: void setSize(int)>(3);
+
+        virtualinvoke $r12.<java.util.Vector: void addElement(java.lang.Object)>($r24);
+
+        $r25 = new ORG.as220.tinySQL.tsResultSet;
+
+        $r26 = new ORG.as220.tinySQL.tsPhysicalRow;
+
+        specialinvoke $r26.<ORG.as220.tinySQL.tsPhysicalRow: void <init>(java.util.Vector)>($r12);
+
+        specialinvoke $r25.<ORG.as220.tinySQL.tsResultSet: void <init>(ORG.as220.tinySQL.tsPhysicalRow)>($r26);
+
+        $r27 = virtualinvoke r0.<ORG.as220.tinySQL.tinySqlDatabaseMetaData: java.sql.Connection getConnection()>();
+
+        $r28 = (ORG.as220.tinySQL.tinySQLConnection) $r27;
+
+        r7 = virtualinvoke $r28.<ORG.as220.tinySQL.tinySQLConnection: ORG.as220.tinySQL.tinySQL getDatabaseEngine()>();
+
+        goto label12;
+
+     label02:
+        r8 = interfaceinvoke r43.<java.sql.ResultSet: java.lang.String getString(java.lang.String)>("TABLE_NAME");
+
+     label03:
+        if r8 == null goto label12;
+
+        r9 = virtualinvoke r7.<ORG.as220.tinySQL.tinySQL: ORG.as220.tinySQL.tinySQLTableView getTable(java.lang.String)>(r8);
+
+     label04:
+        goto label06;
+
+     label05:
+        $r42 := @caughtexception;
+
+        virtualinvoke $r42.<java.lang.Exception: void printStackTrace()>();
+
+        goto label12;
+
+     label06:
+        i15 = 0;
+
+        goto label11;
+
+     label07:
+        r10 = virtualinvoke r9.<ORG.as220.tinySQL.tinySQLTableView: ORG.as220.tinySQL.tsColumn getColumnDefinition(int)>(i15);
+
+        r11 = virtualinvoke $r25.<ORG.as220.tinySQL.tsResultSet: ORG.as220.tinySQL.tsPhysicalRow createPhysicalRow()>();
+
+        $i0 = virtualinvoke r11.<ORG.as220.tinySQL.tsPhysicalRow: int findColumn(java.lang.String)>("TABLE_CAT");
+
+        virtualinvoke r11.<ORG.as220.tinySQL.tsPhysicalRow: void put(int,java.lang.Object)>($i0, "");
+
+        $i1 = virtualinvoke r11.<ORG.as220.tinySQL.tsPhysicalRow: int findColumn(java.lang.String)>("TABLE_SCHEM");
+
+        virtualinvoke r11.<ORG.as220.tinySQL.tsPhysicalRow: void put(int,java.lang.Object)>($i1, "");
+
+        $i2 = virtualinvoke r11.<ORG.as220.tinySQL.tsPhysicalRow: int findColumn(java.lang.String)>("TABLE_NAME");
+
+        virtualinvoke r11.<ORG.as220.tinySQL.tsPhysicalRow: void put(int,java.lang.Object)>($i2, r8);
+
+        $i3 = virtualinvoke r11.<ORG.as220.tinySQL.tsPhysicalRow: int findColumn(java.lang.String)>("COLUMN_NAME");
+
+        $r29 = virtualinvoke r10.<ORG.as220.tinySQL.tsColumn: java.lang.String getPhysicalName()>();
+
+        virtualinvoke r11.<ORG.as220.tinySQL.tsPhysicalRow: void put(int,java.lang.Object)>($i3, $r29);
+
+        $i4 = virtualinvoke r11.<ORG.as220.tinySQL.tsPhysicalRow: int findColumn(java.lang.String)>("DATA_TYPE");
+
+        $r30 = new java.lang.Integer;
+
+        $i5 = virtualinvoke r10.<ORG.as220.tinySQL.tsColumn: int getType()>();
+
+        specialinvoke $r30.<java.lang.Integer: void <init>(int)>($i5);
+
+        $r31 = virtualinvoke $r30.<java.lang.Integer: java.lang.String toString()>();
+
+        virtualinvoke r11.<ORG.as220.tinySQL.tsPhysicalRow: void put(int,java.lang.Object)>($i4, $r31);
+
+        $i6 = virtualinvoke r11.<ORG.as220.tinySQL.tsPhysicalRow: int findColumn(java.lang.String)>("TYPE_NAME");
+
+        $i7 = virtualinvoke r10.<ORG.as220.tinySQL.tsColumn: int getType()>();
+
+        $r32 = staticinvoke <ORG.as220.tinySQL.DBFHeader: java.lang.String typeToLiteral(int)>($i7);
+
+        $r33 = virtualinvoke $r32.<java.lang.String: java.lang.String toString()>();
+
+        virtualinvoke r11.<ORG.as220.tinySQL.tsPhysicalRow: void put(int,java.lang.Object)>($i6, $r33);
+
+        $i8 = virtualinvoke r11.<ORG.as220.tinySQL.tsPhysicalRow: int findColumn(java.lang.String)>("COLUMN_SIZE");
+
+        $r34 = new java.lang.Integer;
+
+        $i9 = virtualinvoke r10.<ORG.as220.tinySQL.tsColumn: int getSize()>();
+
+        specialinvoke $r34.<java.lang.Integer: void <init>(int)>($i9);
+
+        $r35 = virtualinvoke $r34.<java.lang.Integer: java.lang.String toString()>();
+
+        virtualinvoke r11.<ORG.as220.tinySQL.tsPhysicalRow: void put(int,java.lang.Object)>($i8, $r35);
+
+        $i10 = virtualinvoke r11.<ORG.as220.tinySQL.tsPhysicalRow: int findColumn(java.lang.String)>("DECIMAL_DIGITS");
+
+        $r36 = new java.lang.Integer;
+
+        $i11 = virtualinvoke r10.<ORG.as220.tinySQL.tsColumn: int getDecimalPlaces()>();
+
+        specialinvoke $r36.<java.lang.Integer: void <init>(int)>($i11);
+
+        $r37 = virtualinvoke $r36.<java.lang.Integer: java.lang.String toString()>();
+
+        virtualinvoke r11.<ORG.as220.tinySQL.tsPhysicalRow: void put(int,java.lang.Object)>($i10, $r37);
+
+        b16 = 0;
+
+        $z0 = virtualinvoke r10.<ORG.as220.tinySQL.tsColumn: boolean isNullable()>();
+
+        if $z0 == 0 goto label08;
+
+        b16 = 1;
+
+     label08:
+        $i12 = virtualinvoke r11.<ORG.as220.tinySQL.tsPhysicalRow: int findColumn(java.lang.String)>("NULLABLE");
+
+        $r38 = new java.lang.Integer;
+
+        specialinvoke $r38.<java.lang.Integer: void <init>(int)>(b16);
+
+        $r39 = virtualinvoke $r38.<java.lang.Integer: java.lang.String toString()>();
+
+        virtualinvoke r11.<ORG.as220.tinySQL.tsPhysicalRow: void put(int,java.lang.Object)>($i12, $r39);
+
+        r57 = virtualinvoke r10.<ORG.as220.tinySQL.tsColumn: java.lang.Object getDefaultValue()>();
+
+        if r57 != null goto label09;
+
+        r57 = "";
+
+     label09:
+        $i13 = virtualinvoke r11.<ORG.as220.tinySQL.tsPhysicalRow: int findColumn(java.lang.String)>("COLUMN_DEF");
+
+        virtualinvoke r11.<ORG.as220.tinySQL.tsPhysicalRow: void put(int,java.lang.Object)>($i13, r57);
+
+        r58 = "NO";
+
+        $z1 = virtualinvoke r10.<ORG.as220.tinySQL.tsColumn: boolean isNullable()>();
+
+        if $z1 == 0 goto label10;
+
+        r58 = "YES";
+
+     label10:
+        $i14 = virtualinvoke r11.<ORG.as220.tinySQL.tsPhysicalRow: int findColumn(java.lang.String)>("IS_NULLABLE");
+
+        virtualinvoke r11.<ORG.as220.tinySQL.tsPhysicalRow: void put(int,java.lang.Object)>($i14, r58);
+
+        virtualinvoke $r25.<ORG.as220.tinySQL.tsResultSet: boolean addPhysicalRow(ORG.as220.tinySQL.tsPhysicalRow)>(r11);
+
+        i15 = i15 + 1;
+
+     label11:
+        $i17 = virtualinvoke r9.<ORG.as220.tinySQL.tinySQLTableView: int getColumnCount()>();
+
+        if i15 < $i17 goto label07;
+
+        virtualinvoke r9.<ORG.as220.tinySQL.tinySQLTableView: void close()>();
+
+     label12:
+        $z3 = interfaceinvoke r43.<java.sql.ResultSet: boolean next()>();
+
+        if $z3 != 0 goto label02;
+
+        $r40 = new ORG.as220.tinySQL.tinySQLResultSet;
+
+        specialinvoke $r40.<ORG.as220.tinySQL.tinySQLResultSet: void <init>(ORG.as220.tinySQL.tsResultSet,ORG.as220.tinySQL.tinySQLStatement)>($r25, null);
+
+     label13:
+        return $r40;
+
+     label14:
+        $r41 := @caughtexception;
+
+        virtualinvoke $r41.<java.lang.Exception: void printStackTrace()>();
+
+        return null;
+
+        catch java.lang.Exception from label03 to label04 with label05;
+        catch java.lang.Exception from label01 to label13 with label14;
+    }
+
+    public java.sql.ResultSet getColumnPrivileges(java.lang.String, java.lang.String, java.lang.String, java.lang.String) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        java.lang.String r1, r2, r3, r4;
+        java.sql.SQLException $r5;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        r4 := @parameter3: java.lang.String;
+
+        $r5 = new java.sql.SQLException;
+
+        specialinvoke $r5.<java.sql.SQLException: void <init>(java.lang.String)>("tinySQL does not support column privileges.");
+
+        throw $r5;
+    }
+
+    public java.sql.ResultSet getTablePrivileges(java.lang.String, java.lang.String, java.lang.String) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        java.lang.String r1, r2, r3;
+        java.sql.SQLException $r4;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        $r4 = new java.sql.SQLException;
+
+        specialinvoke $r4.<java.sql.SQLException: void <init>(java.lang.String)>("tinySQL does not support table privileges.");
+
+        throw $r4;
+    }
+
+    public java.sql.ResultSet getBestRowIdentifier(java.lang.String, java.lang.String, java.lang.String, int, boolean) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        java.lang.String r1, r2, r3;
+        int i0;
+        boolean z0;
+        java.sql.SQLException $r4;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        i0 := @parameter3: int;
+
+        z0 := @parameter4: boolean;
+
+        $r4 = new java.sql.SQLException;
+
+        specialinvoke $r4.<java.sql.SQLException: void <init>(java.lang.String)>("tinySQL does not support best row identifiers.");
+
+        throw $r4;
+    }
+
+    public java.sql.ResultSet getVersionColumns(java.lang.String, java.lang.String, java.lang.String) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        java.lang.String r1, r2, r3;
+        java.sql.SQLException $r4;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        $r4 = new java.sql.SQLException;
+
+        specialinvoke $r4.<java.sql.SQLException: void <init>(java.lang.String)>("tinySQL does not support version columns.");
+
+        throw $r4;
+    }
+
+    public java.sql.ResultSet getPrimaryKeys(java.lang.String, java.lang.String, java.lang.String) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        java.lang.String r1, r2, r3;
+        java.sql.SQLException $r4;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        $r4 = new java.sql.SQLException;
+
+        specialinvoke $r4.<java.sql.SQLException: void <init>(java.lang.String)>("tinySQL does not support primary keys.");
+
+        throw $r4;
+    }
+
+    public java.sql.ResultSet getImportedKeys(java.lang.String, java.lang.String, java.lang.String) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        java.lang.String r1, r2, r3;
+        java.sql.SQLException $r4;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        $r4 = new java.sql.SQLException;
+
+        specialinvoke $r4.<java.sql.SQLException: void <init>(java.lang.String)>("tinySQL does not support imported keys.");
+
+        throw $r4;
+    }
+
+    public java.sql.ResultSet getExportedKeys(java.lang.String, java.lang.String, java.lang.String) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        java.lang.String r1, r2, r3;
+        java.sql.SQLException $r4;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        $r4 = new java.sql.SQLException;
+
+        specialinvoke $r4.<java.sql.SQLException: void <init>(java.lang.String)>("tinySQL does not support exported keys.");
+
+        throw $r4;
+    }
+
+    public java.sql.ResultSet getCrossReference(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        java.lang.String r1, r2, r3, r4, r5, r6;
+        java.sql.SQLException $r7;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        r4 := @parameter3: java.lang.String;
+
+        r5 := @parameter4: java.lang.String;
+
+        r6 := @parameter5: java.lang.String;
+
+        $r7 = new java.sql.SQLException;
+
+        specialinvoke $r7.<java.sql.SQLException: void <init>(java.lang.String)>("tinySQL does not support cross reference.");
+
+        throw $r7;
+    }
+
+    public java.sql.ResultSet getTypeInfo() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        java.sql.SQLException $r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        $r1 = new java.sql.SQLException;
+
+        specialinvoke $r1.<java.sql.SQLException: void <init>(java.lang.String)>("tinySQL getTypeInfo not yet implemented.");
+
+        throw $r1;
+    }
+
+    public java.sql.ResultSet getIndexInfo(java.lang.String, java.lang.String, java.lang.String, boolean, boolean) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        java.lang.String r1, r2, r3;
+        boolean z0, z1;
+        java.sql.SQLException $r4;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        z0 := @parameter3: boolean;
+
+        z1 := @parameter4: boolean;
+
+        $r4 = new java.sql.SQLException;
+
+        specialinvoke $r4.<java.sql.SQLException: void <init>(java.lang.String)>("tinySQL does not support index infos.");
+
+        throw $r4;
+    }
+
+    public boolean supportsResultSetType(int)
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        i0 := @parameter0: int;
+
+        if i0 != 1003 goto label1;
+
+        return 1;
+
+     label1:
+        if i0 != 1005 goto label2;
+
+        return 1;
+
+     label2:
+        return 0;
+    }
+
+    public boolean supportsResultSetConcurrency(int, int)
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        int i0, i1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        return 0;
+    }
+
+    public boolean ownUpdatesAreVisible(int)
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        i0 := @parameter0: int;
+
+        return 0;
+    }
+
+    public boolean ownDeletesAreVisible(int)
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        i0 := @parameter0: int;
+
+        return 0;
+    }
+
+    public boolean ownInsertsAreVisible(int)
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        i0 := @parameter0: int;
+
+        return 0;
+    }
+
+    public boolean othersUpdatesAreVisible(int)
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        i0 := @parameter0: int;
+
+        return 0;
+    }
+
+    public boolean othersDeletesAreVisible(int)
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        i0 := @parameter0: int;
+
+        return 0;
+    }
+
+    public boolean othersInsertsAreVisible(int)
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        i0 := @parameter0: int;
+
+        return 0;
+    }
+
+    public boolean updatesAreDetected(int)
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        i0 := @parameter0: int;
+
+        return 0;
+    }
+
+    public boolean deletesAreDetected(int)
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        i0 := @parameter0: int;
+
+        return 0;
+    }
+
+    public boolean insertsAreDetected(int)
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        i0 := @parameter0: int;
+
+        return 0;
+    }
+
+    public boolean supportsBatchUpdates()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        return 0;
+    }
+
+    public java.sql.ResultSet getUDTs(java.lang.String, java.lang.String, java.lang.String, int[]) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        java.lang.String r1, r2, r3;
+        int[] r4;
+        java.sql.SQLException $r5;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        r4 := @parameter3: int[];
+
+        $r5 = new java.sql.SQLException;
+
+        specialinvoke $r5.<java.sql.SQLException: void <init>(java.lang.String)>("tinySQL does not support getUDTs.");
+
+        throw $r5;
+    }
+
+    public java.sql.Connection getConnection()
+    {
+        ORG.as220.tinySQL.tinySqlDatabaseMetaData r0;
+        ORG.as220.tinySQL.tinySQLConnection $r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySqlDatabaseMetaData;
+
+        $r1 = r0.<ORG.as220.tinySQL.tinySqlDatabaseMetaData: ORG.as220.tinySQL.tinySQLConnection connection>;
+
+        return $r1;
+    }
+}

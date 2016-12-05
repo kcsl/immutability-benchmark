@@ -1,0 +1,652 @@
+public class ORG.as220.tinySQL.tsResultSet extends java.lang.Object
+{
+    public static final int ROWS_NOT_KNOWN;
+    private java.util.Vector rows;
+    private int fetchsize;
+    private int windowStart;
+    private int level;
+    private int rowsMax;
+    private ORG.as220.tinySQL.tinySQL dbengine;
+    private int type;
+    private boolean eof;
+    private boolean hasReadResults;
+    private ORG.as220.tinySQL.tsPhysicalRow rowPrototype;
+    private ORG.as220.tinySQL.tsResultRow resultRowPrototype;
+    private ORG.as220.tinySQL.sqlparser.WhereClause whereC;
+    private java.util.Hashtable tableColumns;
+    private java.util.Vector tables;
+    private ORG.as220.tinySQL.tsResultRow resultRow;
+
+    public void <init>(ORG.as220.tinySQL.tsPhysicalRow, java.util.Vector, java.util.Hashtable, ORG.as220.tinySQL.sqlparser.WhereClause, ORG.as220.tinySQL.tinySQL)
+    {
+        ORG.as220.tinySQL.tsResultSet r0;
+        ORG.as220.tinySQL.tsPhysicalRow r1;
+        java.util.Vector r2, $r7, $r8, $r9;
+        java.util.Hashtable r3;
+        ORG.as220.tinySQL.sqlparser.WhereClause r4;
+        ORG.as220.tinySQL.tinySQL r5;
+        java.util.Enumeration r6;
+        boolean $z0;
+        java.lang.Object $r10;
+        ORG.as220.tinySQL.tsResultRow $r11;
+
+        r0 := @this: ORG.as220.tinySQL.tsResultSet;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsPhysicalRow;
+
+        r2 := @parameter1: java.util.Vector;
+
+        r3 := @parameter2: java.util.Hashtable;
+
+        r4 := @parameter3: ORG.as220.tinySQL.sqlparser.WhereClause;
+
+        r5 := @parameter4: ORG.as220.tinySQL.tinySQL;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<ORG.as220.tinySQL.tsResultSet: ORG.as220.tinySQL.tsPhysicalRow rowPrototype> = r1;
+
+        r0.<ORG.as220.tinySQL.tsResultSet: java.util.Hashtable tableColumns> = r3;
+
+        $r7 = new java.util.Vector;
+
+        specialinvoke $r7.<java.util.Vector: void <init>()>();
+
+        r0.<ORG.as220.tinySQL.tsResultSet: java.util.Vector rows> = $r7;
+
+        r0.<ORG.as220.tinySQL.tsResultSet: ORG.as220.tinySQL.tinySQL dbengine> = r5;
+
+        r0.<ORG.as220.tinySQL.tsResultSet: ORG.as220.tinySQL.sqlparser.WhereClause whereC> = r4;
+
+        $r8 = new java.util.Vector;
+
+        specialinvoke $r8.<java.util.Vector: void <init>()>();
+
+        r0.<ORG.as220.tinySQL.tsResultSet: java.util.Vector tables> = $r8;
+
+        r6 = virtualinvoke r3.<java.util.Hashtable: java.util.Enumeration keys()>();
+
+        goto label2;
+
+     label1:
+        $r9 = r0.<ORG.as220.tinySQL.tsResultSet: java.util.Vector tables>;
+
+        $r10 = interfaceinvoke r6.<java.util.Enumeration: java.lang.Object nextElement()>();
+
+        virtualinvoke $r9.<java.util.Vector: boolean add(java.lang.Object)>($r10);
+
+     label2:
+        $z0 = interfaceinvoke r6.<java.util.Enumeration: boolean hasMoreElements()>();
+
+        if $z0 != 0 goto label1;
+
+        r0.<ORG.as220.tinySQL.tsResultSet: int type> = 1003;
+
+        r0.<ORG.as220.tinySQL.tsResultSet: boolean hasReadResults> = 0;
+
+        r0.<ORG.as220.tinySQL.tsResultSet: int level> = 0;
+
+        r0.<ORG.as220.tinySQL.tsResultSet: int rowsMax> = -1;
+
+        $r11 = new ORG.as220.tinySQL.tsResultRow;
+
+        specialinvoke $r11.<ORG.as220.tinySQL.tsResultRow: void <init>(java.util.Vector,ORG.as220.tinySQL.tsRow)>(r2, r1);
+
+        r0.<ORG.as220.tinySQL.tsResultSet: ORG.as220.tinySQL.tsResultRow resultRowPrototype> = $r11;
+
+        return;
+    }
+
+    public void <init>(ORG.as220.tinySQL.tsPhysicalRow)
+    {
+        ORG.as220.tinySQL.tsResultSet r0;
+        ORG.as220.tinySQL.tsPhysicalRow r1;
+        java.util.Vector $r2;
+        ORG.as220.tinySQL.tsResultRow $r3;
+
+        r0 := @this: ORG.as220.tinySQL.tsResultSet;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsPhysicalRow;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<ORG.as220.tinySQL.tsResultSet: int level> = -1;
+
+        r0.<ORG.as220.tinySQL.tsResultSet: ORG.as220.tinySQL.tsPhysicalRow rowPrototype> = r1;
+
+        r0.<ORG.as220.tinySQL.tsResultSet: int type> = 1004;
+
+        $r2 = new java.util.Vector;
+
+        specialinvoke $r2.<java.util.Vector: void <init>()>();
+
+        r0.<ORG.as220.tinySQL.tsResultSet: java.util.Vector rows> = $r2;
+
+        $r3 = new ORG.as220.tinySQL.tsResultRow;
+
+        specialinvoke $r3.<ORG.as220.tinySQL.tsResultRow: void <init>(ORG.as220.tinySQL.tsRow)>(r1);
+
+        r0.<ORG.as220.tinySQL.tsResultSet: ORG.as220.tinySQL.tsResultRow resultRowPrototype> = $r3;
+
+        r0.<ORG.as220.tinySQL.tsResultSet: int rowsMax> = -1;
+
+        return;
+    }
+
+    public void setType(int)
+    {
+        ORG.as220.tinySQL.tsResultSet r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tsResultSet;
+
+        i0 := @parameter0: int;
+
+        if i0 == 1003 goto label1;
+
+        if i0 == 1005 goto label1;
+
+        if i0 != 1004 goto label2;
+
+     label1:
+        r0.<ORG.as220.tinySQL.tsResultSet: int type> = i0;
+
+     label2:
+        return;
+    }
+
+    public int getType()
+    {
+        ORG.as220.tinySQL.tsResultSet r0;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.tsResultSet;
+
+        $i0 = r0.<ORG.as220.tinySQL.tsResultSet: int type>;
+
+        return $i0;
+    }
+
+    public void setFetchSize(int)
+    {
+        ORG.as220.tinySQL.tsResultSet r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tsResultSet;
+
+        i0 := @parameter0: int;
+
+        r0.<ORG.as220.tinySQL.tsResultSet: int fetchsize> = i0;
+
+        return;
+    }
+
+    public int getFetchSize()
+    {
+        ORG.as220.tinySQL.tsResultSet r0;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.tsResultSet;
+
+        $i0 = r0.<ORG.as220.tinySQL.tsResultSet: int fetchsize>;
+
+        return $i0;
+    }
+
+    private boolean getMoreResults(int, int) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.tsResultSet r0;
+        int i0, i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9;
+        ORG.as220.tinySQL.tinySQL $r2, $r7;
+        java.util.Vector $r3, $r11;
+        java.lang.StringBuilder $r4, $r5, $r8, $r9;
+        java.lang.String $r6, $r10;
+        boolean $z0, $z1;
+        ORG.as220.tinySQL.tinySQLException $r12, $r13;
+
+        r0 := @this: ORG.as220.tinySQL.tsResultSet;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        r0.<ORG.as220.tinySQL.tsResultSet: int fetchsize> = i1;
+
+        $r2 = r0.<ORG.as220.tinySQL.tsResultSet: ORG.as220.tinySQL.tinySQL dbengine>;
+
+        if $r2 == null goto label7;
+
+     label1:
+        $i6 = r0.<ORG.as220.tinySQL.tsResultSet: int type>;
+
+        if $i6 == 1004 goto label2;
+
+        $r11 = r0.<ORG.as220.tinySQL.tsResultSet: java.util.Vector rows>;
+
+        virtualinvoke $r11.<java.util.Vector: void clear()>();
+
+        r0.<ORG.as220.tinySQL.tsResultSet: int windowStart> = i0;
+
+     label2:
+        $r7 = r0.<ORG.as220.tinySQL.tsResultSet: ORG.as220.tinySQL.tinySQL dbengine>;
+
+        $i7 = virtualinvoke $r7.<ORG.as220.tinySQL.tinySQL: int continueQuery(ORG.as220.tinySQL.tsResultSet)>(r0);
+
+        r0.<ORG.as220.tinySQL.tsResultSet: int level> = $i7;
+
+        $i8 = r0.<ORG.as220.tinySQL.tsResultSet: int level>;
+
+        if $i8 <= 0 goto label4;
+
+        r0.<ORG.as220.tinySQL.tsResultSet: boolean eof> = 0;
+
+        $z1 = r0.<ORG.as220.tinySQL.tsResultSet: boolean eof>;
+
+     label3:
+        return $z1;
+
+     label4:
+        $r8 = new java.lang.StringBuilder;
+
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>(java.lang.String)>("SELECT returned on level: ");
+
+        $i9 = r0.<ORG.as220.tinySQL.tsResultSet: int level>;
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i9);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <ORG.as220.tinySQL.util.Log: void debug(java.lang.String)>($r10);
+
+     label5:
+        goto label7;
+
+     label6:
+        $r12 := @caughtexception;
+
+        $r13 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r13.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String,java.lang.Exception)>("getMoreResults failed", $r12);
+
+        throw $r13;
+
+     label7:
+        r0.<ORG.as220.tinySQL.tsResultSet: boolean eof> = 1;
+
+        $i2 = r0.<ORG.as220.tinySQL.tsResultSet: int windowStart>;
+
+        $r3 = r0.<ORG.as220.tinySQL.tsResultSet: java.util.Vector rows>;
+
+        $i3 = virtualinvoke $r3.<java.util.Vector: int size()>();
+
+        $i4 = $i2 + $i3;
+
+        r0.<ORG.as220.tinySQL.tsResultSet: int rowsMax> = $i4;
+
+        $r4 = new java.lang.StringBuilder;
+
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>("ResultSet: Max Rows reached: ");
+
+        $i5 = r0.<ORG.as220.tinySQL.tsResultSet: int rowsMax>;
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i5);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <ORG.as220.tinySQL.util.Log: void debug(java.lang.String)>($r6);
+
+        $z0 = r0.<ORG.as220.tinySQL.tsResultSet: boolean eof>;
+
+        return $z0;
+
+        catch ORG.as220.tinySQL.tinySQLException from label1 to label3 with label6;
+        catch ORG.as220.tinySQL.tinySQLException from label4 to label5 with label6;
+    }
+
+    public boolean isEOF()
+    {
+        ORG.as220.tinySQL.tsResultSet r0;
+        boolean $z0;
+
+        r0 := @this: ORG.as220.tinySQL.tsResultSet;
+
+        $z0 = r0.<ORG.as220.tinySQL.tsResultSet: boolean eof>;
+
+        return $z0;
+    }
+
+    public ORG.as220.tinySQL.tsPhysicalRow createPhysicalRow()
+    {
+        ORG.as220.tinySQL.tsResultSet r0;
+        ORG.as220.tinySQL.tsPhysicalRow $r1, $r2;
+
+        r0 := @this: ORG.as220.tinySQL.tsResultSet;
+
+        $r1 = new ORG.as220.tinySQL.tsPhysicalRow;
+
+        $r2 = r0.<ORG.as220.tinySQL.tsResultSet: ORG.as220.tinySQL.tsPhysicalRow rowPrototype>;
+
+        specialinvoke $r1.<ORG.as220.tinySQL.tsPhysicalRow: void <init>(ORG.as220.tinySQL.tsPhysicalRow)>($r2);
+
+        return $r1;
+    }
+
+    public boolean addPhysicalRow(ORG.as220.tinySQL.tsPhysicalRow)
+    {
+        ORG.as220.tinySQL.tsResultSet r0;
+        ORG.as220.tinySQL.tsPhysicalRow r1;
+        ORG.as220.tinySQL.tsResultRow $r3, $r4;
+        java.util.Vector $r5, $r6, $r7;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8;
+
+        r0 := @this: ORG.as220.tinySQL.tsResultSet;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsPhysicalRow;
+
+        r0.<ORG.as220.tinySQL.tsResultSet: boolean hasReadResults> = 1;
+
+        $r3 = new ORG.as220.tinySQL.tsResultRow;
+
+        $r4 = r0.<ORG.as220.tinySQL.tsResultSet: ORG.as220.tinySQL.tsResultRow resultRowPrototype>;
+
+        specialinvoke $r3.<ORG.as220.tinySQL.tsResultRow: void <init>(ORG.as220.tinySQL.tsResultRow)>($r4);
+
+        virtualinvoke $r3.<ORG.as220.tinySQL.tsResultRow: void setParent(ORG.as220.tinySQL.tsRow)>(r1);
+
+        $r5 = r0.<ORG.as220.tinySQL.tsResultSet: java.util.Vector rows>;
+
+        virtualinvoke $r5.<java.util.Vector: boolean add(java.lang.Object)>($r3);
+
+        $i0 = r0.<ORG.as220.tinySQL.tsResultSet: int type>;
+
+        if $i0 != 1004 goto label1;
+
+        $i4 = r0.<ORG.as220.tinySQL.tsResultSet: int fetchsize>;
+
+        if $i4 <= 0 goto label2;
+
+        $r7 = r0.<ORG.as220.tinySQL.tsResultSet: java.util.Vector rows>;
+
+        $i5 = virtualinvoke $r7.<java.util.Vector: int size()>();
+
+        $i7 = r0.<ORG.as220.tinySQL.tsResultSet: int fetchsize>;
+
+        $i6 = r0.<ORG.as220.tinySQL.tsResultSet: int windowStart>;
+
+        $i8 = $i7 + $i6;
+
+        if $i5 < $i8 goto label2;
+
+        return 0;
+
+     label1:
+        $i1 = r0.<ORG.as220.tinySQL.tsResultSet: int fetchsize>;
+
+        if $i1 <= 0 goto label2;
+
+        $r6 = r0.<ORG.as220.tinySQL.tsResultSet: java.util.Vector rows>;
+
+        $i2 = virtualinvoke $r6.<java.util.Vector: int size()>();
+
+        $i3 = r0.<ORG.as220.tinySQL.tsResultSet: int fetchsize>;
+
+        if $i2 < $i3 goto label2;
+
+        return 0;
+
+     label2:
+        return 1;
+    }
+
+    public int getLevel()
+    {
+        ORG.as220.tinySQL.tsResultSet r0;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.tsResultSet;
+
+        $i0 = r0.<ORG.as220.tinySQL.tsResultSet: int level>;
+
+        return $i0;
+    }
+
+    public ORG.as220.tinySQL.sqlparser.WhereClause getWhereClause()
+    {
+        ORG.as220.tinySQL.tsResultSet r0;
+        ORG.as220.tinySQL.sqlparser.WhereClause $r1;
+
+        r0 := @this: ORG.as220.tinySQL.tsResultSet;
+
+        $r1 = r0.<ORG.as220.tinySQL.tsResultSet: ORG.as220.tinySQL.sqlparser.WhereClause whereC>;
+
+        return $r1;
+    }
+
+    public int getColumnCount()
+    {
+        ORG.as220.tinySQL.tsResultSet r0;
+        ORG.as220.tinySQL.tsResultRow $r1;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.tsResultSet;
+
+        $r1 = r0.<ORG.as220.tinySQL.tsResultSet: ORG.as220.tinySQL.tsResultRow resultRowPrototype>;
+
+        $i0 = virtualinvoke $r1.<ORG.as220.tinySQL.tsResultRow: int size()>();
+
+        return $i0;
+    }
+
+    public int findColumn(java.lang.String) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.tsResultSet r0;
+        java.lang.String r1;
+        ORG.as220.tinySQL.tsResultRow $r2;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.tsResultSet;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r2 = r0.<ORG.as220.tinySQL.tsResultSet: ORG.as220.tinySQL.tsResultRow resultRowPrototype>;
+
+        $i0 = virtualinvoke $r2.<ORG.as220.tinySQL.tsResultRow: int findColumn(java.lang.String)>(r1);
+
+        return $i0;
+    }
+
+    public java.util.Vector getTables()
+    {
+        ORG.as220.tinySQL.tsResultSet r0;
+        java.util.Vector $r1;
+
+        r0 := @this: ORG.as220.tinySQL.tsResultSet;
+
+        $r1 = r0.<ORG.as220.tinySQL.tsResultSet: java.util.Vector tables>;
+
+        return $r1;
+    }
+
+    public java.util.Hashtable getColumns()
+    {
+        ORG.as220.tinySQL.tsResultSet r0;
+        java.util.Hashtable $r1;
+
+        r0 := @this: ORG.as220.tinySQL.tsResultSet;
+
+        $r1 = r0.<ORG.as220.tinySQL.tsResultSet: java.util.Hashtable tableColumns>;
+
+        return $r1;
+    }
+
+    public int getCacheSize()
+    {
+        ORG.as220.tinySQL.tsResultSet r0;
+        java.util.Vector $r1;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.tsResultSet;
+
+        $r1 = r0.<ORG.as220.tinySQL.tsResultSet: java.util.Vector rows>;
+
+        $i0 = virtualinvoke $r1.<java.util.Vector: int size()>();
+
+        return $i0;
+    }
+
+    public ORG.as220.tinySQL.tsResultRow getResultRowAt(int) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.tsResultSet r0;
+        int i0, i1, $i2, $i3, $i4, $i5, $i6, $i7;
+        java.util.Vector $r1, $r2, $r3;
+        java.lang.Object $r4;
+        ORG.as220.tinySQL.tsResultRow $r5;
+
+        r0 := @this: ORG.as220.tinySQL.tsResultSet;
+
+        i0 := @parameter0: int;
+
+        $i2 = r0.<ORG.as220.tinySQL.tsResultSet: int windowStart>;
+
+        $r1 = r0.<ORG.as220.tinySQL.tsResultSet: java.util.Vector rows>;
+
+        $i3 = virtualinvoke $r1.<java.util.Vector: int size()>();
+
+        $i4 = $i2 + $i3;
+
+        if i0 < $i4 goto label1;
+
+        $i7 = r0.<ORG.as220.tinySQL.tsResultSet: int fetchsize>;
+
+        specialinvoke r0.<ORG.as220.tinySQL.tsResultSet: boolean getMoreResults(int,int)>(i0, $i7);
+
+     label1:
+        $i5 = r0.<ORG.as220.tinySQL.tsResultSet: int windowStart>;
+
+        i1 = i0 - $i5;
+
+        $r2 = r0.<ORG.as220.tinySQL.tsResultSet: java.util.Vector rows>;
+
+        $i6 = virtualinvoke $r2.<java.util.Vector: int size()>();
+
+        if i1 >= $i6 goto label2;
+
+        $r3 = r0.<ORG.as220.tinySQL.tsResultSet: java.util.Vector rows>;
+
+        $r4 = virtualinvoke $r3.<java.util.Vector: java.lang.Object elementAt(int)>(i1);
+
+        $r5 = (ORG.as220.tinySQL.tsResultRow) $r4;
+
+        return $r5;
+
+     label2:
+        return null;
+    }
+
+    public ORG.as220.tinySQL.tsColumn getColumnDefinition(int) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.tsResultSet r0;
+        int i0;
+        ORG.as220.tinySQL.tsPhysicalRow $r1;
+        ORG.as220.tinySQL.tsColumn $r2;
+
+        r0 := @this: ORG.as220.tinySQL.tsResultSet;
+
+        i0 := @parameter0: int;
+
+        $r1 = r0.<ORG.as220.tinySQL.tsResultSet: ORG.as220.tinySQL.tsPhysicalRow rowPrototype>;
+
+        $r2 = virtualinvoke $r1.<ORG.as220.tinySQL.tsPhysicalRow: ORG.as220.tinySQL.tsColumn getColumnDefinition(int)>(i0);
+
+        return $r2;
+    }
+
+    public void close()
+    {
+        ORG.as220.tinySQL.tsResultSet r0;
+        java.util.Enumeration r1;
+        ORG.as220.tinySQL.tinySQLTableView r2;
+        java.util.Vector $r4, $r6, $r10;
+        java.lang.StringBuilder $r5, $r7, $r8;
+        int $i0;
+        java.lang.String $r9;
+        java.lang.Object $r11;
+        java.lang.Exception $r12;
+        boolean $z0;
+
+        r0 := @this: ORG.as220.tinySQL.tsResultSet;
+
+        $r4 = r0.<ORG.as220.tinySQL.tsResultSet: java.util.Vector tables>;
+
+        if $r4 != null goto label1;
+
+        return;
+
+     label1:
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>("ResultSet.close(): Closing ");
+
+        $r6 = r0.<ORG.as220.tinySQL.tsResultSet: java.util.Vector tables>;
+
+        $i0 = virtualinvoke $r6.<java.util.Vector: int size()>();
+
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" views");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <ORG.as220.tinySQL.util.Log: void debug(java.lang.String)>($r9);
+
+        $r10 = r0.<ORG.as220.tinySQL.tsResultSet: java.util.Vector tables>;
+
+        r1 = virtualinvoke $r10.<java.util.Vector: java.util.Enumeration elements()>();
+
+        goto label6;
+
+     label2:
+        $r11 = interfaceinvoke r1.<java.util.Enumeration: java.lang.Object nextElement()>();
+
+        r2 = (ORG.as220.tinySQL.tinySQLTableView) $r11;
+
+     label3:
+        virtualinvoke r2.<ORG.as220.tinySQL.tinySQLTableView: void close()>();
+
+     label4:
+        goto label6;
+
+     label5:
+        $r12 := @caughtexception;
+
+        virtualinvoke $r12.<java.lang.Exception: void printStackTrace()>();
+
+     label6:
+        $z0 = interfaceinvoke r1.<java.util.Enumeration: boolean hasMoreElements()>();
+
+        if $z0 != 0 goto label2;
+
+        return;
+
+        catch java.lang.Exception from label3 to label4 with label5;
+    }
+
+    public int getResultSize()
+    {
+        ORG.as220.tinySQL.tsResultSet r0;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.tsResultSet;
+
+        $i0 = r0.<ORG.as220.tinySQL.tsResultSet: int rowsMax>;
+
+        return $i0;
+    }
+
+    public static void <clinit>()
+    {
+        <ORG.as220.tinySQL.tsResultSet: int ROWS_NOT_KNOWN> = -1;
+
+        return;
+    }
+}

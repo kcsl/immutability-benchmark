@@ -1,0 +1,180 @@
+public class ORG.as220.tinySQL.sqlparser.ColumnValue extends java.lang.Object implements ORG.as220.tinySQL.sqlparser.LValue
+{
+    private java.lang.String colname;
+    private java.lang.String table;
+    private java.lang.String column;
+
+    public void <init>(java.lang.String)
+    {
+        ORG.as220.tinySQL.sqlparser.ColumnValue r0;
+        java.lang.String r1, $r2, $r3;
+        int i0, $i1, $i2;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.ColumnValue;
+
+        r1 := @parameter0: java.lang.String;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<ORG.as220.tinySQL.sqlparser.ColumnValue: java.lang.String colname> = r1;
+
+        i0 = virtualinvoke r1.<java.lang.String: int indexOf(int)>(46);
+
+        if i0 != -1 goto label1;
+
+        r0.<ORG.as220.tinySQL.sqlparser.ColumnValue: java.lang.String table> = null;
+
+        r0.<ORG.as220.tinySQL.sqlparser.ColumnValue: java.lang.String column> = r1;
+
+        goto label2;
+
+     label1:
+        $r2 = virtualinvoke r1.<java.lang.String: java.lang.String substring(int,int)>(0, i0);
+
+        r0.<ORG.as220.tinySQL.sqlparser.ColumnValue: java.lang.String table> = $r2;
+
+        $i1 = i0 + 1;
+
+        $i2 = virtualinvoke r1.<java.lang.String: int length()>();
+
+        $r3 = virtualinvoke r1.<java.lang.String: java.lang.String substring(int,int)>($i1, $i2);
+
+        r0.<ORG.as220.tinySQL.sqlparser.ColumnValue: java.lang.String column> = $r3;
+
+     label2:
+        return;
+    }
+
+    public java.lang.Object evaluate(ORG.as220.tinySQL.tsRow) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.sqlparser.ColumnValue r0;
+        ORG.as220.tinySQL.tsRow r1;
+        int i0;
+        java.lang.Object r2;
+        java.lang.String $r3, $r6, $r9;
+        ORG.as220.tinySQL.tinySQLException $r4, $r10;
+        java.lang.StringBuilder $r5, $r7, $r8;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.ColumnValue;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsRow;
+
+        if r1 != null goto label1;
+
+        $r10 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r10.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("there is no row to check");
+
+        throw $r10;
+
+     label1:
+        $r3 = r0.<ORG.as220.tinySQL.sqlparser.ColumnValue: java.lang.String colname>;
+
+        i0 = virtualinvoke r1.<ORG.as220.tinySQL.tsRow: int findColumn(java.lang.String)>($r3);
+
+        if i0 != -1 goto label2;
+
+        $r4 = new ORG.as220.tinySQL.tinySQLException;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>("column ");
+
+        $r6 = r0.<ORG.as220.tinySQL.sqlparser.ColumnValue: java.lang.String colname>;
+
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" was not found");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r4.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>($r9);
+
+        throw $r4;
+
+     label2:
+        r2 = virtualinvoke r1.<ORG.as220.tinySQL.tsRow: java.lang.Object get(int)>(i0);
+
+        return r2;
+    }
+
+    public java.lang.String getName()
+    {
+        ORG.as220.tinySQL.sqlparser.ColumnValue r0;
+        java.lang.String $r1;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.ColumnValue;
+
+        $r1 = r0.<ORG.as220.tinySQL.sqlparser.ColumnValue: java.lang.String colname>;
+
+        return $r1;
+    }
+
+    public java.util.Enumeration getChildren()
+    {
+        ORG.as220.tinySQL.sqlparser.ColumnValue r0;
+        java.util.Enumeration $r1;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.ColumnValue;
+
+        $r1 = staticinvoke <ORG.as220.tinySQL.util.EmptyEnumeration: java.util.Enumeration getEnum()>();
+
+        return $r1;
+    }
+
+    public int getChildCount()
+    {
+        ORG.as220.tinySQL.sqlparser.ColumnValue r0;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.ColumnValue;
+
+        return 0;
+    }
+
+    public java.lang.String getTable()
+    {
+        ORG.as220.tinySQL.sqlparser.ColumnValue r0;
+        java.lang.String $r1;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.ColumnValue;
+
+        $r1 = r0.<ORG.as220.tinySQL.sqlparser.ColumnValue: java.lang.String table>;
+
+        return $r1;
+    }
+
+    public java.lang.String getColumn()
+    {
+        ORG.as220.tinySQL.sqlparser.ColumnValue r0;
+        java.lang.String $r1;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.ColumnValue;
+
+        $r1 = r0.<ORG.as220.tinySQL.sqlparser.ColumnValue: java.lang.String column>;
+
+        return $r1;
+    }
+
+    public java.lang.String toString()
+    {
+        ORG.as220.tinySQL.sqlparser.ColumnValue r0;
+        java.lang.StringBuilder $r1, $r3, $r4;
+        java.lang.String $r2, $r5;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.ColumnValue;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("[ColumnValue(");
+
+        $r2 = r0.<ORG.as220.tinySQL.sqlparser.ColumnValue: java.lang.String colname>;
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(")]");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r5;
+    }
+}

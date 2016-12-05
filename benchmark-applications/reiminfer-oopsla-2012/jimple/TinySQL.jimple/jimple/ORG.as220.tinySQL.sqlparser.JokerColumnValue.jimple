@@ -1,0 +1,134 @@
+public class ORG.as220.tinySQL.sqlparser.JokerColumnValue extends java.lang.Object implements ORG.as220.tinySQL.sqlparser.LValue
+{
+    private java.lang.String colname;
+    private java.lang.String table;
+
+    public void <init>(java.lang.String)
+    {
+        ORG.as220.tinySQL.sqlparser.JokerColumnValue r0;
+        java.lang.String r1, $r2, $r3, $r4, $r5, $r6;
+        boolean $z0;
+        int $i0, $i1;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.JokerColumnValue;
+
+        r1 := @parameter0: java.lang.String;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r2 = virtualinvoke r1.<java.lang.String: java.lang.String trim()>();
+
+        r0.<ORG.as220.tinySQL.sqlparser.JokerColumnValue: java.lang.String colname> = $r2;
+
+        $r3 = r0.<ORG.as220.tinySQL.sqlparser.JokerColumnValue: java.lang.String colname>;
+
+        $z0 = virtualinvoke $r3.<java.lang.String: boolean equals(java.lang.Object)>("*");
+
+        if $z0 == 0 goto label1;
+
+        r0.<ORG.as220.tinySQL.sqlparser.JokerColumnValue: java.lang.String table> = null;
+
+        goto label2;
+
+     label1:
+        $r5 = r0.<ORG.as220.tinySQL.sqlparser.JokerColumnValue: java.lang.String colname>;
+
+        $r4 = r0.<ORG.as220.tinySQL.sqlparser.JokerColumnValue: java.lang.String colname>;
+
+        $i0 = virtualinvoke $r4.<java.lang.String: int length()>();
+
+        $i1 = $i0 - 2;
+
+        $r6 = virtualinvoke $r5.<java.lang.String: java.lang.String substring(int,int)>(0, $i1);
+
+        r0.<ORG.as220.tinySQL.sqlparser.JokerColumnValue: java.lang.String table> = $r6;
+
+     label2:
+        return;
+    }
+
+    public java.lang.Object evaluate(ORG.as220.tinySQL.tsRow)
+    {
+        ORG.as220.tinySQL.sqlparser.JokerColumnValue r0;
+        ORG.as220.tinySQL.tsRow r1;
+        java.lang.IllegalStateException $r2;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.JokerColumnValue;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsRow;
+
+        $r2 = new java.lang.IllegalStateException;
+
+        specialinvoke $r2.<java.lang.IllegalStateException: void <init>(java.lang.String)>("A JokerColumn cannot be evaluated");
+
+        throw $r2;
+    }
+
+    public java.lang.String getName()
+    {
+        ORG.as220.tinySQL.sqlparser.JokerColumnValue r0;
+        java.lang.String $r1;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.JokerColumnValue;
+
+        $r1 = r0.<ORG.as220.tinySQL.sqlparser.JokerColumnValue: java.lang.String colname>;
+
+        return $r1;
+    }
+
+    public java.lang.String getTable()
+    {
+        ORG.as220.tinySQL.sqlparser.JokerColumnValue r0;
+        java.lang.String $r1;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.JokerColumnValue;
+
+        $r1 = r0.<ORG.as220.tinySQL.sqlparser.JokerColumnValue: java.lang.String table>;
+
+        return $r1;
+    }
+
+    public java.util.Enumeration getChildren()
+    {
+        ORG.as220.tinySQL.sqlparser.JokerColumnValue r0;
+        java.util.Enumeration $r1;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.JokerColumnValue;
+
+        $r1 = staticinvoke <ORG.as220.tinySQL.util.EmptyEnumeration: java.util.Enumeration getEnum()>();
+
+        return $r1;
+    }
+
+    public int getChildCount()
+    {
+        ORG.as220.tinySQL.sqlparser.JokerColumnValue r0;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.JokerColumnValue;
+
+        return 0;
+    }
+
+    public java.lang.String toString()
+    {
+        ORG.as220.tinySQL.sqlparser.JokerColumnValue r0;
+        java.lang.StringBuilder $r1, $r3, $r4;
+        java.lang.String $r2, $r5;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.JokerColumnValue;
+
+        $r1 = new java.lang.StringBuilder;
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("[JokerColumnValue(");
+
+        $r2 = r0.<ORG.as220.tinySQL.sqlparser.JokerColumnValue: java.lang.String colname>;
+
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2);
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(")]");
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        return $r5;
+    }
+}

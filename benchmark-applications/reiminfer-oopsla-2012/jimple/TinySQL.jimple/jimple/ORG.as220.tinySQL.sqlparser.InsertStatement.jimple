@@ -1,0 +1,585 @@
+public class ORG.as220.tinySQL.sqlparser.InsertStatement extends java.lang.Object implements ORG.as220.tinySQL.sqlparser.SQLStatement
+{
+    private ORG.as220.tinySQL.tinySQL db;
+    private ORG.as220.tinySQL.tinySQLTableView table;
+    private int updatecount;
+    private java.util.Vector columns;
+    private java.util.Vector tablesCache;
+    private java.util.Vector values;
+    private ORG.as220.tinySQL.sqlparser.SelectStatement subselect;
+
+    public void <init>(ORG.as220.tinySQL.tinySQLStatement) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.sqlparser.InsertStatement r0;
+        ORG.as220.tinySQL.tinySQLStatement r1;
+        java.sql.Connection $r2;
+        ORG.as220.tinySQL.tinySQL $r3;
+        java.util.Vector $r4, $r5;
+        java.sql.SQLException $r6;
+        ORG.as220.tinySQL.tinySQLException $r7;
+        ORG.as220.tinySQL.tinySQLConnection r8;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.InsertStatement;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tinySQLStatement;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+     label1:
+        $r2 = virtualinvoke r1.<ORG.as220.tinySQL.tinySQLStatement: java.sql.Connection getConnection()>();
+
+        r8 = (ORG.as220.tinySQL.tinySQLConnection) $r2;
+
+        $r3 = virtualinvoke r8.<ORG.as220.tinySQL.tinySQLConnection: ORG.as220.tinySQL.tinySQL getTinySqlHandle()>();
+
+        r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: ORG.as220.tinySQL.tinySQL db> = $r3;
+
+     label2:
+        goto label4;
+
+     label3:
+        $r6 := @caughtexception;
+
+        $r7 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r7.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String,java.lang.Exception)>("Unable to resolve connection", $r6);
+
+        throw $r7;
+
+     label4:
+        $r4 = new java.util.Vector;
+
+        specialinvoke $r4.<java.util.Vector: void <init>()>();
+
+        r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: java.util.Vector columns> = $r4;
+
+        $r5 = new java.util.Vector;
+
+        specialinvoke $r5.<java.util.Vector: void <init>()>();
+
+        r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: java.util.Vector values> = $r5;
+
+        return;
+
+        catch java.sql.SQLException from label1 to label2 with label3;
+    }
+
+    public void addColumn(java.lang.String) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.sqlparser.InsertStatement r0;
+        java.lang.String r1, r3, r4, $r11, $r16;
+        ORG.as220.tinySQL.tsColumn r5;
+        ORG.as220.tinySQL.sqlparser.ColumnValue $r6;
+        ORG.as220.tinySQL.tinySQLTableView $r7, $r8, $r10;
+        int $i0;
+        java.util.Vector $r9;
+        boolean $z1;
+        ORG.as220.tinySQL.tinySQLException $r12;
+        java.lang.StringBuilder $r13, $r14, $r15;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.InsertStatement;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r6 = new ORG.as220.tinySQL.sqlparser.ColumnValue;
+
+        specialinvoke $r6.<ORG.as220.tinySQL.sqlparser.ColumnValue: void <init>(java.lang.String)>(r1);
+
+        r3 = virtualinvoke $r6.<ORG.as220.tinySQL.sqlparser.ColumnValue: java.lang.String getTable()>();
+
+        if r3 == null goto label1;
+
+        $r10 = r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: ORG.as220.tinySQL.tinySQLTableView table>;
+
+        $r11 = virtualinvoke $r10.<ORG.as220.tinySQL.tinySQLTableView: java.lang.String getName()>();
+
+        $z1 = virtualinvoke $r11.<java.lang.String: boolean equals(java.lang.Object)>(r3);
+
+        if $z1 != 0 goto label1;
+
+        $r12 = new ORG.as220.tinySQL.tinySQLException;
+
+        $r13 = new java.lang.StringBuilder;
+
+        specialinvoke $r13.<java.lang.StringBuilder: void <init>(java.lang.String)>("The specified table [");
+
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r3);
+
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("] is not defined in this statement");
+
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r12.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>($r16);
+
+        throw $r12;
+
+     label1:
+        r4 = virtualinvoke $r6.<ORG.as220.tinySQL.sqlparser.ColumnValue: java.lang.String getColumn()>();
+
+        $r8 = r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: ORG.as220.tinySQL.tinySQLTableView table>;
+
+        $r7 = r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: ORG.as220.tinySQL.tinySQLTableView table>;
+
+        $i0 = virtualinvoke $r7.<ORG.as220.tinySQL.tinySQLTableView: int findColumn(java.lang.String)>(r4);
+
+        r5 = virtualinvoke $r8.<ORG.as220.tinySQL.tinySQLTableView: ORG.as220.tinySQL.tsColumn getColumnDefinition(int)>($i0);
+
+        $r9 = r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: java.util.Vector columns>;
+
+        virtualinvoke $r9.<java.util.Vector: boolean add(java.lang.Object)>(r5);
+
+        return;
+    }
+
+    public void addValues(java.util.Vector) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.sqlparser.InsertStatement r0;
+        java.util.Vector r1, $r5, $r6, $r7, $r8, $r15;
+        ORG.as220.tinySQL.tsColumn r3, $r10;
+        int $i0, $i1, $i2, i3;
+        java.lang.Object $r9, $r12;
+        java.lang.String $r11;
+        ORG.as220.tinySQL.sqlparser.LValue $r13;
+        ORG.as220.tinySQL.tsResultRow $r14;
+        ORG.as220.tinySQL.tinySQLException $r16;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.InsertStatement;
+
+        r1 := @parameter0: java.util.Vector;
+
+        $i0 = virtualinvoke r1.<java.util.Vector: int size()>();
+
+        $r5 = r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: java.util.Vector columns>;
+
+        $i1 = virtualinvoke $r5.<java.util.Vector: int size()>();
+
+        if $i0 == $i1 goto label1;
+
+        $r16 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r16.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("Columns-Size does not match values-size");
+
+        throw $r16;
+
+     label1:
+        $r6 = new java.util.Vector;
+
+        specialinvoke $r6.<java.util.Vector: void <init>()>();
+
+        i3 = 0;
+
+        goto label3;
+
+     label2:
+        $r8 = r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: java.util.Vector columns>;
+
+        $r9 = virtualinvoke $r8.<java.util.Vector: java.lang.Object elementAt(int)>(i3);
+
+        r3 = (ORG.as220.tinySQL.tsColumn) $r9;
+
+        $r10 = new ORG.as220.tinySQL.tsColumn;
+
+        $r11 = virtualinvoke r3.<ORG.as220.tinySQL.tsColumn: java.lang.String getPhysicalName()>();
+
+        $r12 = virtualinvoke r1.<java.util.Vector: java.lang.Object elementAt(int)>(i3);
+
+        $r13 = (ORG.as220.tinySQL.sqlparser.LValue) $r12;
+
+        specialinvoke $r10.<ORG.as220.tinySQL.tsColumn: void <init>(java.lang.String,ORG.as220.tinySQL.sqlparser.LValue)>($r11, $r13);
+
+        virtualinvoke $r10.<ORG.as220.tinySQL.tsColumn: void setAll(ORG.as220.tinySQL.tsColumn)>(r3);
+
+        virtualinvoke $r6.<java.util.Vector: void addElement(java.lang.Object)>($r10);
+
+        i3 = i3 + 1;
+
+     label3:
+        $r7 = r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: java.util.Vector columns>;
+
+        $i2 = virtualinvoke $r7.<java.util.Vector: int size()>();
+
+        if i3 < $i2 goto label2;
+
+        $r14 = new ORG.as220.tinySQL.tsResultRow;
+
+        specialinvoke $r14.<ORG.as220.tinySQL.tsResultRow: void <init>(java.util.Vector)>($r6);
+
+        $r15 = r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: java.util.Vector values>;
+
+        virtualinvoke $r15.<java.util.Vector: boolean add(java.lang.Object)>($r14);
+
+        return;
+    }
+
+    public void addSelect(ORG.as220.tinySQL.sqlparser.SelectStatement) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.sqlparser.InsertStatement r0;
+        ORG.as220.tinySQL.sqlparser.SelectStatement r1;
+        ORG.as220.tinySQL.tinySQLException $r2;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.InsertStatement;
+
+        r1 := @parameter0: ORG.as220.tinySQL.sqlparser.SelectStatement;
+
+        if r1 == null goto label1;
+
+        r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: ORG.as220.tinySQL.sqlparser.SelectStatement subselect> = r1;
+
+        goto label2;
+
+     label1:
+        $r2 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r2.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("Empty selection is not allowed");
+
+        throw $r2;
+
+     label2:
+        return;
+    }
+
+    public boolean hasSubSelect()
+    {
+        ORG.as220.tinySQL.sqlparser.InsertStatement r0;
+        ORG.as220.tinySQL.sqlparser.SelectStatement $r1;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.InsertStatement;
+
+        $r1 = r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: ORG.as220.tinySQL.sqlparser.SelectStatement subselect>;
+
+        if $r1 == null goto label1;
+
+        return 1;
+
+     label1:
+        return 0;
+    }
+
+    public ORG.as220.tinySQL.sqlparser.SelectStatement getSelect()
+    {
+        ORG.as220.tinySQL.sqlparser.InsertStatement r0;
+        ORG.as220.tinySQL.sqlparser.SelectStatement $r1;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.InsertStatement;
+
+        $r1 = r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: ORG.as220.tinySQL.sqlparser.SelectStatement subselect>;
+
+        return $r1;
+    }
+
+    public java.util.Vector getColumns()
+    {
+        ORG.as220.tinySQL.sqlparser.InsertStatement r0;
+        java.util.Vector $r1;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.InsertStatement;
+
+        $r1 = r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: java.util.Vector columns>;
+
+        return $r1;
+    }
+
+    public java.util.Vector getValues()
+    {
+        ORG.as220.tinySQL.sqlparser.InsertStatement r0;
+        java.util.Vector $r1;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.InsertStatement;
+
+        $r1 = r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: java.util.Vector values>;
+
+        return $r1;
+    }
+
+    public ORG.as220.tinySQL.tinySQLTableView getTable()
+    {
+        ORG.as220.tinySQL.sqlparser.InsertStatement r0;
+        ORG.as220.tinySQL.tinySQLTableView $r1;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.InsertStatement;
+
+        $r1 = r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: ORG.as220.tinySQL.tinySQLTableView table>;
+
+        return $r1;
+    }
+
+    public java.util.Enumeration getTables()
+    {
+        ORG.as220.tinySQL.sqlparser.InsertStatement r0;
+        java.util.Vector $r1, $r2, $r4, $r6;
+        java.util.Enumeration $r3;
+        ORG.as220.tinySQL.tinySQLTableView $r5;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.InsertStatement;
+
+        $r1 = r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: java.util.Vector tablesCache>;
+
+        if $r1 != null goto label1;
+
+        $r4 = new java.util.Vector;
+
+        specialinvoke $r4.<java.util.Vector: void <init>(int)>(1);
+
+        r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: java.util.Vector tablesCache> = $r4;
+
+        $r6 = r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: java.util.Vector tablesCache>;
+
+        $r5 = r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: ORG.as220.tinySQL.tinySQLTableView table>;
+
+        virtualinvoke $r6.<java.util.Vector: boolean add(java.lang.Object)>($r5);
+
+     label1:
+        $r2 = r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: java.util.Vector tablesCache>;
+
+        $r3 = virtualinvoke $r2.<java.util.Vector: java.util.Enumeration elements()>();
+
+        return $r3;
+    }
+
+    public void setTable(java.lang.String) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.sqlparser.InsertStatement r0;
+        java.lang.String r1;
+        ORG.as220.tinySQL.tinySQL $r2;
+        ORG.as220.tinySQL.tinySQLTableView $r3;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.InsertStatement;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r2 = virtualinvoke r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: ORG.as220.tinySQL.tinySQL getDatabase()>();
+
+        $r3 = virtualinvoke $r2.<ORG.as220.tinySQL.tinySQL: ORG.as220.tinySQL.tinySQLTableView getTable(java.lang.String)>(r1);
+
+        r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: ORG.as220.tinySQL.tinySQLTableView table> = $r3;
+
+        return;
+    }
+
+    public ORG.as220.tinySQL.tinySQL getDatabase() throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.sqlparser.InsertStatement r0;
+        ORG.as220.tinySQL.tinySQL $r1;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.InsertStatement;
+
+        $r1 = r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: ORG.as220.tinySQL.tinySQL db>;
+
+        return $r1;
+    }
+
+    public boolean execute() throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.sqlparser.InsertStatement r0;
+        ORG.as220.tinySQL.tinySQLTableView $r1;
+        ORG.as220.tinySQL.tinySQL $r2;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.InsertStatement;
+
+        $r1 = r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: ORG.as220.tinySQL.tinySQLTableView table>;
+
+        if $r1 == null goto label1;
+
+        $r2 = virtualinvoke r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: ORG.as220.tinySQL.tinySQL getDatabase()>();
+
+        $i0 = virtualinvoke $r2.<ORG.as220.tinySQL.tinySQL: int InsertStatement(ORG.as220.tinySQL.sqlparser.InsertStatement)>(r0);
+
+        r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: int updatecount> = $i0;
+
+     label1:
+        return 0;
+    }
+
+    public int getUpdateCount() throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.sqlparser.InsertStatement r0;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.InsertStatement;
+
+        $i0 = r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: int updatecount>;
+
+        return $i0;
+    }
+
+    public ORG.as220.tinySQL.tinySQLResultSet getResultSet() throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.sqlparser.InsertStatement r0;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.InsertStatement;
+
+        return null;
+    }
+
+    public boolean getMoreResults() throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.sqlparser.InsertStatement r0;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.InsertStatement;
+
+        return 0;
+    }
+
+    public java.lang.String toString()
+    {
+        ORG.as220.tinySQL.sqlparser.InsertStatement r0;
+        java.util.Enumeration r2, r3;
+        ORG.as220.tinySQL.tsResultRow r4;
+        java.lang.StringBuffer $r5;
+        ORG.as220.tinySQL.tinySQLTableView $r7;
+        boolean $z0, $z1, $z2, $z3, $z4;
+        java.util.Vector $r10, $r15;
+        java.lang.Object $r11, $r16;
+        java.lang.String $r22, $r25;
+        ORG.as220.tinySQL.sqlparser.SelectStatement $r24;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.InsertStatement;
+
+        $r5 = new java.lang.StringBuffer;
+
+        specialinvoke $r5.<java.lang.StringBuffer: void <init>()>();
+
+        virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("INSERT INTO ");
+
+        $r7 = r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: ORG.as220.tinySQL.tinySQLTableView table>;
+
+        virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.Object)>($r7);
+
+        $z0 = virtualinvoke r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: boolean hasSubSelect()>();
+
+        if $z0 == 0 goto label1;
+
+        virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(" ");
+
+        $r24 = r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: ORG.as220.tinySQL.sqlparser.SelectStatement subselect>;
+
+        $r25 = virtualinvoke $r24.<ORG.as220.tinySQL.sqlparser.SelectStatement: java.lang.String toString()>();
+
+        virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r25);
+
+        goto label6;
+
+     label1:
+        virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(" (");
+
+        $r10 = virtualinvoke r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: java.util.Vector getColumns()>();
+
+        r2 = virtualinvoke $r10.<java.util.Vector: java.util.Enumeration elements()>();
+
+        goto label3;
+
+     label2:
+        $r11 = interfaceinvoke r2.<java.util.Enumeration: java.lang.Object nextElement()>();
+
+        virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.Object)>($r11);
+
+        $z1 = interfaceinvoke r2.<java.util.Enumeration: boolean hasMoreElements()>();
+
+        if $z1 == 0 goto label3;
+
+        virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(", ");
+
+     label3:
+        $z3 = interfaceinvoke r2.<java.util.Enumeration: boolean hasMoreElements()>();
+
+        if $z3 != 0 goto label2;
+
+        virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(") VALUES (");
+
+        $r15 = virtualinvoke r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: java.util.Vector getValues()>();
+
+        r3 = virtualinvoke $r15.<java.util.Vector: java.util.Enumeration elements()>();
+
+        goto label5;
+
+     label4:
+        $r16 = interfaceinvoke r3.<java.util.Enumeration: java.lang.Object nextElement()>();
+
+        r4 = (ORG.as220.tinySQL.tsResultRow) $r16;
+
+        virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(" (");
+
+        virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.Object)>(r4);
+
+        virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(") ");
+
+        $z2 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>();
+
+        if $z2 == 0 goto label5;
+
+        virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(", \n");
+
+     label5:
+        $z4 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>();
+
+        if $z4 != 0 goto label4;
+
+        virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(") \n");
+
+     label6:
+        $r22 = virtualinvoke $r5.<java.lang.StringBuffer: java.lang.String toString()>();
+
+        return $r22;
+    }
+
+    public java.util.Vector getParameters()
+    {
+        ORG.as220.tinySQL.sqlparser.InsertStatement r0;
+        java.util.Enumeration r2;
+        ORG.as220.tinySQL.tsResultRow r3;
+        ORG.as220.tinySQL.tsColumn r4;
+        java.util.Vector $r5, $r6;
+        boolean $z0;
+        java.lang.Object $r7;
+        int $i0, i1, $i2;
+        ORG.as220.tinySQL.sqlparser.LValue $r8;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.InsertStatement;
+
+        $r5 = new java.util.Vector;
+
+        specialinvoke $r5.<java.util.Vector: void <init>()>();
+
+        $r6 = virtualinvoke r0.<ORG.as220.tinySQL.sqlparser.InsertStatement: java.util.Vector getValues()>();
+
+        r2 = virtualinvoke $r6.<java.util.Vector: java.util.Enumeration elements()>();
+
+        goto label5;
+
+     label1:
+        $r7 = interfaceinvoke r2.<java.util.Enumeration: java.lang.Object nextElement()>();
+
+        r3 = (ORG.as220.tinySQL.tsResultRow) $r7;
+
+        i1 = 0;
+
+        goto label4;
+
+     label2:
+        r4 = virtualinvoke r3.<ORG.as220.tinySQL.tsResultRow: ORG.as220.tinySQL.tsColumn getColumnDefinition(int)>(i1);
+
+        $i0 = virtualinvoke r4.<ORG.as220.tinySQL.tsColumn: int getColumnType()>();
+
+        if $i0 != 1 goto label3;
+
+        $r8 = virtualinvoke r4.<ORG.as220.tinySQL.tsColumn: ORG.as220.tinySQL.sqlparser.LValue getExpression()>();
+
+        staticinvoke <ORG.as220.tinySQL.sqlparser.ParserUtils: void getParameterElements(java.util.Vector,ORG.as220.tinySQL.sqlparser.LValue)>($r5, $r8);
+
+     label3:
+        i1 = i1 + 1;
+
+     label4:
+        $i2 = virtualinvoke r3.<ORG.as220.tinySQL.tsResultRow: int size()>();
+
+        if i1 < $i2 goto label2;
+
+     label5:
+        $z0 = interfaceinvoke r2.<java.util.Enumeration: boolean hasMoreElements()>();
+
+        if $z0 != 0 goto label1;
+
+        return $r5;
+    }
+}

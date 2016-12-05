@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<attributes>
+<attribute>
+<srcPos sline="265" eline="265" spos="0" epos="0"/>
+<jmpPos sline="376" eline="376" spos="0" epos="0"/>
+<text info="Signature: (Ljava/lang/Class&lt;*&gt;;)Z" aType="SignatureTag"/>
+</attribute>
+<attribute>
+<srcPos sline="271" eline="271" spos="0" epos="0"/>
+<jmpPos sline="388" eline="388" spos="0" epos="0"/>
+<text info="Signature: &lt;T:Ljava/lang/Object;&gt;(Ljava/lang/Class&lt;TT;&gt;;)TT;" aType="SignatureTag"/>
+</attribute>
+</attributes>

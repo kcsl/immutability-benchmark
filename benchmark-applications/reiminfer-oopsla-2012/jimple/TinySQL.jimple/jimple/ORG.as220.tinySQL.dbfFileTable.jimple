@@ -1,0 +1,1163 @@
+public class ORG.as220.tinySQL.dbfFileTable extends ORG.as220.tinySQL.tinySQLTable
+{
+    private boolean readonly;
+    private java.lang.String fullpath;
+    private ORG.as220.tinySQL.DBFHeader dbfHeader;
+    private java.io.RandomAccessFile ftbl;
+    public static final java.lang.String DBF_EXTENSION;
+    private static final int IS_DELETED_INDEX;
+    private static final char RECORD_IS_DELETED;
+    private static final char RECORD_IS_NOT_DELETED;
+    private ORG.as220.tinySQL.dbfFileConverter converter;
+    private ORG.as220.tinySQL.dbfFileRow prototype;
+    private int _rowCount;
+    private int _headerLength;
+    private int _recordLength;
+    private byte[] defaultInsertRow;
+    private static final int ROW_UNREAD;
+    private static final int ROW_DELETED;
+    private static final int ROW_NOT_DELETED;
+    private byte[] deletedRows;
+    private int insertMode;
+
+    public void <init>(java.lang.String, java.lang.String, java.lang.String, boolean, boolean) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileTable r0;
+        java.lang.String r1, r2, r3, $r5, $r6, $r8, $r9, $r13, $r15, $r16, $r19;
+        boolean z0, z1, $z2;
+        java.io.File $r4;
+        java.lang.StringBuilder $r7, $r10, $r11, $r12, $r14, $r17, $r18;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileTable;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        z0 := @parameter3: boolean;
+
+        z1 := @parameter4: boolean;
+
+        $r4 = new java.io.File;
+
+        specialinvoke $r4.<java.io.File: void <init>(java.lang.String)>(r2);
+
+        $r5 = virtualinvoke $r4.<java.io.File: java.lang.String getName()>();
+
+        specialinvoke r0.<ORG.as220.tinySQL.tinySQLTable: void <init>(java.lang.String)>($r5);
+
+        r0.<ORG.as220.tinySQL.dbfFileTable: int _headerLength> = -1;
+
+        r0.<ORG.as220.tinySQL.dbfFileTable: int _recordLength> = -1;
+
+        r0.<ORG.as220.tinySQL.dbfFileTable: byte[] defaultInsertRow> = null;
+
+        r0.<ORG.as220.tinySQL.dbfFileTable: boolean readonly> = z0;
+
+        $r6 = virtualinvoke r2.<java.lang.String: java.lang.String toUpperCase()>();
+
+        $z2 = virtualinvoke $r6.<java.lang.String: boolean endsWith(java.lang.String)>(".DBF");
+
+        if $z2 == 0 goto label1;
+
+        $r14 = new java.lang.StringBuilder;
+
+        $r15 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r1);
+
+        specialinvoke $r14.<java.lang.StringBuilder: void <init>(java.lang.String)>($r15);
+
+        $r16 = <java.io.File: java.lang.String separator>;
+
+        $r17 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r16);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2);
+
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        r0.<ORG.as220.tinySQL.dbfFileTable: java.lang.String fullpath> = $r19;
+
+        goto label2;
+
+     label1:
+        $r7 = new java.lang.StringBuilder;
+
+        $r8 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r1);
+
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>($r8);
+
+        $r9 = <java.io.File: java.lang.String separator>;
+
+        $r10 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9);
+
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".DBF");
+
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        r0.<ORG.as220.tinySQL.dbfFileTable: java.lang.String fullpath> = $r13;
+
+     label2:
+        specialinvoke r0.<ORG.as220.tinySQL.dbfFileTable: void open_dbf(java.lang.String,boolean)>(r3, z1);
+
+        return;
+    }
+
+    public boolean close() throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileTable r0;
+        java.io.RandomAccessFile $r2, $r4;
+        java.io.FileDescriptor $r3;
+        java.io.IOException $r5;
+        ORG.as220.tinySQL.tinySQLException $r6;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileTable;
+
+     label1:
+        $r2 = r0.<ORG.as220.tinySQL.dbfFileTable: java.io.RandomAccessFile ftbl>;
+
+        $r3 = virtualinvoke $r2.<java.io.RandomAccessFile: java.io.FileDescriptor getFD()>();
+
+        virtualinvoke $r3.<java.io.FileDescriptor: void sync()>();
+
+        $r4 = r0.<ORG.as220.tinySQL.dbfFileTable: java.io.RandomAccessFile ftbl>;
+
+        virtualinvoke $r4.<java.io.RandomAccessFile: void close()>();
+
+     label2:
+        goto label4;
+
+     label3:
+        $r5 := @caughtexception;
+
+        $r6 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r6.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.Exception)>($r5);
+
+        throw $r6;
+
+     label4:
+        return 1;
+
+        catch java.io.IOException from label1 to label2 with label3;
+    }
+
+    public ORG.as220.tinySQL.tsColumn getColumnDefinition(int)
+    {
+        ORG.as220.tinySQL.dbfFileTable r0;
+        int i0;
+        ORG.as220.tinySQL.tsColumn r1;
+        ORG.as220.tinySQL.DBFHeader $r2;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileTable;
+
+        i0 := @parameter0: int;
+
+        $r2 = r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.DBFHeader dbfHeader>;
+
+        r1 = virtualinvoke $r2.<ORG.as220.tinySQL.DBFHeader: ORG.as220.tinySQL.tsColumn getColumnDefinition(int)>(i0);
+
+        if r1 != null goto label1;
+
+        return null;
+
+     label1:
+        return r1;
+    }
+
+    public ORG.as220.tinySQL.tinySQLConverter getConverter() throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileTable r0;
+        ORG.as220.tinySQL.dbfFileConverter $r2, $r3, $r4;
+        ORG.as220.tinySQL.DBFHeader $r5;
+        java.lang.String $r6;
+        java.lang.Exception $r7;
+        ORG.as220.tinySQL.tinySQLException $r8;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileTable;
+
+        $r2 = r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.dbfFileConverter converter>;
+
+        if $r2 != null goto label4;
+
+     label1:
+        $r4 = new ORG.as220.tinySQL.dbfFileConverter;
+
+        $r5 = virtualinvoke r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.DBFHeader getHeader()>();
+
+        $r6 = virtualinvoke $r5.<ORG.as220.tinySQL.DBFHeader: java.lang.String getEncoding()>();
+
+        specialinvoke $r4.<ORG.as220.tinySQL.dbfFileConverter: void <init>(java.lang.String)>($r6);
+
+        r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.dbfFileConverter converter> = $r4;
+
+     label2:
+        goto label4;
+
+     label3:
+        $r7 := @caughtexception;
+
+        $r8 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r8.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.Exception)>($r7);
+
+        throw $r8;
+
+     label4:
+        $r3 = r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.dbfFileConverter converter>;
+
+        return $r3;
+
+        catch java.lang.Exception from label1 to label2 with label3;
+    }
+
+    public ORG.as220.tinySQL.tsRawRow getInsertRow() throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileTable r0;
+        byte[] r1;
+        ORG.as220.tinySQL.dbfFileRow $r2, $r3, $r4, $r6;
+        ORG.as220.tinySQL.DBFHeader $r5;
+        ORG.as220.tinySQL.tinySQLConverter $r7;
+        java.util.Vector r8;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileTable;
+
+        $r2 = r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.dbfFileRow prototype>;
+
+        if $r2 != null goto label1;
+
+        $r5 = virtualinvoke r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.DBFHeader getHeader()>();
+
+        r8 = virtualinvoke $r5.<ORG.as220.tinySQL.DBFHeader: java.util.Vector getFields()>();
+
+        $r6 = new ORG.as220.tinySQL.dbfFileRow;
+
+        $r7 = virtualinvoke r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.tinySQLConverter getConverter()>();
+
+        specialinvoke $r6.<ORG.as220.tinySQL.dbfFileRow: void <init>(java.util.Vector,ORG.as220.tinySQL.tinySQLConverter)>(r8, $r7);
+
+        r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.dbfFileRow prototype> = $r6;
+
+     label1:
+        $r3 = new ORG.as220.tinySQL.dbfFileRow;
+
+        $r4 = r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.dbfFileRow prototype>;
+
+        specialinvoke $r3.<ORG.as220.tinySQL.dbfFileRow: void <init>(ORG.as220.tinySQL.dbfFileRow)>($r4);
+
+        r1 = specialinvoke r0.<ORG.as220.tinySQL.dbfFileTable: byte[] createInsertRow()>();
+
+        virtualinvoke $r3.<ORG.as220.tinySQL.dbfFileRow: void setData(byte[])>(r1);
+
+        return $r3;
+    }
+
+    private byte[] createInsertRow() throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileTable r0;
+        ORG.as220.tinySQL.tinySQLConverter r1;
+        byte[] r2, r5, $r6, $r7;
+        ORG.as220.tinySQL.tsColumn r3;
+        ORG.as220.tinySQL.DBFHeader $r8;
+        int $i0, $i1, $i2, $i3, i4;
+        java.lang.Object $r9;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileTable;
+
+        $r6 = r0.<ORG.as220.tinySQL.dbfFileTable: byte[] defaultInsertRow>;
+
+        if $r6 != null goto label3;
+
+        r1 = virtualinvoke r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.tinySQLConverter getConverter()>();
+
+        $r8 = r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.DBFHeader dbfHeader>;
+
+        $i0 = virtualinvoke $r8.<ORG.as220.tinySQL.DBFHeader: int getRecordLength()>();
+
+        r2 = newarray (byte)[$i0];
+
+        r2[0] = 32;
+
+        i4 = 0;
+
+        goto label2;
+
+     label1:
+        r3 = virtualinvoke r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.tsColumn getColumnDefinition(int)>(i4);
+
+        virtualinvoke r3.<ORG.as220.tinySQL.tsColumn: java.lang.Object getDefaultValue()>();
+
+        $r9 = virtualinvoke r1.<ORG.as220.tinySQL.tinySQLConverter: java.lang.Object convertJDBCToNative(ORG.as220.tinySQL.tsColumn,java.lang.Object)>(r3, null);
+
+        r5 = (byte[]) $r9;
+
+        $i2 = virtualinvoke r3.<ORG.as220.tinySQL.tsColumn: int getBytePosition()>();
+
+        $i3 = lengthof r5;
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r5, 0, r2, $i2, $i3);
+
+        i4 = i4 + 1;
+
+     label2:
+        $i1 = virtualinvoke r0.<ORG.as220.tinySQL.dbfFileTable: int getColumnCount()>();
+
+        if i4 < $i1 goto label1;
+
+        r0.<ORG.as220.tinySQL.dbfFileTable: byte[] defaultInsertRow> = r2;
+
+     label3:
+        $r7 = r0.<ORG.as220.tinySQL.dbfFileTable: byte[] defaultInsertRow>;
+
+        return $r7;
+    }
+
+    public void updateRow(int, ORG.as220.tinySQL.tsRawRow) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileTable r0;
+        int i0;
+        ORG.as220.tinySQL.tsRawRow r1;
+        boolean $z0;
+        byte[] $r2;
+        ORG.as220.tinySQL.tinySQLException $r3, $r5;
+        java.io.IOException $r4;
+        ORG.as220.tinySQL.dbfFileRow r6;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileTable;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: ORG.as220.tinySQL.tsRawRow;
+
+        $z0 = r0.<ORG.as220.tinySQL.dbfFileTable: boolean readonly>;
+
+        if $z0 == 0 goto label1;
+
+        $r3 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r3.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("Database is readonly");
+
+        throw $r3;
+
+     label1:
+        r6 = (ORG.as220.tinySQL.dbfFileRow) r1;
+
+        $r2 = virtualinvoke r6.<ORG.as220.tinySQL.dbfFileRow: byte[] getData()>();
+
+        specialinvoke r0.<ORG.as220.tinySQL.dbfFileTable: void writeRow(int,byte[])>(i0, $r2);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r4 := @caughtexception;
+
+        $r5 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r5.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.Exception)>($r4);
+
+        throw $r5;
+
+     label4:
+        return;
+
+        catch java.io.IOException from label1 to label2 with label3;
+    }
+
+    private void writeRow(int, byte[]) throws java.io.IOException
+    {
+        ORG.as220.tinySQL.dbfFileTable r0;
+        int i0, $i1;
+        byte[] r1;
+        java.io.RandomAccessFile $r2, $r3, $r4;
+        long $l2;
+        ORG.as220.tinySQL.DBFHeader $r5;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileTable;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: byte[];
+
+        $r2 = r0.<ORG.as220.tinySQL.dbfFileTable: java.io.RandomAccessFile ftbl>;
+
+        $i1 = specialinvoke r0.<ORG.as220.tinySQL.dbfFileTable: int calcRowPos(int)>(i0);
+
+        $l2 = (long) $i1;
+
+        virtualinvoke $r2.<java.io.RandomAccessFile: void seek(long)>($l2);
+
+        $r3 = r0.<ORG.as220.tinySQL.dbfFileTable: java.io.RandomAccessFile ftbl>;
+
+        virtualinvoke $r3.<java.io.RandomAccessFile: void write(byte[])>(r1);
+
+        $r5 = r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.DBFHeader dbfHeader>;
+
+        $r4 = r0.<ORG.as220.tinySQL.dbfFileTable: java.io.RandomAccessFile ftbl>;
+
+        virtualinvoke $r5.<ORG.as220.tinySQL.DBFHeader: void writeFileHeader(java.io.RandomAccessFile)>($r4);
+
+        return;
+    }
+
+    public int insertRow(ORG.as220.tinySQL.tsRawRow) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileTable r0;
+        ORG.as220.tinySQL.tsRawRow r1;
+        boolean $z0;
+        java.io.RandomAccessFile $r2, $r3;
+        int $i0, $i2, $i3, i4;
+        long $l1;
+        byte[] $r4;
+        java.lang.StringBuilder $r5, $r6;
+        java.lang.String $r7;
+        ORG.as220.tinySQL.tinySQLException $r8, $r10;
+        java.lang.Exception $r9;
+        ORG.as220.tinySQL.dbfFileRow r11;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileTable;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsRawRow;
+
+        $z0 = r0.<ORG.as220.tinySQL.dbfFileTable: boolean readonly>;
+
+        if $z0 == 0 goto label1;
+
+        $r8 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r8.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("Database is readonly");
+
+        throw $r8;
+
+     label1:
+        r11 = (ORG.as220.tinySQL.dbfFileRow) r1;
+
+        i4 = specialinvoke r0.<ORG.as220.tinySQL.dbfFileTable: int getNextInsertRow()>();
+
+        $r2 = r0.<ORG.as220.tinySQL.dbfFileTable: java.io.RandomAccessFile ftbl>;
+
+        $i0 = specialinvoke r0.<ORG.as220.tinySQL.dbfFileTable: int calcRowPos(int)>(i4);
+
+        $l1 = (long) $i0;
+
+        virtualinvoke $r2.<java.io.RandomAccessFile: void seek(long)>($l1);
+
+        $r3 = r0.<ORG.as220.tinySQL.dbfFileTable: java.io.RandomAccessFile ftbl>;
+
+        $r4 = virtualinvoke r11.<ORG.as220.tinySQL.dbfFileRow: byte[] getData()>();
+
+        virtualinvoke $r3.<java.io.RandomAccessFile: void write(byte[])>($r4);
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>("Insert row written on position : ");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <ORG.as220.tinySQL.util.Log: void debug(java.lang.String)>($r7);
+
+        $i2 = virtualinvoke r0.<ORG.as220.tinySQL.dbfFileTable: int getRowCount()>();
+
+        if i4 != $i2 goto label4;
+
+        $i3 = i4 + 1;
+
+        specialinvoke r0.<ORG.as220.tinySQL.dbfFileTable: void setRowCount(int)>($i3);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r9 := @caughtexception;
+
+        $r10 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r10.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.Exception)>($r9);
+
+        throw $r10;
+
+     label4:
+        return i4;
+
+        catch java.lang.Exception from label1 to label2 with label3;
+    }
+
+    private int findDeletedRow()
+    {
+        ORG.as220.tinySQL.dbfFileTable r0;
+        byte[] $r1, $r2;
+        int $i0, i2;
+        byte $b1;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileTable;
+
+        i2 = 0;
+
+        goto label3;
+
+     label1:
+        $r2 = r0.<ORG.as220.tinySQL.dbfFileTable: byte[] deletedRows>;
+
+        $b1 = $r2[i2];
+
+        if $b1 != -1 goto label2;
+
+        return i2;
+
+     label2:
+        i2 = i2 + 1;
+
+     label3:
+        $r1 = r0.<ORG.as220.tinySQL.dbfFileTable: byte[] deletedRows>;
+
+        $i0 = lengthof $r1;
+
+        if i2 < $i0 goto label1;
+
+        return -1;
+    }
+
+    private int getNextInsertRow() throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileTable r0;
+        int i0, $i1, $i2, $i5, $i6, $i7, i8, $i9;
+        boolean z0;
+        byte[] $r1, $r2, $r3;
+        byte $b3, $b4;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileTable;
+
+        $i1 = r0.<ORG.as220.tinySQL.dbfFileTable: int insertMode>;
+
+        if $i1 != 2 goto label1;
+
+        $i7 = virtualinvoke r0.<ORG.as220.tinySQL.dbfFileTable: int getRowCount()>();
+
+        return $i7;
+
+     label1:
+        i0 = specialinvoke r0.<ORG.as220.tinySQL.dbfFileTable: int findDeletedRow()>();
+
+        if i0 == -1 goto label2;
+
+        return i0;
+
+     label2:
+        $i2 = r0.<ORG.as220.tinySQL.dbfFileTable: int insertMode>;
+
+        if $i2 != 0 goto label3;
+
+        $i6 = virtualinvoke r0.<ORG.as220.tinySQL.dbfFileTable: int getRowCount()>();
+
+        return $i6;
+
+     label3:
+        i8 = 0;
+
+        goto label7;
+
+     label4:
+        $r1 = r0.<ORG.as220.tinySQL.dbfFileTable: byte[] deletedRows>;
+
+        $b3 = $r1[i8];
+
+        if $b3 != -1 goto label5;
+
+        return i8;
+
+     label5:
+        $r2 = r0.<ORG.as220.tinySQL.dbfFileTable: byte[] deletedRows>;
+
+        $b4 = $r2[i8];
+
+        if $b4 != 0 goto label6;
+
+        z0 = virtualinvoke r0.<ORG.as220.tinySQL.dbfFileTable: boolean isDeleted(int)>(i8);
+
+        if z0 == 0 goto label6;
+
+        return i8;
+
+     label6:
+        i8 = i8 + 1;
+
+     label7:
+        $r3 = r0.<ORG.as220.tinySQL.dbfFileTable: byte[] deletedRows>;
+
+        $i9 = lengthof $r3;
+
+        if i8 < $i9 goto label4;
+
+        $i5 = virtualinvoke r0.<ORG.as220.tinySQL.dbfFileTable: int getRowCount()>();
+
+        return $i5;
+    }
+
+    private byte[] _readRow(int) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileTable r0;
+        int i0, $i1, $i2;
+        ORG.as220.tinySQL.DBFHeader $r1;
+        java.io.RandomAccessFile $r2, $r3;
+        long $l3;
+        java.lang.IllegalArgumentException $r4;
+        java.lang.Exception $r5;
+        ORG.as220.tinySQL.tinySQLException $r6;
+        byte[] r7;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileTable;
+
+        i0 := @parameter0: int;
+
+        if i0 >= 0 goto label1;
+
+        $r4 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r4.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("Position is negative");
+
+        throw $r4;
+
+     label1:
+        $r1 = r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.DBFHeader dbfHeader>;
+
+        $i1 = virtualinvoke $r1.<ORG.as220.tinySQL.DBFHeader: int getRecordLength()>();
+
+        r7 = newarray (byte)[$i1];
+
+        $r2 = r0.<ORG.as220.tinySQL.dbfFileTable: java.io.RandomAccessFile ftbl>;
+
+        $i2 = specialinvoke r0.<ORG.as220.tinySQL.dbfFileTable: int calcRowPos(int)>(i0);
+
+        $l3 = (long) $i2;
+
+        virtualinvoke $r2.<java.io.RandomAccessFile: void seek(long)>($l3);
+
+        $r3 = r0.<ORG.as220.tinySQL.dbfFileTable: java.io.RandomAccessFile ftbl>;
+
+        virtualinvoke $r3.<java.io.RandomAccessFile: void readFully(byte[])>(r7);
+
+     label2:
+        return r7;
+
+     label3:
+        $r5 := @caughtexception;
+
+        $r6 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r6.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.Exception)>($r5);
+
+        throw $r6;
+
+        catch java.lang.Exception from label1 to label2 with label3;
+    }
+
+    public ORG.as220.tinySQL.tsRawRow getRow(int) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileTable r0;
+        int i0;
+        ORG.as220.tinySQL.dbfFileRow $r2, $r4, $r5, $r8;
+        boolean $z0;
+        byte[] $r3, $r6, r11;
+        ORG.as220.tinySQL.DBFHeader $r7;
+        ORG.as220.tinySQL.tinySQLConverter $r9;
+        java.util.Vector r10;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileTable;
+
+        i0 := @parameter0: int;
+
+        $r2 = r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.dbfFileRow prototype>;
+
+        if $r2 != null goto label1;
+
+        $r7 = virtualinvoke r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.DBFHeader getHeader()>();
+
+        r10 = virtualinvoke $r7.<ORG.as220.tinySQL.DBFHeader: java.util.Vector getFields()>();
+
+        $r8 = new ORG.as220.tinySQL.dbfFileRow;
+
+        $r9 = virtualinvoke r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.tinySQLConverter getConverter()>();
+
+        specialinvoke $r8.<ORG.as220.tinySQL.dbfFileRow: void <init>(java.util.Vector,ORG.as220.tinySQL.tinySQLConverter)>(r10, $r9);
+
+        r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.dbfFileRow prototype> = $r8;
+
+     label1:
+        r11 = specialinvoke r0.<ORG.as220.tinySQL.dbfFileTable: byte[] _readRow(int)>(i0);
+
+        $z0 = specialinvoke r0.<ORG.as220.tinySQL.dbfFileTable: boolean isDeleted(byte[])>(r11);
+
+        if $z0 == 0 goto label2;
+
+        $r6 = r0.<ORG.as220.tinySQL.dbfFileTable: byte[] deletedRows>;
+
+        $r6[i0] = -1;
+
+        goto label3;
+
+     label2:
+        $r3 = r0.<ORG.as220.tinySQL.dbfFileTable: byte[] deletedRows>;
+
+        $r3[i0] = 1;
+
+     label3:
+        $r4 = new ORG.as220.tinySQL.dbfFileRow;
+
+        $r5 = r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.dbfFileRow prototype>;
+
+        specialinvoke $r4.<ORG.as220.tinySQL.dbfFileRow: void <init>(ORG.as220.tinySQL.dbfFileRow)>($r5);
+
+        virtualinvoke $r4.<ORG.as220.tinySQL.dbfFileRow: void setData(byte[])>(r11);
+
+        return $r4;
+    }
+
+    public void deleteRow(int) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileTable r0;
+        int i0, $i1, $i2;
+        byte[] $r2;
+        java.io.RandomAccessFile $r3, $r4;
+        long $l3;
+        ORG.as220.tinySQL.tinySQLException $r5, $r7;
+        java.io.IOException $r6;
+        java.lang.StringBuilder $r8, $r9;
+        java.lang.String $r10;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileTable;
+
+        i0 := @parameter0: int;
+
+        $i1 = virtualinvoke r0.<ORG.as220.tinySQL.dbfFileTable: int getRowCount()>();
+
+        if i0 < $i1 goto label1;
+
+        $r5 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r5.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("Row is >= rowcount");
+
+        throw $r5;
+
+     label1:
+        $r2 = r0.<ORG.as220.tinySQL.dbfFileTable: byte[] deletedRows>;
+
+        $r2[i0] = -1;
+
+        $r3 = r0.<ORG.as220.tinySQL.dbfFileTable: java.io.RandomAccessFile ftbl>;
+
+        $i2 = specialinvoke r0.<ORG.as220.tinySQL.dbfFileTable: int calcRowPos(int)>(i0);
+
+        $l3 = (long) $i2;
+
+        virtualinvoke $r3.<java.io.RandomAccessFile: void seek(long)>($l3);
+
+        $r4 = r0.<ORG.as220.tinySQL.dbfFileTable: java.io.RandomAccessFile ftbl>;
+
+        virtualinvoke $r4.<java.io.RandomAccessFile: void writeByte(int)>(42);
+
+     label2:
+        goto label4;
+
+     label3:
+        $r6 := @caughtexception;
+
+        $r7 = new ORG.as220.tinySQL.tinySQLException;
+
+        $r8 = new java.lang.StringBuilder;
+
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>(java.lang.String)>("Unable to delete record ");
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r7.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>($r10);
+
+        throw $r7;
+
+     label4:
+        return;
+
+        catch java.io.IOException from label1 to label2 with label3;
+    }
+
+    private int calcRowPos(int)
+    {
+        ORG.as220.tinySQL.dbfFileTable r0;
+        int i0, $i1, $i2, $i3, $i4;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileTable;
+
+        i0 := @parameter0: int;
+
+        $i3 = r0.<ORG.as220.tinySQL.dbfFileTable: int _headerLength>;
+
+        $i1 = r0.<ORG.as220.tinySQL.dbfFileTable: int _recordLength>;
+
+        $i2 = i0 * $i1;
+
+        $i4 = $i3 + $i2;
+
+        return $i4;
+    }
+
+    public boolean isDeleted(int) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileTable r0;
+        int i0;
+        byte[] $r1, $r2;
+        byte $b1, $b2;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileTable;
+
+        i0 := @parameter0: int;
+
+        $r1 = r0.<ORG.as220.tinySQL.dbfFileTable: byte[] deletedRows>;
+
+        $b1 = $r1[i0];
+
+        if $b1 != 0 goto label1;
+
+        virtualinvoke r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.tsRawRow getRow(int)>(i0);
+
+     label1:
+        $r2 = r0.<ORG.as220.tinySQL.dbfFileTable: byte[] deletedRows>;
+
+        $b2 = $r2[i0];
+
+        if $b2 != -1 goto label2;
+
+        return 1;
+
+     label2:
+        return 0;
+    }
+
+    private boolean isDeleted(byte[]) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileTable r0;
+        byte[] r1;
+        char c0;
+        byte $b1;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileTable;
+
+        r1 := @parameter0: byte[];
+
+        $b1 = r1[0];
+
+        c0 = (char) $b1;
+
+        if c0 != 42 goto label1;
+
+        return 1;
+
+     label1:
+        return 0;
+    }
+
+    public int getRowCount()
+    {
+        ORG.as220.tinySQL.dbfFileTable r0;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileTable;
+
+        $i0 = r0.<ORG.as220.tinySQL.dbfFileTable: int _rowCount>;
+
+        return $i0;
+    }
+
+    public int getColumnCount()
+    {
+        ORG.as220.tinySQL.dbfFileTable r0;
+        ORG.as220.tinySQL.DBFHeader $r1;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileTable;
+
+        $r1 = virtualinvoke r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.DBFHeader getHeader()>();
+
+        $i0 = virtualinvoke $r1.<ORG.as220.tinySQL.DBFHeader: int getNumberOfFields()>();
+
+        return $i0;
+    }
+
+    public int getRecordLength()
+    {
+        ORG.as220.tinySQL.dbfFileTable r0;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileTable;
+
+        $i0 = r0.<ORG.as220.tinySQL.dbfFileTable: int _recordLength>;
+
+        return $i0;
+    }
+
+    private void open_dbf(java.lang.String, boolean) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileTable r0;
+        java.lang.String r1, $r4, $r7, $r10, $r12;
+        boolean z0, $z1, $z2, $z3, $z4;
+        java.io.File $r3;
+        ORG.as220.tinySQL.tinySQLException $r5, $r19;
+        java.lang.StringBuilder $r6, $r8, $r9, $r11;
+        java.io.RandomAccessFile $r13, $r17, $r21, $r25, $r27;
+        ORG.as220.tinySQL.DBFHeader $r14, $r15, $r16, $r23, $r24, $r26;
+        int $i0, $i1, $i2;
+        java.lang.Exception $r18, $r20;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileTable;
+
+        r1 := @parameter0: java.lang.String;
+
+        z0 := @parameter1: boolean;
+
+     label01:
+        $r3 = new java.io.File;
+
+        $r4 = r0.<ORG.as220.tinySQL.dbfFileTable: java.lang.String fullpath>;
+
+        specialinvoke $r3.<java.io.File: void <init>(java.lang.String)>($r4);
+
+        $z1 = virtualinvoke $r3.<java.io.File: boolean exists()>();
+
+        if $z1 == 0 goto label02;
+
+        $z2 = virtualinvoke $r3.<java.io.File: boolean canRead()>();
+
+        if $z2 != 0 goto label03;
+
+     label02:
+        $r5 = new ORG.as220.tinySQL.tinySQLException;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>("Unable to open datafile (");
+
+        $r7 = r0.<ORG.as220.tinySQL.dbfFileTable: java.lang.String fullpath>;
+
+        $r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("), file does not exist or can\'t be read.");
+
+        $r10 = virtualinvoke $r3.<java.io.File: java.lang.String getAbsolutePath()>();
+
+        $r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r10);
+
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r5.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>($r12);
+
+        throw $r5;
+
+     label03:
+        $z3 = virtualinvoke $r3.<java.io.File: boolean canWrite()>();
+
+        if $z3 == 0 goto label04;
+
+        $z4 = r0.<ORG.as220.tinySQL.dbfFileTable: boolean readonly>;
+
+        if $z4 != 0 goto label04;
+
+        $r17 = new java.io.RandomAccessFile;
+
+        specialinvoke $r17.<java.io.RandomAccessFile: void <init>(java.io.File,java.lang.String)>($r3, "rw");
+
+        r0.<ORG.as220.tinySQL.dbfFileTable: java.io.RandomAccessFile ftbl> = $r17;
+
+        goto label05;
+
+     label04:
+        r0.<ORG.as220.tinySQL.dbfFileTable: boolean readonly> = 1;
+
+        $r13 = new java.io.RandomAccessFile;
+
+        specialinvoke $r13.<java.io.RandomAccessFile: void <init>(java.io.File,java.lang.String)>($r3, "r");
+
+        r0.<ORG.as220.tinySQL.dbfFileTable: java.io.RandomAccessFile ftbl> = $r13;
+
+     label05:
+        $r23 = new ORG.as220.tinySQL.DBFHeader;
+
+        specialinvoke $r23.<ORG.as220.tinySQL.DBFHeader: void <init>(java.lang.String,boolean)>(r1, z0);
+
+        r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.DBFHeader dbfHeader> = $r23;
+
+        $r24 = r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.DBFHeader dbfHeader>;
+
+        $r25 = r0.<ORG.as220.tinySQL.dbfFileTable: java.io.RandomAccessFile ftbl>;
+
+        virtualinvoke $r24.<ORG.as220.tinySQL.DBFHeader: void initializeHeader(java.io.RandomAccessFile)>($r25);
+
+        $r26 = r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.DBFHeader dbfHeader>;
+
+        $r27 = r0.<ORG.as220.tinySQL.dbfFileTable: java.io.RandomAccessFile ftbl>;
+
+        virtualinvoke $r26.<ORG.as220.tinySQL.DBFHeader: void readColHeader(java.io.RandomAccessFile)>($r27);
+
+     label06:
+        goto label12;
+
+     label07:
+        $r20 := @caughtexception;
+
+     label08:
+        $r21 = r0.<ORG.as220.tinySQL.dbfFileTable: java.io.RandomAccessFile ftbl>;
+
+        virtualinvoke $r21.<java.io.RandomAccessFile: void close()>();
+
+     label09:
+        goto label11;
+
+     label10:
+        $r18 := @caughtexception;
+
+     label11:
+        $r19 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r19.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.Exception)>($r20);
+
+        throw $r19;
+
+     label12:
+        $r14 = r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.DBFHeader dbfHeader>;
+
+        $i0 = virtualinvoke $r14.<ORG.as220.tinySQL.DBFHeader: int getNumberOfRecords()>();
+
+        specialinvoke r0.<ORG.as220.tinySQL.dbfFileTable: void setRowCount(int)>($i0);
+
+        $r15 = r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.DBFHeader dbfHeader>;
+
+        $i1 = virtualinvoke $r15.<ORG.as220.tinySQL.DBFHeader: int getHeaderLength()>();
+
+        r0.<ORG.as220.tinySQL.dbfFileTable: int _headerLength> = $i1;
+
+        $r16 = r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.DBFHeader dbfHeader>;
+
+        $i2 = virtualinvoke $r16.<ORG.as220.tinySQL.DBFHeader: int getRecordLength()>();
+
+        r0.<ORG.as220.tinySQL.dbfFileTable: int _recordLength> = $i2;
+
+        return;
+
+        catch java.lang.Exception from label01 to label06 with label07;
+        catch java.lang.Exception from label08 to label09 with label10;
+    }
+
+    private void setRowCount(int) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.dbfFileTable r0;
+        int i0, $i1, $i2, $i3, $i4;
+        byte[] r1, $r3, $r7, $r8;
+        ORG.as220.tinySQL.DBFHeader $r4, $r6;
+        java.io.RandomAccessFile $r5;
+        java.io.IOException $r9;
+        ORG.as220.tinySQL.tinySQLException $r10;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileTable;
+
+        i0 := @parameter0: int;
+
+        r0.<ORG.as220.tinySQL.dbfFileTable: int _rowCount> = i0;
+
+        r1 = newarray (byte)[i0];
+
+        $r3 = r0.<ORG.as220.tinySQL.dbfFileTable: byte[] deletedRows>;
+
+        if $r3 == null goto label1;
+
+        $r8 = r0.<ORG.as220.tinySQL.dbfFileTable: byte[] deletedRows>;
+
+        $r7 = r0.<ORG.as220.tinySQL.dbfFileTable: byte[] deletedRows>;
+
+        $i3 = lengthof $r7;
+
+        $i2 = lengthof r1;
+
+        $i4 = staticinvoke <java.lang.Math: int min(int,int)>($i3, $i2);
+
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r8, 0, r1, 0, $i4);
+
+     label1:
+        r0.<ORG.as220.tinySQL.dbfFileTable: byte[] deletedRows> = r1;
+
+     label2:
+        $r4 = r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.DBFHeader dbfHeader>;
+
+        $i1 = virtualinvoke $r4.<ORG.as220.tinySQL.DBFHeader: int getNumberOfRecords()>();
+
+        if $i1 == i0 goto label5;
+
+        $r6 = r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.DBFHeader dbfHeader>;
+
+        $r5 = r0.<ORG.as220.tinySQL.dbfFileTable: java.io.RandomAccessFile ftbl>;
+
+        virtualinvoke $r6.<ORG.as220.tinySQL.DBFHeader: void updateNumberOfRecords(int,java.io.RandomAccessFile)>(i0, $r5);
+
+     label3:
+        goto label5;
+
+     label4:
+        $r9 := @caughtexception;
+
+        $r10 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r10.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.Exception)>($r9);
+
+        throw $r10;
+
+     label5:
+        return;
+
+        catch java.io.IOException from label2 to label3 with label4;
+    }
+
+    public ORG.as220.tinySQL.DBFHeader getHeader()
+    {
+        ORG.as220.tinySQL.dbfFileTable r0;
+        ORG.as220.tinySQL.DBFHeader $r1;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileTable;
+
+        $r1 = r0.<ORG.as220.tinySQL.dbfFileTable: ORG.as220.tinySQL.DBFHeader dbfHeader>;
+
+        return $r1;
+    }
+
+    public boolean isReadOnly()
+    {
+        ORG.as220.tinySQL.dbfFileTable r0;
+        boolean $z0;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileTable;
+
+        $z0 = r0.<ORG.as220.tinySQL.dbfFileTable: boolean readonly>;
+
+        return $z0;
+    }
+
+    public static void <clinit>()
+    {
+        <ORG.as220.tinySQL.dbfFileTable: int ROW_NOT_DELETED> = 1;
+
+        <ORG.as220.tinySQL.dbfFileTable: int ROW_DELETED> = -1;
+
+        <ORG.as220.tinySQL.dbfFileTable: int ROW_UNREAD> = 0;
+
+        <ORG.as220.tinySQL.dbfFileTable: char RECORD_IS_NOT_DELETED> = 32;
+
+        <ORG.as220.tinySQL.dbfFileTable: char RECORD_IS_DELETED> = 42;
+
+        <ORG.as220.tinySQL.dbfFileTable: int IS_DELETED_INDEX> = 0;
+
+        <ORG.as220.tinySQL.dbfFileTable: java.lang.String DBF_EXTENSION> = ".DBF";
+
+        return;
+    }
+}

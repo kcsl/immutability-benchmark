@@ -1,0 +1,497 @@
+public class ORG.as220.tinySQL.dbfFileConnection extends ORG.as220.tinySQL.tinySQLConnection
+{
+    private ORG.as220.tinySQL.dbfFileDatabaseMetaData myMetaData;
+
+    public void <init>(java.lang.String, java.lang.String, java.sql.Driver, java.util.Properties) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        java.lang.String r1, r2;
+        java.sql.Driver r3;
+        java.util.Properties r4;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.sql.Driver;
+
+        r4 := @parameter3: java.util.Properties;
+
+        specialinvoke r0.<ORG.as220.tinySQL.tinySQLConnection: void <init>(java.lang.String,java.lang.String,java.sql.Driver,java.util.Properties)>(r1, r2, r3, r4);
+
+        r0.<ORG.as220.tinySQL.dbfFileConnection: ORG.as220.tinySQL.dbfFileDatabaseMetaData myMetaData> = null;
+
+        return;
+    }
+
+    public ORG.as220.tinySQL.tinySQL createDatabaseEngine()
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        java.lang.String r1, $r2, $r4;
+        int $i0;
+        java.lang.IllegalArgumentException $r3;
+        ORG.as220.tinySQL.dbfFile $r5;
+        java.util.Properties $r6;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        $r2 = virtualinvoke r0.<ORG.as220.tinySQL.dbfFileConnection: java.lang.String getUrl()>();
+
+        $i0 = virtualinvoke $r2.<java.lang.String: int length()>();
+
+        if $i0 <= 13 goto label1;
+
+        $r4 = virtualinvoke r0.<ORG.as220.tinySQL.dbfFileConnection: java.lang.String getUrl()>();
+
+        r1 = virtualinvoke $r4.<java.lang.String: java.lang.String substring(int)>(13);
+
+        $r5 = new ORG.as220.tinySQL.dbfFile;
+
+        $r6 = virtualinvoke r0.<ORG.as220.tinySQL.dbfFileConnection: java.util.Properties getProperties()>();
+
+        specialinvoke $r5.<ORG.as220.tinySQL.dbfFile: void <init>(java.lang.String,java.util.Properties)>(r1, $r6);
+
+        return $r5;
+
+     label1:
+        $r3 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r3.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("You have to specifiy an data directory");
+
+        throw $r3;
+    }
+
+    public java.sql.DatabaseMetaData getMetaData() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        ORG.as220.tinySQL.dbfFileDatabaseMetaData $r1, $r2, $r3;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        $r1 = r0.<ORG.as220.tinySQL.dbfFileConnection: ORG.as220.tinySQL.dbfFileDatabaseMetaData myMetaData>;
+
+        if $r1 != null goto label1;
+
+        $r3 = new ORG.as220.tinySQL.dbfFileDatabaseMetaData;
+
+        specialinvoke $r3.<ORG.as220.tinySQL.dbfFileDatabaseMetaData: void <init>(ORG.as220.tinySQL.tinySQLConnection)>(r0);
+
+        r0.<ORG.as220.tinySQL.dbfFileConnection: ORG.as220.tinySQL.dbfFileDatabaseMetaData myMetaData> = $r3;
+
+     label1:
+        $r2 = r0.<ORG.as220.tinySQL.dbfFileConnection: ORG.as220.tinySQL.dbfFileDatabaseMetaData myMetaData>;
+
+        return $r2;
+    }
+
+    public void setReadOnly(boolean)
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        boolean z0;
+        ORG.as220.tinySQL.dbfFile r1;
+        ORG.as220.tinySQL.tinySQL $r2;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        z0 := @parameter0: boolean;
+
+        $r2 = virtualinvoke r0.<ORG.as220.tinySQL.dbfFileConnection: ORG.as220.tinySQL.tinySQL getTinySqlHandle()>();
+
+        r1 = (ORG.as220.tinySQL.dbfFile) $r2;
+
+        virtualinvoke r1.<ORG.as220.tinySQL.dbfFile: void setReadOnly(boolean)>(z0);
+
+        return;
+    }
+
+    public boolean isReadOnly()
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        ORG.as220.tinySQL.dbfFile r1;
+        ORG.as220.tinySQL.tinySQL $r2;
+        boolean $z0;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        $r2 = virtualinvoke r0.<ORG.as220.tinySQL.dbfFileConnection: ORG.as220.tinySQL.tinySQL getTinySqlHandle()>();
+
+        r1 = (ORG.as220.tinySQL.dbfFile) $r2;
+
+        $z0 = virtualinvoke r1.<ORG.as220.tinySQL.dbfFile: boolean isReadOnly()>();
+
+        return $z0;
+    }
+
+    public java.sql.Array createArrayOf(java.lang.String, java.lang.Object[]) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        java.lang.String r1;
+        java.lang.Object[] r2;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.Object[];
+
+        return null;
+    }
+
+    public java.sql.Blob createBlob() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        return null;
+    }
+
+    public java.sql.Clob createClob() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        return null;
+    }
+
+    public java.sql.NClob createNClob() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        return null;
+    }
+
+    public java.sql.SQLXML createSQLXML() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        return null;
+    }
+
+    public java.sql.Statement createStatement(int, int, int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        int i0, i1, i2;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        i2 := @parameter2: int;
+
+        return null;
+    }
+
+    public java.sql.Struct createStruct(java.lang.String, java.lang.Object[]) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        java.lang.String r1;
+        java.lang.Object[] r2;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.Object[];
+
+        return null;
+    }
+
+    public java.util.Properties getClientInfo() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        return null;
+    }
+
+    public java.lang.String getClientInfo(java.lang.String) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        java.lang.String r1;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        r1 := @parameter0: java.lang.String;
+
+        return null;
+    }
+
+    public int getHoldability() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        return 0;
+    }
+
+    public boolean isValid(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        i0 := @parameter0: int;
+
+        return 0;
+    }
+
+    public java.sql.CallableStatement prepareCall(java.lang.String, int, int, int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        java.lang.String r1;
+        int i0, i1, i2;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        i1 := @parameter2: int;
+
+        i2 := @parameter3: int;
+
+        return null;
+    }
+
+    public java.sql.PreparedStatement prepareStatement(java.lang.String, int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        java.lang.String r1;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        return null;
+    }
+
+    public java.sql.PreparedStatement prepareStatement(java.lang.String, int[]) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        java.lang.String r1;
+        int[] r2;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: int[];
+
+        return null;
+    }
+
+    public java.sql.PreparedStatement prepareStatement(java.lang.String, java.lang.String[]) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        java.lang.String r1;
+        java.lang.String[] r2;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String[];
+
+        return null;
+    }
+
+    public java.sql.PreparedStatement prepareStatement(java.lang.String, int, int, int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        java.lang.String r1;
+        int i0, i1, i2;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        i1 := @parameter2: int;
+
+        i2 := @parameter3: int;
+
+        return null;
+    }
+
+    public void releaseSavepoint(java.sql.Savepoint) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        java.sql.Savepoint r1;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        r1 := @parameter0: java.sql.Savepoint;
+
+        return;
+    }
+
+    public void rollback(java.sql.Savepoint) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        java.sql.Savepoint r1;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        r1 := @parameter0: java.sql.Savepoint;
+
+        return;
+    }
+
+    public void setClientInfo(java.util.Properties) throws java.sql.SQLClientInfoException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        java.util.Properties r1;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        r1 := @parameter0: java.util.Properties;
+
+        return;
+    }
+
+    public void setClientInfo(java.lang.String, java.lang.String) throws java.sql.SQLClientInfoException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        java.lang.String r1, r2;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        return;
+    }
+
+    public void setHoldability(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        i0 := @parameter0: int;
+
+        return;
+    }
+
+    public java.sql.Savepoint setSavepoint() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        return null;
+    }
+
+    public java.sql.Savepoint setSavepoint(java.lang.String) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        java.lang.String r1;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        r1 := @parameter0: java.lang.String;
+
+        return null;
+    }
+
+    public boolean isWrapperFor(java.lang.Class) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        java.lang.Class r1;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        r1 := @parameter0: java.lang.Class;
+
+        return 0;
+    }
+
+    public java.lang.Object unwrap(java.lang.Class) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        java.lang.Class r1;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        r1 := @parameter0: java.lang.Class;
+
+        return null;
+    }
+
+    public void setSchema(java.lang.String) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        java.lang.String r1;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        r1 := @parameter0: java.lang.String;
+
+        return;
+    }
+
+    public java.lang.String getSchema() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        return null;
+    }
+
+    public void abort(java.util.concurrent.Executor) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        java.util.concurrent.Executor r1;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        r1 := @parameter0: java.util.concurrent.Executor;
+
+        return;
+    }
+
+    public void setNetworkTimeout(java.util.concurrent.Executor, int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+        java.util.concurrent.Executor r1;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        r1 := @parameter0: java.util.concurrent.Executor;
+
+        i0 := @parameter1: int;
+
+        return;
+    }
+
+    public int getNetworkTimeout() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.dbfFileConnection r0;
+
+        r0 := @this: ORG.as220.tinySQL.dbfFileConnection;
+
+        return 0;
+    }
+}

@@ -1,0 +1,208 @@
+public class ORG.as220.tinySQL.tsWeakPhysicalRow extends ORG.as220.tinySQL.tsPhysicalRow
+{
+    private ORG.as220.tinySQL.tinySQLTableView[] views;
+    private int[] viewPositions;
+
+    public void put(int, java.lang.Object) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.tsWeakPhysicalRow r0;
+        int i0;
+        java.lang.Object r1;
+        java.lang.ref.WeakReference $r2;
+
+        r0 := @this: ORG.as220.tinySQL.tsWeakPhysicalRow;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.lang.Object;
+
+        if r1 != null goto label1;
+
+        specialinvoke r0.<ORG.as220.tinySQL.tsPhysicalRow: void put(int,java.lang.Object)>(i0, null);
+
+        goto label2;
+
+     label1:
+        $r2 = new java.lang.ref.WeakReference;
+
+        specialinvoke $r2.<java.lang.ref.WeakReference: void <init>(java.lang.Object)>(r1);
+
+        specialinvoke r0.<ORG.as220.tinySQL.tsPhysicalRow: void put(int,java.lang.Object)>(i0, $r2);
+
+     label2:
+        return;
+    }
+
+    public java.lang.Object get(int) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.tsWeakPhysicalRow r0;
+        int i0;
+        java.lang.ref.WeakReference r1;
+        java.lang.Object r2, $r3, $r4;
+
+        r0 := @this: ORG.as220.tinySQL.tsWeakPhysicalRow;
+
+        i0 := @parameter0: int;
+
+        $r3 = specialinvoke r0.<ORG.as220.tinySQL.tsPhysicalRow: java.lang.Object get(int)>(i0);
+
+        r1 = (java.lang.ref.WeakReference) $r3;
+
+        if r1 != null goto label1;
+
+        return null;
+
+     label1:
+        r2 = virtualinvoke r1.<java.lang.ref.WeakReference: java.lang.Object get()>();
+
+        if r2 != null goto label2;
+
+        $r4 = virtualinvoke r0.<ORG.as220.tinySQL.tsWeakPhysicalRow: java.lang.Object refresh(int)>(i0);
+
+        return $r4;
+
+     label2:
+        return r2;
+    }
+
+    protected java.lang.Object refresh(int) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.tsWeakPhysicalRow r0;
+        int i0, $i1;
+        ORG.as220.tinySQL.tsColumn r1;
+        ORG.as220.tinySQL.tinySQLTableView r2;
+        java.lang.Object r3;
+
+        r0 := @this: ORG.as220.tinySQL.tsWeakPhysicalRow;
+
+        i0 := @parameter0: int;
+
+        r1 = virtualinvoke r0.<ORG.as220.tinySQL.tsWeakPhysicalRow: ORG.as220.tinySQL.tsColumn getColumnDefinition(int)>(i0);
+
+        r2 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: ORG.as220.tinySQL.tinySQLTableView getTable()>();
+
+        $i1 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getTablePosition()>();
+
+        r3 = virtualinvoke r2.<ORG.as220.tinySQL.tinySQLTableView: java.lang.Object getColumn(int)>($i1);
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tsWeakPhysicalRow: void put(int,java.lang.Object)>(i0, r3);
+
+        return r3;
+    }
+
+    public void <init>(ORG.as220.tinySQL.tsPhysicalRow)
+    {
+        ORG.as220.tinySQL.tsWeakPhysicalRow r0;
+        ORG.as220.tinySQL.tsPhysicalRow r1;
+
+        r0 := @this: ORG.as220.tinySQL.tsWeakPhysicalRow;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsPhysicalRow;
+
+        specialinvoke r0.<ORG.as220.tinySQL.tsPhysicalRow: void <init>(ORG.as220.tinySQL.tsPhysicalRow)>(r1);
+
+        return;
+    }
+
+    public void <init>(java.util.Vector)
+    {
+        ORG.as220.tinySQL.tsWeakPhysicalRow r0;
+        java.util.Vector r1;
+
+        r0 := @this: ORG.as220.tinySQL.tsWeakPhysicalRow;
+
+        r1 := @parameter0: java.util.Vector;
+
+        specialinvoke r0.<ORG.as220.tinySQL.tsPhysicalRow: void <init>(java.util.Vector)>(r1);
+
+        return;
+    }
+
+    public void setRowPositions(java.util.Vector) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.tsWeakPhysicalRow r0;
+        java.util.Vector r1;
+        int $i0, $i1, $i2, i3;
+        ORG.as220.tinySQL.tinySQLTableView[] $r2, $r4, $r5, $r6;
+        java.lang.Object[] $r3;
+        ORG.as220.tinySQL.tinySQLTableView $r7;
+        int[] $r8;
+
+        r0 := @this: ORG.as220.tinySQL.tsWeakPhysicalRow;
+
+        r1 := @parameter0: java.util.Vector;
+
+        $i0 = virtualinvoke r1.<java.util.Vector: int size()>();
+
+        $r2 = newarray (ORG.as220.tinySQL.tinySQLTableView)[$i0];
+
+        $r3 = virtualinvoke r1.<java.util.Vector: java.lang.Object[] toArray(java.lang.Object[])>($r2);
+
+        $r4 = (ORG.as220.tinySQL.tinySQLTableView[]) $r3;
+
+        r0.<ORG.as220.tinySQL.tsWeakPhysicalRow: ORG.as220.tinySQL.tinySQLTableView[] views> = $r4;
+
+        i3 = 0;
+
+        goto label2;
+
+     label1:
+        $r8 = r0.<ORG.as220.tinySQL.tsWeakPhysicalRow: int[] viewPositions>;
+
+        $r6 = r0.<ORG.as220.tinySQL.tsWeakPhysicalRow: ORG.as220.tinySQL.tinySQLTableView[] views>;
+
+        $r7 = $r6[i3];
+
+        $i2 = virtualinvoke $r7.<ORG.as220.tinySQL.tinySQLTableView: int getCurrentRecordNumber()>();
+
+        $r8[i3] = $i2;
+
+        i3 = i3 + 1;
+
+     label2:
+        $r5 = r0.<ORG.as220.tinySQL.tsWeakPhysicalRow: ORG.as220.tinySQL.tinySQLTableView[] views>;
+
+        $i1 = lengthof $r5;
+
+        if i3 < $i1 goto label1;
+
+        return;
+    }
+
+    public void refresh() throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.tsWeakPhysicalRow r0;
+        ORG.as220.tinySQL.tinySQLTableView[] $r1, $r2;
+        int $i0, $i1, i2;
+        int[] $r3;
+        ORG.as220.tinySQL.tinySQLTableView $r4;
+
+        r0 := @this: ORG.as220.tinySQL.tsWeakPhysicalRow;
+
+        i2 = 0;
+
+        goto label2;
+
+     label1:
+        $r2 = r0.<ORG.as220.tinySQL.tsWeakPhysicalRow: ORG.as220.tinySQL.tinySQLTableView[] views>;
+
+        $r4 = $r2[i2];
+
+        $r3 = r0.<ORG.as220.tinySQL.tsWeakPhysicalRow: int[] viewPositions>;
+
+        $i1 = $r3[i2];
+
+        virtualinvoke $r4.<ORG.as220.tinySQL.tinySQLTableView: boolean absolute(int)>($i1);
+
+        i2 = i2 + 1;
+
+     label2:
+        $r1 = r0.<ORG.as220.tinySQL.tsWeakPhysicalRow: ORG.as220.tinySQL.tinySQLTableView[] views>;
+
+        $i0 = lengthof $r1;
+
+        if i2 < $i0 goto label1;
+
+        return;
+    }
+}

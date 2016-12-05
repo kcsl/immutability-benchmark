@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<attributes>
+<attribute>
+<srcPos sline="0" eline="0" spos="0" epos="0"/>
+<jmpPos sline="0" eline="0" spos="0" epos="0"/>
+<text info="[inner=ORG/as220/tinySQL/sqlparser/Operator$AddOperator, outer=ORG/as220/tinySQL/sqlparser/Operator, name=AddOperator,flags=10]" aType="InnerClassTag"/>
+<text info="[inner=ORG/as220/tinySQL/sqlparser/Operator$AndOperator, outer=ORG/as220/tinySQL/sqlparser/Operator, name=AndOperator,flags=10]" aType="InnerClassTag"/>
+<text info="[inner=ORG/as220/tinySQL/sqlparser/Operator$BetweenOperator, outer=ORG/as220/tinySQL/sqlparser/Operator, name=BetweenOperator,flags=10]" aType="InnerClassTag"/>
+<text info="[inner=ORG/as220/tinySQL/sqlparser/Operator$DivideOperator, outer=ORG/as220/tinySQL/sqlparser/Operator, name=DivideOperator,flags=10]" aType="InnerClassTag"/>
+<text info="[inner=ORG/as220/tinySQL/sqlparser/Operator$EqualOperator, outer=ORG/as220/tinySQL/sqlparser/Operator, name=EqualOperator,flags=10]" aType="InnerClassTag"/>
+<text info="[inner=ORG/as220/tinySQL/sqlparser/Operator$GreaterEqualOperator, outer=ORG/as220/tinySQL/sqlparser/Operator, name=GreaterEqualOperator,flags=10]" aType="InnerClassTag"/>
+<text info="[inner=ORG/as220/tinySQL/sqlparser/Operator$GreaterOperator, outer=ORG/as220/tinySQL/sqlparser/Operator, name=GreaterOperator,flags=10]" aType="InnerClassTag"/>
+<text info="[inner=ORG/as220/tinySQL/sqlparser/Operator$InOperator, outer=ORG/as220/tinySQL/sqlparser/Operator, name=InOperator,flags=10]" aType="InnerClassTag"/>
+<text info="[inner=ORG/as220/tinySQL/sqlparser/Operator$LesserEqualOperator, outer=ORG/as220/tinySQL/sqlparser/Operator, name=LesserEqualOperator,flags=10]" aType="InnerClassTag"/>
+<text info="[inner=ORG/as220/tinySQL/sqlparser/Operator$LesserOperator, outer=ORG/as220/tinySQL/sqlparser/Operator, name=LesserOperator,flags=10]" aType="InnerClassTag"/>
+<text info="[inner=ORG/as220/tinySQL/sqlparser/Operator$LikeOperator, outer=ORG/as220/tinySQL/sqlparser/Operator, name=LikeOperator,flags=10]" aType="InnerClassTag"/>
+<text info="[inner=ORG/as220/tinySQL/sqlparser/Operator$MultiplyOperator, outer=ORG/as220/tinySQL/sqlparser/Operator, name=MultiplyOperator,flags=10]" aType="InnerClassTag"/>
+<text info="[inner=ORG/as220/tinySQL/sqlparser/Operator$NotBetweenOperator, outer=ORG/as220/tinySQL/sqlparser/Operator, name=NotBetweenOperator,flags=10]" aType="InnerClassTag"/>
+<text info="[inner=ORG/as220/tinySQL/sqlparser/Operator$NotEqualOperator, outer=ORG/as220/tinySQL/sqlparser/Operator, name=NotEqualOperator,flags=10]" aType="InnerClassTag"/>
+<text info="[inner=ORG/as220/tinySQL/sqlparser/Operator$OrOperator, outer=ORG/as220/tinySQL/sqlparser/Operator, name=OrOperator,flags=10]" aType="InnerClassTag"/>
+<text info="[inner=ORG/as220/tinySQL/sqlparser/Operator$SubtractOperator, outer=ORG/as220/tinySQL/sqlparser/Operator, name=SubtractOperator,flags=10]" aType="InnerClassTag"/>
+<text info="soot.tagkit.InnerClassAttribute@199db71c" aType="InnerClassAttribute"/>
+</attribute>
+</attributes>

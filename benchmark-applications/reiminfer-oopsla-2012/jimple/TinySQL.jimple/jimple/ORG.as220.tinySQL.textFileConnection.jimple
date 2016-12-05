@@ -1,0 +1,456 @@
+public class ORG.as220.tinySQL.textFileConnection extends ORG.as220.tinySQL.tinySQLConnection
+{
+
+    public void <init>(java.lang.String, java.lang.String, java.sql.Driver, java.util.Properties) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+        java.lang.String r1, r2;
+        java.sql.Driver r3;
+        java.util.Properties r4;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.sql.Driver;
+
+        r4 := @parameter3: java.util.Properties;
+
+        specialinvoke r0.<ORG.as220.tinySQL.tinySQLConnection: void <init>(java.lang.String,java.lang.String,java.sql.Driver,java.util.Properties)>(r1, r2, r3, r4);
+
+        return;
+    }
+
+    public ORG.as220.tinySQL.tinySQL createDatabaseEngine() throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+        java.lang.String $r2, $r4, $r5, $r9, r10;
+        int $i0;
+        java.lang.StringBuilder $r3, $r6;
+        ORG.as220.tinySQL.textFile $r7;
+        java.util.Properties $r8;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        $r2 = virtualinvoke r0.<ORG.as220.tinySQL.textFileConnection: java.lang.String getUrl()>();
+
+        $i0 = virtualinvoke $r2.<java.lang.String: int length()>();
+
+        if $i0 <= 13 goto label1;
+
+        $r9 = virtualinvoke r0.<ORG.as220.tinySQL.textFileConnection: java.lang.String getUrl()>();
+
+        r10 = virtualinvoke $r9.<java.lang.String: java.lang.String substring(int)>(13);
+
+        goto label2;
+
+     label1:
+        $r3 = new java.lang.StringBuilder;
+
+        $r4 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("user.home");
+
+        $r5 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r4);
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>($r5);
+
+        $r6 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/.tinySQL");
+
+        r10 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label2:
+        $r7 = new ORG.as220.tinySQL.textFile;
+
+        $r8 = virtualinvoke r0.<ORG.as220.tinySQL.textFileConnection: java.util.Properties getProperties()>();
+
+        specialinvoke $r7.<ORG.as220.tinySQL.textFile: void <init>(java.lang.String,java.util.Properties)>(r10, $r8);
+
+        return $r7;
+    }
+
+    public java.sql.DatabaseMetaData getMetaData() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+        ORG.as220.tinySQL.textFileDatabaseMetaData $r1;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        $r1 = new ORG.as220.tinySQL.textFileDatabaseMetaData;
+
+        specialinvoke $r1.<ORG.as220.tinySQL.textFileDatabaseMetaData: void <init>(ORG.as220.tinySQL.tinySQLConnection)>(r0);
+
+        return $r1;
+    }
+
+    public java.sql.Array createArrayOf(java.lang.String, java.lang.Object[]) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+        java.lang.String r1;
+        java.lang.Object[] r2;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.Object[];
+
+        return null;
+    }
+
+    public java.sql.Blob createBlob() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        return null;
+    }
+
+    public java.sql.Clob createClob() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        return null;
+    }
+
+    public java.sql.NClob createNClob() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        return null;
+    }
+
+    public java.sql.SQLXML createSQLXML() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        return null;
+    }
+
+    public java.sql.Statement createStatement(int, int, int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+        int i0, i1, i2;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        i2 := @parameter2: int;
+
+        return null;
+    }
+
+    public java.sql.Struct createStruct(java.lang.String, java.lang.Object[]) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+        java.lang.String r1;
+        java.lang.Object[] r2;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.Object[];
+
+        return null;
+    }
+
+    public java.util.Properties getClientInfo() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        return null;
+    }
+
+    public java.lang.String getClientInfo(java.lang.String) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+        java.lang.String r1;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        r1 := @parameter0: java.lang.String;
+
+        return null;
+    }
+
+    public int getHoldability() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        return 0;
+    }
+
+    public boolean isValid(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        i0 := @parameter0: int;
+
+        return 0;
+    }
+
+    public java.sql.CallableStatement prepareCall(java.lang.String, int, int, int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+        java.lang.String r1;
+        int i0, i1, i2;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        i1 := @parameter2: int;
+
+        i2 := @parameter3: int;
+
+        return null;
+    }
+
+    public java.sql.PreparedStatement prepareStatement(java.lang.String, int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+        java.lang.String r1;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        return null;
+    }
+
+    public java.sql.PreparedStatement prepareStatement(java.lang.String, int[]) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+        java.lang.String r1;
+        int[] r2;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: int[];
+
+        return null;
+    }
+
+    public java.sql.PreparedStatement prepareStatement(java.lang.String, java.lang.String[]) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+        java.lang.String r1;
+        java.lang.String[] r2;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String[];
+
+        return null;
+    }
+
+    public java.sql.PreparedStatement prepareStatement(java.lang.String, int, int, int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+        java.lang.String r1;
+        int i0, i1, i2;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        i1 := @parameter2: int;
+
+        i2 := @parameter3: int;
+
+        return null;
+    }
+
+    public void releaseSavepoint(java.sql.Savepoint) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+        java.sql.Savepoint r1;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        r1 := @parameter0: java.sql.Savepoint;
+
+        return;
+    }
+
+    public void rollback(java.sql.Savepoint) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+        java.sql.Savepoint r1;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        r1 := @parameter0: java.sql.Savepoint;
+
+        return;
+    }
+
+    public void setClientInfo(java.util.Properties) throws java.sql.SQLClientInfoException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+        java.util.Properties r1;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        r1 := @parameter0: java.util.Properties;
+
+        return;
+    }
+
+    public void setClientInfo(java.lang.String, java.lang.String) throws java.sql.SQLClientInfoException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+        java.lang.String r1, r2;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String;
+
+        return;
+    }
+
+    public void setHoldability(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        i0 := @parameter0: int;
+
+        return;
+    }
+
+    public java.sql.Savepoint setSavepoint() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        return null;
+    }
+
+    public java.sql.Savepoint setSavepoint(java.lang.String) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+        java.lang.String r1;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        r1 := @parameter0: java.lang.String;
+
+        return null;
+    }
+
+    public boolean isWrapperFor(java.lang.Class) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+        java.lang.Class r1;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        r1 := @parameter0: java.lang.Class;
+
+        return 0;
+    }
+
+    public java.lang.Object unwrap(java.lang.Class) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+        java.lang.Class r1;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        r1 := @parameter0: java.lang.Class;
+
+        return null;
+    }
+
+    public void setSchema(java.lang.String) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+        java.lang.String r1;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        r1 := @parameter0: java.lang.String;
+
+        return;
+    }
+
+    public java.lang.String getSchema() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        return null;
+    }
+
+    public void abort(java.util.concurrent.Executor) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+        java.util.concurrent.Executor r1;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        r1 := @parameter0: java.util.concurrent.Executor;
+
+        return;
+    }
+
+    public void setNetworkTimeout(java.util.concurrent.Executor, int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+        java.util.concurrent.Executor r1;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        r1 := @parameter0: java.util.concurrent.Executor;
+
+        i0 := @parameter1: int;
+
+        return;
+    }
+
+    public int getNetworkTimeout() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.textFileConnection r0;
+
+        r0 := @this: ORG.as220.tinySQL.textFileConnection;
+
+        return 0;
+    }
+}

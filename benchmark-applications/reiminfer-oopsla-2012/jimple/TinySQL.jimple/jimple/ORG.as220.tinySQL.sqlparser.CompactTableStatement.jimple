@@ -1,0 +1,168 @@
+public class ORG.as220.tinySQL.sqlparser.CompactTableStatement extends java.lang.Object implements ORG.as220.tinySQL.sqlparser.SQLStatement
+{
+    private ORG.as220.tinySQL.tinySQLStatement statement;
+    private ORG.as220.tinySQL.tinySQL db;
+    private ORG.as220.tinySQL.tinySQLTableView table;
+
+    public void <init>(ORG.as220.tinySQL.tinySQLStatement) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.sqlparser.CompactTableStatement r0;
+        ORG.as220.tinySQL.tinySQLStatement r1;
+        java.sql.Connection $r2;
+        ORG.as220.tinySQL.tinySQL $r3;
+        java.sql.SQLException $r4;
+        ORG.as220.tinySQL.tinySQLException $r5;
+        ORG.as220.tinySQL.tinySQLConnection r6;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.CompactTableStatement;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tinySQLStatement;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+     label1:
+        r0.<ORG.as220.tinySQL.sqlparser.CompactTableStatement: ORG.as220.tinySQL.tinySQLStatement statement> = r1;
+
+        $r2 = virtualinvoke r1.<ORG.as220.tinySQL.tinySQLStatement: java.sql.Connection getConnection()>();
+
+        r6 = (ORG.as220.tinySQL.tinySQLConnection) $r2;
+
+        $r3 = virtualinvoke r6.<ORG.as220.tinySQL.tinySQLConnection: ORG.as220.tinySQL.tinySQL getTinySqlHandle()>();
+
+        r0.<ORG.as220.tinySQL.sqlparser.CompactTableStatement: ORG.as220.tinySQL.tinySQL db> = $r3;
+
+     label2:
+        goto label4;
+
+     label3:
+        $r4 := @caughtexception;
+
+        $r5 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r5.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String,java.lang.Exception)>("Unable to resolve connection", $r4);
+
+        throw $r5;
+
+     label4:
+        return;
+
+        catch java.sql.SQLException from label1 to label2 with label3;
+    }
+
+    public void setTable(java.lang.String) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.sqlparser.CompactTableStatement r0;
+        java.lang.String r1;
+        ORG.as220.tinySQL.tinySQL $r2;
+        ORG.as220.tinySQL.tinySQLTableView $r3;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.CompactTableStatement;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r2 = virtualinvoke r0.<ORG.as220.tinySQL.sqlparser.CompactTableStatement: ORG.as220.tinySQL.tinySQL getDatabase()>();
+
+        $r3 = virtualinvoke $r2.<ORG.as220.tinySQL.tinySQL: ORG.as220.tinySQL.tinySQLTableView getTable(java.lang.String)>(r1);
+
+        r0.<ORG.as220.tinySQL.sqlparser.CompactTableStatement: ORG.as220.tinySQL.tinySQLTableView table> = $r3;
+
+        return;
+    }
+
+    public ORG.as220.tinySQL.tinySQLTableView getTable()
+    {
+        ORG.as220.tinySQL.sqlparser.CompactTableStatement r0;
+        ORG.as220.tinySQL.tinySQLTableView $r1;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.CompactTableStatement;
+
+        $r1 = r0.<ORG.as220.tinySQL.sqlparser.CompactTableStatement: ORG.as220.tinySQL.tinySQLTableView table>;
+
+        return $r1;
+    }
+
+    public ORG.as220.tinySQL.tinySQL getDatabase() throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.sqlparser.CompactTableStatement r0;
+        ORG.as220.tinySQL.tinySQL $r1;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.CompactTableStatement;
+
+        $r1 = r0.<ORG.as220.tinySQL.sqlparser.CompactTableStatement: ORG.as220.tinySQL.tinySQL db>;
+
+        return $r1;
+    }
+
+    public boolean execute() throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.sqlparser.CompactTableStatement r0;
+        ORG.as220.tinySQL.tinySQLTableView $r1;
+        ORG.as220.tinySQL.tinySQL $r2;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.CompactTableStatement;
+
+        $r1 = r0.<ORG.as220.tinySQL.sqlparser.CompactTableStatement: ORG.as220.tinySQL.tinySQLTableView table>;
+
+        if $r1 == null goto label1;
+
+        $r2 = virtualinvoke r0.<ORG.as220.tinySQL.sqlparser.CompactTableStatement: ORG.as220.tinySQL.tinySQL getDatabase()>();
+
+        virtualinvoke $r2.<ORG.as220.tinySQL.tinySQL: void CompactTable(ORG.as220.tinySQL.sqlparser.CompactTableStatement)>(r0);
+
+     label1:
+        return 0;
+    }
+
+    public ORG.as220.tinySQL.tinySQLStatement getStatement()
+    {
+        ORG.as220.tinySQL.sqlparser.CompactTableStatement r0;
+        ORG.as220.tinySQL.tinySQLStatement $r1;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.CompactTableStatement;
+
+        $r1 = r0.<ORG.as220.tinySQL.sqlparser.CompactTableStatement: ORG.as220.tinySQL.tinySQLStatement statement>;
+
+        return $r1;
+    }
+
+    public int getUpdateCount() throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.sqlparser.CompactTableStatement r0;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.CompactTableStatement;
+
+        return -1;
+    }
+
+    public ORG.as220.tinySQL.tinySQLResultSet getResultSet() throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.sqlparser.CompactTableStatement r0;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.CompactTableStatement;
+
+        return null;
+    }
+
+    public boolean getMoreResults() throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.sqlparser.CompactTableStatement r0;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.CompactTableStatement;
+
+        return 0;
+    }
+
+    public java.util.Vector getParameters()
+    {
+        ORG.as220.tinySQL.sqlparser.CompactTableStatement r0;
+        java.util.Vector $r1;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.CompactTableStatement;
+
+        $r1 = new java.util.Vector;
+
+        specialinvoke $r1.<java.util.Vector: void <init>()>();
+
+        return $r1;
+    }
+}

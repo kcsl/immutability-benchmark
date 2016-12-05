@@ -1,0 +1,348 @@
+public class ORG.as220.tinySQL.util.CharacterEntityParser extends java.lang.Object
+{
+    private static ORG.as220.tinySQL.util.CharacterEntityParser parser;
+    private static java.util.Properties entities;
+    private static java.util.Hashtable chars;
+
+    static void <clinit>()
+    {
+        <ORG.as220.tinySQL.util.CharacterEntityParser: ORG.as220.tinySQL.util.CharacterEntityParser parser> = null;
+
+        <ORG.as220.tinySQL.util.CharacterEntityParser: java.util.Properties entities> = null;
+
+        <ORG.as220.tinySQL.util.CharacterEntityParser: java.util.Hashtable chars> = null;
+
+        return;
+    }
+
+    private void <init>()
+    {
+        ORG.as220.tinySQL.util.CharacterEntityParser r0;
+        java.util.Enumeration r1;
+        java.lang.String r2, r3, $r9, $r15, $r18;
+        java.util.Properties $r4, $r7, $r10, $r12;
+        java.util.Hashtable $r5, $r20;
+        java.lang.StringBuilder $r6, $r8, $r14, $r16, $r17;
+        int $i0;
+        boolean $z0;
+        java.lang.Object $r11, $r13;
+        java.lang.Character $r19;
+        char $c1;
+
+        r0 := @this: ORG.as220.tinySQL.util.CharacterEntityParser;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        $r4 = staticinvoke <ORG.as220.tinySQL.util.CharEntityTable: java.util.Properties createTable()>();
+
+        <ORG.as220.tinySQL.util.CharacterEntityParser: java.util.Properties entities> = $r4;
+
+        $r5 = new java.util.Hashtable;
+
+        specialinvoke $r5.<java.util.Hashtable: void <init>()>();
+
+        <ORG.as220.tinySQL.util.CharacterEntityParser: java.util.Hashtable chars> = $r5;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>("Entities.size ");
+
+        $r7 = <ORG.as220.tinySQL.util.CharacterEntityParser: java.util.Properties entities>;
+
+        $i0 = virtualinvoke $r7.<java.util.Properties: int size()>();
+
+        $r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <ORG.as220.tinySQL.util.Log: void debug(java.lang.String)>($r9);
+
+        $r10 = <ORG.as220.tinySQL.util.CharacterEntityParser: java.util.Properties entities>;
+
+        r1 = virtualinvoke $r10.<java.util.Properties: java.util.Enumeration keys()>();
+
+        goto label2;
+
+     label1:
+        $r11 = interfaceinvoke r1.<java.util.Enumeration: java.lang.Object nextElement()>();
+
+        r2 = (java.lang.String) $r11;
+
+        $r12 = <ORG.as220.tinySQL.util.CharacterEntityParser: java.util.Properties entities>;
+
+        $r13 = virtualinvoke $r12.<java.util.Properties: java.lang.Object get(java.lang.Object)>(r2);
+
+        r3 = (java.lang.String) $r13;
+
+        $r14 = new java.lang.StringBuilder;
+
+        $r15 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r2);
+
+        specialinvoke $r14.<java.lang.StringBuilder: void <init>(java.lang.String)>($r15);
+
+        $r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" = ");
+
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r3);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <ORG.as220.tinySQL.util.Log: void debug(java.lang.String)>($r18);
+
+        $r20 = <ORG.as220.tinySQL.util.CharacterEntityParser: java.util.Hashtable chars>;
+
+        $r19 = new java.lang.Character;
+
+        $c1 = virtualinvoke r3.<java.lang.String: char charAt(int)>(0);
+
+        specialinvoke $r19.<java.lang.Character: void <init>(char)>($c1);
+
+        virtualinvoke $r20.<java.util.Hashtable: java.lang.Object put(java.lang.Object,java.lang.Object)>($r19, r2);
+
+     label2:
+        $z0 = interfaceinvoke r1.<java.util.Enumeration: boolean hasMoreElements()>();
+
+        if $z0 != 0 goto label1;
+
+        return;
+    }
+
+    public static java.lang.String getCharacter(java.lang.String)
+    {
+        java.lang.String r0, r1, $r4, $r9;
+        ORG.as220.tinySQL.util.CharacterEntityParser $r2, $r5;
+        java.util.Properties $r3;
+        java.lang.StringBuilder $r6, $r8;
+        java.util.Hashtable $r7;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r2 = <ORG.as220.tinySQL.util.CharacterEntityParser: ORG.as220.tinySQL.util.CharacterEntityParser parser>;
+
+        if $r2 != null goto label1;
+
+        $r5 = new ORG.as220.tinySQL.util.CharacterEntityParser;
+
+        specialinvoke $r5.<ORG.as220.tinySQL.util.CharacterEntityParser: void <init>()>();
+
+        <ORG.as220.tinySQL.util.CharacterEntityParser: ORG.as220.tinySQL.util.CharacterEntityParser parser> = $r5;
+
+        $r6 = new java.lang.StringBuilder;
+
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>("Parser created: ");
+
+        $r7 = <ORG.as220.tinySQL.util.CharacterEntityParser: java.util.Hashtable chars>;
+
+        $r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r7);
+
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <ORG.as220.tinySQL.util.Log: void debug(java.lang.String)>($r9);
+
+     label1:
+        $r3 = <ORG.as220.tinySQL.util.CharacterEntityParser: java.util.Properties entities>;
+
+        $r4 = virtualinvoke r0.<java.lang.String: java.lang.String toLowerCase()>();
+
+        r1 = virtualinvoke $r3.<java.util.Properties: java.lang.String getProperty(java.lang.String)>($r4);
+
+        if r1 != null goto label2;
+
+        return r0;
+
+     label2:
+        return r1;
+    }
+
+    public static java.lang.String parseEntityValue(java.lang.String)
+    {
+        char[] r2;
+        java.lang.StringBuffer $r3, $r5;
+        java.lang.String $r4, $r6, $r9, $r10, $r14, $r15, r16, r17;
+        int $i0, $i1, $i3, $i4, i6, i7, $i8;
+        char $c2, $c5;
+        java.util.Properties $r8;
+        java.lang.Object $r11;
+
+        r16 := @parameter0: java.lang.String;
+
+        i6 = 0;
+
+        r17 = null;
+
+        $r3 = new java.lang.StringBuffer;
+
+        specialinvoke $r3.<java.lang.StringBuffer: void <init>(java.lang.String)>(r16);
+
+        goto label5;
+
+     label1:
+        i6 = $i8;
+
+        $r5 = new java.lang.StringBuffer;
+
+        specialinvoke $r5.<java.lang.StringBuffer: void <init>()>();
+
+        $i1 = $i8 + 1;
+
+        $r6 = virtualinvoke $r3.<java.lang.StringBuffer: java.lang.String substring(int,int)>($i1, $i0);
+
+        virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r6);
+
+        $c2 = virtualinvoke $r5.<java.lang.StringBuffer: char charAt(int)>(0);
+
+        if $c2 != 35 goto label2;
+
+        virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer deleteCharAt(int)>(0);
+
+        $r14 = virtualinvoke $r5.<java.lang.StringBuffer: java.lang.String toString()>();
+
+        i7 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r14);
+
+        if i7 < 1 goto label3;
+
+        if i7 > 65536 goto label3;
+
+        r2 = newarray (char)[1];
+
+        $c5 = (char) i7;
+
+        r2[0] = $c5;
+
+        $r15 = new java.lang.String;
+
+        specialinvoke $r15.<java.lang.String: void <init>(char[])>(r2);
+
+        r17 = $r15;
+
+        goto label3;
+
+     label2:
+        $r8 = <ORG.as220.tinySQL.util.CharacterEntityParser: java.util.Properties entities>;
+
+        $r9 = virtualinvoke $r5.<java.lang.StringBuffer: java.lang.String toString()>();
+
+        $r10 = virtualinvoke $r9.<java.lang.String: java.lang.String toLowerCase()>();
+
+        $r11 = virtualinvoke $r8.<java.util.Properties: java.lang.Object get(java.lang.Object)>($r10);
+
+        r17 = (java.lang.String) $r11;
+
+     label3:
+        if r17 == null goto label4;
+
+        r17 = staticinvoke <ORG.as220.tinySQL.util.CharacterEntityParser: java.lang.String parseEntityValue(java.lang.String)>(r17);
+
+        $i3 = $i0 + 1;
+
+        virtualinvoke $r3.<java.lang.StringBuffer: java.lang.StringBuffer replace(int,int,java.lang.String)>($i8, $i3, r17);
+
+        $i4 = virtualinvoke r17.<java.lang.String: int length()>();
+
+        i6 = $i8 + $i4;
+
+     label4:
+        r16 = virtualinvoke $r3.<java.lang.StringBuffer: java.lang.String toString()>();
+
+     label5:
+        $i8 = virtualinvoke r16.<java.lang.String: int indexOf(java.lang.String,int)>("&", i6);
+
+        if $i8 == -1 goto label6;
+
+        $i0 = virtualinvoke r16.<java.lang.String: int indexOf(java.lang.String,int)>(";", i6);
+
+        if $i0 != -1 goto label1;
+
+     label6:
+        $r4 = virtualinvoke $r3.<java.lang.StringBuffer: java.lang.String toString()>();
+
+        return $r4;
+    }
+
+    public static java.lang.String quoteString(java.lang.String)
+    {
+        java.lang.String r0, r3, $r13, $r18;
+        int i0, $i1, i4;
+        ORG.as220.tinySQL.util.CharacterEntityParser $r4, $r14;
+        java.lang.StringBuffer $r5;
+        java.lang.Character $r6;
+        char $c2, $c3;
+        java.util.Hashtable $r7, $r16;
+        java.lang.Object $r8;
+        java.lang.StringBuilder $r15, $r17;
+
+        r0 := @parameter0: java.lang.String;
+
+        $r4 = <ORG.as220.tinySQL.util.CharacterEntityParser: ORG.as220.tinySQL.util.CharacterEntityParser parser>;
+
+        if $r4 != null goto label1;
+
+        $r14 = new ORG.as220.tinySQL.util.CharacterEntityParser;
+
+        specialinvoke $r14.<ORG.as220.tinySQL.util.CharacterEntityParser: void <init>()>();
+
+        <ORG.as220.tinySQL.util.CharacterEntityParser: ORG.as220.tinySQL.util.CharacterEntityParser parser> = $r14;
+
+        $r15 = new java.lang.StringBuilder;
+
+        specialinvoke $r15.<java.lang.StringBuilder: void <init>(java.lang.String)>("Parser created: ");
+
+        $r16 = <ORG.as220.tinySQL.util.CharacterEntityParser: java.util.Hashtable chars>;
+
+        $r17 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r16);
+
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <ORG.as220.tinySQL.util.Log: void debug(java.lang.String)>($r18);
+
+     label1:
+        $r5 = new java.lang.StringBuffer;
+
+        $i1 = virtualinvoke r0.<java.lang.String: int length()>();
+
+        specialinvoke $r5.<java.lang.StringBuffer: void <init>(int)>($i1);
+
+        i0 = virtualinvoke r0.<java.lang.String: int length()>();
+
+        i4 = 0;
+
+        goto label5;
+
+     label2:
+        $r6 = new java.lang.Character;
+
+        $c2 = virtualinvoke r0.<java.lang.String: char charAt(int)>(i4);
+
+        specialinvoke $r6.<java.lang.Character: void <init>(char)>($c2);
+
+        $r7 = <ORG.as220.tinySQL.util.CharacterEntityParser: java.util.Hashtable chars>;
+
+        $r8 = virtualinvoke $r7.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>($r6);
+
+        r3 = (java.lang.String) $r8;
+
+        if r3 != null goto label3;
+
+        $c3 = virtualinvoke $r6.<java.lang.Character: char charValue()>();
+
+        virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>($c3);
+
+        goto label4;
+
+     label3:
+        virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("&");
+
+        virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r3);
+
+        virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(";");
+
+     label4:
+        i4 = i4 + 1;
+
+     label5:
+        if i4 < i0 goto label2;
+
+        $r13 = virtualinvoke $r5.<java.lang.StringBuffer: java.lang.String toString()>();
+
+        return $r13;
+    }
+}

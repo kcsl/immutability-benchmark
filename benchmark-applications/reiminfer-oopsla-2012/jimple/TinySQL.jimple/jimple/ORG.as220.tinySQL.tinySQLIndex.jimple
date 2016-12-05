@@ -1,0 +1,9 @@
+public interface  ORG.as220.tinySQL.tinySQLIndex extends java.lang.Object
+{
+
+    public abstract int getRowCount() throws ORG.as220.tinySQL.tinySQLException;
+
+    public abstract int translateRow(int) throws ORG.as220.tinySQL.tinySQLException;
+
+    public abstract int reverseTranslation(int) throws ORG.as220.tinySQL.tinySQLException;
+}

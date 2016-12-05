@@ -1,0 +1,32 @@
+class ORG.as220.tinySQL.sqlparser.Expression$ValueContainer extends java.lang.Object
+{
+    public ORG.as220.tinySQL.sqlparser.Operator op;
+    public ORG.as220.tinySQL.sqlparser.LValue value;
+    final ORG.as220.tinySQL.sqlparser.Expression this$0;
+
+    public void <init>(ORG.as220.tinySQL.sqlparser.Expression, ORG.as220.tinySQL.sqlparser.Operator, ORG.as220.tinySQL.sqlparser.LValue)
+    {
+        ORG.as220.tinySQL.sqlparser.Expression$ValueContainer r0;
+        ORG.as220.tinySQL.sqlparser.Expression r1;
+        ORG.as220.tinySQL.sqlparser.Operator r2;
+        ORG.as220.tinySQL.sqlparser.LValue r3;
+
+        r0 := @this: ORG.as220.tinySQL.sqlparser.Expression$ValueContainer;
+
+        r1 := @parameter0: ORG.as220.tinySQL.sqlparser.Expression;
+
+        r2 := @parameter1: ORG.as220.tinySQL.sqlparser.Operator;
+
+        r3 := @parameter2: ORG.as220.tinySQL.sqlparser.LValue;
+
+        r0.<ORG.as220.tinySQL.sqlparser.Expression$ValueContainer: ORG.as220.tinySQL.sqlparser.Expression this$0> = r1;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<ORG.as220.tinySQL.sqlparser.Expression$ValueContainer: ORG.as220.tinySQL.sqlparser.Operator op> = r2;
+
+        r0.<ORG.as220.tinySQL.sqlparser.Expression$ValueContainer: ORG.as220.tinySQL.sqlparser.LValue value> = r3;
+
+        return;
+    }
+}

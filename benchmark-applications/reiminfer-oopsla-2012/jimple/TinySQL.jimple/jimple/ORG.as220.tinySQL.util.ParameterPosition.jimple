@@ -1,0 +1,98 @@
+public class ORG.as220.tinySQL.util.ParameterPosition extends java.lang.Object
+{
+    private int iStart;
+    private int iEnd;
+
+    public void <init>()
+    {
+        ORG.as220.tinySQL.util.ParameterPosition r0;
+
+        r0 := @this: ORG.as220.tinySQL.util.ParameterPosition;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<ORG.as220.tinySQL.util.ParameterPosition: int iStart> = 0;
+
+        r0.<ORG.as220.tinySQL.util.ParameterPosition: int iEnd> = 0;
+
+        return;
+    }
+
+    public void <init>(int, int)
+    {
+        ORG.as220.tinySQL.util.ParameterPosition r0;
+        int i0, i1;
+
+        r0 := @this: ORG.as220.tinySQL.util.ParameterPosition;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        virtualinvoke r0.<ORG.as220.tinySQL.util.ParameterPosition: void setStart(int)>(i0);
+
+        virtualinvoke r0.<ORG.as220.tinySQL.util.ParameterPosition: void setEnd(int)>(i1);
+
+        return;
+    }
+
+    public void setStart(int)
+    {
+        ORG.as220.tinySQL.util.ParameterPosition r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.util.ParameterPosition;
+
+        i0 := @parameter0: int;
+
+        if i0 < 0 goto label1;
+
+        r0.<ORG.as220.tinySQL.util.ParameterPosition: int iStart> = i0;
+
+     label1:
+        return;
+    }
+
+    public int getStart()
+    {
+        ORG.as220.tinySQL.util.ParameterPosition r0;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.util.ParameterPosition;
+
+        $i0 = r0.<ORG.as220.tinySQL.util.ParameterPosition: int iStart>;
+
+        return $i0;
+    }
+
+    public void setEnd(int)
+    {
+        ORG.as220.tinySQL.util.ParameterPosition r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.util.ParameterPosition;
+
+        i0 := @parameter0: int;
+
+        if i0 < 0 goto label1;
+
+        r0.<ORG.as220.tinySQL.util.ParameterPosition: int iEnd> = i0;
+
+     label1:
+        return;
+    }
+
+    public int getEnd()
+    {
+        ORG.as220.tinySQL.util.ParameterPosition r0;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.util.ParameterPosition;
+
+        $i0 = r0.<ORG.as220.tinySQL.util.ParameterPosition: int iEnd>;
+
+        return $i0;
+    }
+}

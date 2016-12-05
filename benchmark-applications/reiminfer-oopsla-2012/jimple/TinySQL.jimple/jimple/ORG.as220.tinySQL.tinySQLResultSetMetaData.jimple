@@ -1,0 +1,594 @@
+public class ORG.as220.tinySQL.tinySQLResultSetMetaData extends java.lang.Object implements java.sql.ResultSetMetaData
+{
+    private ORG.as220.tinySQL.tsResultSet result;
+    private ORG.as220.tinySQL.tsColumn[] colDefs;
+    private int size;
+
+    public void <init>(ORG.as220.tinySQL.tsResultSet) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.tinySQLResultSetMetaData r0;
+        ORG.as220.tinySQL.tsResultSet r1;
+        int $i0, $i1, $i2, i3;
+        ORG.as220.tinySQL.tsColumn[] $r2, $r3;
+        ORG.as220.tinySQL.tsColumn $r4;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLResultSetMetaData;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tsResultSet;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<ORG.as220.tinySQL.tinySQLResultSetMetaData: ORG.as220.tinySQL.tsResultSet result> = r1;
+
+        $i0 = virtualinvoke r1.<ORG.as220.tinySQL.tsResultSet: int getColumnCount()>();
+
+        r0.<ORG.as220.tinySQL.tinySQLResultSetMetaData: int size> = $i0;
+
+        $i1 = r0.<ORG.as220.tinySQL.tinySQLResultSetMetaData: int size>;
+
+        $r2 = newarray (ORG.as220.tinySQL.tsColumn)[$i1];
+
+        r0.<ORG.as220.tinySQL.tinySQLResultSetMetaData: ORG.as220.tinySQL.tsColumn[] colDefs> = $r2;
+
+        i3 = 0;
+
+        goto label2;
+
+     label1:
+        $r3 = r0.<ORG.as220.tinySQL.tinySQLResultSetMetaData: ORG.as220.tinySQL.tsColumn[] colDefs>;
+
+        $r4 = virtualinvoke r1.<ORG.as220.tinySQL.tsResultSet: ORG.as220.tinySQL.tsColumn getColumnDefinition(int)>(i3);
+
+        $r3[i3] = $r4;
+
+        i3 = i3 + 1;
+
+     label2:
+        $i2 = r0.<ORG.as220.tinySQL.tinySQLResultSetMetaData: int size>;
+
+        if i3 < $i2 goto label1;
+
+        return;
+    }
+
+    public int getColumnCount() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLResultSetMetaData r0;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLResultSetMetaData;
+
+        $i0 = r0.<ORG.as220.tinySQL.tinySQLResultSetMetaData: int size>;
+
+        return $i0;
+    }
+
+    public boolean isAutoIncrement(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLResultSetMetaData r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLResultSetMetaData;
+
+        i0 := @parameter0: int;
+
+        return 0;
+    }
+
+    public boolean isCaseSensitive(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLResultSetMetaData r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLResultSetMetaData;
+
+        i0 := @parameter0: int;
+
+        return 1;
+    }
+
+    public boolean isSearchable(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLResultSetMetaData r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLResultSetMetaData;
+
+        i0 := @parameter0: int;
+
+        return 1;
+    }
+
+    public boolean isCurrency(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLResultSetMetaData r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLResultSetMetaData;
+
+        i0 := @parameter0: int;
+
+        return 0;
+    }
+
+    public int isNullable(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLResultSetMetaData r0;
+        int i0;
+        ORG.as220.tinySQL.tsColumn[] $r1;
+        ORG.as220.tinySQL.tsColumn $r2;
+        boolean $z0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLResultSetMetaData;
+
+        i0 := @parameter0: int;
+
+        $r1 = r0.<ORG.as220.tinySQL.tinySQLResultSetMetaData: ORG.as220.tinySQL.tsColumn[] colDefs>;
+
+        $r2 = $r1[i0];
+
+        $z0 = virtualinvoke $r2.<ORG.as220.tinySQL.tsColumn: boolean isNullable()>();
+
+        if $z0 == 0 goto label1;
+
+        return 1;
+
+     label1:
+        return 0;
+    }
+
+    public boolean isSigned(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLResultSetMetaData r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLResultSetMetaData;
+
+        i0 := @parameter0: int;
+
+        return 1;
+    }
+
+    public int getColumnDisplaySize(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLResultSetMetaData r0;
+        int i0, $i1, $i2, $i3, $i4, $i5;
+        ORG.as220.tinySQL.tsColumn r1;
+        ORG.as220.tinySQL.tsColumn[] $r2;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLResultSetMetaData;
+
+        i0 := @parameter0: int;
+
+        $r2 = r0.<ORG.as220.tinySQL.tinySQLResultSetMetaData: ORG.as220.tinySQL.tsColumn[] colDefs>;
+
+        $i1 = i0 - 1;
+
+        r1 = $r2[$i1];
+
+        $i2 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getType()>();
+
+        if $i2 != 91 goto label1;
+
+        return 10;
+
+     label1:
+        $i3 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getType()>();
+
+        if $i3 != 92 goto label2;
+
+        return 10;
+
+     label2:
+        $i4 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getType()>();
+
+        if $i4 != 93 goto label3;
+
+        return 20;
+
+     label3:
+        $i5 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getSize()>();
+
+        return $i5;
+    }
+
+    public java.lang.String getColumnLabel(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLResultSetMetaData r0;
+        int i0, $i1;
+        ORG.as220.tinySQL.tsColumn r1;
+        ORG.as220.tinySQL.tsColumn[] $r2;
+        java.lang.String $r3;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLResultSetMetaData;
+
+        i0 := @parameter0: int;
+
+        $r2 = r0.<ORG.as220.tinySQL.tinySQLResultSetMetaData: ORG.as220.tinySQL.tsColumn[] colDefs>;
+
+        $i1 = i0 - 1;
+
+        r1 = $r2[$i1];
+
+        $r3 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: java.lang.String getDisplayName()>();
+
+        return $r3;
+    }
+
+    public java.lang.String getColumnName(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLResultSetMetaData r0;
+        int i0, $i1;
+        ORG.as220.tinySQL.tsColumn r1;
+        ORG.as220.tinySQL.tsColumn[] $r2;
+        java.lang.String $r3;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLResultSetMetaData;
+
+        i0 := @parameter0: int;
+
+        $r2 = r0.<ORG.as220.tinySQL.tinySQLResultSetMetaData: ORG.as220.tinySQL.tsColumn[] colDefs>;
+
+        $i1 = i0 - 1;
+
+        r1 = $r2[$i1];
+
+        $r3 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: java.lang.String getPhysicalName()>();
+
+        return $r3;
+    }
+
+    public java.lang.String getSchemaName(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLResultSetMetaData r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLResultSetMetaData;
+
+        i0 := @parameter0: int;
+
+        return "";
+    }
+
+    public int getPrecision(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLResultSetMetaData r0;
+        int i0, $i1, $i2;
+        ORG.as220.tinySQL.tsColumn r1;
+        ORG.as220.tinySQL.tsColumn[] $r2;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLResultSetMetaData;
+
+        i0 := @parameter0: int;
+
+        $r2 = r0.<ORG.as220.tinySQL.tinySQLResultSetMetaData: ORG.as220.tinySQL.tsColumn[] colDefs>;
+
+        $i1 = i0 - 1;
+
+        r1 = $r2[$i1];
+
+        $i2 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getDecimalPlaces()>();
+
+        return $i2;
+    }
+
+    public int getScale(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLResultSetMetaData r0;
+        int i0, $i1, $i2;
+        ORG.as220.tinySQL.tsColumn r1;
+        ORG.as220.tinySQL.tsColumn[] $r2;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLResultSetMetaData;
+
+        i0 := @parameter0: int;
+
+        $r2 = r0.<ORG.as220.tinySQL.tinySQLResultSetMetaData: ORG.as220.tinySQL.tsColumn[] colDefs>;
+
+        $i1 = i0 - 1;
+
+        r1 = $r2[$i1];
+
+        $i2 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getSize()>();
+
+        return $i2;
+    }
+
+    public java.lang.String getTableName(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLResultSetMetaData r0;
+        int i0, $i1;
+        ORG.as220.tinySQL.tsColumn r1;
+        ORG.as220.tinySQL.tsColumn[] $r2;
+        ORG.as220.tinySQL.tinySQLTableView $r3, $r4;
+        java.lang.String $r5;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLResultSetMetaData;
+
+        i0 := @parameter0: int;
+
+        $r2 = r0.<ORG.as220.tinySQL.tinySQLResultSetMetaData: ORG.as220.tinySQL.tsColumn[] colDefs>;
+
+        $i1 = i0 - 1;
+
+        r1 = $r2[$i1];
+
+        $r3 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: ORG.as220.tinySQL.tinySQLTableView getTable()>();
+
+        if $r3 != null goto label1;
+
+        return "";
+
+     label1:
+        $r4 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: ORG.as220.tinySQL.tinySQLTableView getTable()>();
+
+        $r5 = virtualinvoke $r4.<ORG.as220.tinySQL.tinySQLTableView: java.lang.String getAlias()>();
+
+        return $r5;
+    }
+
+    public java.lang.String getCatalogName(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLResultSetMetaData r0;
+        int i0;
+        java.sql.SQLException $r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLResultSetMetaData;
+
+        i0 := @parameter0: int;
+
+        $r1 = new java.sql.SQLException;
+
+        specialinvoke $r1.<java.sql.SQLException: void <init>(java.lang.String)>("tinySQL does not support catalogues.");
+
+        throw $r1;
+    }
+
+    public int getColumnType(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLResultSetMetaData r0;
+        int i0, $i1, $i2;
+        ORG.as220.tinySQL.tsColumn r1;
+        ORG.as220.tinySQL.tsColumn[] $r2;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLResultSetMetaData;
+
+        i0 := @parameter0: int;
+
+        $r2 = r0.<ORG.as220.tinySQL.tinySQLResultSetMetaData: ORG.as220.tinySQL.tsColumn[] colDefs>;
+
+        $i1 = i0 - 1;
+
+        r1 = $r2[$i1];
+
+        $i2 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getType()>();
+
+        return $i2;
+    }
+
+    public java.lang.String getColumnTypeName(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLResultSetMetaData r0;
+        int i0, $i1;
+        java.lang.String $r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLResultSetMetaData;
+
+        i0 := @parameter0: int;
+
+        $i1 = virtualinvoke r0.<ORG.as220.tinySQL.tinySQLResultSetMetaData: int getColumnType(int)>(i0);
+
+        $r1 = staticinvoke <ORG.as220.tinySQL.sqlparser.ParserUtils: java.lang.String typeToLiteral(int)>($i1);
+
+        return $r1;
+    }
+
+    public boolean isReadOnly(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLResultSetMetaData r0;
+        int i0, $i1;
+        ORG.as220.tinySQL.tsColumn r1;
+        ORG.as220.tinySQL.tsColumn[] $r2;
+        ORG.as220.tinySQL.tinySQLTableView $r3;
+        boolean $z0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLResultSetMetaData;
+
+        i0 := @parameter0: int;
+
+        $r2 = r0.<ORG.as220.tinySQL.tinySQLResultSetMetaData: ORG.as220.tinySQL.tsColumn[] colDefs>;
+
+        $i1 = i0 - 1;
+
+        r1 = $r2[$i1];
+
+        $r3 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: ORG.as220.tinySQL.tinySQLTableView getTable()>();
+
+        $z0 = virtualinvoke $r3.<ORG.as220.tinySQL.tinySQLTableView: boolean isReadOnly()>();
+
+        if $z0 == 0 goto label1;
+
+        return 1;
+
+     label1:
+        return 0;
+    }
+
+    public boolean isWritable(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLResultSetMetaData r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLResultSetMetaData;
+
+        i0 := @parameter0: int;
+
+        return 1;
+    }
+
+    public boolean isDefinitelyWritable(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLResultSetMetaData r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLResultSetMetaData;
+
+        i0 := @parameter0: int;
+
+        return 1;
+    }
+
+    public java.lang.String getColumnClassName(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLResultSetMetaData r0;
+        int i0, i1, $i2;
+        ORG.as220.tinySQL.tsColumn r1;
+        ORG.as220.tinySQL.tsColumn[] $r2;
+        java.lang.Class $r3, $r5, $r7, $r9, $r11, $r13, $r15, $r17, $r19, $r21, $r23, $r25, $r27;
+        java.lang.String $r4, $r6, $r8, $r10, $r12, $r14, $r16, $r18, $r20, $r22, $r24, $r26, $r28;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLResultSetMetaData;
+
+        i0 := @parameter0: int;
+
+        $r2 = r0.<ORG.as220.tinySQL.tinySQLResultSetMetaData: ORG.as220.tinySQL.tsColumn[] colDefs>;
+
+        $i2 = i0 - 1;
+
+        r1 = $r2[$i2];
+
+        i1 = virtualinvoke r1.<ORG.as220.tinySQL.tsColumn: int getType()>();
+
+        lookupswitch(i1)
+        {
+            case -6: goto label05;
+            case 1: goto label08;
+            case 2: goto label02;
+            case 4: goto label01;
+            case 5: goto label04;
+            case 6: goto label03;
+            case 7: goto label07;
+            case 8: goto label06;
+            case 12: goto label09;
+            case 91: goto label10;
+            case 92: goto label11;
+            case 93: goto label12;
+            default: goto label13;
+        };
+
+     label01:
+        $r19 = class "java/math/BigDecimal";
+
+        $r20 = virtualinvoke $r19.<java.lang.Class: java.lang.String toString()>();
+
+        return $r20;
+
+     label02:
+        $r21 = class "java/math/BigDecimal";
+
+        $r22 = virtualinvoke $r21.<java.lang.Class: java.lang.String toString()>();
+
+        return $r22;
+
+     label03:
+        $r15 = class "java/math/BigDecimal";
+
+        $r16 = virtualinvoke $r15.<java.lang.Class: java.lang.String toString()>();
+
+        return $r16;
+
+     label04:
+        $r17 = class "java/math/BigDecimal";
+
+        $r18 = virtualinvoke $r17.<java.lang.Class: java.lang.String toString()>();
+
+        return $r18;
+
+     label05:
+        $r25 = class "java/math/BigDecimal";
+
+        $r26 = virtualinvoke $r25.<java.lang.Class: java.lang.String toString()>();
+
+        return $r26;
+
+     label06:
+        $r11 = class "java/math/BigDecimal";
+
+        $r12 = virtualinvoke $r11.<java.lang.Class: java.lang.String toString()>();
+
+        return $r12;
+
+     label07:
+        $r13 = class "java/math/BigDecimal";
+
+        $r14 = virtualinvoke $r13.<java.lang.Class: java.lang.String toString()>();
+
+        return $r14;
+
+     label08:
+        $r23 = class "java/lang/String";
+
+        $r24 = virtualinvoke $r23.<java.lang.Class: java.lang.String toString()>();
+
+        return $r24;
+
+     label09:
+        $r9 = class "java/lang/String";
+
+        $r10 = virtualinvoke $r9.<java.lang.Class: java.lang.String toString()>();
+
+        return $r10;
+
+     label10:
+        $r7 = class "java/sql/Date";
+
+        $r8 = virtualinvoke $r7.<java.lang.Class: java.lang.String toString()>();
+
+        return $r8;
+
+     label11:
+        $r5 = class "java/sql/Time";
+
+        $r6 = virtualinvoke $r5.<java.lang.Class: java.lang.String toString()>();
+
+        return $r6;
+
+     label12:
+        $r3 = class "java/sql/Timestamp";
+
+        $r4 = virtualinvoke $r3.<java.lang.Class: java.lang.String toString()>();
+
+        return $r4;
+
+     label13:
+        $r27 = class "java/lang/Object";
+
+        $r28 = virtualinvoke $r27.<java.lang.Class: java.lang.String toString()>();
+
+        return $r28;
+    }
+
+    public boolean isWrapperFor(java.lang.Class) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLResultSetMetaData r0;
+        java.lang.Class r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLResultSetMetaData;
+
+        r1 := @parameter0: java.lang.Class;
+
+        return 0;
+    }
+
+    public java.lang.Object unwrap(java.lang.Class) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLResultSetMetaData r0;
+        java.lang.Class r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLResultSetMetaData;
+
+        r1 := @parameter0: java.lang.Class;
+
+        return null;
+    }
+}

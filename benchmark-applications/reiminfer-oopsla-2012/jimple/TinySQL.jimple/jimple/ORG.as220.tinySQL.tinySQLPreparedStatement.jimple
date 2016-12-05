@@ -1,0 +1,1574 @@
+public class ORG.as220.tinySQL.tinySQLPreparedStatement extends ORG.as220.tinySQL.tinySQLStatement implements java.sql.PreparedStatement
+{
+    private ORG.as220.tinySQL.tinySQL sql;
+    private java.util.Vector parameters;
+    private int iParameterCount;
+    public static final java.lang.String PARAM_NOT_FOUND;
+
+    public void <init>(java.sql.Connection, java.lang.String, java.lang.String) throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        java.sql.Connection r1;
+        java.lang.String r2, r3;
+        ORG.as220.tinySQL.tinySQLConnection r4, $r5;
+        ORG.as220.tinySQL.tinySQL $r6, $r7;
+        ORG.as220.tinySQL.sqlparser.SQLStatement $r8, $r9;
+        java.util.Vector $r10;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        r1 := @parameter0: java.sql.Connection;
+
+        r2 := @parameter1: java.lang.String;
+
+        r3 := @parameter2: java.lang.String;
+
+        $r5 = (ORG.as220.tinySQL.tinySQLConnection) r1;
+
+        specialinvoke r0.<ORG.as220.tinySQL.tinySQLStatement: void <init>(ORG.as220.tinySQL.tinySQLConnection)>($r5);
+
+        r4 = (ORG.as220.tinySQL.tinySQLConnection) r1;
+
+        $r6 = virtualinvoke r4.<ORG.as220.tinySQL.tinySQLConnection: ORG.as220.tinySQL.tinySQL getDatabaseEngine()>();
+
+        r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: ORG.as220.tinySQL.tinySQL sql> = $r6;
+
+        $r7 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: ORG.as220.tinySQL.tinySQL sql>;
+
+        $r8 = virtualinvoke $r7.<ORG.as220.tinySQL.tinySQL: ORG.as220.tinySQL.sqlparser.SQLStatement parse(ORG.as220.tinySQL.tinySQLStatement,java.lang.String)>(r0, r2);
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setStatement(ORG.as220.tinySQL.sqlparser.SQLStatement)>($r8);
+
+        $r9 = virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: ORG.as220.tinySQL.sqlparser.SQLStatement getStatement()>();
+
+        $r10 = interfaceinvoke $r9.<ORG.as220.tinySQL.sqlparser.SQLStatement: java.util.Vector getParameters()>();
+
+        r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters> = $r10;
+
+        return;
+    }
+
+    private void checkValuesFilled() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        java.lang.StringBuffer $r2;
+        java.util.Vector $r3, $r12;
+        java.lang.Object $r4;
+        boolean $z0;
+        java.lang.StringBuilder $r5, $r6, $r7;
+        java.lang.String $r8, $r10;
+        int $i0, i1, $i2;
+        java.sql.SQLException $r9;
+        ORG.as220.tinySQL.sqlparser.ParameterValue r11;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        $r2 = new java.lang.StringBuffer;
+
+        specialinvoke $r2.<java.lang.StringBuffer: void <init>()>();
+
+        i1 = 0;
+
+        goto label3;
+
+     label1:
+        $r3 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters>;
+
+        $r4 = virtualinvoke $r3.<java.util.Vector: java.lang.Object elementAt(int)>(i1);
+
+        r11 = (ORG.as220.tinySQL.sqlparser.ParameterValue) $r4;
+
+        $z0 = virtualinvoke r11.<ORG.as220.tinySQL.sqlparser.ParameterValue: boolean isEmpty()>();
+
+        if $z0 == 0 goto label2;
+
+        $r5 = new java.lang.StringBuilder;
+
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>("No value specified for parameter [ ");
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1);
+
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ].\n");
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        virtualinvoke $r2.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r8);
+
+     label2:
+        i1 = i1 + 1;
+
+     label3:
+        $r12 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters>;
+
+        $i2 = virtualinvoke $r12.<java.util.Vector: int size()>();
+
+        if i1 < $i2 goto label1;
+
+        $i0 = virtualinvoke $r2.<java.lang.StringBuffer: int length()>();
+
+        if $i0 <= 0 goto label4;
+
+        $r9 = new java.sql.SQLException;
+
+        $r10 = virtualinvoke $r2.<java.lang.StringBuffer: java.lang.String toString()>();
+
+        specialinvoke $r9.<java.sql.SQLException: void <init>(java.lang.String)>($r10);
+
+        throw $r9;
+
+     label4:
+        return;
+    }
+
+    public java.sql.ResultSetMetaData getMetaData() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        boolean z0;
+        ORG.as220.tinySQL.tinySQLResultSet r1;
+        java.sql.ResultSetMetaData r2;
+        ORG.as220.tinySQL.tinySQLException $r3;
+        ORG.as220.tinySQL.sqlparser.SQLStatement $r4;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        z0 = virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: boolean execute()>();
+
+        if z0 == 0 goto label1;
+
+        $r4 = virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: ORG.as220.tinySQL.sqlparser.SQLStatement getStatement()>();
+
+        r1 = interfaceinvoke $r4.<ORG.as220.tinySQL.sqlparser.SQLStatement: ORG.as220.tinySQL.tinySQLResultSet getResultSet()>();
+
+        r2 = interfaceinvoke r1.<java.sql.ResultSet: java.sql.ResultSetMetaData getMetaData()>();
+
+        interfaceinvoke r1.<java.sql.ResultSet: void close()>();
+
+        return r2;
+
+     label1:
+        $r3 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r3.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("Statement did not create a result set");
+
+        throw $r3;
+    }
+
+    public boolean execute() throws ORG.as220.tinySQL.tinySQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        boolean z0;
+        ORG.as220.tinySQL.sqlparser.SQLStatement $r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        $r1 = virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: ORG.as220.tinySQL.sqlparser.SQLStatement getStatement()>();
+
+        z0 = interfaceinvoke $r1.<ORG.as220.tinySQL.sqlparser.SQLStatement: boolean execute()>();
+
+        return z0;
+    }
+
+    public java.sql.ResultSet executeQuery() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        boolean z0;
+        ORG.as220.tinySQL.tinySQLException $r1;
+        java.lang.StringBuilder $r2, $r4;
+        ORG.as220.tinySQL.tinySQL $r3;
+        java.lang.String $r5;
+        java.sql.ResultSet $r6;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        z0 = virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: boolean execute()>();
+
+        if z0 == 0 goto label1;
+
+        $r6 = virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.sql.ResultSet getResultSet()>();
+
+        return $r6;
+
+     label1:
+        $r1 = new ORG.as220.tinySQL.tinySQLException;
+
+        $r2 = new java.lang.StringBuilder;
+
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>("Statement returned an UpdateCount\n");
+
+        $r3 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: ORG.as220.tinySQL.tinySQL sql>;
+
+        $r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r3);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r1.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>($r5);
+
+        throw $r1;
+    }
+
+    public int executeUpdate() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        boolean z0;
+        ORG.as220.tinySQL.tinySQLException $r1;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        z0 = virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: boolean execute()>();
+
+        if z0 != 0 goto label1;
+
+        $i0 = virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: int getUpdateCount()>();
+
+        return $i0;
+
+     label1:
+        $r1 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r1.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("Statement returned a ResultSet");
+
+        throw $r1;
+    }
+
+    public void addBatch() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        ORG.as220.tinySQL.sqlparser.SQLStatement $r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        specialinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void checkValuesFilled()>();
+
+        $r1 = virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: ORG.as220.tinySQL.sqlparser.SQLStatement getStatement()>();
+
+        specialinvoke r0.<ORG.as220.tinySQL.tinySQLStatement: void addBatch(ORG.as220.tinySQL.sqlparser.SQLStatement)>($r1);
+
+        return;
+    }
+
+    public void clearParameters() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        java.util.Enumeration r1;
+        ORG.as220.tinySQL.sqlparser.ParameterValue r2;
+        java.util.Vector $r3;
+        boolean $z0;
+        java.lang.Object $r4;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        $r3 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters>;
+
+        r1 = virtualinvoke $r3.<java.util.Vector: java.util.Enumeration elements()>();
+
+        goto label2;
+
+     label1:
+        $r4 = interfaceinvoke r1.<java.util.Enumeration: java.lang.Object nextElement()>();
+
+        r2 = (ORG.as220.tinySQL.sqlparser.ParameterValue) $r4;
+
+        virtualinvoke r2.<ORG.as220.tinySQL.sqlparser.ParameterValue: void clear()>();
+
+     label2:
+        $z0 = interfaceinvoke r1.<java.util.Enumeration: boolean hasMoreElements()>();
+
+        if $z0 != 0 goto label1;
+
+        return;
+    }
+
+    public void setArray(int, java.sql.Array) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0, $i1;
+        java.sql.Array r1;
+        ORG.as220.tinySQL.sqlparser.ParameterValue r2;
+        java.util.Vector $r3;
+        java.lang.Object $r4, $r5;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.sql.Array;
+
+        if r1 != null goto label1;
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setNull(int,int)>(i0, 2003);
+
+        goto label2;
+
+     label1:
+        $r3 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters>;
+
+        $i1 = i0 - 1;
+
+        $r4 = virtualinvoke $r3.<java.util.Vector: java.lang.Object elementAt(int)>($i1);
+
+        r2 = (ORG.as220.tinySQL.sqlparser.ParameterValue) $r4;
+
+        $r5 = interfaceinvoke r1.<java.sql.Array: java.lang.Object getArray()>();
+
+        virtualinvoke r2.<ORG.as220.tinySQL.sqlparser.ParameterValue: void setValue(java.lang.Object)>($r5);
+
+     label2:
+        return;
+    }
+
+    public void setAsciiStream(int, java.io.InputStream, int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0, i1, $i2;
+        java.io.InputStream r1;
+        ORG.as220.tinySQL.sqlparser.ParameterValue r2;
+        java.util.Vector $r3;
+        java.lang.Object $r4;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.io.InputStream;
+
+        i1 := @parameter2: int;
+
+        if r1 != null goto label1;
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setNull(int,int)>(i0, 12);
+
+        goto label2;
+
+     label1:
+        $r3 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters>;
+
+        $i2 = i0 - 1;
+
+        $r4 = virtualinvoke $r3.<java.util.Vector: java.lang.Object elementAt(int)>($i2);
+
+        r2 = (ORG.as220.tinySQL.sqlparser.ParameterValue) $r4;
+
+        virtualinvoke r2.<ORG.as220.tinySQL.sqlparser.ParameterValue: void setValue(java.lang.Object)>(r1);
+
+     label2:
+        return;
+    }
+
+    public void setBigDecimal(int, java.math.BigDecimal) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0, $i1;
+        java.math.BigDecimal r1;
+        ORG.as220.tinySQL.sqlparser.ParameterValue r2;
+        java.util.Vector $r3;
+        java.lang.Object $r4;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.math.BigDecimal;
+
+        if r1 != null goto label1;
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setNull(int,int)>(i0, 3);
+
+        goto label2;
+
+     label1:
+        $r3 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters>;
+
+        $i1 = i0 - 1;
+
+        $r4 = virtualinvoke $r3.<java.util.Vector: java.lang.Object elementAt(int)>($i1);
+
+        r2 = (ORG.as220.tinySQL.sqlparser.ParameterValue) $r4;
+
+        virtualinvoke r2.<ORG.as220.tinySQL.sqlparser.ParameterValue: void setValue(java.lang.Object)>(r1);
+
+     label2:
+        return;
+    }
+
+    public void setBinaryStream(int, java.io.InputStream, int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0, i1;
+        java.io.InputStream r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.io.InputStream;
+
+        i1 := @parameter2: int;
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setAsciiStream(int,java.io.InputStream,int)>(i0, r1, i1);
+
+        return;
+    }
+
+    public void setBlob(int, java.sql.Blob) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0;
+        java.sql.Blob r1;
+        java.io.InputStream $r2;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.sql.Blob;
+
+        $r2 = interfaceinvoke r1.<java.sql.Blob: java.io.InputStream getBinaryStream()>();
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setAsciiStream(int,java.io.InputStream,int)>(i0, $r2, -1);
+
+        return;
+    }
+
+    public void setBoolean(int, boolean) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0, $i1;
+        boolean z0;
+        ORG.as220.tinySQL.sqlparser.ParameterValue r1;
+        java.util.Vector $r2;
+        java.lang.Object $r3;
+        java.lang.Boolean $r4;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        z0 := @parameter1: boolean;
+
+        $r2 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters>;
+
+        $i1 = i0 - 1;
+
+        $r3 = virtualinvoke $r2.<java.util.Vector: java.lang.Object elementAt(int)>($i1);
+
+        r1 = (ORG.as220.tinySQL.sqlparser.ParameterValue) $r3;
+
+        $r4 = new java.lang.Boolean;
+
+        specialinvoke $r4.<java.lang.Boolean: void <init>(boolean)>(z0);
+
+        virtualinvoke r1.<ORG.as220.tinySQL.sqlparser.ParameterValue: void setValue(java.lang.Object)>($r4);
+
+        return;
+    }
+
+    public void setByte(int, byte) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0, $i2;
+        byte b1;
+        ORG.as220.tinySQL.sqlparser.ParameterValue r1;
+        java.util.Vector $r2;
+        java.lang.Object $r3;
+        java.lang.Byte $r4;
+        java.lang.String $r5;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        b1 := @parameter1: byte;
+
+        $r2 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters>;
+
+        $i2 = i0 - 1;
+
+        $r3 = virtualinvoke $r2.<java.util.Vector: java.lang.Object elementAt(int)>($i2);
+
+        r1 = (ORG.as220.tinySQL.sqlparser.ParameterValue) $r3;
+
+        $r4 = new java.lang.Byte;
+
+        specialinvoke $r4.<java.lang.Byte: void <init>(byte)>(b1);
+
+        $r5 = virtualinvoke $r4.<java.lang.Byte: java.lang.String toString()>();
+
+        virtualinvoke r1.<ORG.as220.tinySQL.sqlparser.ParameterValue: void setValue(java.lang.Object)>($r5);
+
+        return;
+    }
+
+    public void setBytes(int, byte[]) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0, $i1;
+        byte[] r1;
+        ORG.as220.tinySQL.sqlparser.ParameterValue r2;
+        java.util.Vector $r3;
+        java.lang.Object $r4;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: byte[];
+
+        $r3 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters>;
+
+        $i1 = i0 - 1;
+
+        $r4 = virtualinvoke $r3.<java.util.Vector: java.lang.Object elementAt(int)>($i1);
+
+        r2 = (ORG.as220.tinySQL.sqlparser.ParameterValue) $r4;
+
+        virtualinvoke r2.<ORG.as220.tinySQL.sqlparser.ParameterValue: void setValue(java.lang.Object)>(r1);
+
+        return;
+    }
+
+    public void setCharacterStream(int, java.io.Reader, int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0, i1, $i2;
+        java.io.Reader r1;
+        ORG.as220.tinySQL.sqlparser.ParameterValue r2;
+        java.util.Vector $r3;
+        java.lang.Object $r4;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.io.Reader;
+
+        i1 := @parameter2: int;
+
+        $r3 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters>;
+
+        $i2 = i0 - 1;
+
+        $r4 = virtualinvoke $r3.<java.util.Vector: java.lang.Object elementAt(int)>($i2);
+
+        r2 = (ORG.as220.tinySQL.sqlparser.ParameterValue) $r4;
+
+        virtualinvoke r2.<ORG.as220.tinySQL.sqlparser.ParameterValue: void setValue(java.lang.Object)>(r1);
+
+        return;
+    }
+
+    public void setClob(int, java.sql.Clob) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0;
+        java.sql.Clob r1;
+        java.io.Reader $r2;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.sql.Clob;
+
+        $r2 = interfaceinvoke r1.<java.sql.Clob: java.io.Reader getCharacterStream()>();
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setCharacterStream(int,java.io.Reader,int)>(i0, $r2, -1);
+
+        return;
+    }
+
+    public void setDate(int, java.sql.Date) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0;
+        java.sql.Date r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.sql.Date;
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setDate(int,java.sql.Date,java.util.Calendar)>(i0, r1, null);
+
+        return;
+    }
+
+    public void setDate(int, java.sql.Date, java.util.Calendar) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0, $i1;
+        java.sql.Date r1;
+        java.util.Calendar r2;
+        ORG.as220.tinySQL.sqlparser.ParameterValue r3;
+        java.util.Vector $r4;
+        java.lang.Object $r5;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.sql.Date;
+
+        r2 := @parameter2: java.util.Calendar;
+
+        if r1 != null goto label1;
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setNull(int,int)>(i0, 91);
+
+        goto label2;
+
+     label1:
+        $r4 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters>;
+
+        $i1 = i0 - 1;
+
+        $r5 = virtualinvoke $r4.<java.util.Vector: java.lang.Object elementAt(int)>($i1);
+
+        r3 = (ORG.as220.tinySQL.sqlparser.ParameterValue) $r5;
+
+        virtualinvoke r3.<ORG.as220.tinySQL.sqlparser.ParameterValue: void setValue(java.lang.Object)>(r1);
+
+     label2:
+        return;
+    }
+
+    public void setDouble(int, double) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0, $i1;
+        double d0;
+        ORG.as220.tinySQL.sqlparser.ParameterValue r1;
+        java.util.Vector $r2;
+        java.lang.Object $r3;
+        java.lang.Double $r4;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        d0 := @parameter1: double;
+
+        $r2 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters>;
+
+        $i1 = i0 - 1;
+
+        $r3 = virtualinvoke $r2.<java.util.Vector: java.lang.Object elementAt(int)>($i1);
+
+        r1 = (ORG.as220.tinySQL.sqlparser.ParameterValue) $r3;
+
+        $r4 = new java.lang.Double;
+
+        specialinvoke $r4.<java.lang.Double: void <init>(double)>(d0);
+
+        virtualinvoke r1.<ORG.as220.tinySQL.sqlparser.ParameterValue: void setValue(java.lang.Object)>($r4);
+
+        return;
+    }
+
+    public void setFloat(int, float) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0, $i1;
+        float f0;
+        ORG.as220.tinySQL.sqlparser.ParameterValue r1;
+        java.util.Vector $r2;
+        java.lang.Object $r3;
+        java.lang.Float $r4;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        f0 := @parameter1: float;
+
+        $r2 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters>;
+
+        $i1 = i0 - 1;
+
+        $r3 = virtualinvoke $r2.<java.util.Vector: java.lang.Object elementAt(int)>($i1);
+
+        r1 = (ORG.as220.tinySQL.sqlparser.ParameterValue) $r3;
+
+        $r4 = new java.lang.Float;
+
+        specialinvoke $r4.<java.lang.Float: void <init>(float)>(f0);
+
+        virtualinvoke r1.<ORG.as220.tinySQL.sqlparser.ParameterValue: void setValue(java.lang.Object)>($r4);
+
+        return;
+    }
+
+    public void setInt(int, int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0, i1, $i2;
+        ORG.as220.tinySQL.sqlparser.ParameterValue r1;
+        java.util.Vector $r2;
+        java.lang.Object $r3;
+        java.lang.Integer $r4;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        $r2 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters>;
+
+        $i2 = i0 - 1;
+
+        $r3 = virtualinvoke $r2.<java.util.Vector: java.lang.Object elementAt(int)>($i2);
+
+        r1 = (ORG.as220.tinySQL.sqlparser.ParameterValue) $r3;
+
+        $r4 = new java.lang.Integer;
+
+        specialinvoke $r4.<java.lang.Integer: void <init>(int)>(i1);
+
+        virtualinvoke r1.<ORG.as220.tinySQL.sqlparser.ParameterValue: void setValue(java.lang.Object)>($r4);
+
+        return;
+    }
+
+    public void setLong(int, long) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0, $i2;
+        long l1;
+        ORG.as220.tinySQL.sqlparser.ParameterValue r1;
+        java.util.Vector $r2;
+        java.lang.Object $r3;
+        java.lang.Long $r4;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        l1 := @parameter1: long;
+
+        $r2 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters>;
+
+        $i2 = i0 - 1;
+
+        $r3 = virtualinvoke $r2.<java.util.Vector: java.lang.Object elementAt(int)>($i2);
+
+        r1 = (ORG.as220.tinySQL.sqlparser.ParameterValue) $r3;
+
+        $r4 = new java.lang.Long;
+
+        specialinvoke $r4.<java.lang.Long: void <init>(long)>(l1);
+
+        virtualinvoke r1.<ORG.as220.tinySQL.sqlparser.ParameterValue: void setValue(java.lang.Object)>($r4);
+
+        return;
+    }
+
+    public void setNull(int, int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0, i1, $i2;
+        ORG.as220.tinySQL.sqlparser.ParameterValue r1;
+        java.util.Vector $r2;
+        java.lang.Object $r3;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        $r2 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters>;
+
+        $i2 = i0 - 1;
+
+        $r3 = virtualinvoke $r2.<java.util.Vector: java.lang.Object elementAt(int)>($i2);
+
+        r1 = (ORG.as220.tinySQL.sqlparser.ParameterValue) $r3;
+
+        virtualinvoke r1.<ORG.as220.tinySQL.sqlparser.ParameterValue: void setValue(java.lang.Object)>(null);
+
+        return;
+    }
+
+    public void setNull(int, int, java.lang.String) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0, i1, $i2;
+        java.lang.String r1;
+        ORG.as220.tinySQL.sqlparser.ParameterValue r2;
+        java.util.Vector $r3;
+        java.lang.Object $r4;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        i1 := @parameter1: int;
+
+        r1 := @parameter2: java.lang.String;
+
+        $r3 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters>;
+
+        $i2 = i0 - 1;
+
+        $r4 = virtualinvoke $r3.<java.util.Vector: java.lang.Object elementAt(int)>($i2);
+
+        r2 = (ORG.as220.tinySQL.sqlparser.ParameterValue) $r4;
+
+        virtualinvoke r2.<ORG.as220.tinySQL.sqlparser.ParameterValue: void setValue(java.lang.Object)>(null);
+
+        return;
+    }
+
+    public void setObject(int, java.lang.Object) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0, $i1;
+        java.lang.Object r1, $r4;
+        ORG.as220.tinySQL.sqlparser.ParameterValue r2;
+        java.util.Vector $r3;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.lang.Object;
+
+        $r3 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters>;
+
+        $i1 = i0 - 1;
+
+        $r4 = virtualinvoke $r3.<java.util.Vector: java.lang.Object elementAt(int)>($i1);
+
+        r2 = (ORG.as220.tinySQL.sqlparser.ParameterValue) $r4;
+
+        virtualinvoke r2.<ORG.as220.tinySQL.sqlparser.ParameterValue: void setValue(java.lang.Object)>(r1);
+
+        return;
+    }
+
+    public void setObject(int, java.lang.Object, int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0, i1;
+        java.lang.Object r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.lang.Object;
+
+        i1 := @parameter2: int;
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setObject(int,java.lang.Object,int,int)>(i0, r1, i1, 0);
+
+        return;
+    }
+
+    public void setObject(int, java.lang.Object, int, int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0, i1, i2, $i3;
+        java.lang.Object r1, $r4;
+        ORG.as220.tinySQL.sqlparser.ParameterValue r2;
+        java.util.Vector $r3;
+        java.sql.Timestamp $r5;
+        java.sql.Time $r6;
+        java.sql.Date $r7;
+        java.lang.String $r8, $r10;
+        boolean $z0;
+        byte[] $r9, $r11;
+        java.math.BigDecimal $r12;
+        java.sql.SQLException $r13;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.lang.Object;
+
+        i1 := @parameter2: int;
+
+        i2 := @parameter3: int;
+
+        if r1 != null goto label01;
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setNull(int,int)>(i0, 1111);
+
+        goto label11;
+
+     label01:
+        lookupswitch(i1)
+        {
+            case -6: goto label02;
+            case -5: goto label02;
+            case -4: goto label04;
+            case -3: goto label04;
+            case -2: goto label04;
+            case -1: goto label03;
+            case 1: goto label03;
+            case 2: goto label02;
+            case 3: goto label02;
+            case 4: goto label02;
+            case 5: goto label02;
+            case 6: goto label02;
+            case 7: goto label02;
+            case 8: goto label02;
+            case 12: goto label03;
+            case 91: goto label06;
+            case 92: goto label08;
+            case 93: goto label07;
+            case 1111: goto label09;
+            default: goto label10;
+        };
+
+     label02:
+        $r12 = staticinvoke <ORG.as220.tinySQL.sqlparser.ParserUtils: java.math.BigDecimal convertToNumber(java.lang.Object)>(r1);
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setBigDecimal(int,java.math.BigDecimal)>(i0, $r12);
+
+        goto label11;
+
+     label03:
+        $r8 = staticinvoke <ORG.as220.tinySQL.sqlparser.ParserUtils: java.lang.String convertToString(java.lang.Object)>(r1);
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setString(int,java.lang.String)>(i0, $r8);
+
+        goto label11;
+
+     label04:
+        $z0 = r1 instanceof java.lang.String;
+
+        if $z0 == 0 goto label05;
+
+        $r10 = (java.lang.String) r1;
+
+        $r11 = virtualinvoke $r10.<java.lang.String: byte[] getBytes()>();
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setBytes(int,byte[])>(i0, $r11);
+
+        goto label11;
+
+     label05:
+        $r9 = (byte[]) r1;
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setBytes(int,byte[])>(i0, $r9);
+
+        goto label11;
+
+     label06:
+        $r7 = staticinvoke <ORG.as220.tinySQL.sqlparser.ParserUtils: java.sql.Date convertToDate(java.lang.Object)>(r1);
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setDate(int,java.sql.Date)>(i0, $r7);
+
+        goto label11;
+
+     label07:
+        $r5 = staticinvoke <ORG.as220.tinySQL.sqlparser.ParserUtils: java.sql.Timestamp convertToTimestamp(java.lang.Object)>(r1);
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setTimestamp(int,java.sql.Timestamp)>(i0, $r5);
+
+        goto label11;
+
+     label08:
+        $r6 = staticinvoke <ORG.as220.tinySQL.sqlparser.ParserUtils: java.sql.Time convertToTime(java.lang.Object)>(r1);
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setTime(int,java.sql.Time)>(i0, $r6);
+
+        goto label11;
+
+     label09:
+        $r3 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters>;
+
+        $i3 = i0 - 1;
+
+        $r4 = virtualinvoke $r3.<java.util.Vector: java.lang.Object elementAt(int)>($i3);
+
+        r2 = (ORG.as220.tinySQL.sqlparser.ParameterValue) $r4;
+
+        virtualinvoke r2.<ORG.as220.tinySQL.sqlparser.ParameterValue: void setValue(java.lang.Object)>(r1);
+
+        goto label11;
+
+     label10:
+        $r13 = new java.sql.SQLException;
+
+        specialinvoke $r13.<java.sql.SQLException: void <init>(java.lang.String,java.lang.String)>("Unknown Types value", "S1000");
+
+        throw $r13;
+
+     label11:
+        return;
+    }
+
+    public void setRef(int, java.sql.Ref) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0, $i1;
+        java.sql.Ref r1;
+        ORG.as220.tinySQL.sqlparser.ParameterValue r2;
+        java.util.Vector $r3;
+        java.lang.Object $r4;
+        java.lang.String $r5;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.sql.Ref;
+
+        if r1 != null goto label1;
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setNull(int,int)>(i0, 2006);
+
+        goto label2;
+
+     label1:
+        $r3 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters>;
+
+        $i1 = i0 - 1;
+
+        $r4 = virtualinvoke $r3.<java.util.Vector: java.lang.Object elementAt(int)>($i1);
+
+        r2 = (ORG.as220.tinySQL.sqlparser.ParameterValue) $r4;
+
+        $r5 = interfaceinvoke r1.<java.sql.Ref: java.lang.String getBaseTypeName()>();
+
+        virtualinvoke r2.<ORG.as220.tinySQL.sqlparser.ParameterValue: void setValue(java.lang.Object)>($r5);
+
+     label2:
+        return;
+    }
+
+    public void setShort(int, short) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0, $i2;
+        short s1;
+        ORG.as220.tinySQL.sqlparser.ParameterValue r1;
+        java.util.Vector $r2;
+        java.lang.Object $r3;
+        java.lang.Short $r4;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        s1 := @parameter1: short;
+
+        $r2 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters>;
+
+        $i2 = i0 - 1;
+
+        $r3 = virtualinvoke $r2.<java.util.Vector: java.lang.Object elementAt(int)>($i2);
+
+        r1 = (ORG.as220.tinySQL.sqlparser.ParameterValue) $r3;
+
+        $r4 = new java.lang.Short;
+
+        specialinvoke $r4.<java.lang.Short: void <init>(short)>(s1);
+
+        virtualinvoke r1.<ORG.as220.tinySQL.sqlparser.ParameterValue: void setValue(java.lang.Object)>($r4);
+
+        return;
+    }
+
+    public void setString(int, java.lang.String) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0, $i1;
+        java.lang.String r1;
+        ORG.as220.tinySQL.sqlparser.ParameterValue r2;
+        java.util.Vector $r3;
+        java.lang.Object $r4;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.lang.String;
+
+        if r1 != null goto label1;
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setNull(int,int)>(i0, 12);
+
+        goto label2;
+
+     label1:
+        $r3 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters>;
+
+        $i1 = i0 - 1;
+
+        $r4 = virtualinvoke $r3.<java.util.Vector: java.lang.Object elementAt(int)>($i1);
+
+        r2 = (ORG.as220.tinySQL.sqlparser.ParameterValue) $r4;
+
+        virtualinvoke r2.<ORG.as220.tinySQL.sqlparser.ParameterValue: void setValue(java.lang.Object)>(r1);
+
+     label2:
+        return;
+    }
+
+    public void setTime(int, java.sql.Time) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0;
+        java.sql.Time r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.sql.Time;
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setTime(int,java.sql.Time,java.util.Calendar)>(i0, r1, null);
+
+        return;
+    }
+
+    public void setTime(int, java.sql.Time, java.util.Calendar) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0, $i1;
+        java.sql.Time r1;
+        java.util.Calendar r2;
+        ORG.as220.tinySQL.sqlparser.ParameterValue r3;
+        java.util.Vector $r4;
+        java.lang.Object $r5;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.sql.Time;
+
+        r2 := @parameter2: java.util.Calendar;
+
+        if r1 != null goto label1;
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setNull(int,int)>(i0, 92);
+
+        goto label2;
+
+     label1:
+        $r4 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters>;
+
+        $i1 = i0 - 1;
+
+        $r5 = virtualinvoke $r4.<java.util.Vector: java.lang.Object elementAt(int)>($i1);
+
+        r3 = (ORG.as220.tinySQL.sqlparser.ParameterValue) $r5;
+
+        virtualinvoke r3.<ORG.as220.tinySQL.sqlparser.ParameterValue: void setValue(java.lang.Object)>(r1);
+
+     label2:
+        return;
+    }
+
+    public void setTimestamp(int, java.sql.Timestamp) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0;
+        java.sql.Timestamp r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.sql.Timestamp;
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setTimestamp(int,java.sql.Timestamp,java.util.Calendar)>(i0, r1, null);
+
+        return;
+    }
+
+    public void setTimestamp(int, java.sql.Timestamp, java.util.Calendar) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0, $i1;
+        java.sql.Timestamp r1;
+        java.util.Calendar r2;
+        ORG.as220.tinySQL.sqlparser.ParameterValue r3;
+        java.util.Vector $r4;
+        java.lang.Object $r5;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.sql.Timestamp;
+
+        r2 := @parameter2: java.util.Calendar;
+
+        if r1 != null goto label1;
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setNull(int,int)>(i0, 93);
+
+        goto label2;
+
+     label1:
+        $r4 = r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: java.util.Vector parameters>;
+
+        $i1 = i0 - 1;
+
+        $r5 = virtualinvoke $r4.<java.util.Vector: java.lang.Object elementAt(int)>($i1);
+
+        r3 = (ORG.as220.tinySQL.sqlparser.ParameterValue) $r5;
+
+        virtualinvoke r3.<ORG.as220.tinySQL.sqlparser.ParameterValue: void setValue(java.lang.Object)>(r1);
+
+     label2:
+        return;
+    }
+
+    public void setUnicodeStream(int, java.io.InputStream, int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0, i1;
+        java.io.InputStream r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.io.InputStream;
+
+        i1 := @parameter2: int;
+
+        if r1 != null goto label1;
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setNull(int,int)>(i0, 12);
+
+        goto label2;
+
+     label1:
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLPreparedStatement: void setBinaryStream(int,java.io.InputStream,int)>(i0, r1, i1);
+
+     label2:
+        return;
+    }
+
+    public java.sql.ParameterMetaData getParameterMetaData() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        return null;
+    }
+
+    public void setAsciiStream(int, java.io.InputStream) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0;
+        java.io.InputStream r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.io.InputStream;
+
+        return;
+    }
+
+    public void setAsciiStream(int, java.io.InputStream, long) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0;
+        java.io.InputStream r1;
+        long l1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.io.InputStream;
+
+        l1 := @parameter2: long;
+
+        return;
+    }
+
+    public void setBinaryStream(int, java.io.InputStream) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0;
+        java.io.InputStream r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.io.InputStream;
+
+        return;
+    }
+
+    public void setBinaryStream(int, java.io.InputStream, long) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0;
+        java.io.InputStream r1;
+        long l1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.io.InputStream;
+
+        l1 := @parameter2: long;
+
+        return;
+    }
+
+    public void setBlob(int, java.io.InputStream) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0;
+        java.io.InputStream r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.io.InputStream;
+
+        return;
+    }
+
+    public void setBlob(int, java.io.InputStream, long) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0;
+        java.io.InputStream r1;
+        long l1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.io.InputStream;
+
+        l1 := @parameter2: long;
+
+        return;
+    }
+
+    public void setCharacterStream(int, java.io.Reader) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0;
+        java.io.Reader r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.io.Reader;
+
+        return;
+    }
+
+    public void setCharacterStream(int, java.io.Reader, long) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0;
+        java.io.Reader r1;
+        long l1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.io.Reader;
+
+        l1 := @parameter2: long;
+
+        return;
+    }
+
+    public void setClob(int, java.io.Reader) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0;
+        java.io.Reader r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.io.Reader;
+
+        return;
+    }
+
+    public void setClob(int, java.io.Reader, long) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0;
+        java.io.Reader r1;
+        long l1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.io.Reader;
+
+        l1 := @parameter2: long;
+
+        return;
+    }
+
+    public void setNCharacterStream(int, java.io.Reader) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0;
+        java.io.Reader r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.io.Reader;
+
+        return;
+    }
+
+    public void setNCharacterStream(int, java.io.Reader, long) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0;
+        java.io.Reader r1;
+        long l1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.io.Reader;
+
+        l1 := @parameter2: long;
+
+        return;
+    }
+
+    public void setNClob(int, java.sql.NClob) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0;
+        java.sql.NClob r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.sql.NClob;
+
+        return;
+    }
+
+    public void setNClob(int, java.io.Reader) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0;
+        java.io.Reader r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.io.Reader;
+
+        return;
+    }
+
+    public void setNClob(int, java.io.Reader, long) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0;
+        java.io.Reader r1;
+        long l1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.io.Reader;
+
+        l1 := @parameter2: long;
+
+        return;
+    }
+
+    public void setNString(int, java.lang.String) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0;
+        java.lang.String r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.lang.String;
+
+        return;
+    }
+
+    public void setRowId(int, java.sql.RowId) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0;
+        java.sql.RowId r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.sql.RowId;
+
+        return;
+    }
+
+    public void setSQLXML(int, java.sql.SQLXML) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0;
+        java.sql.SQLXML r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.sql.SQLXML;
+
+        return;
+    }
+
+    public void setURL(int, java.net.URL) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLPreparedStatement r0;
+        int i0;
+        java.net.URL r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLPreparedStatement;
+
+        i0 := @parameter0: int;
+
+        r1 := @parameter1: java.net.URL;
+
+        return;
+    }
+
+    public static void <clinit>()
+    {
+        <ORG.as220.tinySQL.tinySQLPreparedStatement: java.lang.String PARAM_NOT_FOUND> = "SQL bind parameter not found.";
+
+        return;
+    }
+}

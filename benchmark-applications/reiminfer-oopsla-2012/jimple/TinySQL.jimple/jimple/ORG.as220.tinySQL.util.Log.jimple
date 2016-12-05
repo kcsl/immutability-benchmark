@@ -1,0 +1,240 @@
+public class ORG.as220.tinySQL.util.Log extends java.lang.Object
+{
+    private boolean logSystemOut;
+    public static final int ERROR;
+    public static final int WARN;
+    public static final int INFO;
+    public static final int DEBUG;
+    public static final java.lang.String[] levels;
+    private static int debuglevel;
+
+    static void <clinit>()
+    {
+        java.lang.String[] $r0;
+
+        <ORG.as220.tinySQL.util.Log: int DEBUG> = 3;
+
+        <ORG.as220.tinySQL.util.Log: int INFO> = 2;
+
+        <ORG.as220.tinySQL.util.Log: int WARN> = 1;
+
+        <ORG.as220.tinySQL.util.Log: int ERROR> = 0;
+
+        $r0 = newarray (java.lang.String)[4];
+
+        $r0[0] = "ERROR: ";
+
+        $r0[1] = "WARN:  ";
+
+        $r0[2] = "INFO:  ";
+
+        $r0[3] = "DEBUG: ";
+
+        <ORG.as220.tinySQL.util.Log: java.lang.String[] levels> = $r0;
+
+        <ORG.as220.tinySQL.util.Log: int debuglevel> = 100;
+
+        return;
+    }
+
+    private void <init>()
+    {
+        ORG.as220.tinySQL.util.Log r0;
+
+        r0 := @this: ORG.as220.tinySQL.util.Log;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        return;
+    }
+
+    public static void log(int, java.lang.String)
+    {
+        java.lang.String r0, $r3, $r4, $r6;
+        int $i0, i1;
+        java.lang.StringBuilder $r1, $r5;
+        java.lang.String[] $r2;
+
+        i1 := @parameter0: int;
+
+        r0 := @parameter1: java.lang.String;
+
+        if i1 <= 3 goto label1;
+
+        i1 = 3;
+
+     label1:
+        $i0 = <ORG.as220.tinySQL.util.Log: int debuglevel>;
+
+        if i1 > $i0 goto label2;
+
+        $r1 = new java.lang.StringBuilder;
+
+        $r2 = <ORG.as220.tinySQL.util.Log: java.lang.String[] levels>;
+
+        $r3 = $r2[i1];
+
+        $r4 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r3);
+
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>($r4);
+
+        $r5 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0);
+
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <java.sql.DriverManager: void println(java.lang.String)>($r6);
+
+     label2:
+        return;
+    }
+
+    public static void log(int, java.lang.String, java.lang.Exception)
+    {
+        java.lang.String r0, $r5, $r6, $r8;
+        java.lang.Exception r1;
+        java.io.PrintWriter r2;
+        int $i0, i1;
+        java.lang.StringBuilder $r3, $r7;
+        java.lang.String[] $r4;
+
+        i1 := @parameter0: int;
+
+        r0 := @parameter1: java.lang.String;
+
+        r1 := @parameter2: java.lang.Exception;
+
+        if i1 <= 3 goto label1;
+
+        i1 = 3;
+
+     label1:
+        $i0 = <ORG.as220.tinySQL.util.Log: int debuglevel>;
+
+        if i1 > $i0 goto label2;
+
+        $r3 = new java.lang.StringBuilder;
+
+        $r4 = <ORG.as220.tinySQL.util.Log: java.lang.String[] levels>;
+
+        $r5 = $r4[i1];
+
+        $r6 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r5);
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>($r6);
+
+        $r7 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0);
+
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        staticinvoke <java.sql.DriverManager: void println(java.lang.String)>($r8);
+
+        r2 = staticinvoke <java.sql.DriverManager: java.io.PrintWriter getLogWriter()>();
+
+        if r2 == null goto label2;
+
+        virtualinvoke r1.<java.lang.Exception: void printStackTrace(java.io.PrintWriter)>(r2);
+
+     label2:
+        return;
+    }
+
+    public static void debug(java.lang.String)
+    {
+        java.lang.String r0;
+
+        r0 := @parameter0: java.lang.String;
+
+        staticinvoke <ORG.as220.tinySQL.util.Log: void log(int,java.lang.String)>(3, r0);
+
+        return;
+    }
+
+    public static void debug(java.lang.String, java.lang.Exception)
+    {
+        java.lang.String r0;
+        java.lang.Exception r1;
+
+        r0 := @parameter0: java.lang.String;
+
+        r1 := @parameter1: java.lang.Exception;
+
+        staticinvoke <ORG.as220.tinySQL.util.Log: void log(int,java.lang.String,java.lang.Exception)>(3, r0, r1);
+
+        return;
+    }
+
+    public static void info(java.lang.String)
+    {
+        java.lang.String r0;
+
+        r0 := @parameter0: java.lang.String;
+
+        staticinvoke <ORG.as220.tinySQL.util.Log: void log(int,java.lang.String)>(2, r0);
+
+        return;
+    }
+
+    public static void info(java.lang.String, java.lang.Exception)
+    {
+        java.lang.String r0;
+        java.lang.Exception r1;
+
+        r0 := @parameter0: java.lang.String;
+
+        r1 := @parameter1: java.lang.Exception;
+
+        staticinvoke <ORG.as220.tinySQL.util.Log: void log(int,java.lang.String,java.lang.Exception)>(2, r0, r1);
+
+        return;
+    }
+
+    public static void warn(java.lang.String)
+    {
+        java.lang.String r0;
+
+        r0 := @parameter0: java.lang.String;
+
+        staticinvoke <ORG.as220.tinySQL.util.Log: void log(int,java.lang.String)>(1, r0);
+
+        return;
+    }
+
+    public static void warn(java.lang.String, java.lang.Exception)
+    {
+        java.lang.String r0;
+        java.lang.Exception r1;
+
+        r0 := @parameter0: java.lang.String;
+
+        r1 := @parameter1: java.lang.Exception;
+
+        staticinvoke <ORG.as220.tinySQL.util.Log: void log(int,java.lang.String,java.lang.Exception)>(1, r0, r1);
+
+        return;
+    }
+
+    public static void error(java.lang.String)
+    {
+        java.lang.String r0;
+
+        r0 := @parameter0: java.lang.String;
+
+        staticinvoke <ORG.as220.tinySQL.util.Log: void log(int,java.lang.String)>(0, r0);
+
+        return;
+    }
+
+    public static void error(java.lang.String, java.lang.Exception)
+    {
+        java.lang.String r0;
+        java.lang.Exception r1;
+
+        r0 := @parameter0: java.lang.String;
+
+        r1 := @parameter1: java.lang.Exception;
+
+        staticinvoke <ORG.as220.tinySQL.util.Log: void log(int,java.lang.String,java.lang.Exception)>(0, r0, r1);
+
+        return;
+    }
+}

@@ -1,0 +1,828 @@
+public class ORG.as220.tinySQL.tinySQLStatement extends java.lang.Object implements java.sql.Statement
+{
+    private ORG.as220.tinySQL.sqlparser.SQLStatement statement;
+    private java.util.Vector results;
+    private ORG.as220.tinySQL.tinySQLConnection connection;
+    private ORG.as220.tinySQL.tinySQLResultSet result;
+    private int max_field_size;
+    private int max_rows;
+    private int timeout;
+    private int fetchsize;
+    private int defaultResultSetType;
+    private int defaultDirection;
+    private ORG.as220.tinySQL.sqlparser.SQLStatementBatch batch;
+
+    public void <init>(ORG.as220.tinySQL.tinySQLConnection)
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        ORG.as220.tinySQL.tinySQLConnection r1;
+        java.util.Vector $r2;
+        ORG.as220.tinySQL.sqlparser.SQLStatementBatch $r3;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tinySQLConnection;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<ORG.as220.tinySQL.tinySQLStatement: int max_field_size> = 0;
+
+        r0.<ORG.as220.tinySQL.tinySQLStatement: int max_rows> = 0;
+
+        r0.<ORG.as220.tinySQL.tinySQLStatement: int timeout> = 0;
+
+        r0.<ORG.as220.tinySQL.tinySQLStatement: int fetchsize> = 2048;
+
+        r0.<ORG.as220.tinySQL.tinySQLStatement: int defaultResultSetType> = 1004;
+
+        r0.<ORG.as220.tinySQL.tinySQLStatement: int defaultDirection> = 1002;
+
+        r0.<ORG.as220.tinySQL.tinySQLStatement: ORG.as220.tinySQL.tinySQLConnection connection> = r1;
+
+        $r2 = new java.util.Vector;
+
+        specialinvoke $r2.<java.util.Vector: void <init>()>();
+
+        r0.<ORG.as220.tinySQL.tinySQLStatement: java.util.Vector results> = $r2;
+
+        $r3 = new ORG.as220.tinySQL.sqlparser.SQLStatementBatch;
+
+        specialinvoke $r3.<ORG.as220.tinySQL.sqlparser.SQLStatementBatch: void <init>(ORG.as220.tinySQL.tinySQLStatement)>(r0);
+
+        r0.<ORG.as220.tinySQL.tinySQLStatement: ORG.as220.tinySQL.sqlparser.SQLStatementBatch batch> = $r3;
+
+        return;
+    }
+
+    public synchronized java.sql.ResultSet executeQuery(java.lang.String) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        java.lang.String r1, $r5;
+        boolean z0;
+        ORG.as220.tinySQL.tinySQLException $r2;
+        java.lang.StringBuilder $r3, $r4;
+        java.sql.ResultSet $r6;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        r1 := @parameter0: java.lang.String;
+
+        z0 = virtualinvoke r0.<ORG.as220.tinySQL.tinySQLStatement: boolean execute(java.lang.String)>(r1);
+
+        if z0 == 0 goto label1;
+
+        $r6 = virtualinvoke r0.<ORG.as220.tinySQL.tinySQLStatement: java.sql.ResultSet getResultSet()>();
+
+        return $r6;
+
+     label1:
+        $r2 = new ORG.as220.tinySQL.tinySQLException;
+
+        $r3 = new java.lang.StringBuilder;
+
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>("Statement returned an UpdateCount\n");
+
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1);
+
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+
+        specialinvoke $r2.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>($r5);
+
+        throw $r2;
+    }
+
+    public synchronized int executeUpdate(java.lang.String) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        java.lang.String r1;
+        boolean z0;
+        ORG.as220.tinySQL.tinySQLException $r2;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        r1 := @parameter0: java.lang.String;
+
+        z0 = virtualinvoke r0.<ORG.as220.tinySQL.tinySQLStatement: boolean execute(java.lang.String)>(r1);
+
+        if z0 != 0 goto label1;
+
+        $i0 = virtualinvoke r0.<ORG.as220.tinySQL.tinySQLStatement: int getUpdateCount()>();
+
+        return $i0;
+
+     label1:
+        $r2 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r2.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("Statement returned a ResultSet");
+
+        throw $r2;
+    }
+
+    public synchronized boolean execute(java.lang.String) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        java.lang.String r1;
+        boolean z0;
+        ORG.as220.tinySQL.tinySQLConnection $r2;
+        ORG.as220.tinySQL.tinySQL $r3;
+        ORG.as220.tinySQL.sqlparser.SQLStatement $r4, $r5;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r2 = r0.<ORG.as220.tinySQL.tinySQLStatement: ORG.as220.tinySQL.tinySQLConnection connection>;
+
+        $r3 = virtualinvoke $r2.<ORG.as220.tinySQL.tinySQLConnection: ORG.as220.tinySQL.tinySQL getDatabaseEngine()>();
+
+        $r4 = virtualinvoke $r3.<ORG.as220.tinySQL.tinySQL: ORG.as220.tinySQL.sqlparser.SQLStatement parse(ORG.as220.tinySQL.tinySQLStatement,java.lang.String)>(r0, r1);
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLStatement: void setStatement(ORG.as220.tinySQL.sqlparser.SQLStatement)>($r4);
+
+        $r5 = r0.<ORG.as220.tinySQL.tinySQLStatement: ORG.as220.tinySQL.sqlparser.SQLStatement statement>;
+
+        z0 = interfaceinvoke $r5.<ORG.as220.tinySQL.sqlparser.SQLStatement: boolean execute()>();
+
+        return z0;
+    }
+
+    public void close() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        ORG.as220.tinySQL.tinySQLResultSet r2;
+        java.util.Vector $r3, $r4, $r5;
+        int $i0, i1;
+        java.lang.Object $r6;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        $r3 = new java.util.Vector;
+
+        $r4 = r0.<ORG.as220.tinySQL.tinySQLStatement: java.util.Vector results>;
+
+        specialinvoke $r3.<java.util.Vector: void <init>(java.util.Collection)>($r4);
+
+        i1 = 0;
+
+        goto label2;
+
+     label1:
+        $r5 = r0.<ORG.as220.tinySQL.tinySQLStatement: java.util.Vector results>;
+
+        $r6 = virtualinvoke $r5.<java.util.Vector: java.lang.Object elementAt(int)>(i1);
+
+        r2 = (ORG.as220.tinySQL.tinySQLResultSet) $r6;
+
+        virtualinvoke r2.<ORG.as220.tinySQL.tinySQLResultSet: void close()>();
+
+        i1 = i1 + 1;
+
+     label2:
+        $i0 = virtualinvoke $r3.<java.util.Vector: int size()>();
+
+        if i1 < $i0 goto label1;
+
+        return;
+    }
+
+    public java.sql.ResultSet getResultSet() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        ORG.as220.tinySQL.sqlparser.SQLStatement $r1;
+        ORG.as220.tinySQL.tinySQLResultSet $r2;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        $r1 = r0.<ORG.as220.tinySQL.tinySQLStatement: ORG.as220.tinySQL.sqlparser.SQLStatement statement>;
+
+        $r2 = interfaceinvoke $r1.<ORG.as220.tinySQL.sqlparser.SQLStatement: ORG.as220.tinySQL.tinySQLResultSet getResultSet()>();
+
+        return $r2;
+    }
+
+    public void onCreateResultSet(ORG.as220.tinySQL.tinySQLResultSet)
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        ORG.as220.tinySQL.tinySQLResultSet r1;
+        java.util.Vector $r2;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tinySQLResultSet;
+
+        staticinvoke <ORG.as220.tinySQL.util.Log: void debug(java.lang.String)>("Statement: ResultSet opened");
+
+        $r2 = r0.<ORG.as220.tinySQL.tinySQLStatement: java.util.Vector results>;
+
+        virtualinvoke $r2.<java.util.Vector: boolean add(java.lang.Object)>(r1);
+
+        return;
+    }
+
+    public void onCloseResultSet(ORG.as220.tinySQL.tinySQLResultSet)
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        ORG.as220.tinySQL.tinySQLResultSet r1;
+        java.util.Vector $r2;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        r1 := @parameter0: ORG.as220.tinySQL.tinySQLResultSet;
+
+        staticinvoke <ORG.as220.tinySQL.util.Log: void debug(java.lang.String)>("Statement: ResultSet close");
+
+        $r2 = r0.<ORG.as220.tinySQL.tinySQLStatement: java.util.Vector results>;
+
+        virtualinvoke $r2.<java.util.Vector: boolean remove(java.lang.Object)>(r1);
+
+        return;
+    }
+
+    public int getUpdateCount() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        ORG.as220.tinySQL.sqlparser.SQLStatement $r1;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        $r1 = r0.<ORG.as220.tinySQL.tinySQLStatement: ORG.as220.tinySQL.sqlparser.SQLStatement statement>;
+
+        $i0 = interfaceinvoke $r1.<ORG.as220.tinySQL.sqlparser.SQLStatement: int getUpdateCount()>();
+
+        return $i0;
+    }
+
+    public boolean getMoreResults() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        ORG.as220.tinySQL.sqlparser.SQLStatement $r1;
+        boolean $z0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        $r1 = r0.<ORG.as220.tinySQL.tinySQLStatement: ORG.as220.tinySQL.sqlparser.SQLStatement statement>;
+
+        $z0 = interfaceinvoke $r1.<ORG.as220.tinySQL.sqlparser.SQLStatement: boolean getMoreResults()>();
+
+        return $z0;
+    }
+
+    public int getMaxFieldSize() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        $i0 = r0.<ORG.as220.tinySQL.tinySQLStatement: int max_field_size>;
+
+        return $i0;
+    }
+
+    public void setMaxFieldSize(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        i0 := @parameter0: int;
+
+        r0.<ORG.as220.tinySQL.tinySQLStatement: int max_field_size> = i0;
+
+        return;
+    }
+
+    public int getMaxRows() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        $i0 = r0.<ORG.as220.tinySQL.tinySQLStatement: int max_rows>;
+
+        return $i0;
+    }
+
+    public void setMaxRows(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        i0 := @parameter0: int;
+
+        r0.<ORG.as220.tinySQL.tinySQLStatement: int max_rows> = i0;
+
+        return;
+    }
+
+    public void setEscapeProcessing(boolean) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        boolean z0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        z0 := @parameter0: boolean;
+
+        return;
+    }
+
+    public int getQueryTimeout() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        $i0 = r0.<ORG.as220.tinySQL.tinySQLStatement: int timeout>;
+
+        return $i0;
+    }
+
+    public void setQueryTimeout(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        i0 := @parameter0: int;
+
+        r0.<ORG.as220.tinySQL.tinySQLStatement: int timeout> = i0;
+
+        return;
+    }
+
+    public void cancel()
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        return;
+    }
+
+    public final java.sql.SQLWarning getWarnings() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        return null;
+    }
+
+    public void clearWarnings() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        return;
+    }
+
+    public void setCursorName(java.lang.String) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        java.lang.String r1;
+        java.sql.SQLException $r2;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r2 = new java.sql.SQLException;
+
+        specialinvoke $r2.<java.sql.SQLException: void <init>(java.lang.String)>("tinySQL does not support cursors.");
+
+        throw $r2;
+    }
+
+    public void setFetchDirection(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        i0 := @parameter0: int;
+
+        r0.<ORG.as220.tinySQL.tinySQLStatement: int defaultDirection> = i0;
+
+        return;
+    }
+
+    public int getFetchDirection() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        $i0 = r0.<ORG.as220.tinySQL.tinySQLStatement: int defaultDirection>;
+
+        return $i0;
+    }
+
+    public void setFetchSize(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        int i0, $i1;
+        java.sql.SQLException $r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        i0 := @parameter0: int;
+
+        if i0 <= 0 goto label1;
+
+        $i1 = virtualinvoke r0.<ORG.as220.tinySQL.tinySQLStatement: int getMaxRows()>();
+
+        if i0 < $i1 goto label2;
+
+     label1:
+        $r1 = new java.sql.SQLException;
+
+        specialinvoke $r1.<java.sql.SQLException: void <init>(java.lang.String)>("Condition 0 <= rows <= this.getMaxRows() is not satisfied");
+
+        throw $r1;
+
+     label2:
+        r0.<ORG.as220.tinySQL.tinySQLStatement: int fetchsize> = i0;
+
+        return;
+    }
+
+    public int getFetchSize() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        $i0 = r0.<ORG.as220.tinySQL.tinySQLStatement: int fetchsize>;
+
+        return $i0;
+    }
+
+    public int getResultSetConcurrency() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        return 1007;
+    }
+
+    public int getResultSetType() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        int $i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        $i0 = r0.<ORG.as220.tinySQL.tinySQLStatement: int defaultResultSetType>;
+
+        return $i0;
+    }
+
+    public void setDefaultResultSetType(int)
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        i0 := @parameter0: int;
+
+        r0.<ORG.as220.tinySQL.tinySQLStatement: int defaultResultSetType> = i0;
+
+        return;
+    }
+
+    public void addBatch(java.lang.String) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        java.lang.String r1;
+        java.util.Vector r2;
+        ORG.as220.tinySQL.tinySQLConnection $r3;
+        ORG.as220.tinySQL.tinySQL $r4;
+        ORG.as220.tinySQL.sqlparser.SQLStatement $r5, $r6, $r7;
+        int $i0;
+        ORG.as220.tinySQL.tinySQLException $r8;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r3 = r0.<ORG.as220.tinySQL.tinySQLStatement: ORG.as220.tinySQL.tinySQLConnection connection>;
+
+        $r4 = virtualinvoke $r3.<ORG.as220.tinySQL.tinySQLConnection: ORG.as220.tinySQL.tinySQL getDatabaseEngine()>();
+
+        $r5 = virtualinvoke $r4.<ORG.as220.tinySQL.tinySQL: ORG.as220.tinySQL.sqlparser.SQLStatement parse(ORG.as220.tinySQL.tinySQLStatement,java.lang.String)>(r0, r1);
+
+        r0.<ORG.as220.tinySQL.tinySQLStatement: ORG.as220.tinySQL.sqlparser.SQLStatement statement> = $r5;
+
+        $r6 = r0.<ORG.as220.tinySQL.tinySQLStatement: ORG.as220.tinySQL.sqlparser.SQLStatement statement>;
+
+        r2 = interfaceinvoke $r6.<ORG.as220.tinySQL.sqlparser.SQLStatement: java.util.Vector getParameters()>();
+
+        $i0 = virtualinvoke r2.<java.util.Vector: int size()>();
+
+        if $i0 == 0 goto label1;
+
+        $r8 = new ORG.as220.tinySQL.tinySQLException;
+
+        specialinvoke $r8.<ORG.as220.tinySQL.tinySQLException: void <init>(java.lang.String)>("Parameterized statements are not supported, use PreparedStatement for Parameters");
+
+        throw $r8;
+
+     label1:
+        $r7 = r0.<ORG.as220.tinySQL.tinySQLStatement: ORG.as220.tinySQL.sqlparser.SQLStatement statement>;
+
+        virtualinvoke r0.<ORG.as220.tinySQL.tinySQLStatement: void addBatch(ORG.as220.tinySQL.sqlparser.SQLStatement)>($r7);
+
+        return;
+    }
+
+    protected void addBatch(ORG.as220.tinySQL.sqlparser.SQLStatement) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        ORG.as220.tinySQL.sqlparser.SQLStatement r1;
+        ORG.as220.tinySQL.sqlparser.SQLStatementBatch $r2;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        r1 := @parameter0: ORG.as220.tinySQL.sqlparser.SQLStatement;
+
+        $r2 = r0.<ORG.as220.tinySQL.tinySQLStatement: ORG.as220.tinySQL.sqlparser.SQLStatementBatch batch>;
+
+        virtualinvoke $r2.<ORG.as220.tinySQL.sqlparser.SQLStatementBatch: void add(ORG.as220.tinySQL.sqlparser.SQLStatement)>(r1);
+
+        return;
+    }
+
+    public void clearBatch() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        ORG.as220.tinySQL.sqlparser.SQLStatementBatch $r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        $r1 = r0.<ORG.as220.tinySQL.tinySQLStatement: ORG.as220.tinySQL.sqlparser.SQLStatementBatch batch>;
+
+        virtualinvoke $r1.<ORG.as220.tinySQL.sqlparser.SQLStatementBatch: void clear()>();
+
+        return;
+    }
+
+    public int[] executeBatch() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        ORG.as220.tinySQL.sqlparser.SQLStatementBatch $r1;
+        int[] $r2;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        $r1 = r0.<ORG.as220.tinySQL.tinySQLStatement: ORG.as220.tinySQL.sqlparser.SQLStatementBatch batch>;
+
+        $r2 = virtualinvoke $r1.<ORG.as220.tinySQL.sqlparser.SQLStatementBatch: int[] executeAll()>();
+
+        return $r2;
+    }
+
+    public java.sql.Connection getConnection() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        ORG.as220.tinySQL.tinySQLConnection $r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        $r1 = r0.<ORG.as220.tinySQL.tinySQLStatement: ORG.as220.tinySQL.tinySQLConnection connection>;
+
+        return $r1;
+    }
+
+    protected ORG.as220.tinySQL.sqlparser.SQLStatement getStatement()
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        ORG.as220.tinySQL.sqlparser.SQLStatement $r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        $r1 = r0.<ORG.as220.tinySQL.tinySQLStatement: ORG.as220.tinySQL.sqlparser.SQLStatement statement>;
+
+        return $r1;
+    }
+
+    protected void setStatement(ORG.as220.tinySQL.sqlparser.SQLStatement)
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        ORG.as220.tinySQL.sqlparser.SQLStatement r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        r1 := @parameter0: ORG.as220.tinySQL.sqlparser.SQLStatement;
+
+        r0.<ORG.as220.tinySQL.tinySQLStatement: ORG.as220.tinySQL.sqlparser.SQLStatement statement> = r1;
+
+        return;
+    }
+
+    public boolean isWrapperFor(java.lang.Class) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        java.lang.Class r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        r1 := @parameter0: java.lang.Class;
+
+        return 0;
+    }
+
+    public java.lang.Object unwrap(java.lang.Class) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        java.lang.Class r1;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        r1 := @parameter0: java.lang.Class;
+
+        return null;
+    }
+
+    public boolean execute(java.lang.String, int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        java.lang.String r1;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        return 0;
+    }
+
+    public boolean execute(java.lang.String, int[]) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        java.lang.String r1;
+        int[] r2;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: int[];
+
+        return 0;
+    }
+
+    public boolean execute(java.lang.String, java.lang.String[]) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        java.lang.String r1;
+        java.lang.String[] r2;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String[];
+
+        return 0;
+    }
+
+    public int executeUpdate(java.lang.String, int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        java.lang.String r1;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        r1 := @parameter0: java.lang.String;
+
+        i0 := @parameter1: int;
+
+        return 0;
+    }
+
+    public int executeUpdate(java.lang.String, int[]) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        java.lang.String r1;
+        int[] r2;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: int[];
+
+        return 0;
+    }
+
+    public int executeUpdate(java.lang.String, java.lang.String[]) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        java.lang.String r1;
+        java.lang.String[] r2;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        r1 := @parameter0: java.lang.String;
+
+        r2 := @parameter1: java.lang.String[];
+
+        return 0;
+    }
+
+    public java.sql.ResultSet getGeneratedKeys() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        return null;
+    }
+
+    public boolean getMoreResults(int) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        int i0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        i0 := @parameter0: int;
+
+        return 0;
+    }
+
+    public int getResultSetHoldability() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        return 0;
+    }
+
+    public boolean isClosed() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        return 0;
+    }
+
+    public boolean isPoolable() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        return 0;
+    }
+
+    public void setPoolable(boolean) throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+        boolean z0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        z0 := @parameter0: boolean;
+
+        return;
+    }
+
+    public void closeOnCompletion() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        return;
+    }
+
+    public boolean isCloseOnCompletion() throws java.sql.SQLException
+    {
+        ORG.as220.tinySQL.tinySQLStatement r0;
+
+        r0 := @this: ORG.as220.tinySQL.tinySQLStatement;
+
+        return 0;
+    }
+}

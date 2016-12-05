@@ -1,0 +1,59 @@
+class ORG.as220.tinySQL.Utils$1MyDir extends javax.swing.filechooser.FileSystemView
+{
+
+    void <init>()
+    {
+        ORG.as220.tinySQL.Utils$1MyDir r0;
+
+        r0 := @this: ORG.as220.tinySQL.Utils$1MyDir;
+
+        specialinvoke r0.<javax.swing.filechooser.FileSystemView: void <init>()>();
+
+        return;
+    }
+
+    public java.io.File createNewFolder(java.io.File)
+    {
+        ORG.as220.tinySQL.Utils$1MyDir r0;
+        java.io.File r1;
+
+        r0 := @this: ORG.as220.tinySQL.Utils$1MyDir;
+
+        r1 := @parameter0: java.io.File;
+
+        return null;
+    }
+
+    public java.io.File[] getRoots()
+    {
+        ORG.as220.tinySQL.Utils$1MyDir r0;
+
+        r0 := @this: ORG.as220.tinySQL.Utils$1MyDir;
+
+        return null;
+    }
+
+    public boolean isHiddenFile(java.io.File)
+    {
+        ORG.as220.tinySQL.Utils$1MyDir r0;
+        java.io.File r1;
+
+        r0 := @this: ORG.as220.tinySQL.Utils$1MyDir;
+
+        r1 := @parameter0: java.io.File;
+
+        return 0;
+    }
+
+    public boolean isRoot(java.io.File)
+    {
+        ORG.as220.tinySQL.Utils$1MyDir r0;
+        java.io.File r1;
+
+        r0 := @this: ORG.as220.tinySQL.Utils$1MyDir;
+
+        r1 := @parameter0: java.io.File;
+
+        return 0;
+    }
+}

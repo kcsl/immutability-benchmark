@@ -1,0 +1,15 @@
+public interface  ORG.as220.tinySQL.sqlparser.SQLStatement extends java.lang.Object
+{
+
+    public abstract ORG.as220.tinySQL.tinySQL getDatabase() throws ORG.as220.tinySQL.tinySQLException;
+
+    public abstract boolean execute() throws ORG.as220.tinySQL.tinySQLException;
+
+    public abstract int getUpdateCount() throws ORG.as220.tinySQL.tinySQLException;
+
+    public abstract ORG.as220.tinySQL.tinySQLResultSet getResultSet() throws ORG.as220.tinySQL.tinySQLException;
+
+    public abstract boolean getMoreResults() throws ORG.as220.tinySQL.tinySQLException;
+
+    public abstract java.util.Vector getParameters();
+}

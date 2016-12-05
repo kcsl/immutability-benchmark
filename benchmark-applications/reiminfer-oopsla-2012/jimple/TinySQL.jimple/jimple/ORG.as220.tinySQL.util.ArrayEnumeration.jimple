@@ -1,0 +1,81 @@
+public class ORG.as220.tinySQL.util.ArrayEnumeration extends java.lang.Object implements java.util.Enumeration
+{
+    private java.lang.Object[] objectarray;
+    private int counter;
+
+    public void <init>(java.lang.Object[])
+    {
+        ORG.as220.tinySQL.util.ArrayEnumeration r0;
+        java.lang.Object[] r1;
+        java.lang.NullPointerException $r2;
+
+        r0 := @this: ORG.as220.tinySQL.util.ArrayEnumeration;
+
+        r1 := @parameter0: java.lang.Object[];
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<ORG.as220.tinySQL.util.ArrayEnumeration: java.lang.Object[] objectarray> = null;
+
+        r0.<ORG.as220.tinySQL.util.ArrayEnumeration: int counter> = -1;
+
+        if r1 != null goto label1;
+
+        $r2 = new java.lang.NullPointerException;
+
+        specialinvoke $r2.<java.lang.NullPointerException: void <init>(java.lang.String)>("ObjektArray kann nicht null sein");
+
+        throw $r2;
+
+     label1:
+        r0.<ORG.as220.tinySQL.util.ArrayEnumeration: java.lang.Object[] objectarray> = r1;
+
+        return;
+    }
+
+    public boolean hasMoreElements()
+    {
+        ORG.as220.tinySQL.util.ArrayEnumeration r0;
+        java.lang.Object[] $r1;
+        int $i0, $i1;
+
+        r0 := @this: ORG.as220.tinySQL.util.ArrayEnumeration;
+
+        $i1 = r0.<ORG.as220.tinySQL.util.ArrayEnumeration: int counter>;
+
+        $r1 = r0.<ORG.as220.tinySQL.util.ArrayEnumeration: java.lang.Object[] objectarray>;
+
+        $i0 = lengthof $r1;
+
+        if $i1 >= $i0 goto label1;
+
+        return 1;
+
+     label1:
+        return 0;
+    }
+
+    public java.lang.Object nextElement()
+    {
+        ORG.as220.tinySQL.util.ArrayEnumeration r0;
+        java.lang.Object r1;
+        int $i0, $i1, $i2;
+        java.lang.Object[] $r2;
+
+        r0 := @this: ORG.as220.tinySQL.util.ArrayEnumeration;
+
+        $i0 = r0.<ORG.as220.tinySQL.util.ArrayEnumeration: int counter>;
+
+        $i1 = $i0 + 1;
+
+        r0.<ORG.as220.tinySQL.util.ArrayEnumeration: int counter> = $i1;
+
+        $r2 = r0.<ORG.as220.tinySQL.util.ArrayEnumeration: java.lang.Object[] objectarray>;
+
+        $i2 = r0.<ORG.as220.tinySQL.util.ArrayEnumeration: int counter>;
+
+        r1 = $r2[$i2];
+
+        return r1;
+    }
+}
