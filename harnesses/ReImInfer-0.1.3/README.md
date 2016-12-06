@@ -2,7 +2,7 @@
 
 ReImInfer is a reference immutability and purity analysis utility. This test harness runs ReImInfer over the Immutability Benchmark in a Vagrant virtual machine.
 
-This test harness runs the OOPSLA 2012 release of ReImInfer. Since the official Google Code hosting is no longer available this repository uses an official clone of the tool hosted at: [https://github.com/SoftwareEngineeringToolDemos/FSE-2012-ReImInfer](https://github.com/SoftwareEngineeringToolDemos/FSE-2012-ReImInfer).
+This test harness runs the second release of ReImInfer (version 0.1.3). The release is available at: [https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/type-inference/type-inference-0.1.3.zip](https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/type-inference/type-inference-0.1.3.zip). The project has since migrated to: [https://github.com/proganalysis/type-inference](https://github.com/proganalysis/type-inference).
 
 ## Setup
 1. Download and install [VirtualBox](https://www.virtualbox.org/) and [Vagrant](http://www.vagrantup.com/) for your host machine.
