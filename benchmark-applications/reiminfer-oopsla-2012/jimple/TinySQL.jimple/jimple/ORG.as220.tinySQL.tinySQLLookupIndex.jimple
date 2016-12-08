@@ -1,9 +1,0 @@
-public interface  ORG.as220.tinySQL.tinySQLLookupIndex extends java.lang.Object implements ORG.as220.tinySQL.tinySQLIndex
-{
-
-    public abstract int lookup(java.lang.Object);
-
-    public abstract int lookup(java.lang.Object[]);
-
-    public abstract int getKeyCount();
-}

@@ -1,9 +1,0 @@
-public interface  ORG.as220.tinySQL.sqlparser.Function extends java.lang.Object implements ORG.as220.tinySQL.sqlparser.LValue
-{
-
-    public abstract java.lang.String getName();
-
-    public abstract void setParameter(int, ORG.as220.tinySQL.sqlparser.LValue);
-
-    public abstract ORG.as220.tinySQL.sqlparser.LValue getParameter(int);
-}
