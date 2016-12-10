@@ -14,7 +14,7 @@ To ensure systematic, exhaustive coverage of basic assignment cases, it is impor
 ![Assignment Graph](../images/assignment-graph.png)
 
 ## Aliasing Test Cases
-TODO
+In the basic assignment test cases we defined a reference test that was explicitly mutated in the code and the analysis question was to correctly detect that test is mutated. In contrast, in the aliasing test cases, we create an alias to a reference test, and mutate the alias. The analysis question is to detect that test is indirectly mutated via the alias. In this category, there are four distinct aliasing patterns we test for, which can be explained using the concept of an aliasing chain. An aliasing chain is a sequence of explicit assignments of one reference to another, e.g., the statements `b = a;`, `c = b;` create the aliasing chain `c` &rarr; `b` &rarr; `a`. The four patterns of tests we perform are: (a) test case contains the aliasing chain `a` &rarr; `test`; (b) test case contains the aliasing chain `test` &rarr; `a`; (c) test case contains the aliasing chain `a` &rarr; `b` &rarr; `test`; and (d) test case contains the aliasing chain `test` &rarr; `b` &rarr; `a`. In all the above cases, the test case contains an explicit mutation to a, and analysis question asks whether test is mutable. The first two patterns (a) and (b) test whether mutations to an alias are propagated in either direction of the aliasing chain, while (c) and (d) test whether the analysis is also robust enough to detect mutations to aliases are propagated over levels of the aliasing chain.
 
 ## Supplemental Test Cases
-TODO
+More details coming soon.
