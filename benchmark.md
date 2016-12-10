@@ -4,4 +4,5 @@ title: Benchmark
 permalink: /benchmark/
 ---
 
-This page is under construction. Please check back soon.
+**Note:** *This page is under construction. Please check back soon.*
+
