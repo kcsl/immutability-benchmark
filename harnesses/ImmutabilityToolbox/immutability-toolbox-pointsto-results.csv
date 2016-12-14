@@ -257,4 +257,4 @@ ST002_ReturnThis,PASS,
 ST003_MultipleArrayComponents,PASS,
 ST004_MultipleArrayComponents2,PASS,
 ST005_DynamicDispatches,PASS,
-ST006_DynamicDispatches2,FAIL,test was readonly but reported as mutable
+ST006_DynamicDispatches2,FAIL,test was readonly but reported as mutable, known bug
