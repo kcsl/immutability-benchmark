@@ -67,7 +67,6 @@ public class ReImInferGrader {
 		if(analysisResult.equals("READONLY") && executionResult.equals("MUTABLE")){
 			status = "FAIL";
 			rationale = "test was mutated but reported as readonly";
-			summary.write(inputDirectory.getName() + ",FAIL\n");
 		} else if(analysisResult.equals("MUTABLE") && executionResult.equals("READONLY")){
 			status = "FAIL";
 			rationale = "test was readonly but reported as mutable";
