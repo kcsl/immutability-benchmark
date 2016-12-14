@@ -4,13 +4,13 @@ import java.util.Arrays;
 
 import annotations.MUTABLE;
 
-public class ST_001 {
+public class ST001_ArrayCast {
 
 	@MUTABLE
 	public Test test = new Test();
 	
 	public static void main(String[] args) {
-		new ST_001().foo();
+		new ST001_ArrayCast().foo();
 	}
 	
 	public void foo(){
