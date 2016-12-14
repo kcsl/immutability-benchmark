@@ -4,6 +4,8 @@ title: Benchmark
 permalink: /benchmark/
 ---
 
+The Immutability Benchmark is released under the MIT license and can be cited under the original DOI number `10.5281/zenodo.203085` or the most recent release version shown below.
+
 [![DOI](https://zenodo.org/badge/72218747.svg)](https://zenodo.org/badge/latestdoi/72218747)
 
 ## Basic Assignment Test Cases
