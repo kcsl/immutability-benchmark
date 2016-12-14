@@ -4,7 +4,7 @@ title: Results
 permalink: /results/
 ---
 
-**Note:** *This page is under construction. Please check back soon.*
+The results of each tool's performance on the Immutability Benchmark can be found at: [github.com/kcsl/immutability-benchmark/tree/master/harnesses](https://github.com/kcsl/immutability-benchmark/tree/master/harnesses).
 
 ## Test Harnesses
 The benchmark comes bundled with several virtualized test harnesses to easily reproduce benchmark results for various immutability analysis implementations. See below for instructions to run each test harness.
