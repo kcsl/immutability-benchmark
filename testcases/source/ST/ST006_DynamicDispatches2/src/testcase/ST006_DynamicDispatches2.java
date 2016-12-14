@@ -1,14 +1,14 @@
 package testcase;
 
-import annotations.MUTABLE;
+import annotations.READONLY;
 
-public class ST005_DynamicDispatches {
-	@MUTABLE
-	public static Test test = new B();
+public class ST006_DynamicDispatches2 {
+	@READONLY
+	public static Test test = new A();
 
 	public static void main(String[] args) {
 		System.out.println(test);
-		test.foo(); // B.foo mutates test
+		test.foo(); // A.foo does not mutate test
 		System.out.println(test);
 	}
 }
